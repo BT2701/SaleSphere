@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
+:root {
+    --primary-color: #80d8ff;
+    --text-color: #FAFAFA;
+    --black-color: #;
+}
+
+
+.product-detail_wraper{
+    margin-top: 20px;
+}
+
+.product-detail_image{
+    width: 100%;
+    height: 422px;
+    object-fit: cover;
+}
+
+.product-detail_list-image{
+    width: 100%;
+    height:100px;
+    display: flex;
+    margin-top: 8px;
+    justify-content: center;
+}
+.image-item{
+    width: 100px;
+    height: 100%;
+    margin: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.image-item-hovered{
+    border-color: #80d8ff;
+    transform: scale(1.1, 1.1);
+}
+
+.image-item img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+
+
+
+.product-name{
+    width: 100%;
+    text-transform: capitalize;
+    font-size: 1.3rem;
+}
+
+
+.product-info{
+    display: flex;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+.ranting{
+    display: flex;
+    align-items: center;
+}
+
+.ranting a{
+    margin-right: 6px;
+}
+
+
+.ranting i{
+    color:var(--primary-color);
+    font-size: 0.8rem;
+}
+
+.product-price{
+    margin-top: 10px;
+    background-color: #d7f2ff;
+    height: 66px;
+    border-radius: 2px;
+}
+
+.sperate{
+    width: 0.1px;
+    height: 26px;
+    background-color: red;
+    margin: 0 16px;
+}
+
+
+.has-discount{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px 0 20px;
+}
+
+
+.has-discount .original-price{
+    color: #a8a6a0;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
+.discount-price{
+    margin-right: 10px;
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.percent-discount{
+    background-color: red;
+    color: var(--text-color);
+    padding: 0 6px 0 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 22px;
+}
+
+
+.none-discount{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 20px 0 20px;
+}
+
+.none-discount .original-price{
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+
+.product-discription{
+    margin-top: 10px;
+}
+
+.quantity{
+    margin-top: 10px;
+}
+
+.quantity-title{
+    margin-right:30px;
+}
+
+
+.quantity-btn{
+    border: 1px solid #a8a6a0;
+    height: auto;
+    width: 26px;
+    border-radius: 2px;
+}
+
+.quantity-btn:hover{
+    background-color: #e7e7e7;
+}
+
+.quantity-input{
+    width: 70px;
+    text-align: center;
+}
+
+/* .quantity-current{
+    margin-left: 10px;
+} */
+/* --------------------------------     --------------------------------- */
+/* hiden arow upper and down for input when set type for this input is number  */
+/* For Chrome, Safari, and newer versions of Edge */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+/* ---------------------------------   --------------------------------- */
+
+
+
+.btn-add-product{
+    margin-top: 30px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 10px 20px 10px 20px;
+    border-radius: 2px;
+    border: 1px solid #a8a6a0;
+}
+
+.btn-add-product i{
+    padding: 0 8px 0 0;
+}
+
+
+.btn-add-product:hover{
+    background-color: #90d8ff;
+}
+
+
+
+
+
+
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+    .product-name{
+        font-size: 1.2rem;
+    }
+
+    .ranting i{
+        color:var(--primary-color);
+        font-size: 0.6rem;
+    }
+
+    .number-rating{
+        font-size: 0.9rem;
+    }
+
+
+    .feedback{
+        font-size: 0.9rem;
+    }
+
+    .number-feedback{
+        font-size: 0.9rem;
+    }
+
+    .sold{
+        font-size: 0.9rem;
+    }
+
+    /* .quantity-current{
+        margin-left: 10px;
+        font-size: 0.8rem;
+    } */
+}
+
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {}
