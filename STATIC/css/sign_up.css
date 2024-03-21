@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+body{
+    font-family: 'Roboto';
+    background: #fafafa;
+    background-image: linear-gradient(#fafafa, #80D8FF);
+    font-size: larger;
+}
+.header{
+    display: flex;
+    height: 100px;
+    width: 100%;
+    background-color: white;
+}
+.footer{
+    display: flex;
+    height: 100px;
+    width: 100%;
+    background-color: #fff;
+}
+.MyLogo{
+    padding: 40px;
+    padding-left: 180px;
+    padding-top: 15px;
+    display: flex;
+}
+.box-area{
+    width: 930px;
+}
+.right-box{
+    padding: 40px 30px 40px 40px;
+}
+::placeholder{
+    font-size: 16px;
+}
+.rounded-4{
+    border-radius: 20px;
+}
+.rounded-5{
+    border-radius: 30px;
+}
+.row{
+    padding-top: 20px;
+}
+.btn-light{
+    padding-bottom: 10px;
+}
+.or{
+    color: #ccc;
+    padding: 0 16px;
+    text-transform: uppercase;
+    font-size: .75rem;
+}
+
+@media only screen and (max-width: 768px){
+     .box-area{
+        margin: 0 10px;
+     }
+     .left-box{
+        height: 100px;
+        overflow: hidden;
+     }
+     .right-box{
+        padding: 20px;
+     }
+}

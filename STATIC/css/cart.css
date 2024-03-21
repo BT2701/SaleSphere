@@ -1,0 +1,49 @@
+.thead{
+    background-color: #80D8FF;
+}
+
+th{
+            vertical-align: middle;
+            text-align: center;
+        }
+
+th{
+    padding: 5px;
+    background-color: #80D8FF;
+}
+.btn{
+    background-color: #80D8FF;
+    color: black;
+    border-color: black;
+}
+.btn:hover{
+    background-color:darkgrey;
+}
+table{
+    box-shadow: 0 0 20px 0;
+    overflow: auto;
+}
+.thead-total{
+  position: sticky;
+  position:-webkit-sticky ;
+  z-index: 2;
+  bottom: 0;
+  background-color: #80D8FF;
+  border: 2px ;
+}
+
+a:link{
+    text-decoration: none;
+}
+a:hover{
+    color:#80D8FF;
+}
+
+.center{
+    vertical-align: middle;
+}
+.clear-btn-style{
+    background-color: white;
+    border: 0px;
+    border-radius: 10px;
+}

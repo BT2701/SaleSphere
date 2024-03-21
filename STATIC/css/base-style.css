@@ -1,0 +1,13 @@
+.circle-bg-icon{
+    font-size: 1.2rem;
+    width: 34px;
+    height: 34px;
+    border: 0.0625rem solid rgba(0, 0, 0, .09);
+    border-radius: 50%;
+    text-align: center;
+    background-color: #fcfcfc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

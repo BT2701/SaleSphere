@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+.textDangNhap{
+    font-size: 30px;
+    margin: 10% 20px 20px 0px;
+    padding-left: 30%;
+    
+}
+.cssTxtTenDangNhap{
+    margin: 20px 20px 20px 0px;
+    display: flex;
+    justify-items: right;
+    justify-content: left;
+    width: 100%;
+}
+.container-header{
+    height: 20vh;
+    width: 100%;
+}
+body, html, input, button, a {
+    font-family: 'Roboto', sans-serif;
+}
+.logoLogin{
+    width: 50%;
+    overflow: hidden;
+    position: relative;
+    background-color:#80d8ff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.background-container {
+    /* Thiết lập kích thước và căn giữa nếu cần */
+    width: auto;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding-left: 0px;
+    padding-right: 0px;
+    /* Đặt ảnh làm nền */
+    background-image: url('./image/th.jpg'); /* Đặt đường dẫn đến file ảnh của bạn */
+    background-size: cover; /* Có thể sử dụng 'contain' nếu bạn muốn hiển thị toàn bộ ảnh */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Cố định hình nền khi cuộn trang */
+    /* Mã màu nền fallback (nếu ảnh không tải được hoặc không tồn tại) */
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+.background-login{
+    background-color: white;
+    width: 60%;
+    height: fit-content;
+    display: flex;
+    border-radius: 10px;
+}
+
+.TenDangNhap_Pass{
+    display: block;
+}
+
+.CanhBaoBanDau{
+    display: none;  
+}
+.CanhBaoKhiDuLieuSai{
+    display: flex;
+}
+.ButtonDangNhap{
+    display: flex;
+    width: 95%;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 18px;
+    justify-content: center;
+    background: color #80d8ff;;
+    color: #f2f2f2;
+    text-size-adjust: initial;
+}
+.Quenmatkhau{
+    
+    margin-right: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: right;
+    
+}
+.container-quenpass_sms{
+    display: flex;
+    justify-content: right;
+}
+
+.sms{
+    margin-right: 10px;
+}
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.ButtonFacebook{
+    margin-left: 10px;
+    width: 95%;
+    height: 10%;
+    background-color:#f2f2f2;
+    color: blue;
+}
+.ButtonEmail{
+    margin-left: 10px;
+    width: 95%;
+    margin-top: 10px;
+    height: 10%;
+    background-color:#f2f2f2;
+    color: darkred;
+}
+.container-dangky{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 10px 0px; 
+}
+.muted-text {
+    opacity: 0.2; /* Giá trị 0.5 tạo ra kiểu mờ, giá trị từ 0 (hoàn toàn mờ) đến 1 (không mờ) */
+    size: 5px;
+}
+.container-formLogin{
+    width: 50%;
+}
+.imglogo{
+    width: 70%; 
+    border-radius: 10px; 
+    position: absolute;
+    height:50%;
+}
+@media all and (max-width:500px){
+.logoLogin{
+    width: 0%;
+    height: 0%;
+    display: none;
+}
+.imglogo{
+    width: 0%;
+    height: 0%;
+    display: none;
+}
+.background-login{
+    width: 100%;
+}
+.container-formLogin{
+    width: 100%;
+}
+.textDangNhap{
+    font-size: 30px;
+    margin: 5% 20px 20px 0px;
+    padding-left: 30%;
+    
+}
+}
+@media all and (max-width:769px){
+    .background-login{
+        width: 100%;
+    }
+}
+
+

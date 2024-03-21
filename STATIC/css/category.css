@@ -1,0 +1,70 @@
+.category{
+    padding: 10px 0 0;
+    
+}
+.category-top{
+    margin-bottom: 50px;
+}
+.category-top p{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 12px;
+    font-size: 12px;
+
+}
+.category-right{
+    width: 80%;
+    display: flex;
+}
+.category-right-top-items:first-child{
+    flex: 2;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.category-right-top-items{
+    flex: 1;
+    padding: 0 12px;
+}
+.category-right-top-items button{
+    width: 100%;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+.category-right-top-items select{
+    width: 100%;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.product-gallery-content-product{
+    margin-top: 20px;
+    /* justify-content: space-between; */
+}
+.product-gallery-content-product-item{
+    width: calc(20% - 12px);
+    text-align: center;
+    padding: 12px 0;
+}
+.product-gallery-content-product-item img{
+    width: 100%;
+}
+
+
+/* chuyển trang */
+.category-bottom{
+    justify-content: space-between;
+    margin: 30px 0 20px;
+    display: flex;
+}
+.category-bottom p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
