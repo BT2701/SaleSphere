@@ -11,7 +11,11 @@
 </head>
 
 <body>
-    
+    <?php
+    require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php';
+    $sanphamController = new SanPhamController();
+    $sanphamList = $sanphamController->getDataForView();
+    ?>
     <!-- category -->
     <section class="category">
         <div class="container">
@@ -35,16 +39,18 @@
             </div>
         </div>
         <div class="product-gallery-content-product">
-            <div class="product-gallery-content-product-item">
-                <img src="/web2/STATIC/assets/product3.png" alt="">
+           <?php if(isset($sanphamList) && !empty($sanphamList)) {?>
+            <?php foreach ($sanphamList as $sanpham): ?>
+                <div class="product-gallery-content-product-item">
+                <img src="<?php echo $sanpham['src']; ?>" alt="">
                 <div class="product-gallery-content-product-text">
                     <li><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
                         <p>Trợ giá mùa dịch</p>
                     </li>
-                    <li>Áo Blazer nam form tiêu chuẩn</li>
+                    <li><?php echo $sanpham['tenSanPham']; ?></li>
                     <li>Online giá rẻ</li>
-                    <li><a href="">169.000 <sup>đ</sup></a><span>-6%</span></li>
-                    <li>150.000 <sup>đ</sup></li>
+                    <li><a href=""><?php echo $sanpham['giaBan']; ?> <sup>đ</sup></a><span>-6%</span></li>
+                    <li><?php echo $sanpham['giaBan']; ?> <sup>đ</sup></li>
                     <li>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -54,160 +60,10 @@
                     </li>
                 </div>
             </div>
-            <div class="product-gallery-content-product-item">
-                <img src="/web2/STATIC/assets/product3.png" alt="">
-                <div class="product-gallery-content-product-text">
-                    <li><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
-                        <p>Trợ giá mùa dịch</p>
-                    </li>
-                    <li>Áo Blazer nam form tiêu chuẩn</li>
-                    <li>Online giá rẻ</li>
-                    <li><a href="">169.000 <sup>đ</sup></a><span>-6%</span></li>
-                    <li>150.000 <sup>đ</sup></li>
-                    <li>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </li>
-                </div>
-            </div>
-            <div class="product-gallery-content-product-item">
-                <img src="/web2/STATIC/assets/product3.png" alt="">
-                <div class="product-gallery-content-product-text">
-                    <li><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
-                        <p>Trợ giá mùa dịch</p>
-                    </li>
-                    <li>Áo Blazer nam form tiêu chuẩn</li>
-                    <li>Online giá rẻ</li>
-                    <li><a href="">169.000 <sup>đ</sup></a><span>-6%</span></li>
-                    <li>150.000 <sup>đ</sup></li>
-                    <li>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </li>
-                </div>
-            </div>
-            <div class="product-gallery-content-product-item">
-                <img src="/web2/STATIC/assets/product3.png" alt="">
-                <div class="product-gallery-content-product-text">
-                    <li><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
-                        <p>Trợ giá mùa dịch</p>
-                    </li>
-                    <li>Áo Blazer nam form tiêu chuẩn</li>
-                    <li>Online giá rẻ</li>
-                    <li><a href="">169.000 <sup>đ</sup></a><span>-6%</span></li>
-                    <li>150.000 <sup>đ</sup></li>
-                    <li>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </li>
-                </div>
-            </div>
-            <div class="product-gallery-content-product-item">
-                <img src="/web2/STATIC/assets/product3.png" alt="">
-                <div class="product-gallery-content-product-text">
-                    <li><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
-                        <p>Trợ giá mùa dịch</p>
-                    </li>
-                    <li>Áo Blazer nam form tiêu chuẩn</li>
-                    <li>Online giá rẻ</li>
-                    <li><a href="">169.000 <sup>đ</sup></a><span>-6%</span></li>
-                    <li>150.000 <sup>đ</sup></li>
-                    <li>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </li>
-                </div>
-            </div>
-            <div class="product-gallery-content-product-item">
-                <img src="/web2/STATIC/assets/product3.png" alt="">
-                <div class="product-gallery-content-product-text">
-                    <li><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
-                        <p>Trợ giá mùa dịch</p>
-                    </li>
-                    <li>Áo Blazer nam form tiêu chuẩn</li>
-                    <li>Online giá rẻ</li>
-                    <li><a href="">169.000 <sup>đ</sup></a><span>-6%</span></li>
-                    <li>150.000 <sup>đ</sup></li>
-                    <li>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </li>
-                </div>
-            </div>
-            <div class="product-gallery-content-product-item">
-                <img src="/web2/STATIC/assets/product3.png" alt="">
-                <div class="product-gallery-content-product-text">
-                    <li><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
-                        <p>Trợ giá mùa dịch</p>
-                    </li>
-                    <li>Áo Blazer nam form tiêu chuẩn</li>
-                    <li>Online giá rẻ</li>
-                    <li><a href="">169.000 <sup>đ</sup></a><span>-6%</span></li>
-                    <li>150.000 <sup>đ</sup></li>
-                    <li>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </li>
-                </div>
-            </div>
-            <div class="product-gallery-content-product-item">
-                <img src="/web2/STATIC/assets/product3.png" alt="">
-                <div class="product-gallery-content-product-text">
-                    <li><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
-                        <p>Trợ giá mùa dịch</p>
-                    </li>
-                    <li>Áo Blazer nam form tiêu chuẩn</li>
-                    <li>Online giá rẻ</li>
-                    <li><a href="">169.000 <sup>đ</sup></a><span>-6%</span></li>
-                    <li>150.000 <sup>đ</sup></li>
-                    <li>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </li>
-                </div>
-            </div>
-            <div class="product-gallery-content-product-item">
-                <img src="/web2/STATIC/assets/product3.png" alt="">
-                <div class="product-gallery-content-product-text">
-                    <li><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
-                        <p>Trợ giá mùa dịch</p>
-                    </li>
-                    <li>Áo Blazer nam form tiêu chuẩn</li>
-                    <li>Online giá rẻ</li>
-                    <li><a href="">169.000 <sup>đ</sup></a><span>-6%</span></li>
-                    <li>150.000 <sup>đ</sup></li>
-                    <li>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </li>
-                </div>
-            </div>
-            
-
+            <?php endforeach; ?>
+            <?php }else{
+                echo "không có sản phẩm nào";
+            } ?>
         </div>
         <div class="category-bottom">
             <div class="category-bottom-items">
