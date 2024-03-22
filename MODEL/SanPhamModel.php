@@ -8,7 +8,7 @@ class SanPhamModel {
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
-        $sql = "SELECT s.tenSanPham, s.giaBan, s.src, k.giaTri, dg.star
+        $sql = "SELECT s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, dg.star
         FROM sanpham s
         LEFT JOIN chitietkhuyenmai ctk ON s.id = ctk.idsanpham
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id

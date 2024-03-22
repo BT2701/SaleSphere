@@ -44,9 +44,16 @@
                 <div class="product-gallery-content-product-item">
                 <img src="<?php echo $sanpham['src']; ?>" alt="">
                 <div class="product-gallery-content-product-text">
+                <?php if ($sanpham['tenKhuyenMai']!=null){ ?>
                     <li><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
-                        <p>Trợ giá mùa dịch</p>
+                        <p><?php 
+                            echo $sanpham['tenKhuyenMai'];
+                            ?></p>
                     </li>
+                    <?php }
+                    else{
+                        echo '<li style="background-color: #fcfcfc;"></li>';
+                    }?>
                     <li><?php echo $sanpham['tenSanPham']; ?></li>
                     <li>Online giá rẻ</li>
                     <li><a href=""><?php echo $sanpham['giaBan']; ?> <sup>đ</sup></a><span>-<?php if($sanpham['giaTri']!=null){echo $sanpham['giaTri'];}else{echo "0";} ?>%</span></li>
