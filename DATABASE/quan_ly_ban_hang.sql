@@ -32,6 +32,18 @@ CREATE TABLE IF NOT EXISTS `chitiethoadon` (
 
 -- Dumping data for table quan_ly_ban_hang.chitiethoadon: ~0 rows (approximately)
 
+-- Dumping structure for table quan_ly_ban_hang.chitietkhuyenmai
+CREATE TABLE IF NOT EXISTS `chitietkhuyenmai` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idsanpham` int(11) NOT NULL DEFAULT 0,
+  `idkhuyenmai` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table quan_ly_ban_hang.chitietkhuyenmai: ~1 rows (approximately)
+INSERT INTO `chitietkhuyenmai` (`id`, `idsanpham`, `idkhuyenmai`) VALUES
+	(1, 1, 1);
+
 -- Dumping structure for table quan_ly_ban_hang.chitietkiemke
 CREATE TABLE IF NOT EXISTS `chitietkiemke` (
   `idKiemKe` int(11) NOT NULL,
@@ -77,6 +89,19 @@ CREATE TABLE IF NOT EXISTS `chucnang` (
 
 -- Dumping data for table quan_ly_ban_hang.chucnang: ~0 rows (approximately)
 
+-- Dumping structure for table quan_ly_ban_hang.danhgia
+CREATE TABLE IF NOT EXISTS `danhgia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idsanpham` int(11) DEFAULT NULL,
+  `noidung` varchar(200) DEFAULT NULL,
+  `star` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table quan_ly_ban_hang.danhgia: ~1 rows (approximately)
+INSERT INTO `danhgia` (`id`, `idsanpham`, `noidung`, `star`) VALUES
+	(1, 1, 'đỉnh của đỉnh', 5);
+
 -- Dumping structure for table quan_ly_ban_hang.donvitinh
 CREATE TABLE IF NOT EXISTS `donvitinh` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -99,6 +124,7 @@ CREATE TABLE IF NOT EXISTS `hoadon` (
   `idKhachHang` int(11) DEFAULT NULL,
   `trangThai` int(11) DEFAULT NULL,
   `tongTien` int(11) DEFAULT NULL,
+  `manv` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idKhachHang` (`idKhachHang`),
   CONSTRAINT `hoadon_ibfk_1` FOREIGN KEY (`idKhachHang`) REFERENCES `khachhang` (`id`)
@@ -113,9 +139,11 @@ CREATE TABLE IF NOT EXISTS `khuyenmai` (
   `hanSuDung` date DEFAULT NULL,
   `giaTri` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table quan_ly_ban_hang.khuyenmai: ~0 rows (approximately)
+-- Dumping data for table quan_ly_ban_hang.khuyenmai: ~1 rows (approximately)
+INSERT INTO `khuyenmai` (`id`, `tenKhuyenMai`, `hanSuDung`, `giaTri`) VALUES
+	(1, 'Trợ giá mùa dịch', '2025-03-22', 6);
 
 -- Dumping structure for table quan_ly_ban_hang.kiemke
 CREATE TABLE IF NOT EXISTS `kiemke` (
@@ -180,11 +208,11 @@ CREATE TABLE IF NOT EXISTS `sanpham` (
 
 -- Dumping data for table quan_ly_ban_hang.sanpham: ~5 rows (approximately)
 INSERT INTO `sanpham` (`id`, `tenSanPham`, `giaBan`, `idLoaiSP`, `src`, `moTa`, `maDVT`) VALUES
-	(1, 'Samsung Galaxy S21', 12000000, 1, NULL, NULL, 1),
-	(2, 'Dell XPS 13', 25000000, 2, NULL, NULL, 2),
-	(3, 'Instant Pot Duo', 1500000, 3, NULL, NULL, 3),
-	(4, 'Nike Air Max', 2000000, 4, NULL, NULL, 4),
-	(5, 'LEGO Star Wars Set', 500000, 5, NULL, NULL, 5);
+	(1, 'Samsung Galaxy S21', 12000000, 1, '/web2/STATIC/assets/product3.png', NULL, 1),
+	(2, 'Dell XPS 13', 25000000, 2, '/web2/STATIC/assets/product3.png', NULL, 2),
+	(3, 'Instant Pot Duo', 1500000, 3, '/web2/STATIC/assets/product3.png', NULL, 3),
+	(4, 'Nike Air Max', 2000000, 4, '/web2/STATIC/assets/product3.png', NULL, 4),
+	(5, 'LEGO Star Wars Set', 500000, 5, '/web2/STATIC/assets/product3.png', NULL, 5);
 
 -- Dumping structure for table quan_ly_ban_hang.taikhoan
 CREATE TABLE IF NOT EXISTS `taikhoan` (

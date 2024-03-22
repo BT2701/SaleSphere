@@ -49,14 +49,20 @@
                     </li>
                     <li><?php echo $sanpham['tenSanPham']; ?></li>
                     <li>Online giá rẻ</li>
-                    <li><a href=""><?php echo $sanpham['giaBan']; ?> <sup>đ</sup></a><span>-6%</span></li>
-                    <li><?php echo $sanpham['giaBan']; ?> <sup>đ</sup></li>
+                    <li><a href=""><?php echo $sanpham['giaBan']; ?> <sup>đ</sup></a><span>-<?php if($sanpham['giaTri']!=null){echo $sanpham['giaTri'];}else{echo "0";} ?>%</span></li>
+                    <li><?php if($sanpham['giaTri']!=null){
+                        $value=$sanpham['giaBan'];
+                        $khuyenmai=$sanpham['giaTri'];
+                        $giaban= $value - $value *$khuyenmai/100;
+                        echo $giaban;}else{echo $sanpham['giaBan'];} ?> <sup>đ</sup></li>
                     <li>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
+                        <?php
+                        if ($sanpham['star']!=null){
+                            for ($i=0;$i<$sanpham['star'];$i++){
+                                echo '<i class="fa-solid fa-star"></i>';
+                            }
+                        }
+                        ?>
                     </li>
                 </div>
             </div>
