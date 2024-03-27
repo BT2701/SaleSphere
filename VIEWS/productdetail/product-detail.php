@@ -1,20 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/web2/STATIC/css/product-detailStyle.css">
+    <title>Document</title>
+</head>
+<body>
 <section class="product-detail_wraper">
     <div class="container">
         <div class="row">
             <div class="col-lg-5 col-12">
-                <img src="../image/flower2.jpg" class="product-detail_image" alt="product image for detail">
+                <img src="/web2/STATIC/assets/product3.png.png" class="product-detail_image" alt="product image for detail">
                 <div class="product-detail_list-image ">
-                    <div class="image-item image-item1" onmouseover="show_product_detail('image-item1','../image/flower1.jpg')" style="">
-                        <img src="../image/flower1.jpg" alt="">
+                    <div class="image-item image-item1" onmouseover="show_product_detail('image-item1','/web2/STATIC/assets/product3.png')" style="">
+                        <img src="/web2/STATIC/assets/product3.png" alt="">
                     </div>
-                    <div class="image-item image-item2" onmouseover="show_product_detail('image-item2','../image/flower2.jpg')" style="">
-                        <img src="../image/flower2.jpg" alt="">
+                    <div class="image-item image-item2" onmouseover="show_product_detail('image-item2','/web2/STATIC/assets/product3.png.png')" style="">
+                        <img src="/web2/STATIC/assets/product3.png.png" alt="">
                     </div>
-                    <div class="image-item image-item3" onmouseover="show_product_detail('image-item3','../image/flower3.jpg')" style="">
-                        <img src="../image/flower3.jpg" alt="">
+                    <div class="image-item image-item3" onmouseover="show_product_detail('image-item3','/web2/STATIC/assets/flower3.jpg')" style="">
+                        <img src="/web2/STATIC/assets/flower3.jpg" alt="">
                     </div>
-                    <div class="image-item image-item4" onmouseover="show_product_detail('image-item4','../image/flower4.jpg')" style="">
-                        <img src="../image/flower4.jpg" alt="">
+                    <div class="image-item image-item4" onmouseover="show_product_detail('image-item4','/web2/STATIC/assets/flower4.jpg')" style="">
+                        <img src="/web2/STATIC/assets/flower4.jpg" alt="">
                     </div>
 
                 </div>
@@ -81,3 +90,5 @@
         </div>
     </div>
 </section>
+</body>
+</html>

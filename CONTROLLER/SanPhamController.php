@@ -9,5 +9,10 @@ class SanPhamController {
         $sanphamModel = new SanPhamModel();
         return $sanphamModel->getSanPhamList();
     }
+    public function getDataForViewNoiBac() {
+        $this->getInstance();
+        $sanphamModel = new SanPhamModel();
+        return $sanphamModel->getListSPNoiBac();
+    }
 }
 ?>
