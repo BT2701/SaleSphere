@@ -51,15 +51,36 @@ body{
     font-size: .75rem;
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 767px){
      .box-area{
-        margin: 0 10px;
+        margin: 0 2px;
      }
      .left-box{
-        height: 100px;
+        height: 0;
         overflow: hidden;
      }
      .right-box{
         padding: 20px;
+     }
+     .MyLogo{
+        padding-top: 15px !important;
+        padding-left: 150px !important;
+     }
+     .namepage{
+        display: none;
+    }
+    .container{
+        min-height: 0 !important;
+        padding: 30px;
+    }
+}
+@media only screen and (max-width: 1023px){
+    .container{
+        min-height: 0 !important;
+        padding: 30px;
+    }
+    .MyLogo{
+        padding-top: 15px;
+        padding-left: 280px;
      }
 }

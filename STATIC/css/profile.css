@@ -1,0 +1,181 @@
+/*Reset CSS */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.MyLogo{
+    padding: 40px;
+    padding-left: 180px;
+    padding-top: 15px;
+    display: inline-flex;
+}
+.header{
+    height: 100px;
+    width: 100%;
+    background-color: white;
+    margin: 0 0 20px;
+}
+.mid
+{
+    background-image: linear-gradient(#fafafa, #80D8FF);
+}
+.content{
+    padding-top: 1.25rem;
+    padding-right: 0px;
+    padding-bottom: 2.175rem;
+    padding-left: 0px;
+    margin: 0 auto;
+    background-color: #fafafa;
+    width: 1200px;
+    display: flex;
+}
+.mid .content .left_box{
+    width: 400px;
+    padding: 50px 0 0 250px;
+}
+h1{
+    font-size: 28px;
+    display: block;
+    margin: 0 auto;
+    width: 1200px;
+    padding-top: 20px;
+}
+hr{
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 100%;
+}
+.mid .inf{
+    margin: 0 auto;
+    width: 1200px;
+}
+.mid .content .right_box{
+    padding: 10px 100px 0 100px;
+    width: 800px;
+}
+.mid .content .left_box .box_img .content_img img{
+    width: 150px;
+}
+table{
+    width: 600px;
+}
+.row_lbusername, .row_lbemail, .row_lbnumber, .row_lbgender, .row_lbdob{
+    text-align: right;
+    color: gray;
+    padding-bottom: 25px;
+}
+.row_txtusername, .row_txtemail, .row_txtnumber, .row_cbgender, .row_txtdob{
+    padding-bottom: 25px;
+    padding-left: 25px;
+}
+.row_cbgender{
+    display: flex
+}
+.cbmale, .cbfemale {
+    padding-right: 20px;
+}
+form{
+    font-size: 15px;
+
+}
+.btnluu{
+    padding: 5px 20px;
+}
+.row_btnluu{
+    padding-left: 50px;
+}
+form input{
+    width: 60%;
+}
+.main .header .navbar {
+    padding: 40px 0;
+    float: right;
+}
+.main .header .navbar ul{
+    list-style-type: none;
+}
+.main .header .navbar ul li {
+    padding-right: 30px;
+    display: inline-block;
+    position: relative;
+}
+.main .header .navbar .subnav{
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);;
+    min-width: 160px;
+    display: none;
+    top: 100%;
+    right: 0;
+}
+.main .header .navbar .subnav a, .main .header .navbar li:hover .subnav{
+    display: block;
+}
+.main .header .navbar .subnav a{
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px 0;
+}
+.main .mid .content .left_box .content_img .img_avatar{
+    width: 125%;
+}
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+    .main .header .MyLogo{
+        padding-left: 20px;
+        padding-top: 25px;
+    }
+    .main .mid .content {
+        width: 100% ;
+        margin: 0 auto;
+    }
+    .main .mid .content .left_box{
+        width: 200px !important;
+        padding-left: 60px !important;
+    }
+    .main .mid .content .right_box{
+        width: 568px !important;
+        padding-left: 90px !important;
+    }
+    h1,.mid .inf,table{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 767px)  {
+    h1,.mid .inf,table{
+        width: 100%;
+    }
+    .content{
+        display: block;
+        width: 100%;
+    }
+    .main .mid .content .left_box{
+        padding-left: 120px;
+    }
+    .content_img{
+        width: 150px;
+        height: 150px;
+    }
+    .main .mid .content .right_box{
+        padding-top: 100px;
+        padding-left: 90px;
+        width: 100%;
+    }
+    .MyLogo{
+        padding: 10px;
+        display: inline-block;
+    }
+    .MyLogo .namepage{
+        padding-top: 5px !important;
+        padding-left: 10px !important;
+    }
+    h1,p{
+        text-align: center;
+    }
+    .noname{
+        padding-left: 100px;
+    }
+    .row_btnluu{
+        padding-left: 0;
+    }
+}
