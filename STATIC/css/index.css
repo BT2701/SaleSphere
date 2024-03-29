@@ -203,24 +203,33 @@ a {
 /* slider-product-items */
 .first-slider-product {
     padding-top: 20px;
+    height: 800px;
 }
 
 .first-slider-product .content {
     background-color: #80D8ff;
     padding: 10px 0;
+    height: 750px;
 }
-
+.slider-product-container{
+    height: 670px;
+}
+.slider-product-items-parent{
+    height: 680px;
+}
 .slider-product-items {
     display: flex;
     justify-content: space-evenly;
     max-width: 100%;
+    height: auto;
     position: absolute;
 }
 
 .slider-product-item {
     width: 19%;
     background-color: #fff;
-    padding: 50px 12px 50px;
+    padding: 50px 12px 50px 12px;
+    margin: 5px;
     border-radius: 10px;
     cursor: pointer;
 }
