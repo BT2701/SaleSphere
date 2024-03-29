@@ -14,5 +14,10 @@ class SanPhamController {
         $sanphamModel = new SanPhamModel();
         return $sanphamModel->getListSPNoiBac();
     }
+    public function getDataForViewKhuyenMai() {
+        $this->getInstance();
+        $sanphamModel = new SanPhamModel();
+        return $sanphamModel->getListSPKhuyenMai();
+    }
 }
 ?>
