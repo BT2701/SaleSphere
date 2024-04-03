@@ -1,49 +1,109 @@
-.thead{
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.thead {
     background-color: #80D8FF;
 }
 
-th{
-            vertical-align: middle;
-            text-align: center;
-        }
+th {
+    vertical-align: middle;
+    text-align: center;
+}
 
-th{
+th {
     padding: 5px;
     background-color: #80D8FF;
 }
-.btn{
+
+.btn {
     background-color: #80D8FF;
     color: black;
     border-color: black;
 }
-.btn:hover{
-    background-color:darkgrey;
-}
-table{
-    box-shadow: 0 0 20px 0;
-    overflow: auto;
-}
-.thead-total{
-  position: sticky;
-  position:-webkit-sticky ;
-  z-index: 2;
-  bottom: 0;
-  background-color: #80D8FF;
-  border: 2px ;
+
+.rounded-left {
+    border-radius: 20px 0 0 20px !important;
 }
 
-a:link{
+.rounded-right {
+    border-radius: 0 20px 20px 0 !important;
+}
+
+table {
+    box-shadow: 0 0 5px 0;
+    overflow: auto;
+
+
+}
+
+.thead-total {
+    position: sticky;
+    position: -webkit-sticky;
+    z-index: 2;
+    bottom: 0;
+    background-color: #80D8FF;
+    border: 2px;
+}
+
+a:link {
     text-decoration: none;
 }
-a:hover{
-    color:#80D8FF;
+
+a:hover {
+    color: #80D8FF;
 }
 
-.center{
+.center {
     vertical-align: middle;
 }
-.clear-btn-style{
+
+.clear-btn-style {
     background-color: white;
     border: 0px;
     border-radius: 10px;
+}
+
+.trash {
+    margin: 0px;
+}
+
+.trash:hover {
+    color: #185d96;
+}
+
+
+/* ---------------Popup---------------- */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
 }

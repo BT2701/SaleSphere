@@ -4,275 +4,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/web2/STATIC/css/cart.css">
-  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="../../STATIC/css/cart.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="../../STATIC/js/cart.js"></script>
+  <title>Cart</title>
 
 </head>
 
 <body>
-  <div class="container-md">
-    <table class="table table-hover rounded-2" style="margin-top: 20px;">
+  <div class="container-md ">
+    <table id="chooseProduct" class="table table-hover table-borderless custom-table " style="margin-top: 20px; ">
       <thead>
         <tr class="thead table-primary ">
-          <th class="text-center col-2"><input class="check-box " type="checkbox"></th>
+          <th class="text-center col-1"></th>
 
-          <th class="col-4">Sản Phẩm</th>
-          <th class="col-2">Số Lượng</th>
+          <th class="col-6">Sản Phẩm</th>
+          <th class="col-1">Số Lượng</th>
           <th class="col-3">Giá</th>
           <th class="col-1">Thao Tác</th>
         </tr>
       </thead>
       <tbody>
-
-        <div class="item-cart">
-          <tr>
-            <td class="text-center align-middle">
-              <input class="check-box " type="checkbox">
+        <!------------------- list_item ----------------->
+        <?php
+        $connection = mysqli_connect("localhost", "root", "", "quan_ly_ban_hang");
+        $maKhachHang = 1; //KHi nào có mã Khách hàng thì lấy thay vô
+        $strSQL = "
+          SELECT 
+            sanpham.id,
+            sanpham.tenSanPham,
+            sanpham.src,
+            sanpham.giaBan,
+            chitietdathang.soLuong,
+            sanpham.moTa
+          FROM
+            chitietdathang
+          INNER JOIN
+            sanpham ON chitietdathang.maSanPham = sanpham.id
+          WHERE
+            chitietdathang.maKhachHang = '$maKhachHang';
+                  ";
+        $result = mysqli_query($connection, $strSQL);
+        if (mysqli_num_rows($result) > 0)
+          while ($row = mysqli_fetch_array($result)) {
+            ?>
+        <div id="item-cart" class="item-cart" data-user-id=  "<?php echo $maKhachHang  ?>">
+          <tr data-product-id= "<?php echo $row['id']  ?>"  data-user-id=  "<?php echo $maKhachHang  ?>" >
+            <td class="text-center align-middle ">
+              <input title="Chọn sản phẩm"  class="check-box chooseProduct" style="cursor: pointer;"
+               type="checkbox" > 
             </td>
 
-            <td >
+            <td>
+              <a class="link " title="<?php echo $row['tenSanPham']; ?>" href="<?php echo $row['moTa']; ?>">
+                <!--//Chỗ này cần lưu link tới trang sản phẩm -->
+                    <img class="rounded-2" style="margin-left: 30px;" width="80px" height="80px"
+                      src="<?php echo $row['src']; ?>">
+                  </a>
+                  <a class="link text-dark" style="margin-left: 8px;" href="<?php echo $row['moTa']; ?>">
+                    <!--//Chỗ này cần lưu link tới trang sản phẩm -->
+                    <?php echo $row['tenSanPham']; ?>
+                  </a>
 
-              <a class="link " title="Dao cạo râu"
-                href="https://www.google.com/search?q=dao+c%E1%BA%A1o+r%C3%A2u&sca_esv=601719464&tbm=isch&sxsrf=ACQVn08lV8JZjrQ965CWuTg7_MxAyrTdZQ:1706274026979&source=lnms&sa=X&ved=2ahUKEwiCxZGKjvuDAxVXsFYBHfr1CRkQ_AUoAXoECAMQAw&biw=1314&bih=613&dpr=1.04#imgrc=iDg0fwX-rCYUnM">
-                <img style="border: 1px solid black;margin-left: 30px;" width="70px" height="70px"
-                  src="https://anlocviet.vn/upload/product/daocaoraugillettesuperthiniiluoidoi1cay3501000x1000-788.jpg">
-              </a>
-              <a class="link text-dark" style="margin-left: 8px;"
-                href="https://www.google.com/search?q=dao+c%E1%BA%A1o+r%C3%A2u&sca_esv=601719464&tbm=isch&sxsrf=ACQVn08lV8JZjrQ965CWuTg7_MxAyrTdZQ:1706274026979&source=lnms&sa=X&ved=2ahUKEwiCxZGKjvuDAxVXsFYBHfr1CRkQ_AUoAXoECAMQAw&biw=1314&bih=613&dpr=1.04#imgrc=iDg0fwX-rCYUnM">
-                Dạo cạo râu</a>
+                </td>
 
-            </td>
+                <td class="text-center align-middle">
+                  <div style="display: flex; justify-content: center;">
+                    <button onclick="decreaseQuantity(this)" class="btn btn-sm color ml-5 rounded-left border-primary "
+                      style="width: 30px;vertical-align: middle;">-</button>
+                    <input oninput="validateQuantity(this)" id="soLuongInput" min="1" class="input  border-1  border-dark "
+                      width="20px" height="31px" type="text" value="<?php echo $row['soLuong']; ?>"
+                      style="text-align: center; vertical-align: middle;">
+                    <button onclick="increaseQuantity(this)" class="btn btn-sm color rounded-right  mr-5 border-primary "
+                      style="width: 30px;">+</button>
+                  </div>
+                </td>
 
-            <td class="text-center align-middle">
-              <div style="display: flex; justify-content: center;">
-                <button onclick="decreaseQuantity(this)" class="btn btn-sm color ml-5 rounded-0 border-primary "
-                  style="width: 30px;vertical-align: middle;">-</button>
-                <input oninput="validateQuantity(this)" id="soLuongInput" class="input rounded-0 border-1  border-dark "
-                  width="20px" height="31px" type="text" value="1" style="text-align: center; vertical-align: middle;">
-                <button onclick="increaseQuantity(this)" class="btn btn-sm color  rounded-0 mr-5 border-primary "
-                  style="width: 30px;">+</button>
-              </div>
-            </td>
+                <td id='price' class="text-center  align-middle">
+                  <?php 
+                  $idSanPham= $row['id'];
+                  $giaSanPham= $row['giaBan'];
+                    $strSQL1=" SELECT khuyenmai.giaTri
+                                FROM chitietkhuyenmai
+                                INNER JOIN khuyenmai
+                                ON chitietkhuyenmai.idkhuyenmai= khuyenmai.id
+                                WHERE chitietkhuyenmai.idsanpham= $idSanPham
+                                      ";
+                    $result1 = mysqli_query($connection, $strSQL1);
+                    $row1 = mysqli_fetch_array($result1);
+                    if(isset($row1[0]))
+                      echo  "<p style='text-decoration: line-through;color:red'>". " -$giaSanPham- "."</p> " ."<p class='price'>". $giaSanPham - $giaSanPham*$row1[0]/100 ."</p>";
+                    else
+                      echo "<p class='price'>". $giaSanPham ."</p>";
 
-            <td class="text-center align-middle">
-              10.000đ
-            </td>
 
-            <td class="text-center align-middle">
-              <button onclick="deleteRow(this)" class="btn btn-sm  rounded-2"
-                style="background-color: white;border: 0;"><i class="fas fa-trash"
-                  style="font-size: 20px;"></i></button>
-            </td>
-          </tr>
-        </div>
+                  // echo $row['giaBan'] - $row['giaBan']*($row1['giaTri']/100) ;
+                    
+                  
+                  ?>
+                </td>
 
-        <div class="item-cart">
-          <tr>
-            <td class="text-center align-middle">
-              <input class="check-box " type="checkbox">
-            </td>
+                <td class="text-center align-middle   ">
+                  <a href="http://localhost/web2/VIEWS/cart/xuly.php?delete=true&nguoiDung=<?php echo $maKhachHang ?>&maSanPham=<?php echo $row['id'] ?> "
+                    class="trash" title="Xóa sản phẩm" onclick="return deleteRow(this) "><i class="fas fa-trash"
+                      style="font-size: 20px; cursor: pointer;"></i></a>
+                </td>
+              </tr>
+            </div>
+            <?php
+          }
+        mysqli_close($connection);
+        ?>
 
-            <td >
-
-              <a class="link " title="Xúc xếch lắc"
-                href="https://www.google.com/search?q=%E1%BA%A3nh+x%C3%BAc+x%C3%ADch+visan&tbm=isch&ved=2ahUKEwig86mA04KEAxWuf_UHHe4tAWEQ2-cCegQIABAA&oq=%E1%BA%A3nh+x%C3%BAc+x%C3%ADch+visan&gs_lcp=CgNpbWcQAzoECCMQJzoFCAAQgAQ6BggAEAcQHjoECAAQHjoGCAAQBRAeUPYDWOoRYMwTaABwAHgAgAFhiAHfBJIBATeYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=tqC3ZaDAJa7_1e8P7tuEiAY&bih=613&biw=1314#imgrc=If-RTk1ioNVcBM">
-                <img style="border: 1px solid black;margin-left: 30px;" width="70px" height="70px"
-                  src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/Products/Images/3507/283659/xuc-xich-lac-keu-vi-pho-mai-vissan-ly-56g-1.jpg">
-              </a>
-              <a class="link text-dark" style="margin-left: 8px;"
-                href="https://www.google.com/search?q=%E1%BA%A3nh+x%C3%BAc+x%C3%ADch+visan&tbm=isch&ved=2ahUKEwig86mA04KEAxWuf_UHHe4tAWEQ2-cCegQIABAA&oq=%E1%BA%A3nh+x%C3%BAc+x%C3%ADch+visan&gs_lcp=CgNpbWcQAzoECCMQJzoFCAAQgAQ6BggAEAcQHjoECAAQHjoGCAAQBRAeUPYDWOoRYMwTaABwAHgAgAFhiAHfBJIBATeYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=tqC3ZaDAJa7_1e8P7tuEiAY&bih=613&biw=1314#imgrc=If-RTk1ioNVcBM">
-                Xúc xếch lắc</a>
-
-            </td>
-
-            <td class="text-center align-middle">
-              <div style="display: flex; justify-content: center;">
-                <button onclick="decreaseQuantity(this)" class="btn btn-sm color ml-5 rounded-0 border-primary "
-                  style="width: 30px;vertical-align: middle;">-</button>
-                <input oninput="validateQuantity(this)" id="soLuongInput" class="input rounded-0 border-1  border-dark "
-                  width="20px" height="31px" type="text" value="1" style="text-align: center; vertical-align: middle;">
-                <button onclick="increaseQuantity(this)" class="btn btn-sm color  rounded-0 mr-5 border-primary "
-                  style="width: 30px;">+</button>
-              </div>
-            </td>
-
-            <td class="text-center align-middle">
-              15.000đ
-            </td>
-
-            <td class="text-center align-middle">
-              <button onclick="deleteRow(this)" class="btn btn-sm  rounded-2"
-                style="background-color: white;border: 0;"><i class="fas fa-trash"
-                  style="font-size: 20px;"></i></button>
-            </td>
-          </tr>
-        </div>
-
-        <div class="item-cart">
-          <tr>
-            <td class="text-center align-middle">
-              <input class="check-box " type="checkbox">
-            </td>
-
-            <td >
-
-              <a class="link " title="Xúc xếch hêu"
-                href="https://www.google.com/search?q=%E1%BA%A3nh+x%C3%BAc+x%C3%ADch+visan&tbm=isch&ved=2ahUKEwig86mA04KEAxWuf_UHHe4tAWEQ2-cCegQIABAA&oq=%E1%BA%A3nh+x%C3%BAc+x%C3%ADch+visan&gs_lcp=CgNpbWcQAzoECCMQJzoFCAAQgAQ6BggAEAcQHjoECAAQHjoGCAAQBRAeUPYDWOoRYMwTaABwAHgAgAFhiAHfBJIBATeYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=tqC3ZaDAJa7_1e8P7tuEiAY&bih=613&biw=1314#imgrc=R3ATIVV7Qs9C5M">
-                <img style="border: 1px solid black; margin-left: 30px;" width="70px" height="70px"
-                  src="https://cdn.tgdd.vn/Products/Images/3507/89859/bhx/xuc-xich-dinh-duong-heo-vissan-goi-175g-2-org.jpg">
-              </a>
-              <a class="link text-dark" style="margin-left: 8px;"
-                href="https://www.google.com/search?q=%E1%BA%A3nh+x%C3%BAc+x%C3%ADch+visan&tbm=isch&ved=2ahUKEwig86mA04KEAxWuf_UHHe4tAWEQ2-cCegQIABAA&oq=%E1%BA%A3nh+x%C3%BAc+x%C3%ADch+visan&gs_lcp=CgNpbWcQAzoECCMQJzoFCAAQgAQ6BggAEAcQHjoECAAQHjoGCAAQBRAeUPYDWOoRYMwTaABwAHgAgAFhiAHfBJIBATeYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=tqC3ZaDAJa7_1e8P7tuEiAY&bih=613&biw=1314#imgrc=R3ATIVV7Qs9C5M">
-                Xúc xếch hêu</a>
-
-            </td>
-
-            <td class="text-center align-middle">
-              <div style="display: flex; justify-content: center;">
-                <button onclick="decreaseQuantity(this)" class="btn btn-sm color ml-5 rounded-0 border-primary "
-                  style="width: 30px;vertical-align: middle;">-</button>
-                <input oninput="validateQuantity(this)" id="soLuongInput" class="input rounded-0 border-1  border-dark "
-                  width="20px" height="31px" type="text" value="1" style="text-align: center; vertical-align: middle;">
-                <button onclick="increaseQuantity(this)" class="btn btn-sm color  rounded-0 mr-5 border-primary "
-                  style="width: 30px;">+</button>
-              </div>
-            </td>
-
-            <td class="text-center align-middle">
-              23.000đ
-            </td>
-
-            <td class="text-center align-middle">
-              <button onclick="deleteRow(this)" class="btn btn-sm  rounded-2"
-                style="background-color: white;border: 0;"><i class="fas fa-trash"
-                  style="font-size: 20px;"></i></button>
-            </td>
-          </tr>
-        </div>
-
-        <div class="item-cart">
-          <tr>
-            <td class="text-center align-middle">
-              <input class="check-box " type="checkbox">
-            </td>
-
-            <td >
-
-              <a class="link " title="Pate Hêu"
-                href="https://www.google.com/search?q=pate&tbm=isch&ved=2ahUKEwjLl-yC04KEAxWVTfUHHVMmBJ4Q2-cCegQIABAA&oq=pate&gs_lcp=CgNpbWcQAzIECCMQJzIICAAQgAQQsQMyCggAEIAEEIoFEEMyDQgAEIAEEIoFEEMQsQMyBQgAEIAEMggIABCABBCxAzIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQ6BAgAEB46BggAEAUQHjoHCCMQ6gIQJzoECAAQA1Dj2gVYwPIFYK30BWgCcAB4AoABcYgBxQ2SAQQxNy4ymAEAoAEBqgELZ3dzLXdpei1pbWewAQrAAQE&sclient=img&ei=u6C3ZYvONpWb1e8P08yQ8Ak&bih=613&biw=1314#imgrc=rdWZTEuUa6IVrM">
-                <img style="border: 1px solid black; margin-left: 30px;" width="70px" height="70px"
-                  src="https://www.lottemart.vn/media/catalog/product/cache/0x0/8/9/8934572000217.jpg.webp">
-              </a>
-              <a class="link text-dark" style="margin-left: 8px;"
-                href="https://www.google.com/search?q=pate&tbm=isch&ved=2ahUKEwjLl-yC04KEAxWVTfUHHVMmBJ4Q2-cCegQIABAA&oq=pate&gs_lcp=CgNpbWcQAzIECCMQJzIICAAQgAQQsQMyCggAEIAEEIoFEEMyDQgAEIAEEIoFEEMQsQMyBQgAEIAEMggIABCABBCxAzIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQ6BAgAEB46BggAEAUQHjoHCCMQ6gIQJzoECAAQA1Dj2gVYwPIFYK30BWgCcAB4AoABcYgBxQ2SAQQxNy4ymAEAoAEBqgELZ3dzLXdpei1pbWewAQrAAQE&sclient=img&ei=u6C3ZYvONpWb1e8P08yQ8Ak&bih=613&biw=1314#imgrc=rdWZTEuUa6IVrM">
-                Pate hêu</a>
-
-            </td>
-
-            <td class="text-center align-middle">
-              <div style="display: flex; justify-content: center;">
-                <button onclick="decreaseQuantity(this)" class="btn btn-sm color ml-5 rounded-0 border-primary "
-                  style="width: 30px;vertical-align: middle;">-</button>
-                <input oninput="validateQuantity(this)" id="soLuongInput" class="input rounded-0 border-1  border-dark "
-                  width="20px" height="31px" type="text" value="1" style="text-align: center; vertical-align: middle;">
-                <button onclick="increaseQuantity(this)" class="btn btn-sm color  rounded-0 mr-5 border-primary "
-                  style="width: 30px;">+</button>
-              </div>
-            </td>
-
-            <td class="text-center align-middle">
-              85.000đ
-            </td>
-
-            <td class="text-center align-middle">
-              <button onclick="deleteRow(this)" class="btn btn-sm  rounded-2"
-                style="background-color: white;border: 0;"><i class="fas fa-trash"
-                  style="font-size: 20px;"></i></button>
-            </td>
-          </tr>
-        </div>
-
-        <div class="item-cart">
-          <tr>
-            <td class="text-center align-middle">
-              <input class="check-box " type="checkbox">
-            </td>
-
-            <td >
-
-              <a class="link " title="Mì Hảo Hảo sườn hêu"
-                href="https://www.google.com/search?q=m%C3%AC+g%C3%B3i+heo&tbm=isch&ved=2ahUKEwijpsaq2YKEAxVgkK8BHXnOBPcQ2-cCegQIABAA&oq=m%C3%AC+g%C3%B3i+heo&gs_lcp=CgNpbWcQA1AAWABgAGgAcAB4AIABAIgBAJIBAJgBAKoBC2d3cy13aXotaW1n&sclient=img&ei=Wae3ZeOVL-Cgvr0P-ZyTuA8#imgrc=NbrAmOHhsKulaM">
-                <img style="border: 1px solid black; margin-left: 30px;" width="70px" height="70px"
-                  src="https://www.lottemart.vn/media/catalog/product/cache/0x0/8/9/8934563182144.jpg.webp">
-              </a>
-              <a class="link text-dark" style="margin-left: 8px;"
-                href="https://www.google.com/search?q=m%C3%AC+g%C3%B3i+heo&tbm=isch&ved=2ahUKEwijpsaq2YKEAxVgkK8BHXnOBPcQ2-cCegQIABAA&oq=m%C3%AC+g%C3%B3i+heo&gs_lcp=CgNpbWcQA1AAWABgAGgAcAB4AIABAIgBAJIBAJgBAKoBC2d3cy13aXotaW1n&sclient=img&ei=Wae3ZeOVL-Cgvr0P-ZyTuA8#imgrc=NbrAmOHhsKulaM">
-                Mì Hảo Hảo </a>
-
-            </td>
-
-            <td class="text-center align-middle">
-              <div style="display: flex; justify-content: center;">
-                <button onclick="decreaseQuantity(this)" id="decreaseButton" class="btn btn-sm color ml-5 rounded-0 border-primary "
-                  style="width: 30px;vertical-align: middle;">-</button>
-                <input oninput="validateQuantity(this)" id="soLuongInput" class="input rounded-0 border-1  border-dark "
-                  width="20px" height="31px" type="text" value="1" style="text-align: center; vertical-align: middle;">
-                <button onclick="increaseQuantity(this)" class="btn btn-sm color  rounded-0 mr-5 border-primary "
-                  style="width: 30px;">+</button>
-              </div>
-            </td>
-
-            <td class="text-center align-middle">
-              5.000đ
-            </td>
-
-            <td class="text-center align-middle">
-              <button onclick="deleteRow(this)" class="btn btn-sm  rounded-2"
-                style="background-color: white;border: 0;"><i class="fas fa-trash"
-                  style="font-size: 20px;"></i></button>
-            </td>
-          </tr>
-        </div>
-        
 
         <!-------------------- total-price --------------->
         <tr class="thead-total ">
           <td class="text-center align-middle">
-            <div>
-              <input type="checkbox" >
+            <div style="margin-top: 22px;">
+              <input id="selectAll" style="cursor: pointer;" type="checkbox">
             </div>
-            <button class="clear-btn-style">Chọn tất cả</button>
+            <p>Chọn tất cả</p>
           </td>
-          <td >
-            
+          <td class=" text-center align-middle">
+            <p id="totalProduct" style="margin: 0px ;">Tổng sản phẩm đã chọn: 0</p>
           </td>
-          <td></td>
+          <td class="text-center ">
+            <div style="cursor: pointer;">
+              <img onclick="openPopup()" src="../../STATIC/assets/voucher.png" width="30px" style="margin-top: 20px;">
+              <p onclick="openPopup()"> Chọn voucher</p>
+
+              <div id="myPopup" class="popup">
+                <div class="popup-content">
+                  <span class="close" onclick="closePopup()">&times;</span>
+                  <h3>Tiêu đề cửa sổ nhỏ</h3>
+                  <p>Nội dung của cửa sổ nhỏ.</p>
+                </div>
+              </div>
+            </div>
+          </td>
           <th class="text-center align-middle">
-            
+
             <div class="input-group input-group-sm  ">
-              <span class="input-group-text " id="inputGroup-sizing-sm" style="color: black; background-color: #80d8ff;"><strong>Tổng tiền</strong></span>
-              <input type="text" style="background-color: white;" readonly class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+              <span class="input-group-text " id="inputGroup-sizing-sm"
+                style="color: black; background-color: #80d8ff;"><strong>Tổng</strong></span>
+              <input id="total" type="text" style="background-color: white;" readonly class="form-control"
+                aria-label="Sizing example input" value="0" aria-describedby="inputGroup-sizing-sm">
             </div>
-          
+
 
           </th>
           <td class="text-center align-middle">
-            <button class="btn btn-sm  rounded-1"> Mua hàng</button>
+          <!-- href="http://localhost/web2/VIEWS/cart/xuly.php?thanhToan=true&idKhachHang=<?php echo $maKhachHang ?>" -->
+            <a id=btnThanhToan class="btn btn-sm rounded-1 m-1" type="submit" 
+              style="border-color: darkgray; border-radius: 10px !important; width: 130px; height: 50px; display: flex; justify-content: center; align-items: center;">
+              <strong>Thanh toán</strong>
+            </a>
           </td>
+
         </tr>
 
 
       </tbody>
     </table>
 
-
+<!-- Còn đặt hàng, voucher, tổng số sản phẩm và update dữ liệu, Thanh toán xong clear cart -->
     <div class="Total">
 
     </div>
 
   </div>
 
-  <script src="/web2/STATIC/js/cart.js"></script>
 </body>
 
 </html>
