@@ -8,6 +8,11 @@
     <title>Document</title>
 </head>
 <body>
+<?php
+    require_once 'C:\xampp\htdocs\web2\CONTROLLER\LoaiSPController.php';
+    $categoryController = new LoaiSPController();
+    $categoryList = $categoryController->getCategoryList();
+    ?>
 <header class="header-style">
         <div class="container">
             <div class="row d-flex align-items-center container-fluid header-wraper">
@@ -185,44 +190,16 @@
                         <a class="nav-link " href="index.php?page=productlist" id="all-product" role="button" aria-expanded="false">
                             Tất cả sản phẩm
                         </a>
-                    </li>
-
-
-                    <li class="nav-item dropdown navbar-item">
-                        <a class="nav-link" href="#" id="houseware" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Đồ gia dụng
-                        </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Đồ dùng phòng bếp</a></li>
-                            <li><a class="dropdown-item" href="#">Điện gia dụng</a></li>
-                            <li><a class="dropdown-item" href="#">Nồi chảo</a></li>
+                        <?php if(isset($categoryList) && !empty($categoryList)) {?>
+                            <?php foreach ($categoryList as $cate): ?>
+                                <li><a class="dropdown-item" href="" onclick="loadProducts('<?php echo $cate['tenLoaiSP']; ?>')"><?php echo $cate['tenLoaiSP']; ?></a></li>
+                                
+                            <?php endforeach;}?>
+                            
                         </ul>
                     </li>
 
-                    <li class="nav-item dropdown navbar-item">
-                        <a class="nav-link" href="#" id="fashion" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Thời trang
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Nam</a></li>
-                            <li><a class="dropdown-item" href="#">Nữ</a></li>
-                            <li><a class="dropdown-item" href="#">Trẻ em</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown navbar-item">
-                        <a class="nav-link" href="#" id="fashion" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Trang thiết bị di động
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Điện thoại</a></li>
-                            <li><a class="dropdown-item" href="#">Máy tính</a></li>
-                            <li><a class="dropdown-item" href="#">Tablet</a></li>
-                            <li><a class="dropdown-item" href="#">Đồng hồ thông minh</a></li>
-                        </ul>
-                    </li>
                     <li class="nav-item dropdown navbar-item">
                         <a class="nav-link " href="index.php?page=promote" id="promote" role="button" aria-expanded="false">
                             Chương trình khuyến mãi
@@ -259,7 +236,21 @@
     document.getElementById("viewCartButton").addEventListener("click", function() {
     // Điều hướng người dùng đến trang giỏ hàng (cart.php)
     window.location.href = "/web2/VIEWS/cart/cart.php";
-});
+
+    });
 </script>
+<script>
+    function loadProducts(category) {
+        $.ajax({
+            url: '/web2/CONTROLLER/SanPhamController.php',
+            method: 'POST',
+            data: { action: 'getDsSPtheoLoai',category: category },
+            success: function(data) {
+                $('#productListTheoLoai').html(data); // Sửa ở đây
+            }
+        });
+    }
+</script>
+
 </body>
 </html>

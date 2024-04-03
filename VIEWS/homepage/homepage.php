@@ -132,7 +132,7 @@ for ($i = 0; $i < $numOfSlides; $i++) {
                 <img src="<?php echo $sanpham['src']; ?>" alt="">
                 
                 <div class="product-gallery-content-product-text" >
-                <?php if ($sanpham['tenKhuyenMai']!=null){ ?>
+                <?php if ($sanpham['tenKhuyenMai']!=null && (strtotime($sanpham['hansudung'])>time() || strtotime($sanpham['hansudung'])==null)){ ?>
                     <?php if ($sanpham['background']!=null){ ?>
                     <li style="background-color:<?php echo  $sanpham['background'];  }?>;"><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
                         <p><?php 
