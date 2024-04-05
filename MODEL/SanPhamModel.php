@@ -80,7 +80,7 @@ class SanPhamModel {
         $db = new Database();
         $conn = $db->getConnection();
         $sanphamList = array();
-        $sql = "SELECT s.tenSanPham, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP 
+        $sql = "SELECT s.tenSanPham, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP, k.hansudung 
         FROM sanpham s
         LEFT JOIN chitietkhuyenmai ctk ON s.id = ctk.idsanpham
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
@@ -105,5 +105,6 @@ class SanPhamModel {
         return $sanphamList;
     }
 }
+
 
 ?>
