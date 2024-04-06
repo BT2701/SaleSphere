@@ -8,11 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<?php
-    require_once 'C:\xampp\htdocs\web2\CONTROLLER\LoaiSPController.php';
-    $categoryController = new LoaiSPController();
-    $categoryList = $categoryController->getCategoryList();
-    ?>
+
 <header class="header-style">
         <div class="container">
             <div class="row d-flex align-items-center container-fluid header-wraper">
@@ -28,13 +24,7 @@
 
                 <!-- Search Bar -->
                 <div class="col-lg-4 d-lg-block d-none search-bar">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Search"
-                            aria-describedby="searchButton">
-                        <button class="btn btn-outline-secondary bg-dark" type="button" id="searchButton">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
+                    
                 </div>
 
 
@@ -186,17 +176,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-list">
                     <li class="nav-item dropdown navbar-item">
-                        <a class="nav-link " href="index.php?page=productlist" id="all-product" role="button" aria-expanded="false">
-                            Tất cả sản phẩm
+                        <a class="nav-link " href="index.php?page=homepage" id="all-product" role="button" aria-expanded="false">
+                            Trang chủ
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <?php if (isset($categoryList) && !empty($categoryList)): ?>
-                            <?php foreach ($categoryList as $cate): ?>
-                                <li><a class="dropdown-item" href="#" onclick="loadProducts('<?php echo $cate['tenLoaiSP']; ?>')"><?php echo $cate['tenLoaiSP']; ?></a></li>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                            
-                        </ul>
+                        
+                    </li>
+                    <li class="nav-item dropdown navbar-item">
+                        <a class="nav-link " href="index.php?page=productlist" id="all-product" role="button" aria-expanded="false">
+                            Danh sách sản phẩm
+                        </a>
+                        
                     </li>
 
                     <li class="nav-item dropdown navbar-item">
@@ -237,90 +226,6 @@
     window.location.href = "/web2/VIEWS/cart/cart.php";
 
     });
-</script>
-<script>
-    function loadProducts(category) {
-        $.ajax({
-            url: '/web2/CONTROLLER/SanPhamController.php',
-            method: 'GET',
-            data: { action: 'getDsSPtheoLoai', category: category },
-            success: function(data) {
-                var productList = JSON.parse(data);
-                var productListHTML = '';
-                if (productList.length > 0) {
-                    productList.forEach(function(product) {
-                        productListHTML += '<div class="product-gallery-content-product-item">';
-                        productListHTML += '<img src="' + product.src + '" alt="">';
-                        productListHTML += '<div class="product-gallery-content-product-text">';
-                        if (product.tenKhuyenMai != null && (Date.parse(product.hansudung) > Date.now() || product.hansudung == null)) {
-                            productListHTML += '<li style="background-color:' + (product.background != null ? product.background : '#fcfcfc') + ';">';
-                            productListHTML += '<img src="/web2/STATIC/assets/icon-percent.webp" alt="">';
-                            productListHTML += '<p>' + product.tenKhuyenMai + '</p>';
-                            productListHTML += '</li>';
-                            productListHTML += '<li>' + product.tenSanPham + '</li>';
-                            productListHTML += '<li>Online giá rẻ</li>';
-                            productListHTML += '<li><a href="">' + product.giaBan + ' <sup>đ</sup></a><span>-';
-                            productListHTML += (product.giaTri != null ? product.giaTri : '0') + '%</span></li>';
-                            productListHTML += '<li>';
-                            if (product.giaTri != null) {
-                                var value = parseFloat(product.giaBan);
-                                var khuyenmai = parseFloat(product.giaTri);
-                                var giaban = value - (value * khuyenmai / 100);
-                                productListHTML += giaban;
-                            } else {
-                                productListHTML += product.giaBan;
-                            }
-                            productListHTML += ' <sup>đ</sup></li>';
-                            productListHTML += '<li>';
-                            if (product.star != null) {
-                                for (var i = 0; i < product.star; i++) {
-                                    productListHTML += '<i class="fa-solid fa-star" style="color: #FB6E2E;"></i>';
-                                }
-                            }
-                            productListHTML += '</li>';
-                            productListHTML += '<li>';
-                            productListHTML += '<p style="color: gray;">Đã bán ' + (product.TongSoLuongBanDuoc != null ? product.TongSoLuongBanDuoc : '0') + '</p>';
-                            productListHTML += '</li>';
-                        }
-                        
-                        else if (product.tenKhuyenMai == null || (Date.parse(product.hansudung) < Date.now() && product.hansudung != null)) {
-                            productListHTML += '<li style="background-color: #fcfcfc;">';
-                            productListHTML += '</li>';
-                            productListHTML += '<li>' + product.tenSanPham + '</li>';
-                            productListHTML += '<li>Online giá rẻ</li>';
-                            productListHTML += '<li><a href="">' + product.giaBan + ' <sup>đ</sup></a><span>-';
-                            productListHTML += (product.giaTri != null ? product.giaTri : '0') + '%</span></li>';
-                            productListHTML += '<li>';
-                            if (product.giaTri != null) {
-                                var value = parseFloat(product.giaBan);
-                                var khuyenmai = parseFloat(product.giaTri);
-                                var giaban = value - (value * khuyenmai / 100);
-                                productListHTML += giaban;
-                            } else {
-                                productListHTML += product.giaBan;
-                            }
-                            productListHTML += ' <sup>đ</sup></li>';
-                            productListHTML += '<li>';
-                            if (product.star != null) {
-                                for (var i = 0; i < product.star; i++) {
-                                    productListHTML += '<i class="fa-solid fa-star" style="color: #FB6E2E;"></i>';
-                                }
-                            }
-                            productListHTML += '</li>';
-                            productListHTML += '<li>';
-                            productListHTML += '<p style="color: gray;">Đã bán ' + (product.TongSoLuongBanDuoc != null ? product.TongSoLuongBanDuoc : '0') + '</p>';
-                            productListHTML += '</li>';
-                        }
-                        productListHTML += '</div>';
-                        productListHTML += '</div>';
-                    });
-                } else {
-                    productListHTML = 'Không có sản phẩm nào';
-                }
-                $('#productListTheoLoai').html(productListHTML);
-            }
-        });
-    }
 </script>
 </body>
 </html>

@@ -12,7 +12,8 @@
 
 }
 .category-right{
-    width: 80%;
+    padding: 20px;
+    width: 100%;
     display: flex;
 }
 .category-right-top-items:first-child{
@@ -45,7 +46,7 @@
     border-radius: 5px;
 }
 .product-gallery-content-product{
-    margin-top: 20px;
+    padding: 0px 20px 5px 20px;
     /* justify-content: space-between; */
 }
 .product-gallery-content-product-item{
@@ -61,7 +62,7 @@
 /* chuyển trang */
 .category-bottom{
     justify-content: space-between;
-    margin: 30px 0 20px;
+    padding: 10px 20px 5px 20px;
     display: flex;
 }
 .category-bottom p {
