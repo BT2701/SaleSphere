@@ -109,12 +109,11 @@
             } ?>
                 </div>
         <div class="category-bottom">
-            <div class="category-bottom-items">
-                <p>Hiển thị 2 <span>|</span>4 Sản phẩm</p>
-            </div>
-            <div class="category-bottom-items">
-                <p><span>&#171;</span>1 2 3 4 5 <span>&#187;	</span>Trang cuối</p>
-            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center" id="pagination">
+                    
+                </ul>
+            </nav>
         </div>
     </section>
 

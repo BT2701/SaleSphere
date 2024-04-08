@@ -58,6 +58,7 @@ class SanPhamController {
             echo json_encode($list);
         }
     }
+
 }
 $controller = new SanPhamController();
 $controller->getDsSPtheoLoai();

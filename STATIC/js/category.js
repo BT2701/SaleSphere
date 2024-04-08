@@ -258,3 +258,63 @@ document.getElementById('searchButton').addEventListener('click', function() {
     // Gọi hàm xử lý tìm kiếm với giá trị vừa lấy được
     loadProductsTheoTen(searchValue);
 });
+
+
+
+// lấy số lượng sản phẩm trên giao diện
+function countChildDivs() {
+    // Lấy thẻ div cha có id là "productList"
+    var parentDiv = document.getElementById("productList");
+
+    // Lấy tất cả các thẻ div con trực tiếp trong thẻ div cha
+    var childDivs = parentDiv.querySelectorAll(":scope > div");
+
+    // Đếm số lượng thẻ div con
+    var numberOfChildDivs = childDivs.length;
+
+    // In ra số lượng thẻ div con
+    return numberOfChildDivs;
+}
+
+
+var divCount = countChildDivs();
+
+// Hiển thị các thẻ li dựa trên số lượng thẻ div con
+var pagination = document.getElementById("pagination");
+for (var i = 1; i <= divCount; i++) {
+    var li = document.createElement("li");
+    li.className = "page-item";
+    var a = document.createElement("a");
+    a.className = "page-link";
+    a.href = "#";
+    a.setAttribute("data-page", i); // Thiết lập giá trị cho thuộc tính data-page
+    a.textContent = i;
+    li.appendChild(a);
+    pagination.appendChild(li);
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var paginationItems = document.querySelectorAll(".page-link");
+    paginationItems.forEach(function(item) {
+        item.addEventListener("click", function(event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định khi nhấn vào liên kết
+            var pageNumber = this.dataset.page; // Lấy số trang từ thuộc tính data-page
+            loadData(pageNumber); // Gọi hàm để tải dữ liệu cho trang mới
+        });
+    });
+});
+
+function loadData(pageNumber) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "get_data.php?page=" + pageNumber, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) { //status 200 là thành công
+            // Xử lý dữ liệu nhận được
+            var response = xhr.responseText;
+            // Hiển thị dữ liệu trên trang
+            document.getElementById("productList").innerHTML = response;
+        }
+    };
+    xhr.send();
+}
