@@ -13,8 +13,7 @@
 <body>
     <?php
     require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php';
-    $sanphamController = new SanPhamController();
-    $sanphamList = $sanphamController->getDataForView();
+    $sanphamList = $controller->getDataForView();
 
     require_once 'C:\xampp\htdocs\web2\CONTROLLER\LoaiSPController.php';
     $categoryController = new LoaiSPController();
@@ -110,14 +109,18 @@
                 </div>
         <div class="category-bottom">
             <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center" id="pagination">
+                <ul class="pagination justify-content-center" id="pagination" >
                     
                 </ul>
             </nav>
         </div>
     </section>
 
+    
     <script src="/web2/STATIC/js/category.js"></script>
+    <script>
+        laySoTrangALL(<?php echo $controller->getSoLuongSP(); ?>);
+    </script>
     <script src="/web2/STATIC/js/index.js"></script>
 </body>
 
