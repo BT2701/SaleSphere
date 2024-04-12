@@ -2,13 +2,30 @@
     
 class SanPhamController {
     public $sanphamModel;
+    private $soLuongSanPham;
     public function __construct() {
         require_once 'C:\xampp\htdocs\web2\MODEL\SanPhamModel.php';
         $this->sanphamModel = new SanPhamModel();
     }
 
+    public function setSoLuongSP($soLuong){
+        $this->soLuongSanPham =$soLuong;
+    }
+    public function getSoLuongSP(){
+        return $this->soLuongSanPham;
+    }
+
     public function getDataForView() {
-        return $this->sanphamModel->getSanPhamList();
+        $this->setSoLuongSP($this->sanphamModel->laySoLuongSanPham());
+        return $this->sanphamModel->getSanPhamList(0,10);
+    }
+    public function phanTrangMainList(){
+        if(isset($_GET['start'])){
+            $start = $_GET['start'] ?? 0; // Vị trí bắt đầu của trang
+            $limit = $_GET['limit'] ?? 10; // Số lượng sản phẩm trên mỗi trang
+            $sanPhamList=$this->sanphamModel->getSanPhamList($start,$limit);
+            echo json_encode($sanPhamList);
+        }
     }
     public function getDataForViewNoiBac() {
         return $this->sanphamModel->getListSPNoiBac();
@@ -17,22 +34,29 @@ class SanPhamController {
         return $this->sanphamModel->getListSPKhuyenMai();
     }
     public function getDsSPtheoLoai() {
+        $start = $_GET['start'] ?? 0; // Vị trí bắt đầu của trang
+        $limit = $_GET['limit'] ?? 10; // Số lượng sản phẩm trên mỗi trang
         if (isset($_GET['action']) && $_GET['action'] == 'getDsSPtheoLoai' && isset($_GET['category'])) {
             $category = $_GET['category'];
             $list=$this->getDataForView();
+
             if($category!='Tất cả sản phẩm'){
-                $list = $this->sanphamModel->getDsSPtheoLoai($category);
+                $this->setSoLuongSP($this->sanphamModel->laySoLuongSanPhamTheoLoai($category));
+                $list = $this->sanphamModel->getDsSPtheoLoai($category, $start, $limit);
             }
             // Trả về dữ liệu dưới dạng JSON
             echo json_encode($list);
         }
     }
     public function getDsSPtheoTen() {
+        $start = $_GET['start'] ?? 0; // Vị trí bắt đầu của trang
+        $limit = $_GET['limit'] ?? 10; // Số lượng sản phẩm trên mỗi trang
         if (isset($_GET['action']) && $_GET['action'] == 'getDsSPtheoTen' && isset($_GET['name'])) {
             $name = $_GET['name'];
             $list=$this->getDataForView();
             if($name!=""){
-                $list = $this->sanphamModel->getDsSPtheoTen($name);
+                $this->setSoLuongSP($this->sanphamModel->laySoLuongSanPhamTheoTen($name));
+                $list = $this->sanphamModel->getDsSPtheoTen($name, $start, $limit);
             }
             // Trả về dữ liệu dưới dạng JSON
             echo json_encode($list);
@@ -40,6 +64,8 @@ class SanPhamController {
     }
 
     public function getDsSPtheoKhoangGia() {
+        $start = $_GET['start'] ?? 0; // Vị trí bắt đầu của trang
+        $limit = $_GET['limit'] ?? 10; // Số lượng sản phẩm trên mỗi trang
         if (isset($_GET['action']) && $_GET['action'] == 'getDsSPtheoKhoangGia' && isset($_GET['khoangGia'])) {
             $khoangGia= $_GET['khoangGia'];
             $list=$this->getDataForView();
@@ -51,8 +77,8 @@ class SanPhamController {
                 $numbers = $matches[0];
                 $from = $numbers[0]; // Số đầu tiên
                 $to = $numbers[1]; // Số thứ hai
-                
-                $list = $this->sanphamModel->getDsSPtheoKhoangGia($from,$to);
+                $this->setSoLuongSP($this->sanphamModel->laySoLuongSanPhamTheoKhoangGia($from,$to));
+                $list = $this->sanphamModel->getDsSPtheoKhoangGia($from,$to, $start, $limit);
             }
             // Trả về dữ liệu dưới dạng JSON
             echo json_encode($list);
@@ -64,4 +90,6 @@ $controller = new SanPhamController();
 $controller->getDsSPtheoLoai();
 $controller->getDsSPtheoTen();
 $controller->getDsSPtheoKhoangGia();
+$controller->phanTrangMainList();
+
 ?>
