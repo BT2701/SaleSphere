@@ -20,7 +20,7 @@ class SanPhamController {
         return $this->sanphamModel->getSanPhamList(0,10);
     }
     public function phanTrangMainList(){
-        if(isset($_GET['start'])){
+        if(isset($_GET['action'])&&$_GET['action']==''){
             $start = $_GET['start'] ?? 0; // Vị trí bắt đầu của trang
             $limit = $_GET['limit'] ?? 10; // Số lượng sản phẩm trên mỗi trang
             $sanPhamList=$this->sanphamModel->getSanPhamList($start,$limit);
@@ -36,9 +36,9 @@ class SanPhamController {
     public function getDsSPtheoLoai() {
         $start = $_GET['start'] ?? 0; // Vị trí bắt đầu của trang
         $limit = $_GET['limit'] ?? 10; // Số lượng sản phẩm trên mỗi trang
-        if (isset($_GET['action']) && $_GET['action'] == 'getDsSPtheoLoai' && isset($_GET['category'])) {
-            $category = $_GET['category'];
-            $list=$this->getDataForView();
+        if (isset($_GET['action']) && $_GET['action'] == 'getDsSPtheoLoai' && isset($_GET['value'])) {
+            $category = $_GET['value'];
+            $list=$this->sanphamModel->getSanPhamList($start,$limit);
 
             if($category!='Tất cả sản phẩm'){
                 $this->setSoLuongSP($this->sanphamModel->laySoLuongSanPhamTheoLoai($category));
@@ -51,9 +51,9 @@ class SanPhamController {
     public function getDsSPtheoTen() {
         $start = $_GET['start'] ?? 0; // Vị trí bắt đầu của trang
         $limit = $_GET['limit'] ?? 10; // Số lượng sản phẩm trên mỗi trang
-        if (isset($_GET['action']) && $_GET['action'] == 'getDsSPtheoTen' && isset($_GET['name'])) {
-            $name = $_GET['name'];
-            $list=$this->getDataForView();
+        if (isset($_GET['action']) && $_GET['action'] == 'getDsSPtheoTen' && isset($_GET['value'])) {
+            $name = $_GET['value'];
+            $list=$this->sanphamModel->getSanPhamList($start,$limit);
             if($name!=""){
                 $this->setSoLuongSP($this->sanphamModel->laySoLuongSanPhamTheoTen($name));
                 $list = $this->sanphamModel->getDsSPtheoTen($name, $start, $limit);
@@ -66,9 +66,9 @@ class SanPhamController {
     public function getDsSPtheoKhoangGia() {
         $start = $_GET['start'] ?? 0; // Vị trí bắt đầu của trang
         $limit = $_GET['limit'] ?? 10; // Số lượng sản phẩm trên mỗi trang
-        if (isset($_GET['action']) && $_GET['action'] == 'getDsSPtheoKhoangGia' && isset($_GET['khoangGia'])) {
-            $khoangGia= $_GET['khoangGia'];
-            $list=$this->getDataForView();
+        if (isset($_GET['action']) && $_GET['action'] == 'getDsSPtheoKhoangGia' && isset($_GET['value'])) {
+            $khoangGia= $_GET['value'];
+            $list=$this->sanphamModel->getSanPhamList($start,$limit);
             if($khoangGia!='Tất cả mệnh giá'){
                 // Sử dụng preg_match_all để tìm tất cả các số nguyên trong chuỗi
                 preg_match_all('/\d+/', $khoangGia, $matches);

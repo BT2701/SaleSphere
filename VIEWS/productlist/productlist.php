@@ -116,11 +116,10 @@
         </div>
     </section>
 
-    
-    <script src="/web2/STATIC/js/category.js"></script>
     <script>
-        laySoTrangALL(<?php echo $controller->getSoLuongSP(); ?>);
+        var soLuongSpDB=<?php echo $controller->getSoLuongSP(); ?>;
     </script>
+    <script src="/web2/STATIC/js/category.js"></script>
     <script src="/web2/STATIC/js/index.js"></script>
 </body>
 
