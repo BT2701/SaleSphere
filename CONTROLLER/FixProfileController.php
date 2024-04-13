@@ -4,14 +4,14 @@
      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id1= $_POST['IdProfile'];
         $username1= $_POST["username"];
-        if($_POST['email']=="Chưa cập nhật")
+        if($_POST['email']=="")
         {
             $email1='0';
         }
         else{
             $email1 =$_POST["email"];
         }
-        if($_POST['phone_number']=="Chưa cập nhật")
+        if($_POST['phone_number']=="")
         {
             $sdt1='0';
         }
@@ -22,27 +22,27 @@
         {
             $gender1='Nam';
         }
-        else
+        else{
             $gender1='Nữ';
-        if(empty($_POST['dob']))
-        {
-            $dob1=date("d/m/Y");
         }
-        else
-        {
-            $dob1=$_POST["dob"];
-        }
-        if($_POST['diachi']=="Chưa cập nhật")
+        $dob1=$_POST['dob'];
+        if($_POST['diachi']=="")
         {
             $diachi1='0';
         }
         else{
             $diachi1=$_POST["diachi"];
         }
-        $src1=$_POST['imageURL'];
+        $src1=basename($_FILES['anh']['name']);
     }
     $profileModel->EditProfile($id1,$username1,$email1,$sdt1,$gender1,$dob1,$diachi1);
-    //$profileModel->EditImage($id1,$src1);
-    $_SESSION['login_name'] = $username1; 
+    $src2=$profileModel->getAnhByID($id1);
+    $target_dir="/web2/STATIC/assets/";
+    $target_file = $target_dir . $src1;
+    if(empty($src1))
+    $profileModel->EditImage($id1,$src2);
+    else
+    $profileModel->EditImage($id1,$target_file);
     header('Location: /web2/VIEWS/profile/profile.php');
+
 ?>
