@@ -23,6 +23,7 @@
 </head>
 <body>
 <?php
+    session_start();
     include 'VIEWS/header_footer/header.php';
     // Xác định trang cần hiển thị dựa trên giá trị của biến GET
     if(isset($_GET['page'])) {

@@ -1,3 +1,23 @@
+<?php
+    $user="";
+    if(isset($_SESSION['login_name'])&&$_SESSION['login_name']!="")
+    {
+        $user=$_SESSION['login_name'];
+    }
+    if($user!="")
+    {
+        $logined="&nbsp".$user;
+        $logined_mini="&nbsp" .$user;
+        $login='<li class="user-action_list-item"><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+    }
+    else {
+        $logined= '<span class="user-name">Đăng nhập/Đăng ký</span>';
+        $login='<li class="user-action_list-item"><a href="#">Đăng nhập</a></li>';
+        $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a></li>';
+        $logined_mini='<a class="nav-link" href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a>';
+    }   
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,12 +153,11 @@
 
                         <div class="user-info_wrapper">
                             <i class="fa-solid fa-user circle-bg-icon"></i>
-                            <span class="user-name">Pham Van Du</span>
-
+                            <?=$logined?>
                             <div class="user-actions">
                                 <ul class="user-action_list">
-                                    <li class="user-action_list-item"><a href="#">My account</a></li>
-                                    <li class="user-action_list-item"><a href="#">Log out</a></li>
+                                <?=$login?>
+                                <?=$signup?>
                                 </ul>
                             </div>
                         </div>

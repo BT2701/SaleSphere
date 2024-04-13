@@ -6,16 +6,6 @@
         $password =$_POST["Password"];
         $cpassword=$_POST["cPassword"];
     }
-    if($signupModel->isUsernameTaken($username)==0){
-        if($password == $cpassword){
-            $signupModel->registerUser($username,$password);
-            {
-                header('Location: /web2/index.php');
-            }
-        }else{
-            echo 'Mật khẩu không trùng khớp';
-        }
-    }else
-    {
-        echo 'tài khoản đã tồn tại';
-    }
+    $signupModel->registerTaikhoan($username,$password);
+    header('Location: /web2/index.php');
+          
