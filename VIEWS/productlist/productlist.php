@@ -61,7 +61,7 @@
         <div class="product-gallery-content-product" id="productList">
         <?php if(isset($sanphamList) && !empty($sanphamList)) {?>
             <?php foreach ($sanphamList as $sanpham): ?>
-                <div class="product-gallery-content-product-item">
+                <div class="product-gallery-content-product-item" onclick="test(<?php echo $sanpham['id']; ?>)">
                 <img src="<?php echo $sanpham['src']; ?>" alt="">
                 
                 <div class="product-gallery-content-product-text" >
@@ -121,6 +121,14 @@
     </script>
     <script src="/web2/STATIC/js/category.js"></script>
     <script src="/web2/STATIC/js/index.js"></script>
+    <script>
+
+        //FUNCTION REPLACE URL VÀ RELOAD
+        function test(idProduct){
+            // location.assign("http://localhost/web2/index.php?page=productdetail");
+            window.location.replace(`http://localhost/web2/index.php?page=productdetail&id=${idProduct}`);
+        }
+    </script>
 </body>
 
 

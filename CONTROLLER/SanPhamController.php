@@ -84,6 +84,68 @@ class SanPhamController {
             echo json_encode($list);
         }
     }
+    // ---------------------DU---------------------
+    //LẤY CHI TIẾT SẢN PHẨM
+    public function detailProduct($productID) {
+        $sanphamModel = new SanPhamModel();
+        return $sanphamModel->getProductDetail($productID);
+    }
+
+    //LẤY SỐ LƯỢNG SẢN PHẨM CÒN TRONG KHO
+    // public function quantityProduct($productID){
+    //     $this->getInstance();
+    //     $sanPhamModel = new SanPhamModel();
+    //     $soLuongNhap = $sanPhamModel->getQuantityProductImported($productID);
+    //     $soLuongDaBan = $sanPhamModel->getQuantityOfProductsSold($productID);
+    //     return $soLuongNhap['soLuongNhap']-$soLuongDaBan['soLuongDaBan'];
+    // }
+
+    public function quantityProduct($productID){
+        $sanPhamModel = new SanPhamModel();
+        $soLuongTonKho = $sanPhamModel->getQuantityInventoryProduct($productID);
+        if($soLuongTonKho !== null){
+            return $soLuongTonKho['soLuongTonKho'];
+        }
+        return 0;
+    }
+
+    //LẤY SỐ LƯỢNG SẢN PHẨM ĐÃ ĐƯỢC BÁN
+    public function quantityOfProductsSold($productID){
+        $sanPhamModel = new SanPhamModel();
+        $soLuongDaBan = $sanPhamModel->getQuantityOfProductsSold($productID);
+        if($soLuongDaBan['soLuongDaBan'] == null){
+            return 0;
+        }
+        return $soLuongDaBan['soLuongDaBan'];
+    }
+
+    //LẤY TỔNG SỐ LƯỢNG SAO SẢN PHẨM ĐƯỢC ĐÁNH GIÁ 
+    public function avgOfStarEvaluate($productID){
+        $sanPhamModel = new SanPhamModel();
+        $soLuongSao = $sanPhamModel->getAvgOfStarEvaluate($productID);
+        return $soLuongSao['tongSoSao'];
+    }
+
+    //LẤY SỐ LƯỢNG ĐÁNH GIÁ SẢN PHẨM 
+    // public function countOfEvaluate($productID){
+    //     $this->getInstance();
+    //     $sanPhamModel = new SanPhamModel();
+    //     $soLuongDanhGia = $sanPhamModel->getCountOfEvaluate($productID);
+    //     return $soLuongDanhGia['tongSoLuongDanhGia'];
+    // }
+    public function countOfEvaluate($productID,$soSao){
+        $sanPhamModel = new SanPhamModel();
+        $soLuongDanhGia = $sanPhamModel->getCountOfEvaluate($productID,$soSao);
+        return $soLuongDanhGia;
+    }
+
+    //LẤY THÔNG TIN KHUYẾN MÃI
+    public function sumOfValueDiscount($productID){
+        $sanPhamModel = new SanPhamModel();
+        $giaTriKhuyenMai = $sanPhamModel->getInfoDiscount($productID);
+        return $giaTriKhuyenMai;
+    }
+    // ---------------------DU---------------------
 
 }
 $controller = new SanPhamController();
