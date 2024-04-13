@@ -84,7 +84,7 @@ function loadData(pageNumber, action, value) {
             var productListHTML = '';
             if (productList.length > 0) {
                 productList.forEach(function(product) {
-                    productListHTML += '<div class="product-gallery-content-product-item">';
+                    productListHTML += '<div class="product-gallery-content-product-item" onclick="test(' + product.id + ')">';
                     productListHTML += '<img src="' + product.src + '" alt="">';
                     productListHTML += '<div class="product-gallery-content-product-text">';
                     if (product.tenKhuyenMai != null && (Date.parse(product.hansudung) > Date.now() || product.hansudung == null)) {
@@ -156,3 +156,5 @@ function loadData(pageNumber, action, value) {
         }
     });
 }
+
+

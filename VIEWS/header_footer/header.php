@@ -54,11 +54,13 @@
                     <div class=" d-none d-lg-flex header-operations_user-info ">
                         <a href="#" class="user-info_cart circle-bg-icon">
                             <i class="fa-solid fa-cart-shopping"></i>
-
-                            <div class="user-infor_cart-wraper mr-auto">
+                            <div class="quantity-product" >
+                                
+                            </div>
+                            <!-- <div class="user-infor_cart-wraper mr-auto">
                                 <div class="user-infor_cart-header">Sản phẩm mới thêm</div>
                                 <ul class="container list-unstyled user-infor_cart-list mt-2">
-                                    <!-- <li class="row user-infor_cart-header">Sản phẩm mới thêm</li> -->
+                                     <li class="row user-infor_cart-header">Sản phẩm mới thêm</li>
                                     <li class="row d-flex align-items-center user-infor_cart-list-item">
                                         <img class="user-infor_cart-list-item-img col-2"
                                             src="/VIEW/assets/quan_jogger.jpg" alt="Description of the image">
@@ -127,13 +129,13 @@
                                     </li>
 
 
-                                    <!-- <li class="row d-flex align-items-center user-infor_cart-footer">
+                                     <li class="row d-flex align-items-center user-infor_cart-footer">
                                         <span class="col user-infor_cart-footer_number-item">7 sản phẩm trong giỏ
                                             hàng</span>
                                         <span class="col d-flex justify-content-end">
                                             <button class="btn-view-detail">Xem giỏ hàng</button>
                                         </span>
-                                    </li> -->
+                                    </li>
                                 </ul>
                                 <div class="d-flex align-items-center user-infor_cart-footer">
                                     <div class="container">
@@ -148,7 +150,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </a>
 
                         <div class="user-info_wrapper">

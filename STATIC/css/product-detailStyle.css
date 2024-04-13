@@ -65,18 +65,22 @@
     font-size: 0.8rem;
 }
 
-.ranting{
+.rating-info{
     display: flex;
     align-items: center;
 }
 
-.ranting a{
+.rating-info a{
     margin-right: 6px;
 }
 
+.rating {
+    color: #ffc107;
+    font-size: 0.8rem;
+}
 
-.ranting i{
-    color:var(--primary-color);
+.rating i{
+    color: #ffc107;
     font-size: 0.8rem;
 }
 
@@ -208,6 +212,34 @@ input[type="number"] {
 }
 
 
+/* avaluate  */
+.user-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    border: 1px solid #cccccc;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: auto;
+}
+
+
+.average-rating {
+    border: 1px solid #007bff;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.case-none-evaluate {
+    padding: 20px; /* Add some padding */
+    font-size: 1.6rem;
+    color:#80d8ff;
+}
 
 
 
@@ -219,8 +251,13 @@ input[type="number"] {
         font-size: 1.2rem;
     }
 
-    .ranting i{
-        color:var(--primary-color);
+    .rating {
+        color: #ffc107;
+        font-size: 0.6rem;
+    }
+    
+    .rating i{
+        color: #ffc107;
         font-size: 0.6rem;
     }
 
@@ -245,6 +282,13 @@ input[type="number"] {
         margin-left: 10px;
         font-size: 0.8rem;
     } */
+
+    .btn-add-product{
+        width: 100%;
+    }
+
+
+
 }
 
 

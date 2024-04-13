@@ -35,6 +35,9 @@
         } elseif($page == 'promote') {
             include 'VIEWS/promote/promote.php';
         }
+        else if ($page == 'productdetail') {
+            include 'VIEWS/productdetail/product-detail.php';
+        }
         
     } else {
         // Mặc định khi không có tham số, hiển thị trang home.php
