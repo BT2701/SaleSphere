@@ -3,6 +3,8 @@
     session_regenerate_id(true);
      require_once 'C:\xampp\htdocs\web2\MODEL\Database.php';
      require_once 'Facebook/autoload.php';
+     require_once 'C:\xampp\htdocs\web2\CONTROLLER\ProfileController.php';
+    $profileController= new ProfileController();
      $FBOject = new \Facebook\Facebook([
          'app_id' =>'827729482526836',
          'app_secret' => '970d19a8df54b866f087029a193df2dc',
@@ -37,15 +39,22 @@
     $conn = $db->getConnection();
     $get_user = mysqli_query($conn, "SELECT `facebook_id` FROM `users` WHERE `facebook_id`='$fbid'");
             if(mysqli_num_rows($get_user) > 0){
-                header('Location: sign_up.php');
+                $get_id= $profileController->getID_facebook($fbid);
+                $_SESSION['id'] = $get_id; 
+                $_SESSION['login_name']=$fbName;
+                header('Location: /web2/index.php');
                 exit;
             }
             else
             {
-                $insert=mysqli_query($conn, "INSERT INTO `users`(`ten`,`email`,`src`,`facebook_id`,`usertype`) VALUES('$fbName','$fbEmail','$fbPictureUrl','$fbid','KH')");
-                if($insert)
+                $insert=mysqli_query($conn, "INSERT INTO `users`(`ten`,`email`,`src`,`facebook_id`,`usertype`) VALUES('$fbName','$fbEmail','$fbPictureUrl','$fbid','khachhang')");
+                $insert1=mysqli_query($conn, "INSERT INTO `taikhoan`(`tenTaiKhoan`,`maQuyen`) VALUES('$fbEmail','2')");
+                if($insert&&$insert1)
                 {
-                    header('Location: sign_up.php');
+                    $get_new_id= $profileController->getID_facebook($fbid);
+                    $_SESSION['id'] = $get_new_id; 
+                    $_SESSION['login_name']=$fbName;
+                    header('Location: /web2/index.php');
                     exit;
                 }
                 else

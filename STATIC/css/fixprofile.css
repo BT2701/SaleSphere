@@ -65,7 +65,16 @@ table{
     color: gray;
     padding-bottom: 25px;
 }
+.row_lbdiachi{
+    text-align: right;
+    color: gray;
+    padding-bottom: 25px;
+}
 .row_txtusername, .row_txtemail, .row_txtnumber, .row_cbgender, .row_txtdob{
+    padding-bottom: 25px;
+    padding-left: 25px;
+}
+.row_txtdiachi{
     padding-bottom: 25px;
     padding-left: 25px;
 }
@@ -120,6 +129,9 @@ form input{
 .main .mid .content .left_box .content_img .img_avatar{
     width: 125%;
 }
+.noname{
+    display: none;
+}
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
     .main .header .MyLogo{
         padding-left: 20px;
@@ -143,6 +155,9 @@ form input{
     form input{
         width: 100%;
     }
+    .noname{
+        display: none;
+    }
 }
 @media only screen and (max-width: 767px)  {
     h1,.mid .inf,table{
@@ -163,6 +178,7 @@ form input{
         padding-top: 100px;
         padding-left: 30px;
         width: 100%;
+        margin-top: 50px;
     }
     .MyLogo{
         padding: 10px ;
@@ -177,6 +193,7 @@ form input{
     }
     .noname{
         padding-left: 100px;
+        display: block;
     }
     .row_btnluu{
         padding-left: 50px;

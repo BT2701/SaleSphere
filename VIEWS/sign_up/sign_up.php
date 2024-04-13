@@ -3,6 +3,8 @@
     session_regenerate_id(true);
     require 'C:\xampp\htdocs\web2\MODEL\Database.php';
     require_once 'google-api/vendor/autoload.php';
+    require_once 'C:\xampp\htdocs\web2\CONTROLLER\ProfileController.php';
+    $profileController= new ProfileController();
     $client= new Google_Client();
     $client->setClientId('738185340571-n1nhvd916p7boq245k5bubcol4tbksg9.apps.googleusercontent.com');
     $client->setClientSecret('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');
@@ -24,19 +26,24 @@
             $profile_pic= mysqli_real_escape_string($conn,$google_account_info->picture);
             
             $get_user = mysqli_query($conn, "SELECT `google_id` FROM `users` WHERE `google_id`='$id'");
+            
             if(mysqli_num_rows($get_user) > 0){
-    
-                $_SESSION['login_id'] = $id; 
-                header('Location: sign_up.php');
+                $get_id= $profileController->getID_google($id);
+                $_SESSION['id'] = $get_id; 
+                $_SESSION['login_name'] = $full_name; 
+                header('Location: /web2/index.php');
                 exit;
             }
             else
             {
-                $insert=mysqli_query($conn, "INSERT INTO `users`(`google_id`,`ten`,`email`,`src`,`usertype`) VALUES('$id','$full_name','$email','$profile_pic','KH')");
-                if($insert)
-                {
-                    $_SESSION['login_id'] = $id; 
-                    header('Location: sign_up.php');
+                $insert=mysqli_query($conn, "INSERT INTO `users`(`google_id`,`ten`,`email`,`src`,`usertype`) VALUES('$id','$full_name','$email','$profile_pic','khachhang')");
+                $insert1=mysqli_query($conn, "INSERT INTO `taikhoan`(`tenTaiKhoan`,`maQuyen`) VALUES('$email','2')");
+                if($insert&&$insert1)
+                {   
+                    $get_new_id= $profileController->getID_google($id);
+                    $_SESSION['id'] = $get_new_id; 
+                    $_SESSION['login_name'] = $full_name; 
+                    header('Location: /web2/index.php');
                     exit;
                 }
                 else
@@ -84,7 +91,7 @@
 <body>
       <div class="header">
         <div class="MyLogo">
-          <a class="LinkTrangChu" href="#">
+          <a class="LinkTrangChu" href="/web2/index.php">
           <img src="/web2/STATIC/assets/banner.jpg" class="img-fluid" style="width: 150px;">
           </a>
           <div class="namepage" style="font-size: 1.5rem; padding: 15px; font-family: 'Roboto'; font-size: 30px;">Đăng ký</div>

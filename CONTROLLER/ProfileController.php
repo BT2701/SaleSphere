@@ -1,0 +1,28 @@
+<?php
+    class ProfileController{
+        public function getInstance()
+        {
+            require_once 'C:\xampp\htdocs\web2\MODEL\ProfileModel.php';
+        }
+        public function getDataForView()
+        {
+            if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+            {
+                $id=$_SESSION['id'];
+            }
+            $this->getInstance();
+            $profileModel= new ProfileModel();
+            return $profileModel->getList($id);
+        }
+        public function getID_google($id){
+            $this->getInstance();
+            $profileModel= new ProfileModel();
+            return $profileModel->GetIdByGoogle($id);
+        }
+        public function getID_facebook($id){
+            $this->getInstance();
+            $profileModel= new ProfileModel();
+            return $profileModel->GetIdByFB($id);
+        }
+    }
+?>
