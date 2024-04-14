@@ -132,7 +132,7 @@ class CartModel{
                                 WHERE userid=$userid AND idsanpham=$idSanPham
                                 ";
                                 $result4 = mysqli_query($connection, $strSQL4);
-                                    return true;
+                                    
                                 
                             }
                         } else {
@@ -143,6 +143,7 @@ class CartModel{
                         break; 
                     }
                 }
+                return true;
             }
         } else {
             return false;
