@@ -1,9 +1,31 @@
 // ----------------------------Xóa sản phẩm đang chọn ------------------------
 function deleteRow(btn) {
-  var row = btn.parentNode.parentNode;
-  var confirmDelete = confirm("Muốn xóa sản phẩm khỏi danh sách không?");
+  var row = btn.parentNode.parentNode
+  var parentRow = btn.closest("tr");
+  var userID = document.getElementById("item-cart").getAttribute("data-user-id")
+  var productID= parentRow.getAttribute("data-product-id")
+  var confirmDelete = confirm("Muốn xóa sản phẩm khỏi danh sách không?")
   
   if (confirmDelete) {
+      $.ajax({
+        url: "/web2/CONTROLLER/CartController.php",
+        method: 'POST',
+        dataType: 'json',
+        data: { action:'deleteProduct',
+                userid: userID,
+                idSanPham: productID
+              },
+        success: function(response) {
+            if(response==true){
+              alert("Xóa sản phẩm thành công!");
+            } else {
+              alert(response);
+            }    
+        },
+        error: function(xhr, status, error) {
+          alert("Lỗi khi gửi yêu cầu: "+xhr.status);
+        }
+    });
     row.parentNode.removeChild(row);
     return true;
   }
@@ -18,27 +40,34 @@ function decreaseQuantity(btn) {
   var value = parseInt(parentRow.querySelector(".input").value - 1)
   var productID= parentRow.getAttribute("data-product-id")
   var userID = document.getElementById("item-cart").getAttribute("data-user-id");
-  console.log(userID)
   var soLuongInput = btn.parentNode.querySelector("input");
   var currentValue = parseInt(soLuongInput.value);
   var price = parseInt(parentRow.querySelector(".price").textContent.trim());
   var total = parseInt(document.getElementById('total').value);
-
+  var x=1; // Kiểm tra nếu currentValue có từng =0 và gán lại 1 chưa. 
   if (currentValue > 0) {
     currentValue--;
 
     if (currentValue === 0) {
-      
+      x=0
       currentValue=1
     }
     soLuongInput.value = currentValue;
-    updateSoLuong(userID, productID, currentValue)
+    updateQuantity(userID, productID, currentValue)
+    
     if (checkboxElement.checked) {
-      if (currentValue == 1) {
-        total = price
+      // Nếu đã gán lại currentValue=1 rồi thì không trừ nữa
+      if (currentValue == 1 && x==0) {  
       }
-      else
+      
+      // Nếu chưa lại currentValue=1 rồi thì trừ
+      else if( currentValue ==1 && x!=0){
+        total-=price
+      }
+      
+      else if( currentValue > 1)
         total -= price
+      
       document.getElementById('total').value = total
     }
   }
@@ -46,7 +75,6 @@ function decreaseQuantity(btn) {
 
 // -------------------------------- Nhấn nút tăng số lượng ----------------------
 function increaseQuantity(btn) {
-  
   var parentRow = btn.closest("tr");
   var checkboxElement = parentRow.querySelector(".check-box")
   var productID= parentRow.getAttribute("data-product-id")
@@ -59,7 +87,7 @@ function increaseQuantity(btn) {
     currentValue++;
   }
   soLuongInput.value = currentValue;
-  updateSoLuong(userID, productID, currentValue)
+  updateQuantity(userID, productID, currentValue)
   if (checkboxElement.checked) {
     if (currentValue >= 999) {
       total = price * 999
@@ -97,11 +125,27 @@ function validateQuantity(input) {
   input.value = value;
 }
 // --------------------Update Số lượng trong database---------------------
-function updateSoLuong(userID, maSanPham, soLuongMoi){
-  var url = "xuly.php?updateSoLuong=true&maKhachHang=" + userID + "&maSanPham="+ maSanPham +"&soLuongMoi="+soLuongMoi;
-  var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", url, true);
-    xhttp.send();
+function updateQuantity(userID, idsanpham, soLuongMoi){
+    $.ajax({
+      url: "/web2/CONTROLLER/CartController.php",
+      method: 'POST',
+      dataType: 'json',
+      data: { action:'updateQuantity',
+              userid: userID,
+              idSanPham: idsanpham,
+              soLuongMoi: soLuongMoi
+            },
+      success: function(response) {
+          if(response==true){
+            
+          } else {
+            alert("Cập nhật số lượng lỗi: "+ response);
+          }    
+      },
+      error: function(xhr, status, error) {
+        alert("Lỗi khi gửi yêu cầu: "+xhr.status);
+      }
+  });
 }
 
 // -----------------Thay đổi tổng tiền khi Nhập giá trị vào soLuongInput -----------------
@@ -123,7 +167,7 @@ function updateSoLuong(userID, maSanPham, soLuongMoi){
 
         var productID= parentRow.getAttribute("data-product-id")
         var userID = document.getElementById("item-cart").getAttribute("data-user-id");
-        updateSoLuong(userID, productID, newInputValue)
+        updateQuantity(userID, productID, newInputValue)
 
         if(checkboxElement.checked){
           total-= oldInputValue*price
@@ -135,108 +179,116 @@ function updateSoLuong(userID, maSanPham, soLuongMoi){
     })
   })
 
-// ---------------Popup cửa sổ khuyến mãi----------------
-
-function openPopup() {
-  document.getElementById("myPopup").style.display = "block";
-}
-
-function closePopup() {
-  document.getElementById("myPopup").style.display = "none";
-}
 //--------------tickCheckbox-------------
 // Khi check sẽ lấy giá tiền cộng vào totalPrice và tính tổng sản phẩm đang chọn
-
-document.addEventListener("DOMContentLoaded", function () {
+var selectedProductIDs = [];
+document.addEventListener("DOMContentLoaded", function() {
   const selectAllCheckBox = document.getElementById("selectAll");
   const listCheckBox = document.querySelectorAll(".chooseProduct");
   const checkboxes = document.querySelectorAll('.chooseProduct');
   const totalPriceElement = document.getElementById('total');
   const totalProductElement = document.getElementById('totalProduct')
-
+ 
   function calculateTotal() {
-      let totalValue = 0;
-      let totalProduct=0;
-      checkboxes.forEach(function (checkbox) {
-          if (checkbox.checked) {
-              var parentRow = checkbox.closest("tr");
-              var priceElement = parentRow.querySelector(".price");
-              var price = parseFloat(priceElement.textContent.trim());
-              let number = parseFloat(parentRow.querySelector(".input").value);
-              totalValue += price * number;
-              totalProduct++;
+    let totalValue = 0;
+    let totalProduct = 0;
+  
+    checkboxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+        var parentRow = checkbox.closest("tr");
+        if (parentRow) {
+          var priceElement = parentRow.querySelector(".price");
+          if (priceElement) {
+            var price = parseFloat(priceElement.textContent.trim());
+            let number = parseFloat(parentRow.querySelector(".input").value);
+            totalValue += price * number;
+            totalProduct++;
+  
+            // Nếu productID chưa tồn tại trong mảng, thêm vào
+            var productID = parentRow.getAttribute("data-product-id");
+            if (!selectedProductIDs.includes(productID)) {
+              selectedProductIDs.push(productID);
+            }
           }
-      });
-      totalPriceElement.value = parseInt(totalValue);
-      totalProductElement.textContent = "Tổng sản phẩm đã chọn: " + totalProduct;
+        }
+      } else {
+        // Nếu productID tồn tại trong mảng, gỡ bỏ
+        var parentRow = checkbox.closest("tr");
+        if (parentRow) {
+          var productID = parentRow.getAttribute("data-product-id");
+          const index = selectedProductIDs.indexOf(productID);
+          if (index !== -1) {
+            selectedProductIDs.splice(index, 1);
+          }
+        }
+      }
+    });
+    totalPriceElement.value = parseInt(totalValue);
+    totalProductElement.textContent = "Tổng sản phẩm đã chọn: " + totalProduct;
   }
+  
 
   selectAllCheckBox.addEventListener("change", function() {
-      listCheckBox.forEach(function(checkbox) {
-          checkbox.checked = selectAllCheckBox.checked;
-          updateTrangThai(checkbox);
-          
-      });
-      calculateTotal();
+    listCheckBox.forEach(function(checkbox) {
+      checkbox.checked = selectAllCheckBox.checked;
       
+    });
+    
+    // Nếu selectAllCheckBox được chọn, cập nhật lại mảng selectedProductIDs
+    if (selectAllCheckBox.checked) {
+      selectedProductIDs = [];
+      checkboxes.forEach(function(checkbox) {
+        var parentRow = checkbox.closest("tr");
+        var productID = parentRow.getAttribute("data-product-id");
+        selectedProductIDs.push(productID);
+        
+      });
+    } 
+    
+    calculateTotal();
   });
 
   checkboxes.forEach(function (checkbox) {
-      checkbox.addEventListener('change', function () {
-          calculateTotal();
-          updateTrangThai(this);
-          
-      });
+    checkbox.addEventListener('change', function () {
+      calculateTotal();
+    });
   });
-
-//  Khi check thì updateTrangThai,Khi out thì setAll trạng thái=0;
-  function updateTrangThai(checkbox) {
-    var parentRow = checkbox.closest("tr");
-    var productId = parentRow.getAttribute("data-product-id");
-    var userID= parentRow.getAttribute("data-user-id")
-    var trangThai = checkbox.checked ? 1 : 0;
-
-    // Gửi yêu cầu AJAX để cập nhật trạng thái
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
-        }
-    };
-    xhttp.open("GET", "xuly.php?maSanPham=" + productId +"&maKhachHang="+userID+ "&updateTrangThai=" + trangThai, true);
-    xhttp.send();
-}
-});
-// ----------------------------reset Trạng thái khi out khỏi trang-------------------
-
-window.addEventListener('beforeunload', function() {
-  var userID = document.getElementById("item-cart").getAttribute("data-user-id");
-  var url = "xuly.php?resetTrangThai=true&maKhachHang=" + userID;
-  var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", url, true);
-    xhttp.send();
 });
 
 // ---------------------------------Thanh Toán------------------------------------------------
 document.addEventListener("DOMContentLoaded", function () {
-var btnThanhToan = document.getElementById('btnThanhToan');
-btnThanhToan.addEventListener('click', function(event){
-  event. preventDefault();
-  var total= parseInt(document.getElementById("total").value)
-  var userID = document.getElementById("item-cart").getAttribute("data-user-id");
-  var url = "xuly.php?thanhToan=true&maKhachHang=" + userID +"&tongTien="+total;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText);
-        alert("Thanh toán thành công!");
-        window.location.reload();
-    }
-  };
-  
-  xhttp.open("GET", url, true);
-  xhttp.send();
-
-
+  var btnThanhToan = document.getElementById('btnThanhToan');
+  btnThanhToan.addEventListener('click', function(event){
+      event.preventDefault();
+      var confirmed = confirm("Bạn có chắc chắn muốn thanh toán?");
+      if(confirmed){
+          var total = parseInt(document.getElementById("total").value);
+          var userID = document.getElementById("item-cart").getAttribute("data-user-id");
+          var listSelectedProductID = selectedProductIDs;
+          console.log("userID: " + userID + " selected: " + selectedProductIDs + " tongTien: " + total);
+          $.ajax({
+              url: "/web2/CONTROLLER/CartController.php",
+              method: 'POST',
+              dataType: 'json',
+              data: {
+                  action: 'payProduct',
+                  userid: userID,
+                  selectedProductIDs: listSelectedProductID,
+                  tongTien: total
+              },
+              success: function(response) {
+                  if(response == true){
+                      alert("Đặt hàng thành công!");
+                      location.reload(); // Reload the page after successful order
+                  } else {
+                      alert(response);
+                  }    
+              },
+              error: function(xhr, status, error) {
+                  alert("Lỗi khi gửi yêu cầu: " + xhr.status + status + error);
+              }
+          });
+      }
+  });
 });
-})
+
