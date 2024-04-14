@@ -60,104 +60,11 @@
                     
                     <div class=" d-none d-lg-flex header-operations_user-info ">
                         <a href="#" class="user-info_cart circle-bg-icon">
-                            <i class="fa-solid fa-cart-shopping"></i>
+                            <i class="fa-solid fa-cart-shopping" id="viewCartButton"></i>
                             <div class="quantity-product" >
                                 
                             </div>
-                            <!-- <div class="user-infor_cart-wraper mr-auto">
-                                <div class="user-infor_cart-header">Sản phẩm mới thêm</div>
-                                <ul class="container list-unstyled user-infor_cart-list mt-2">
-                                     <li class="row user-infor_cart-header">Sản phẩm mới thêm</li>
-                                    <li class="row d-flex align-items-center user-infor_cart-list-item">
-                                        <img class="user-infor_cart-list-item-img col-2"
-                                            src="/VIEW/assets/quan_jogger.jpg" alt="Description of the image">
-                                        <span
-                                            class="d-flex align-items-center user-infor_cart-list-item-name col-7">Quan
-                                            jogger</span>
-                                        <span
-                                            class="d-flex align-items-center justify-content-end user-infor_cart-list-item-price col-3">200.000
-                                            d</span>
-                                    </li>
-
-
-                                    <li class="row d-flex align-items-center user-infor_cart-list-item">
-                                        <img class="user-infor_cart-list-item-img col-2"
-                                            src="/VIEW/assets/quan_jogger.jpg" alt="Description of the image">
-                                        <span
-                                            class="d-flex align-items-center user-infor_cart-list-item-name col-7">Quan
-                                            jogger</span>
-                                        <span
-                                            class="d-flex align-items-center justify-content-end user-infor_cart-list-item-price col-3">200.000
-                                            d</span>
-                                    </li>
-
-                                    <li class="row d-flex align-items-center user-infor_cart-list-item">
-                                        <img class="user-infor_cart-list-item-img col-2"
-                                            src="/VIEW/assets/quan_jogger.jpg" alt="Description of the image">
-                                        <span
-                                            class="d-flex align-items-center user-infor_cart-list-item-name col-7">Quan
-                                            jogger</span>
-                                        <span
-                                            class="d-flex align-items-center justify-content-end user-infor_cart-list-item-price col-3">200.000
-                                            d</span>
-                                    </li>
-
-                                    <li class="row d-flex align-items-center user-infor_cart-list-item">
-                                        <img class="user-infor_cart-list-item-img col-2"
-                                            src="/VIEW/assets/quan_jogger.jpg" alt="Description of the image">
-                                        <span
-                                            class="d-flex align-items-center user-infor_cart-list-item-name col-7">Quan
-                                            jogger</span>
-                                        <span
-                                            class="d-flex align-items-center justify-content-end user-infor_cart-list-item-price col-3">200.000
-                                            d</span>
-                                    </li>
-
-                                    <li class="row d-flex align-items-center user-infor_cart-list-item">
-                                        <img class="user-infor_cart-list-item-img col-2"
-                                            src="/VIEW/assets/quan_jogger.jpg" alt="Description of the image">
-                                        <span
-                                            class="d-flex align-items-center user-infor_cart-list-item-name col-7">Quan
-                                            jogger</span>
-                                        <span
-                                            class="d-flex align-items-center justify-content-end user-infor_cart-list-item-price col-3">200.000
-                                            d</span>
-                                    </li>
-
-                                    <li class="row d-flex align-items-center user-infor_cart-list-item">
-                                        <img class="user-infor_cart-list-item-img col-2"
-                                            src="/VIEW/assets/quan_jogger.jpg" alt="Description of the image">
-                                        <span
-                                            class="d-flex align-items-center user-infor_cart-list-item-name col-7">Quan
-                                            jogger</span>
-                                        <span
-                                            class="d-flex align-items-center justify-content-end user-infor_cart-list-item-price col-3">200.000
-                                            d</span>
-                                    </li>
-
-
-                                     <li class="row d-flex align-items-center user-infor_cart-footer">
-                                        <span class="col user-infor_cart-footer_number-item">7 sản phẩm trong giỏ
-                                            hàng</span>
-                                        <span class="col d-flex justify-content-end">
-                                            <button class="btn-view-detail">Xem giỏ hàng</button>
-                                        </span>
-                                    </li>
-                                </ul>
-                                <div class="d-flex align-items-center user-infor_cart-footer">
-                                    <div class="container">
-                                        <div class="row">
-                                            <span
-                                                class=" col d-flex align-items-center user-infor_cart-footer_number-item">7
-                                                sản phẩm trong giỏ
-                                                hàng</span>
-                                            <span class=" col p-0 d-flex justify-content-end">
-                                                <button class="btn-view-detail" id="viewCartButton">Xem giỏ hàng</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                           
                         </a>
 
                         <div class="user-info_wrapper">
@@ -221,6 +128,15 @@
                             Chương trình khuyến mãi
                         </a>
                     </li>
+                    <li class="nav-item dropdown navbar-item">
+                        <a class="nav-link " href="#" id="promote" role="button" aria-expanded="false">
+                            <form id="viewHistoryForm" action="/web2/VIEWS/History/OrderHistory.php" method="post">
+                                <input type="hidden" name="customerId" value="1"> <!-- Thay đổi thành ID khách hàng tương ứng -->
+                                <button id="viewHistory" type="submit">View Order History</button>
+                            </form>
+                        </a>
+                    </li>
+                    
 
                     <!-- case user dose not login  -->
                     <!-- <li class="nav-item d-lg-none d-flex align-items-center">
