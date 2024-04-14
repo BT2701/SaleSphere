@@ -13,16 +13,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
   <link rel="stylesheet" href="../../STATIC/css/cart.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="../../STATIC/js/cart.js"></script>
   <title>Cart</title>
 
 </head>
 
 <body>
+
+  <?php
+    $userid = 1;
+    require_once 'G:\XAMPP\htdocs\web2\CONTROLLER\CartController.php';
+    $cartController=new CartController();
+    $cartList= $cartController->getCartList($userid);
+  ?>
   <div class="container-md ">
     <table id="chooseProduct" class="table table-hover table-borderless custom-table " style="margin-top: 20px; ">
       <thead>
-        <tr class="thead table-primary ">
+        <tr class="thead table-primary "> 
           <th class="text-center col-1"></th>
 
           <th class="col-6">Sản Phẩm</th>
@@ -33,30 +41,12 @@
       </thead>
       <tbody>
         <!------------------- list_item ----------------->
-        <?php
-        $connection = mysqli_connect("localhost", "root", "", "quan_ly_ban_hang");
-        $maKhachHang = 1; //KHi nào có mã Khách hàng thì lấy thay vô
-        $strSQL = "
-          SELECT 
-            sanpham.id,
-            sanpham.tenSanPham,
-            sanpham.src,
-            sanpham.giaBan,
-            chitietdathang.soLuong,
-            sanpham.moTa
-          FROM
-            chitietdathang
-          INNER JOIN
-            sanpham ON chitietdathang.maSanPham = sanpham.id
-          WHERE
-            chitietdathang.maKhachHang = '$maKhachHang';
-                  ";
-        $result = mysqli_query($connection, $strSQL);
-        if (mysqli_num_rows($result) > 0)
-          while ($row = mysqli_fetch_array($result)) {
-            ?>
-        <div id="item-cart" class="item-cart" data-user-id=  "<?php echo $maKhachHang  ?>">
-          <tr data-product-id= "<?php echo $row['id']  ?>"  data-user-id=  "<?php echo $maKhachHang  ?>" >
+        
+          <?php if(isset($cartList) && !empty($cartList)) {?>
+            <?php foreach ($cartList as $row): ?>
+        
+        <div id="item-cart" class="item-cart" data-user-id=  "<?php echo $userid  ?>">
+          <tr data-product-id= "<?php echo $row['id']  ?>"  data-user-id=  "<?php echo $userid  ?>" >
             <td class="text-center align-middle ">
               <input title="Chọn sản phẩm"  class="check-box chooseProduct" style="cursor: pointer;"
                type="checkbox" > 
@@ -91,37 +81,27 @@
                   <?php 
                   $idSanPham= $row['id'];
                   $giaSanPham= $row['giaBan'];
-                    $strSQL1=" SELECT khuyenmai.giaTri
-                                FROM chitietkhuyenmai
-                                INNER JOIN khuyenmai
-                                ON chitietkhuyenmai.idkhuyenmai= khuyenmai.id
-                                WHERE chitietkhuyenmai.idsanpham= $idSanPham
-                                      ";
-                    $result1 = mysqli_query($connection, $strSQL1);
-                    $row1 = mysqli_fetch_array($result1);
-                    if(isset($row1[0]))
-                      echo  "<p style='text-decoration: line-through;color:red'>". " -$giaSanPham- "."</p> " ."<p class='price'>". $giaSanPham - $giaSanPham*$row1[0]/100 ."</p>";
-                    else
-                      echo "<p class='price'>". $giaSanPham ."</p>";
-
-
-                  // echo $row['giaBan'] - $row['giaBan']*($row1['giaTri']/100) ;
-                    
                   
+                  $khuyenmai= $cartController->getPromotionValue($idSanPham);
+                  if(isset($khuyenmai) && !empty($khuyenmai)) {
+                    foreach ($khuyenmai as $row1): 
+                    if(isset($row1['giaTri']))
+                      echo  "<p style='text-decoration: line-through;color:red'>". " -$giaSanPham- "."</p> " ."<p class='price'>". $giaSanPham - $giaSanPham*$row1['giaTri']/100 ."</p>";
+                    endforeach;}
+                    else
+                    echo "<p class='price'>". $giaSanPham ."</p>";
                   ?>
                 </td>
 
                 <td class="text-center align-middle   ">
-                  <a href="http://localhost/web2/VIEWS/cart/xuly.php?delete=true&nguoiDung=<?php echo $maKhachHang ?>&maSanPham=<?php echo $row['id'] ?> "
-                    class="trash" title="Xóa sản phẩm" onclick="return deleteRow(this) "><i class="fas fa-trash"
+                  <a class="trash" title="Xóa sản phẩm" onclick= deleteRow(this)><i class="fas fa-trash"
                       style="font-size: 20px; cursor: pointer;"></i></a>
                 </td>
               </tr>
             </div>
-            <?php
-          }
-        mysqli_close($connection);
-        ?>
+            <?php endforeach; ?>
+            <?php } ?>
+          
 
 
         <!-------------------- total-price --------------->
@@ -136,18 +116,6 @@
             <p id="totalProduct" style="margin: 0px ;">Tổng sản phẩm đã chọn: 0</p>
           </td>
           <td class="text-center ">
-            <div style="cursor: pointer;">
-              <img onclick="openPopup()" src="../../STATIC/assets/voucher.png" width="30px" style="margin-top: 20px;">
-              <p onclick="openPopup()"> Chọn voucher</p>
-
-              <div id="myPopup" class="popup">
-                <div class="popup-content">
-                  <span class="close" onclick="closePopup()">&times;</span>
-                  <h3>Tiêu đề cửa sổ nhỏ</h3>
-                  <p>Nội dung của cửa sổ nhỏ.</p>
-                </div>
-              </div>
-            </div>
           </td>
           <th class="text-center align-middle">
 
@@ -161,7 +129,6 @@
 
           </th>
           <td class="text-center align-middle">
-          <!-- href="http://localhost/web2/VIEWS/cart/xuly.php?thanhToan=true&idKhachHang=<?php echo $maKhachHang ?>" -->
             <a id=btnThanhToan class="btn btn-sm rounded-1 m-1" type="submit" 
               style="border-color: darkgray; border-radius: 10px !important; width: 130px; height: 50px; display: flex; justify-content: center; align-items: center;">
               <strong>Thanh toán</strong>
@@ -173,11 +140,6 @@
 
       </tbody>
     </table>
-
-<!-- Còn đặt hàng, voucher, tổng số sản phẩm và update dữ liệu, Thanh toán xong clear cart -->
-    <div class="Total">
-
-    </div>
 
   </div>
 
