@@ -79,5 +79,28 @@
         $sql = "UPDATE `taikhoan` SET `matKhau`='$pass' WHERE `id`=$id";
         mysqli_query($conn, $sql);
     }
+    public function GettenByID($id)
+    {
+        $this->getInstance();
+        $db=new Database();
+        $conn= $db->getConnection();
+        $sql = "SELECT `ten` FROM `users` WHERE `id`='$id'";
+        $result=mysqli_query($conn, $sql);
+        if($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['ten'];
+        }
     }
+    public function getAnhByID($id){
+        $this->getInstance();
+        $db=new Database();
+        $conn= $db->getConnection();
+        $sql = "SELECT `src` FROM `users` WHERE `id`='$id'";
+        $result=mysqli_query($conn, $sql);
+        if($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['src'];
+        }
+    }
+}
 ?>

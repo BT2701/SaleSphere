@@ -1,13 +1,19 @@
 <?php
+    require_once 'C:\xampp\htdocs\web2\CONTROLLER\ProfileController.php';
+    $profileController= new ProfileController();
     $user="";
     if(isset($_SESSION['login_name'])&&$_SESSION['login_name']!="")
     {
         $user=$_SESSION['login_name'];
     }
+    if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+    {
+        $id=$_SESSION['id'];
+    }
     if($user!="")
     {
-        $logined="&nbsp".$user;
-        $logined_mini="&nbsp" .$user;
+        $logined="&nbsp".$profileController->GetTenById($id);
+        $logined_mini="&nbsp" .$profileController->GetTenById($id);
         $login='<li class="user-action_list-item"><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
         $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
     }
@@ -18,6 +24,7 @@
         $logined_mini='<a class="nav-link" href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a>';
     }   
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

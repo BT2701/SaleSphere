@@ -76,18 +76,19 @@
             <div class="content">
                 <?php if (isset($profileList) && !empty($profileList)) ?>
                 <?php foreach ($profileList as $profile) : ?>
+                    <form action="/web2/CONTROLLER/FixProfileController.php" method="post" name="MyForm" id="MyForm" enctype="multipart/form-data">
                     <div class="left_box">
-                        <div class="content_img" style="display: flex; flex-direction: column;">
-                            <img style="border-radius: 100%;" src="<?php if($profile['src']=='0'||$profile['src']==''){echo '/web2/STATIC/assets/default_avatar_1.png';} else {echo $profile['src'];} ?>" alt="">
-                            <input type="button" value="Chọn ảnh" class="btnanh btn btn-primary">
+                        <div class="content_img" style="display: block;" >
+                            <img  style="border-radius: 100%; width: 150px;" src="<?php if($profile['src']=='0'||$profile['src']==''){echo '/web2/STATIC/assets/default_avatar_1.png';} else {echo $profile['src'];} ?>" alt="">
+                            <input style="margin-top: 20px; width: 200% !important;" type="file" name="anh" id="anh">
                             <div class="warning" style="width: 200px; margin-left: -20px; padding-top: 20px;">
                             <p>Dung lượng file tối đa 1MB</p>
                             <p>Định dạng: .JPEG, .PNG</p>
                             </div>
                         </div>
-                </div>
+                    </div>
                     <div class="right_box">
-                        <form action="/web2/CONTROLLER/FixProfileController.php" method="post" name="MyForm" id="myform">
+                    
                             <input type="hidden" id="IdProfile1" name="IdProfile" value="<?php echo $profile['id']; ?>"/>
                             <table>
                                 <tr>
@@ -103,15 +104,18 @@
                                         <label class="lbemail">Email</label>
                                     </td>
                                     <td class="row_txtemail">
-                                        <input type="text" class="txtemail" name="email"  value="<?php if($profile['email']=='0') {echo "Chưa cập nhật";} else {echo $profile['email'];}  ?>" />
+                                        <input type="text" class="txtemail" name="email" id="Email"  value="<?php if($profile['email']=='0') {echo "";} else {echo $profile['email'];}  ?>" />
+                                        <p id="errorEmail" style="font-size: 15px; color:red; padding-left: 5px; padding-top: 5px;"></p>
                                     </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td class="row_lbnumber">
                                         <label class="lbnumber">Số điện thoại</label>
                                     </td>
                                     <td class="row_txtnumber">
-                                        <input type="text" class="txtnumber" name="phone_number" value="<?php if($profile['sdt']=='0'){echo "Chưa cập nhật";} else {echo $profile['sdt'];} ?>" />
+                                        <input type="text" class="txtnumber" name="phone_number" id="Phone_Number" value="<?php if($profile['sdt']=='0'){echo "";} else {echo $profile['sdt'];} ?>" />
+                                        <p id="errorPhoneNumber" style="font-size: 15px; color:red; padding-left: 5px; padding-top: 5px;"></p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -153,7 +157,7 @@
                                         <label class="lbdiachi">Địa chỉ</label>
                                     </td>
                                     <td class="row_txtdiachi">
-                                        <input style="width: 230px;" type="text" class="txtdiachi" name="diachi" value="<?php if($profile['diachi']=='0') {echo "Chưa cập nhật";} else {echo $profile['diachi'];} ?>" />
+                                        <input style="width: 230px;" type="text" class="txtdiachi" name="diachi" value="<?php if($profile['diachi']=='0') {echo "";} else {echo $profile['diachi'];} ?>" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -226,7 +230,8 @@
             </div>
         </div>
     </div>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/web2/STATIC/js/validation_fixprofile.js"></script>
 </body>
 
 </html>
