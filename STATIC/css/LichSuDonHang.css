@@ -1,0 +1,17 @@
+.order-item {
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px 0;
+}
+.imageProduct{
+    width: 7%;
+    height: 7%;
+}
+.product-info {
+    display: flex;
+    align-items: center;
+}
+.product-name {
+    margin: 5px;
+    width: 100%;
+    font-size: 20px;
+}

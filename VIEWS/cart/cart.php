@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../STATIC/css/cart.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="../../STATIC/js/cart.js"></script>
+  <script src="/web2/STATIC/js/cart.js"></script>
   <title>Cart</title>
 
 </head>
@@ -23,7 +23,7 @@
 
   <?php
     $userid = 1;
-    require_once 'G:\XAMPP\htdocs\web2\CONTROLLER\CartController.php';
+    require_once 'C:\xampp\htdocs\web2\CONTROLLER\CartController.php';
     $cartController=new CartController();
     $cartList= $cartController->getCartList($userid);
   ?>
