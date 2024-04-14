@@ -132,7 +132,7 @@
                                 </td>
                                 <td class="row_txtdob">
                                     <div class="txtdob">
-                                    <?php if(date("d/m/Y",strtotime($profile['dob']))=='01/01/1970'){echo "Chưa cập nhật";} else{ echo date("d/m/Y",strtotime($profile['dob']));} ?>
+                                    <?php if(date("d/m/Y",strtotime($profile['dob']))=='01/01/1970'||date("d/m/Y",strtotime($profile['dob']))=='30/11/-0001'||date("d/m/Y",strtotime($profile['dob']))=='00/00/0000'){echo "Chưa cập nhật";} else{ echo date("d/m/Y",strtotime($profile['dob']));} ?>
                                     </div>
                                 </td>
                             </tr>

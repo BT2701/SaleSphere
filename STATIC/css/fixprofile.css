@@ -86,7 +86,7 @@ table{
 }
 form{
     font-size: 15px;
-
+    display: inline-flex;
 }
 .btnluu{
     padding: 5px 20px;
@@ -200,5 +200,8 @@ form input{
     }
     form input{
         width: 100%;
+    }
+    form{
+        display: block;
     }
 }

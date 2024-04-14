@@ -24,5 +24,15 @@
             $profileModel= new ProfileModel();
             return $profileModel->GetIdByFB($id);
         }
+        public function GetTenById($id){
+            $this->getInstance();
+            $profileModel= new ProfileModel();
+            return $profileModel->GettenByID($id);
+        }
+        public function GetAnhById($id){
+            $this->getInstance();
+            $profileModel= new ProfileModel();
+            return $profileModel->getAnhByID($id);
+        }
     }
 ?>
