@@ -111,15 +111,28 @@ class SanPhamModel {
         $conn = $db->getConnection();
         $start = intval($start);
         $limit = intval($limit);
-        $sql = "SELECT s.id, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, k.hansudung  
+        $sql = "SELECT s.id, 
+        s.tenSanPham, 
+        s.giaBan, 
+        s.src, 
+        k.giaTri, 
+        k.background,
+        SUM(cthd.soluong) AS TongSoLuongBanDuoc, 
+        k.tenKhuyenMai, 
+        CASE 
+            WHEN AVG(dg.star) - FLOOR(AVG(dg.star)) >= 0.5 THEN CEIL(AVG(dg.star))
+            ELSE FLOOR(AVG(dg.star))
+        END AS TrungBinhStar, 
+        k.hansudung  
         FROM sanpham s
         LEFT JOIN chitietkhuyenmai ctk ON s.id = ctk.idsanpham
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
         LEFT JOIN danhgia dg ON s.id = dg.idsanpham
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
-        GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, dg.star
+        GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, k.hansudung
         ORDER BY TongSoLuongBanDuoc DESC
-        LIMIT ?, ?";
+        LIMIT ?, ?
+        ";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ii", $start, $limit);
         $stmt->execute();
