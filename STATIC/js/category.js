@@ -107,8 +107,8 @@ function loadData(pageNumber, action, value) {
                         }
                         productListHTML += ' <sup>đ</sup></li>';
                         productListHTML += '<li>';
-                        if (product.star != null) {
-                            for (var i = 0; i < product.star; i++) {
+                        if (product.TrungBinhStar != null) {
+                            for (var i = 0; i < product.TrungBinhStar; i++) {
                                 productListHTML += '<i class="fa-solid fa-star" style="color: #FB6E2E;"></i>';
                             }
                         }
@@ -136,8 +136,8 @@ function loadData(pageNumber, action, value) {
                         }
                         productListHTML += ' <sup>đ</sup></li>';
                         productListHTML += '<li>';
-                        if (product.star != null) {
-                            for (var i = 0; i < product.star; i++) {
+                        if (product.TrungBinhStar != null) {
+                            for (var i = 0; i < product.TrungBinhStar; i++) {
                                 productListHTML += '<i class="fa-solid fa-star" style="color: #FB6E2E;"></i>';
                             }
                         }

@@ -86,8 +86,8 @@
                         echo $giaban;}else{echo $sanpham['giaBan'];} ?> <sup>đ</sup></li>
                     <li>
                         <?php
-                        if ($sanpham['star']!=null){
-                            for ($i=0;$i<$sanpham['star'];$i++){
+                        if ($sanpham['TrungBinhStar']!=null){
+                            for ($i=0;$i<$sanpham['TrungBinhStar'];$i++){
                                 echo '<i class="fa-solid fa-star" style="color: #FB6E2E;"></i>';
                             }
                         }
