@@ -60,6 +60,17 @@
             return $row['id'];
         }
     }
+    public function GetTinhTrangByGoogle($google_id){
+        $this->getInstance();
+        $db=new Database();
+        $conn= $db->getConnection();
+        $sql = "SELECT `TinhTrang` FROM `users`,`taikhoan` WHERE users.id=taikhoan.id AND `google_id`='$google_id'";
+        $result=mysqli_query($conn, $sql);
+        if($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['TinhTrang'];
+        }
+    }
     public function GetIdByFB($fb_id)
     {
         $this->getInstance();
@@ -70,6 +81,17 @@
         if($result&& mysqli_num_rows($result)>0){
             $row=mysqli_fetch_assoc($result);
             return $row['id'];
+        }
+    }
+    public function GetTinhTrangByFB($fb_id){
+        $this->getInstance();
+        $db=new Database();
+        $conn= $db->getConnection();
+        $sql = "SELECT `TinhTrang` FROM `users`,`taikhoan` WHERE users.id=taikhoan.id AND `facebook_id`='$fb_id'";
+        $result=mysqli_query($conn, $sql);
+        if($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['TinhTrang'];
         }
     }
     public function change_password($id,$pass){
