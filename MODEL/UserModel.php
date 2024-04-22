@@ -1,0 +1,76 @@
+<?php
+    class UserModel{
+        public function getInstance(){
+            require_once 'C:\xampp\htdocs\web2\MODEL\Database.php';
+        }
+        public function getAll(){
+            $this->getInstance();
+            $db=new Database();
+            $conn=$db->getConnection();
+            $sql="SELECT users.id,users.email,users.sdt,taikhoan.tenTaiKhoan,taikhoan.matKhau,taikhoan.TinhTrang,quyen.tenQuyen
+            FROM users,taikhoan,quyen
+            where taikhoan.maQuyen=quyen.id AND users.id=taikhoan.id ORDER BY users.id ASC";
+            $userList=array();
+            $stmt=$conn->prepare($sql);
+            $stmt->execute();
+            $result=$stmt->get_result();
+            if($result->num_rows>0){
+                while($row = $result->fetch_assoc()){
+                    $userList[]= $row;
+                }
+            }
+            $conn->close();
+            return $userList;
+        } 
+        public function getListByID($id){
+            $this->getInstance();
+            $db=new Database();
+            $conn=$db->getConnection();
+            $sql="SELECT users.id,users.email,users.sdt,taikhoan.tenTaiKhoan,taikhoan.matKhau,taikhoan.TinhTrang,quyen.tenQuyen
+            FROM users,taikhoan,quyen
+            where users.id=taikhoan.id AND users.id=$id AND taikhoan.maQuyen=quyen.id  ORDER BY users.id ASC";
+            $userList=array();
+            $stmt=$conn->prepare($sql);
+            $stmt->execute();
+            $result=$stmt->get_result();
+            if($result->num_rows>0){
+                while($row = $result->fetch_assoc()){
+                    $userList[]= $row;
+                }
+            }
+            $conn->close();
+            return $userList;
+        } 
+        public function insertUser($username,$password,$email,$sdt,$state,$maquyen){
+            $this->getInstance();
+            $db=new Database();
+            $conn=$db->getConnection();
+            $sql = "INSERT INTO `users` ( `ten`,`usertype`,`email`,`sdt`) VALUES ('$username','khachhang','$email','$sdt')"; 
+            $result = mysqli_query($conn, $sql);
+            $sql1 = "INSERT INTO `taikhoan` ( `tenTaiKhoan`, `matKhau`,`maQuyen`,`TinhTrang`) VALUES ('$username',  '$password',$maquyen,$state)"; 
+            mysqli_query($conn, $sql1);
+            return $result;
+        }
+        public function updateUser($id,$username,$email,$password,$sdt,$state,$maquyen){
+            $this->getInstance();
+            $db=new Database();
+            $conn=$db->getConnection();
+            $sql = "UPDATE `users` SET  `email`='$email', `sdt`='$sdt' WHERE `id`=$id";
+            $result=mysqli_query($conn, $sql);
+            $sql1="UPDATE taikhoan SET `tenTaiKhoan`='$username' , `matKhau`='$password' ,`TinhTrang`='$state' , `maQuyen`='$maquyen' WHERE `id`=$id";
+            mysqli_query($conn,$sql1);
+            return $result;
+        }
+        public function deleteUser($id)
+        {
+            $this->getInstance();
+            $db=new Database();
+            $conn=$db->getConnection();
+            $sql= "DELETE FROM `users` WHERE `id`=$id";
+            $result=mysqli_query($conn,$sql);
+            $sql1= "DELETE FROM `taikhoan` WHERE `id`=$id";
+            mysqli_query($conn,$sql1);
+            return $result;
+        }
+    }
+?>
