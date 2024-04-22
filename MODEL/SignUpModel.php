@@ -19,7 +19,7 @@ class SignUpModel{
         $conn= $db->getConnection();
         $sql = "INSERT INTO `users` ( `ten`,`usertype`) VALUES ('$username','khachhang')"; 
         $result = mysqli_query($conn, $sql);
-        $sql1 = "INSERT INTO `taikhoan` ( `tenTaiKhoan`, `matKhau`,`maQuyen`) VALUES ('$username',  '$password','2')"; 
+        $sql1 = "INSERT INTO `taikhoan` ( `tenTaiKhoan`, `matKhau`,`maQuyen`,`TinhTrang`) VALUES ('$username',  '$password','2','1')"; 
         $result1 = mysqli_query($conn, $sql1);
     }
 }

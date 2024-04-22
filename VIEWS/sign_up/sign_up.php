@@ -28,16 +28,21 @@
             $get_user = mysqli_query($conn, "SELECT `google_id` FROM `users` WHERE `google_id`='$id'");
             
             if(mysqli_num_rows($get_user) > 0){
+                $get_tinhtrang=$profileController->getTinhTrang_google($id);
+                if($get_tinhtrang==0){
+                    header('Location: /web2/VIEWS/sign_up/404.php');
+                }else{
                 $get_id= $profileController->getID_google($id);
                 $_SESSION['id'] = $get_id; 
                 $_SESSION['login_name'] = $full_name; 
                 header('Location: /web2/index.php');
                 exit;
+                }
             }
             else
             {
                 $insert=mysqli_query($conn, "INSERT INTO `users`(`google_id`,`ten`,`email`,`src`,`usertype`) VALUES('$id','$full_name','$email','$profile_pic','khachhang')");
-                $insert1=mysqli_query($conn, "INSERT INTO `taikhoan`(`tenTaiKhoan`,`maQuyen`) VALUES('$email','2')");
+                $insert1=mysqli_query($conn, "INSERT INTO `taikhoan`(`tenTaiKhoan`,`maQuyen`,`TinhTrang`) VALUES('$full_name','2','1')");
                 if($insert&&$insert1)
                 {   
                     $get_new_id= $profileController->getID_google($id);

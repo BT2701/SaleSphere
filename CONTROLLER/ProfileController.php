@@ -19,10 +19,20 @@
             $profileModel= new ProfileModel();
             return $profileModel->GetIdByGoogle($id);
         }
+        public function getTinhTrang_google($id){
+            $this->getInstance();
+            $profileModel= new ProfileModel();
+            return $profileModel->GetTinhTrangByGoogle($id);
+        }
         public function getID_facebook($id){
             $this->getInstance();
             $profileModel= new ProfileModel();
             return $profileModel->GetIdByFB($id);
+        }
+        public function getTinhTrang_facebook($id){
+            $this->getInstance();
+            $profileModel= new ProfileModel();
+            return $profileModel->GetTinhTrangByFB($id);
         }
         public function GetTenById($id){
             $this->getInstance();
