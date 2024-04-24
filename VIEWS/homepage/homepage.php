@@ -77,8 +77,8 @@ for ($i = 0; $i < $numOfSlides; $i++) {
         echo '<li><a href="">' . $sanpham['giaBan'] . '<sup>đ</sup></a><span>-' . ($sanpham['giaTri'] ?? 0) . '%</span></li>';
         echo '<li>' . ($sanpham['giaTri'] != null ? $sanpham['giaBan'] - $sanpham['giaBan'] * $sanpham['giaTri'] / 100 : $sanpham['giaBan']) . '<sup>đ</sup></li>';
         echo '<li>';
-        if ($sanpham['star'] != null) {
-            for ($k = 0; $k < $sanpham['star']; $k++) {
+        if ($sanpham['TrungBinhStar'] != null) {
+            for ($k = 0; $k < $sanpham['TrungBinhStar']; $k++) {
                 echo '<i class="fa-solid fa-star" style="color: #FB6E2E;"></i>';
             }
         }
@@ -153,8 +153,8 @@ for ($i = 0; $i < $numOfSlides; $i++) {
                         echo $giaban;}else{echo $sanpham['giaBan'];} ?> <sup>đ</sup></li>
                     <li>
                         <?php
-                        if ($sanpham['star']!=null){
-                            for ($i=0;$i<$sanpham['star'];$i++){
+                        if ($sanpham['TrungBinhStar']!=null){
+                            for ($i=0;$i<$sanpham['TrungBinhStar'];$i++){
                                 echo '<i class="fa-solid fa-star" style="color: #FB6E2E;"></i>';
                             }
                         }

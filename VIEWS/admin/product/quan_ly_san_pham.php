@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý sản phẩm</title>
+    <link rel="stylesheet" href="/web2/STATIC/css/category.css">
+    <link rel="stylesheet" href="/web2/STATIC/css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    <?php require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php'; 
+    $sanphamList = $controller->getList(PHP_INT_MAX);?>
     <style>
         /* CSS cho đánh giá sao */
         .star-rating {
@@ -20,14 +24,49 @@
         .checked {
             color: #ff9800; /* Màu sao được đánh dấu */
         }
+        .imageproduct{
+            width: 100%;
+            max-width: 30px;
+            max-height: 30px;
+        }
 
     </style>
     <div class="container mt-5">
         <h1>Quản lý sản phẩm</h1>
         <hr>
+        <!-- khu vực phân loại tìm kiếm -->
+        <div class="category-right">
+            <div class="input-group" style="max-width: 250px; max-height: 50px;">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="searchButton" id="searchInput">
+                    <button class="btn btn-outline-secondary bg-dark" type="button" id="searchButton" style="max-height: 50px">
+                        <i class="fas fa-search"></i>
+                    </button>
 
-        <!-- Nút thêm sản phẩm -->
-        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addProductModal">Thêm sản phẩm</button>
+                </div>
+            
+                <div class="category-right-top-items">
+                    
+                    <select name="" id="" onchange="loadProducts(this.value)">
+                        <option value="Tất cả sản phẩm">Tất cả sản phẩm</option>
+                        <?php if (isset($categoryList) && !empty($categoryList)): ?>
+                                    <?php foreach ($categoryList as $cate): ?>
+                                        <option value="<?php echo $cate['tenLoaiSP']; ?>" ><?php echo $cate['tenLoaiSP']; ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                        
+                    </select>
+                </div>
+                <div class="category-right-top-items">
+                    <select name="" id="" onchange="loadProductsTheoKhoangGia(this.value)">
+                        <option value="Tất cả mệnh giá">Tất cả mệnh giá</option>
+                        <option value="From 0 to 100000">0 đến 100.000</option>
+                        <option value="From 100000 to 200000">100.000 đến 200.000</option>
+                        <option value="From 200000 to 500000">200.000 đến 500.000</option>
+                        <option value="From 500000 to 2147483647">500.000 đến ...</option>
+                    </select>
+                </div>
+            </div>
+        
 
         <!-- Modal thêm sản phẩm -->
         <?php include 'AddProduct.php'; ?>
@@ -37,6 +76,8 @@
 
         <!-- Model đánh giá -->
         <?php include 'DanhGia.php';?>
+
+        
 
         <!-- Bảng hiển thị danh sách sản phẩm -->
         <table class="table">
@@ -57,23 +98,30 @@
                     );
 
                     // Hiển thị sản phẩm trong bảng
-                    foreach ($products as $product) {
-                        echo "<tr>";
-                        echo "<td><img src='" . $product[0] . "' alt='Product Image'></td>";
-                        echo "<td>" . $product[1] . "</td>";
-                        echo "<td>" . $product[2] . "</td>";
-                        echo "<td>";
-                        echo "<button type='button' class='btn btn-danger btn-sm mr-2'>Xóa</button>";
-                        echo "<button type='button' class='btn btn-primary btn-sm'>Sửa</button>";
-                        echo "<button type='button' class='btn btn-primary btn-sm mr-1 btn-show-overview' style='margin-left: 10px;'>Tổng quan đánh giá</button>";
+                    
+                        if(isset($sanphamList) && !empty($sanphamList)) {
+                            foreach ($sanphamList as $product):
+                                echo "<tr>";
+                                echo "<td><img class='imageproduct' src='" . $product['src'] . "' alt='Product Image'></td>";
+                                echo "<td>" . $product['tenSanPham'] . "</td>";
+                                echo "<td>" . $product['giaBan'] . "</td>";
+                                echo "<td>";
+                                echo "<button type='button' class='btn btn-danger btn-sm mr-2'>Xóa</button>";
+                                echo "<button type='button' class='btn btn-primary btn-sm'>Sửa</button>";
+                                echo "<button type='button' class='btn btn-primary btn-sm mr-1 btn-show-overview' style='margin-left: 10px;'>Tổng quan đánh giá</button>";
 
-                        echo "</td>";
-                        echo "</tr>";
-                    }
+                                echo "</td>";
+                                echo "</tr>";
+                            endforeach;}
+                            else{
+                                echo "không có sản phẩm nào";
+                            }
+                    
                 ?>
             </tbody>
         </table>
-
+        <!-- Nút thêm sản phẩm -->
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addProductModal">Thêm sản phẩm</button>
         <!-- Nút nhập hàng -->
         <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#importProductModal">Nhập hàng</button>
 
@@ -179,6 +227,7 @@
             });
         });
     </script>
+    <script src="/web2/STATIC/js/category.js"></script>
 
 </body>
 </html>

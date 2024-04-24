@@ -24,19 +24,22 @@
     if(isset($_GET['page'])) {
         $page = $_GET['page'];
         if($page == 'homepage') {
-            include 'VIEWS/homepage/homepage.php';
+            include 'slider/slider.php';
         } elseif($page == 'quanLySanPham') {
-            include 'VIEWS/productlist/quan_ly_san_pham.php';
+            include 'product/quan_ly_san_pham.php';
         } elseif($page == 'promote') {
-            include 'VIEWS/promote/promote.php';
+            include '/web2/VIEWS/promote/promote.php';
         }
         else if ($page == 'productdetail') {
-            include 'VIEWS/productdetail/product-detail.php';
+            include '/web2/VIEWS/productdetail/product-detail.php';
+        }
+        else if ($page == 'quanLyTaiKhoan') {
+            include 'user/User.php';
         }
         
     } else {
         // Mặc định khi không có tham số, hiển thị trang home.php
-        include 'VIEWS/homepage/homepage.php';
+        include 'slider/slider.php';
     }
 
 

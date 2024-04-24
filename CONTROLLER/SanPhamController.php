@@ -19,6 +19,9 @@ class SanPhamController {
         $this->setSoLuongSP($this->sanphamModel->laySoLuongSanPham());
         return $this->sanphamModel->getSanPhamList(0,10);
     }
+    public function getList($limit){
+        return $this->sanphamModel->getSanPhamList(0,$limit);
+    }
     public function phanTrangMainList(){
         if(isset($_GET['action'])&&$_GET['action']==''){
             $start = $_GET['start'] ?? 0; // Vị trí bắt đầu của trang
