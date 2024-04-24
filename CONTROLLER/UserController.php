@@ -34,7 +34,7 @@
             $result= $usermodel->insertUser($ten,$pass,$mail,$phone,$state,$maquyen);
             if($result)
             {
-                header('Location: /web2/VIEWS/ADMIN/user/user.php?msg=Thêm thành công!');
+                header('Location: /web2/VIEWS/ADMIN/admin_home.php?page=quanLyTaiKhoan&msg=Thêm thành công!');
             }
             else
             {
