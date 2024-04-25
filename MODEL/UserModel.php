@@ -9,7 +9,7 @@
             $conn=$db->getConnection();
             $sql="SELECT users.id,users.email,users.sdt,taikhoan.tenTaiKhoan,taikhoan.matKhau,taikhoan.TinhTrang,quyen.tenQuyen
             FROM users,taikhoan,quyen
-            where taikhoan.maQuyen=quyen.id AND users.id=taikhoan.id ORDER BY users.id ASC";
+            where taikhoan.maQuyen=quyen.id AND users.id=taikhoan.id AND users.id NOT IN (1) ORDER BY users.id ASC";
             $userList=array();
             $stmt=$conn->prepare($sql);
             $stmt->execute();
@@ -71,6 +71,23 @@
             $sql1= "DELETE FROM `taikhoan` WHERE `id`=$id";
             mysqli_query($conn,$sql1);
             return $result;
+        }
+        public function getTenQuyen(){
+            $this->getInstance();
+            $db=new Database();
+            $conn=$db->getConnection();
+            $sql="SELECT quyen.tenQuyen,quyen.id FROM `quyen` WHERE id NOT IN (1)";
+            $quyenList=array();
+            $stmt=$conn->prepare($sql);
+            $stmt->execute();
+            $result=$stmt->get_result();
+            if($result->num_rows>0){
+                while($row = $result->fetch_assoc()){
+                    $quyenList[]= $row;
+                }
+            }
+            $conn->close();
+            return $quyenList;
         }
     }
 ?>

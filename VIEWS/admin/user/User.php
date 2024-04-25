@@ -21,7 +21,7 @@
     <div class="main">
         <div class="container">
             <hr>
-            <a href="User.php" style="text-decoration: none; color: black;"><h1>Danh sách tài khoản</h1></a>
+            <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan" style="text-decoration: none; color: black;"><h1>Danh sách tài khoản</h1></a>
             <hr>
             <?php
                 if (isset($_GET["msg"])) {
@@ -32,9 +32,9 @@
                 </div>';
                 }
                 if(isset($_GET['chon'])&&$_GET['chon']=='them')
-                    require 'add_User.php';
+                    require 'user/add_User.php';
                 elseif(isset($_GET['chon'])&&$_GET['chon']=='sua'){
-                    require 'edit_User.php';
+                    require 'user/edit_User.php';
                 }
                 elseif(isset($_GET['chon'])&&$_GET['chon']=='xoa'){
                     $userController->delete();
@@ -43,7 +43,7 @@
             ?>
             <br>
             <div class="chucnang">
-                <a href="/web2/VIEWS/admin/user/user.php?chon=them" class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Thêm mới</a>
+                <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=them" class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Thêm mới</a>
                 <form class="row">
                     <div class="col-md-3">
                         <select class="phanloai form-select mb-3">
@@ -82,8 +82,8 @@
                         <td><?php echo $user1['matKhau'] ?></td>
                         <td><?php echo $user1['tenQuyen'] ?></td>
                         <td><?php if($user1['TinhTrang']==1) {echo "Đang hoạt động";} else {echo "Bị khóa";} ?></td>
-                        <td ><a href="/web2/VIEWS/admin/user/user.php?chon=sua&&id=<?php echo $user1['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
-                        <td><a href="/web2/VIEWS/admin/user/user.php?chon=xoa&&id=<?php echo $user1['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
+                        <td ><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $user1['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
+                        <td><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $user1['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
                     </tr>     
                     <?php endforeach;?>    
                 </tbody>
@@ -97,7 +97,7 @@
         $(document).ready(function(){
             $('.timkiem').keyup(function(){
                 var key = $('.timkiem').val()+','+$('.phanloai').val();
-                $.post('Search.php',{data: key},function(data){
+                $.post('user/Search.php',{data: key},function(data){
                     $('.danhsach').html(data);
                 })
             })

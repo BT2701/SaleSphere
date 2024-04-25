@@ -1,0 +1,32 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+hr {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 100%;
+}
+body {
+  background-color: powderblue;
+}
+.formxuly {
+  margin: 0 auto;
+}
+form {
+  font-size: 25px;
+}
+.custom-border {
+  border: 0.5px solid black; /* Định dạng border tùy chỉnh */
+}
+td input {
+  width: 20px;
+  height: 20px;
+}
+p {
+  padding-left: 40px;
+  color: red;
+  font-size: 12px;
+  padding-top: 5px;
+}

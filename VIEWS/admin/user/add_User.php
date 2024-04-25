@@ -1,3 +1,8 @@
+<?php
+    require_once 'C:\xampp\htdocs\web2\CONTROLLER\UserController.php';
+    $userController= new UserController();
+    $QuyenList=$userController->getListTenQuyen();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +29,10 @@
                         <p id="errorpassword"></p>
                         <label>Quyền</label>
                         <select style="width:300px;" class="phanquyen" name="PhanQuyen" >
-                            <option value="1">Admin</option>
-                            <option value="4">Quản lý</option>
-                            <option value="3">Nhân viên</option>
-                            <option  selected value="2">Khách hàng</option>
+                            <?php if(isset($QuyenList)&&!empty($QuyenList)) ?>
+                            <?php foreach($QuyenList as $user): ?>
+                            <option value="<?php echo $user['id'] ?>"><?php echo $user['tenQuyen'] ?></option>
+                            <?php endforeach; ?>
                          </select>
                          <br> <br>
                         <label>Tình trạng</label>
