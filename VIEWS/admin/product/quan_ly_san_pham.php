@@ -25,13 +25,27 @@
             color: #ff9800; /* Màu sao được đánh dấu */
         }
         .imageproduct{
-            width: 100%;
-            max-width: 30px;
-            max-height: 30px;
+            
+            max-width: 100px;
+            max-height: auto;
+        }
+        .table-wrapper {
+            max-height: 60vh; /* Chiều cao cố định */
+            overflow-y: auto; /* Hiển thị thanh cuộn dọc khi bảng tràn ra ngoài */
         }
 
     </style>
     <div class="container mt-5">
+    <?php
+                if (isset($_GET["msg"])) {
+                $msg = $_GET["msg"];
+                echo '<div id="myAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
+                ' . $msg . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+                }
+            ?>
+            <br>
         <h1>Quản lý sản phẩm</h1>
         <hr>
         <!-- khu vực phân loại tìm kiếm -->
@@ -71,8 +85,8 @@
         <!-- Modal thêm sản phẩm -->
         <?php include 'AddProduct.php'; ?>
 
-        <!-- Modal nhập hàng -->
-        <?php include 'NhapHang.php'; ?>
+        <!-- Model thành công -->
+        <?php include 'thanhcong.php';?>
 
         <!-- Model đánh giá -->
         <?php include 'DanhGia.php';?>
@@ -80,6 +94,7 @@
         
 
         <!-- Bảng hiển thị danh sách sản phẩm -->
+        <div class="table-wrapper">
         <table class="table">
             <thead>
                 <tr>
@@ -92,10 +107,7 @@
             <tbody>
                 <?php
                     // Dữ liệu sản phẩm
-                    $products = array(
-                        array("https://via.placeholder.com/100", "Product 1", "$100"),
-                        // Thêm dữ liệu sản phẩm khác vào đây
-                    );
+                    
 
                     // Hiển thị sản phẩm trong bảng
                     
@@ -120,11 +132,10 @@
                 ?>
             </tbody>
         </table>
+        </div>
         <!-- Nút thêm sản phẩm -->
-        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addProductModal">Thêm sản phẩm</button>
-        <!-- Nút nhập hàng -->
-        <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#importProductModal">Nhập hàng</button>
-
+        <button type="button" style="margin-top: 30px;"  class="btn btn-primary mb-3" data-toggle="modal" data-target="#addProductModal">Thêm sản phẩm</button>
+        
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

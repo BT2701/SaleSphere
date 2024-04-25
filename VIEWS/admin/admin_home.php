@@ -36,6 +36,9 @@
         else if ($page == 'quanLyTaiKhoan') {
             include 'user/User.php';
         }
+        else if ($page == 'quanLyNhapHang') {
+            include 'nhaphang/nhaphang.php';
+        }
         
     } else {
         // Mặc định khi không có tham số, hiển thị trang home.php
