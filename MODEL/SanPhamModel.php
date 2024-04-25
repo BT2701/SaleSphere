@@ -8,7 +8,7 @@ class SanPhamModel {
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
-        $sql = "SELECT COUNT(*) AS total FROM sanpham";
+        $sql = "SELECT COUNT(*) AS total FROM sanpham WHERE trangthai=1";
 
         // Thực thi truy vấn và lấy kết quả
         $result = $conn->query($sql);
@@ -31,7 +31,7 @@ class SanPhamModel {
         $conn = $db->getConnection();
         $sql = "SELECT COUNT(*) AS total 
         FROM sanpham s 
-        WHERE  s.tenSanPham LIKE ? ";
+        WHERE  s.tenSanPham LIKE ? and s.trangthai=1";
 
         // Thực thi truy vấn và lấy kết quả
         $stmt = $conn->prepare($sql);
@@ -59,7 +59,7 @@ class SanPhamModel {
         $sql = "SELECT COUNT(*) AS total
         FROM sanpham s  
         LEFT JOIN loaisp l ON s.idloaisp = l.id
-        WHERE  l.tenLoaiSP = ?";
+        WHERE  l.tenLoaiSP = ? and s.trangthai=1";
 
         // Thực thi truy vấn và lấy kết quả
         $stmt = $conn->prepare($sql);
@@ -85,7 +85,7 @@ class SanPhamModel {
         $conn = $db->getConnection();
         $sql = "SELECT COUNT(*) AS total 
         FROM sanpham s 
-        WHERE  s.giaBan >= ? and s.giaBan < ? ";
+        WHERE  s.giaBan >= ? and s.giaBan < ? and s.trangthai=1";
 
         // Thực thi truy vấn và lấy kết quả
         $stmt = $conn->prepare($sql);
@@ -104,6 +104,24 @@ class SanPhamModel {
         // Đóng kết nối
         $conn->close();
         return $total;
+    }
+    public function insertProduct($productName, $productPrice, $productType, $productUnit, $productDescription, $src){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql = "INSERT INTO sanpham (tenSanPham, giaBan, idLoaiSP, maDVT, moTa, src, trangthai) VALUES (?,?,?,?,?,?,?)";
+        // '$productName', '$productPrice', '$productType', '$productUnit', '$productDescription', $src, 1
+        $stmt = $conn->prepare($sql);
+        $trangthai=1;
+        $stmt->bind_param("siiisss", $productName, $productPrice,$productType,$productUnit,$productDescription,$src,$trangthai);
+        if ($stmt->execute()) {
+            // Nếu thêm sản phẩm thành công, chuyển hướng tới trang quản lý sản phẩm
+            header('Location: /web2/VIEWS/ADMIN/admin_home.php?page=quanLySanPham');
+            exit; // Đảm bảo dừng kịch bản sau khi chuyển hướng
+        } else {
+            echo "Đã xảy ra lỗi: " . $stmt->error;
+        }
+        $conn->close();
     }
     public function getSanPhamList($start,$limit ) {
         $this->getInstance();
@@ -129,6 +147,7 @@ class SanPhamModel {
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
         LEFT JOIN danhgia dg ON s.id = dg.idsanpham
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
+        WHERE s.trangthai=1 
         GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, k.hansudung
         ORDER BY TongSoLuongBanDuoc DESC
         LIMIT ?, ?
@@ -162,6 +181,7 @@ class SanPhamModel {
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
         LEFT JOIN danhgia dg ON s.id = dg.idsanpham
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
+        WHERE s.trangthai=1 
         GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, k.hansudung
         ORDER BY TongSoLuongBanDuoc DESC
         LIMIT 5;
@@ -193,7 +213,7 @@ class SanPhamModel {
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
         LEFT JOIN danhgia dg ON s.id = dg.idsanpham
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
-        WHERE k.hansudung > NOW() OR k.hansudung IS NULL AND s.id = ctk.idsanpham
+        WHERE (k.hansudung > NOW() OR k.hansudung IS NULL AND s.id = ctk.idsanpham) AND s.trangthai=1 
         GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, k.hansudung
         ORDER BY TongSoLuongBanDuoc DESC
         ";
@@ -222,7 +242,7 @@ class SanPhamModel {
         LEFT JOIN danhgia dg ON s.id = dg.idsanpham
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
         LEFT JOIN loaisp l ON s.idloaisp = l.id
-        WHERE  l.tenLoaiSP = ? 
+        WHERE  l.tenLoaiSP = ? and s.trangthai=1
         GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, dg.star
         ORDER BY TongSoLuongBanDuoc DESC
         LIMIT ?, ?";
@@ -253,7 +273,7 @@ class SanPhamModel {
         LEFT JOIN danhgia dg ON s.id = dg.idsanpham
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
         LEFT JOIN loaisp l ON s.idloaisp = l.id
-        WHERE  s.tenSanPham LIKE ? 
+        WHERE  s.tenSanPham LIKE ? and s.trangthai=1
         GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, dg.star
         ORDER BY TongSoLuongBanDuoc DESC
         LIMIT ?, ?";
@@ -285,7 +305,7 @@ class SanPhamModel {
         LEFT JOIN danhgia dg ON s.id = dg.idsanpham
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
         LEFT JOIN loaisp l ON s.idloaisp = l.id
-        WHERE  s.giaBan >= ? and s.giaBan < ? 
+        WHERE  s.giaBan >= ? and s.giaBan < ? and s.trangthai=1
         GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, dg.star
         ORDER BY TongSoLuongBanDuoc DESC
         LIMIT ?, ?";
