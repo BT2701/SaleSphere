@@ -36,8 +36,8 @@
         else if ($page == 'quanLyTaiKhoan') {
             include 'user/User.php';
         }
-        else if ($page == 'quanLyNhapHang') {
-            include 'nhaphang/nhaphang.php';
+        else if ($page == 'quanLyPhanQuyen') {
+            include 'phanquyen/phanquyen.php';
         }
         
     } else {
@@ -57,4 +57,5 @@
         crossorigin="anonymous"></script>
 
 <script src="https://kit.fontawesome.com/56362bb265.js" crossorigin="anonymous"></script>
+
 </html>
