@@ -36,16 +36,6 @@
 
     </style>
     <div class="container mt-5">
-    <?php
-                if (isset($_GET["msg"])) {
-                $msg = $_GET["msg"];
-                echo '<div id="myAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
-                ' . $msg . '
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
-                }
-            ?>
-            <br>
         <h1>Quản lý sản phẩm</h1>
         <hr>
         <!-- khu vực phân loại tìm kiếm -->
@@ -55,9 +45,7 @@
                     <button class="btn btn-outline-secondary bg-dark" type="button" id="searchButton" style="max-height: 50px">
                         <i class="fas fa-search"></i>
                     </button>
-
                 </div>
-            
                 <div class="category-right-top-items">
                     
                     <select name="" id="" onchange="loadProducts(this.value)">
@@ -98,6 +86,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">Mã SP</th>
                     <th scope="col">Hình ảnh</th>
                     <th scope="col">Tên sản phẩm</th>
                     <th scope="col">Giá bán</th>
@@ -114,6 +103,7 @@
                         if(isset($sanphamList) && !empty($sanphamList)) {
                             foreach ($sanphamList as $product):
                                 echo "<tr>";
+                                echo "<td>" . $product['id'] . "</td>";
                                 echo "<td><img class='imageproduct' src='" . $product['src'] . "' alt='Product Image'></td>";
                                 echo "<td>" . $product['tenSanPham'] . "</td>";
                                 echo "<td>" . $product['giaBan'] . "</td>";
