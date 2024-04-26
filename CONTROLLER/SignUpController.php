@@ -6,6 +6,7 @@
         $password =$_POST["Password"];
         $cpassword=$_POST["cPassword"];
     }
-    $signupModel->registerTaikhoan($username,$password);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $signupModel->registerTaikhoan($username,$hashedPassword);
     header('Location: /web2/index.php');
           

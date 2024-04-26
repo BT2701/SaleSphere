@@ -16,6 +16,11 @@
             $usermodel= new UserModel();
             return $usermodel->getListByID($id);
         }
+        public function getListTenQuyen(){
+            $this->getInstance();
+            $usermodel= new UserModel();
+            return $usermodel->getTenQuyen();
+        }
         public function insert(){
             $ten=$_POST['username'];
             $mail=$_POST['email'];
@@ -31,10 +36,11 @@
             $maquyen=$_POST['PhanQuyen'];
             $this->getInstance();
             $usermodel= new UserModel;
-            $result= $usermodel->insertUser($ten,$pass,$mail,$phone,$state,$maquyen);
+            $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
+            $result= $usermodel->insertUser($ten,$hashedPassword,$mail,$phone,$state,$maquyen);
             if($result)
             {
-                header('Location: /web2/VIEWS/ADMIN/admin_home.php?page=quanLyTaiKhoan&msg=Thêm thành công!');
+                header('Location: /web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Thêm thành công!');
             }
             else
             {
@@ -47,6 +53,7 @@
             $mail=$_POST['email'];
             $phone=$_POST['phone_number'];
             $pass=$_POST['password'];
+            $passtemp=$_POST['passwordtemp'];
             if($_POST['cbstate']=='Action'){
                 $state=1;
             }
@@ -57,14 +64,28 @@
             $maquyen=$_POST['PhanQuyen'];
             $this->getInstance();
             $usermodel= new UserModel;
-            $result= $usermodel->updateUser($id,$ten,$mail,$pass,$phone,$state,$maquyen);
-            if($result)
+            if($passtemp==$pass){
+                $result= $usermodel->updateUser($id,$ten,$mail,$pass,$phone,$state,$maquyen);
+                if($result)
+                {
+                    header('Location: /web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Sửa thành công!');
+                }
+                else
+                {
+                    echo "Failed";
+                }
+            }else
             {
-                header('Location: /web2/VIEWS/ADMIN/user/user.php?msg=Sửa thành công!');
-            }
-            else
-            {
-                echo "Failed";
+                $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
+                $result= $usermodel->updateUser($id,$ten,$mail,$hashedPassword,$phone,$state,$maquyen);
+                if($result)
+                {
+                    header('Location: /web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Sửa thành công!');
+                }
+                else
+                {
+                    echo "Failed";
+                }
             }
             
         }
@@ -75,7 +96,7 @@
             $result= $usermodel->deleteUser($id);
             if($result)
             {
-                header('Location: /web2/VIEWS/ADMIN/user/user.php?msg=Xóa thành công!');
+                echo "<script>window.location.href='/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Xóa thành công!';</script>";
             }
             else
             {

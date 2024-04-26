@@ -2,6 +2,7 @@
     require_once 'C:\xampp\htdocs\web2\CONTROLLER\UserController.php';
     $userController= new UserController();
     $userListDetail=$userController->getList();
+    $QuyenList2= $userController->getListTenQuyen();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,38 +31,23 @@
                         <p id="errorphone_number"></p>
                         <label>Mật khẩu</label>
                         <input type="text" name="password" id="Password" value="<?php echo $user1['matKhau']; ?>">
+                        <input type="hidden" name="passwordtemp" id="Passwordtemp" value="<?php echo $user1['matKhau']; ?>">
                         <p id="errorpassword"></p>
                         <label>Quyền</label>
-                        <?php if($user1['tenQuyen']=='admin') {?>
+                        
                         <select style="width:300px;" class="phanquyen" name="PhanQuyen" >
-                            <option selected value="1">Admin</option>
-                            <option value="4">Quản lý</option>
-                            <option value="3">Nhân viên</option>
-                            <option value="2">Khách hàng</option>
+                            <?php if(isset($QuyenList2)&&!empty($QuyenList2)) ?>
+                            <?php foreach($QuyenList2 as $user){ ?>
+                            <?php if($user1['tenQuyen']== $user['tenQuyen']) {?>
+                            <option selected value="<?php echo $user['id'] ?>"><?php echo $user['tenQuyen'] ?></option>
+                            <?php }}  ?>
+                            <?php if(isset($QuyenList2)&&!empty($QuyenList2)) ?>
+                            <?php foreach($QuyenList2 as $user){ ?>
+                            <?php if($user1['tenQuyen']!= $user['tenQuyen']) {?>
+                            <option value="<?php echo $user['id'] ?>"><?php echo $user['tenQuyen'] ?></option>
+                            <?php }}  ?>
                          </select>
-                         <?php } elseif($user1['tenQuyen']=='employee') {?>
-                        <select style="width:300px;" class="phanquyen" name="PhanQuyen" >
-                            <option  value="1">Admin</option>
-                            <option value="4">Quản lý</option>
-                            <option selected value="3">Nhân viên</option>
-                            <option value="2">Khách hàng</option>
-                         </select>
-                         <?php } elseif($user1['tenQuyen']=='client') {?>
-                        <select style="width:300px;" class="phanquyen" name="PhanQuyen" >
-                            <option  value="1">Admin</option>
-                            <option value="4">Quản lý</option>
-                            <option value="3">Nhân viên</option>
-                            <option selected value="2">Khách hàng</option>
-                         </select>
-                        <?php } elseif($user1['tenQuyen']=='quanly') {?>
-                            <select style="width:300px;" class="phanquyen" name="PhanQuyen" >
-                            <option  value="1">Admin</option>
-                            <option selected value="4">Quản lý</option>
-                            <option value="3">Nhân viên</option>
-                            <option value="2">Khách hàng</option>
-                         </select>
-                         <?php } ?>
-                         <br> <br>
+                        <br> <br>
                         <label>Tình trạng</label>
                         <?php if ($user1['TinhTrang'] == 1) { ?>
                             <input class="cb" type="radio" name="cbstate" id="action" value="Action" checked />

@@ -21,13 +21,13 @@
                     <tr>
                             <td><?php echo $row['id'] ?></td>
                             <td><?php echo $row['tenTaiKhoan'] ?></td>
-                            <td><?php if($row['email']=='0') {echo "Chưa cập nhật";} else {echo $row['email'];} ?></td>
-                            <td><?php if($row['sdt']=='0') {echo "Chưa cập nhật";} else {echo $row['sdt'];} ?></td>
+                            <td><?php if($row['email']=='0'||$row['email']=='') {echo "Chưa cập nhật";} else {echo $row['email'];} ?></td>
+                            <td><?php if($row['sdt']=='0'||$row['sdt']=='') {echo "Chưa cập nhật";} else {echo $row['sdt'];} ?></td>
                             <td><?php echo $row['matKhau'] ?></td>
                             <td><?php echo $row['tenQuyen'] ?></td>
                             <td><?php if($row['TinhTrang']==1) {echo "Đang hoạt động";} else {echo "Bị khóa";} ?></td>
-                            <td ><a href="/web2/VIEWS/admin/user/user.php?chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
-                            <td><a href="/web2/VIEWS/admin/user/user.php?chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
+                            <td ><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
+                            <td><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
                         </tr>  
                 <?php
             }
@@ -51,13 +51,13 @@
                     <tr>
                             <td><?php echo $row['id'] ?></td>
                             <td><?php echo $row['tenTaiKhoan'] ?></td>
-                            <td><?php if($row['email']=='0') {echo "Chưa cập nhật";} else {echo $row['email'];} ?></td>
-                            <td><?php if($row['sdt']=='0') {echo "Chưa cập nhật";} else {echo $row['sdt'];} ?></td>
+                            <td><?php if($row['email']=='0'||$row['email']=='') {echo "Chưa cập nhật";} else {echo $row['email'];} ?></td>
+                            <td><?php if($row['sdt']=='0'||$row['sdt']=='') {echo "Chưa cập nhật";} else {echo $row['sdt'];} ?></td>
                             <td><?php echo $row['matKhau'] ?></td>
                             <td><?php echo $row['tenQuyen'] ?></td>
                             <td><?php if($row['TinhTrang']==1) {echo "Đang hoạt động";} else {echo "Bị khóa";} ?></td>
-                            <td ><a href="/web2/VIEWS/admin/user/user.php?chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
-                            <td><a href="/web2/VIEWS/admin/user/user.php?chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
+                            <td ><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
+                            <td><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
                         </tr>  
                 <?php
             }
@@ -81,13 +81,13 @@
                     <tr>
                             <td><?php echo $row['id'] ?></td>
                             <td><?php echo $row['tenTaiKhoan'] ?></td>
-                            <td><?php if($row['email']=='0') {echo "Chưa cập nhật";} else {echo $row['email'];} ?></td>
-                            <td><?php if($row['sdt']=='0') {echo "Chưa cập nhật";} else {echo $row['sdt'];} ?></td>
+                            <td><?php if($row['email']=='0'||$row['email']=='') {echo "Chưa cập nhật";} else {echo $row['email'];} ?></td>
+                            <td><?php if($row['sdt']=='0'||$row['sdt']=='') {echo "Chưa cập nhật";} else {echo $row['sdt'];} ?></td>
                             <td><?php echo $row['matKhau'] ?></td>
                             <td><?php echo $row['tenQuyen'] ?></td>
                             <td><?php if($row['TinhTrang']==1) {echo "Đang hoạt động";} else {echo "Bị khóa";} ?></td>
-                            <td ><a href="/web2/VIEWS/admin/user/user.php?chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
-                            <td><a href="/web2/VIEWS/admin/user/user.php?chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
+                            <td ><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
+                            <td><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
                         </tr>  
                 <?php
             }
