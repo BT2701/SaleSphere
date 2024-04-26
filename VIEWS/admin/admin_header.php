@@ -147,6 +147,11 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown navbar-item">
+                        <a class="nav-link " href="admin_home.php?page=quanLyNhapHang" id="promote" role="button" aria-expanded="false">
+                            Quản lý nhập hàng
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown navbar-item">
                         <a class="nav-link " href="admin_home.php?page=quanLyPhanQuyen" id="promote" role="button" aria-expanded="false">
                             Quản lý phân quyền
                         </a>

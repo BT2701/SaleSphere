@@ -33,6 +33,9 @@
         else if ($page == 'productdetail') {
             include '/web2/VIEWS/productdetail/product-detail.php';
         }
+        else if ($page == 'quanLyNhapHang') {
+            include 'nhaphang/nhaphang.php';
+        }
         else if ($page == 'quanLyTaiKhoan') {
             include 'user/User.php';
         }
