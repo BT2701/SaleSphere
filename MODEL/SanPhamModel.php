@@ -123,6 +123,28 @@ class SanPhamModel {
         }
         $conn->close();
     }
+    public function deleteProduct($id){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql = "UPDATE sanpham SET trangthai = 0 WHERE id = ?";
+
+        // Chuẩn bị câu lệnh SQL và truyền tham số
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+
+        // Thực thi câu lệnh xóa
+        if ($stmt->execute()) {
+            header('Location: /web2/VIEWS/ADMIN/admin_home.php?page=quanLySanPham');
+            exit; // Đảm bảo dừng kịch bản sau khi chuyển hướng
+        } else {
+            echo "Lỗi: " . $conn->error;
+        }
+
+        // Đóng kết nối
+        $stmt->close();
+        $conn->close();
+    }
     public function getSanPhamList($start,$limit ) {
         $this->getInstance();
         $db = new Database();
