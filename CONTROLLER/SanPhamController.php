@@ -85,6 +85,17 @@ class SanPhamController {
             }
         }
     }
+
+    public function deleteProduct(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
+            if(isset($_POST['product_id'])) {
+                $productId = $_POST['product_id'];
+                $this->sanphamModel->deleteProduct($productId);
+            } else {
+                echo "Không có ID sản phẩm được gửi đi!";
+            }
+        }
+    }
     public function getList($limit){
         return $this->sanphamModel->getSanPhamList(0,$limit);
     }
@@ -223,4 +234,5 @@ $controller->getDsSPtheoTen();
 $controller->getDsSPtheoKhoangGia();
 $controller->phanTrangMainList();
 $controller->insertProduct();
+$controller->deleteProduct();
 ?>

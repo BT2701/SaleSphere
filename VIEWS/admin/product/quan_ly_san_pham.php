@@ -94,32 +94,34 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
+            <?php
                     // Dữ liệu sản phẩm
                     
-
                     // Hiển thị sản phẩm trong bảng
-                    
-                        if(isset($sanphamList) && !empty($sanphamList)) {
-                            foreach ($sanphamList as $product):
-                                echo "<tr>";
-                                echo "<td>" . $product['id'] . "</td>";
-                                echo "<td><img class='imageproduct' src='" . $product['src'] . "' alt='Product Image'></td>";
-                                echo "<td>" . $product['tenSanPham'] . "</td>";
-                                echo "<td>" . $product['giaBan'] . "</td>";
-                                echo "<td>";
-                                echo "<button type='button' class='btn btn-danger btn-sm mr-2'>Xóa</button>";
-                                echo "<button type='button' class='btn btn-primary btn-sm'>Sửa</button>";
-                                echo "<button type='button' class='btn btn-primary btn-sm mr-1 btn-show-overview' style='margin-left: 10px;'>Tổng quan đánh giá</button>";
-
-                                echo "</td>";
-                                echo "</tr>";
-                            endforeach;}
-                            else{
-                                echo "không có sản phẩm nào";
-                            }
-                    
+                    if(isset($sanphamList) && !empty($sanphamList)) {
+                        foreach ($sanphamList as $product):
+                            echo "<form method='POST' action='/web2/CONTROLLER/SanPhamController.php'>";
+                            echo "<tr>";
+                            echo "<td>" . $product['id'] . "</td>";
+                            echo "<td><img class='imageproduct' src='" . $product['src'] . "' alt='Product Image'></td>";
+                            echo "<td>" . $product['tenSanPham'] . "</td>";
+                            echo "<td>" . $product['giaBan'] . "</td>";
+                            echo "<td>";
+                            
+                            echo "<input type='hidden' name='product_id' value='" . $product['id'] . "'>";
+                            echo "<button type='submit' name='delete' class='btn btn-danger btn-sm' style='margin-right: 10px;'>Xóa</button>";
+                            
+                            echo "<button type='button' class='btn btn-primary btn-sm'>Sửa</button>";
+                            echo "<button type='button' class='btn btn-primary btn-sm mr-1 btn-show-overview' style='margin-left: 10px;'>Tổng quan đánh giá</button>";
+                            echo "</td>";
+                            echo "</tr>";
+                            echo "</form>";
+                        endforeach;
+                    } else {
+                        echo "Không có sản phẩm nào";
+                    }
                 ?>
+
             </tbody>
         </table>
         </div>
