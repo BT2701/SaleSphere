@@ -33,11 +33,19 @@
             max-height: 60vh; /* Chiều cao cố định */
             overflow-y: auto; /* Hiển thị thanh cuộn dọc khi bảng tràn ra ngoài */
         }
-
+        th{
+            background-color: #48dbfb;
+        }
     </style>
     <div class="container mt-5">
         <h1>Quản lý sản phẩm</h1>
         <hr>
+        <!-- tùy chọn -->
+        <?php 
+            if(isset($_GET['luachon'])&&$_GET['luachon']=='sua'){
+                include 'EditProduct.php';
+            }
+        ?>
         <!-- khu vực phân loại tìm kiếm -->
         <div class="category-right">
             <div class="input-group" style="max-width: 250px; max-height: 50px;">
@@ -73,18 +81,21 @@
         <!-- Modal thêm sản phẩm -->
         <?php include 'AddProduct.php'; ?>
 
-        <!-- Model thành công -->
+        <!-- Modal thành công -->
         <?php include 'thanhcong.php';?>
 
-        <!-- Model đánh giá -->
+        <!-- Modal đánh giá -->
         <?php include 'DanhGia.php';?>
+
+
+        
 
         
 
         <!-- Bảng hiển thị danh sách sản phẩm -->
         <div class="table-wrapper">
         <table class="table">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">Mã SP</th>
                     <th scope="col">Hình ảnh</th>
@@ -95,29 +106,27 @@
             </thead>
             <tbody>
             <?php
-                    // Dữ liệu sản phẩm
-                    
                     // Hiển thị sản phẩm trong bảng
-                    if(isset($sanphamList) && !empty($sanphamList)) {
-                        foreach ($sanphamList as $product):
-                            echo "<form method='POST' action='/web2/CONTROLLER/SanPhamController.php'>";
-                            echo "<tr>";
-                            echo "<td>" . $product['id'] . "</td>";
-                            echo "<td><img class='imageproduct' src='" . $product['src'] . "' alt='Product Image'></td>";
-                            echo "<td>" . $product['tenSanPham'] . "</td>";
-                            echo "<td>" . $product['giaBan'] . "</td>";
-                            echo "<td>";
-                            
-                            echo "<input type='hidden' name='product_id' value='" . $product['id'] . "'>";
-                            echo "<button type='submit' name='delete' class='btn btn-danger btn-sm' style='margin-right: 10px;'>Xóa</button>";
-                            
-                            echo "<button type='button' class='btn btn-primary btn-sm'>Sửa</button>";
-                            echo "<button type='button' class='btn btn-primary btn-sm mr-1 btn-show-overview' style='margin-left: 10px;'>Tổng quan đánh giá</button>";
-                            echo "</td>";
-                            echo "</tr>";
-                            echo "</form>";
-                        endforeach;
-                    } else {
+                    if(isset($sanphamList) && !empty($sanphamList)) {?>
+                        <?php foreach ($sanphamList as $product): ?>
+                            <form method="POST" action="/web2/CONTROLLER/SanPhamController.php">
+                                <tr>
+                                    <td><?php echo $product['id']; ?></td>
+                                    <td><img class="imageproduct" src="<?php echo $product['src']; ?>" alt="Product Image"></td>
+                                    <td><?php echo $product['tenSanPham']; ?></td>
+                                    <td><?php echo $product['giaBan']; ?></td>
+                                    <td>
+                                        <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                        <a href="" ><button type="submit" name="delete" class="btn btn-danger btn-sm" style="margin-right: 10px;"><i class="fa-solid fa-trash fs-5"></i></button></a>
+                                        <!-- Đổi type của button 'Sửa' từ 'submit' thành 'button' -->
+                                        <a href="/web2/VIEWS/admin/admin_home.php?page=quanLySanPham&&luachon=sua&&product_id=<?php echo $product['id']?>" class="link-dark btn btn-success" style="text-align: center; height: 32.5px;" ><i class="fa-solid fa-pen-to-square fs-5"></i></a>
+                                        <button type="button" name="detail" class="btn btn-primary btn-sm mr-1 btn-show-overview" style="margin-left: 10px;">Xem chi tiết</button>
+                                    </td>
+                                </tr>
+                            </form>
+                        <?php endforeach; ?>
+                        
+                  <?php  } else {
                         echo "Không có sản phẩm nào";
                     }
                 ?>
@@ -133,31 +142,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Xử lý khi nhấn nút "Lưu" trong modal
-            $('#saveProductBtn').click(function() {
-                // Lấy giá trị từ các input
-                var productName = $('#productName').val();
-                var productPrice = $('#productPrice').val();
-                var productType = $('#productType').val();
-                var productUnit = $('#productUnit').val();
-                var productDescription = $('#productDescription').val();
-                var productImage = $('#productImage').val();
-
-                // Hiển thị thông tin sản phẩm trong console (hoặc lưu vào cơ sở dữ liệu)
-                console.log('Tên sản phẩm: ' + productName);
-                console.log('Giá bán: ' + productPrice);
-                console.log('Loại: ' + productType);
-                console.log('Đơn vị tính: ' + productUnit);
-                console.log('Mô tả: ' + productDescription);
-                console.log('Đường dẫn hình ảnh: ' + productImage);
-
-                // Đóng modal
-                $('#addProductModal').modal('hide');
-            });
-        });
-    </script>
+    
     <script>
         $(document).ready(function() {
             // Xử lý khi nhấn nút "Nhập hàng"
@@ -231,6 +216,8 @@
         });
     </script>
     <script src="/web2/STATIC/js/category.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </body>
 </html>

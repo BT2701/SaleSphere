@@ -351,9 +351,10 @@ class SanPhamModel {
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
-        $sql = "SELECT sp.*, dv.tenDonViTinh AS tenDonViTinh
+        $sql = "SELECT sp.*, dv.tenDonViTinh AS tenDonViTinh, loai.tenLoaiSP 
             FROM sanpham AS sp
             LEFT JOIN donvitinh AS dv ON sp.maDVT = dv.id
+            LEFT JOIN loaisp AS loai ON sp.idLoaiSP = loai.id
             WHERE sp.id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $productID);

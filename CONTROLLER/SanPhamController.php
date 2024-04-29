@@ -56,7 +56,7 @@ class SanPhamController {
                 }
 
                 // Kiểm tra kích thước ảnh
-                if ($_FILES["productImage"]["size"] > 500000) {
+                if ($_FILES["productImage"]["size"] > 5000000) {
                     echo "Tệp ảnh quá lớn.";
                     $uploadOk = 0;
                 }
@@ -85,7 +85,12 @@ class SanPhamController {
             }
         }
     }
-
+    public function loadEditInfor(){
+        if(isset($_GET['product_id'])){
+            $id=$_GET['product_id'];
+            return $this->sanphamModel->getProductDetail($id);
+        }   
+    }
     public function deleteProduct(){
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
             if(isset($_POST['product_id'])) {
@@ -235,4 +240,5 @@ $controller->getDsSPtheoKhoangGia();
 $controller->phanTrangMainList();
 $controller->insertProduct();
 $controller->deleteProduct();
+// $controller->loadInformationById();
 ?>
