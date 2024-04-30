@@ -1,0 +1,60 @@
+.product-image{
+    width: 100%;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 20%;
+}
+.table-wrapper {
+    max-height: 60vh; /* Chiều cao cố định */
+    overflow-y: auto; /* Hiển thị thanh cuộn dọc khi bảng tràn ra ngoài */
+}
+
+#image-selected{
+    width: 100%;
+    max-width: 40px;
+    max-height: 40px;
+    border-radius: 20%;
+}
+.image-selection{
+    display: flex;
+    align-items: center;
+}
+#cart{
+    text-decoration: none;
+    color: aqua;
+    /* font-size: 35px; */
+}
+.main{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    margin-top: -20px;
+    border-bottom:2px solid black ;
+}
+
+/* CSS để tạo số trên giỏ hàng */
+.cart-icon {
+    position: relative; /* Xác định vị trí tương đối */
+    display: inline-block; /* Hiển thị là một khối inline */
+}
+
+.cart-icon img {
+    width: 50px; /* Kích thước của biểu tượng giỏ hàng */
+    height: auto;
+}
+
+.item-count {
+    position: absolute; /* Xác định vị trí tuyệt đối */
+    top: -10px; /* Khoảng cách từ số đến đỉnh của biểu tượng */
+    right: -10px; /* Khoảng cách từ số đến phải của biểu tượng */
+    background-color: red; /* Màu nền của số */
+    color: white; /* Màu chữ của số */
+    border-radius: 50%; /* Đảm bảo số có hình dạng hình tròn */
+    width: 20px; /* Kích thước chiều rộng của số */
+    height: 20px; /* Kích thước chiều cao của số */
+    font-size: 12px; /* Kích thước chữ của số */
+    display: flex; /* Hiển thị là một flex container */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}

@@ -111,6 +111,7 @@
                     <th scope="col">Mã SP</th>
                     <th scope="col">Hình ảnh</th>
                     <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Giá nhập</th>
                     <th scope="col">Giá bán</th>
                     <th scope="col">Hành động</th>
                 </tr>
@@ -125,13 +126,13 @@
                                     <td><?php echo $product['id']; ?></td>
                                     <td><img class="imageproduct" src="<?php echo $product['src']; ?>" alt="Product Image"></td>
                                     <td><?php echo $product['tenSanPham']; ?></td>
+                                    <td><?php echo $product['giaNhap']; ?></td>
                                     <td><?php echo $product['giaBan']; ?></td>
                                     <td>
                                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                                         <a href="" ><button type="submit" name="delete" class="btn btn-danger btn-sm" style="margin-right: 10px;"><i class="fa-solid fa-trash fs-5"></i></button></a>
                                         <!-- Đổi type của button 'Sửa' từ 'submit' thành 'button' -->
                                         <a href="/web2/VIEWS/admin/admin_home.php?page=quanLySanPham&&luachon=sua&&product_id=<?php echo $product['id']?>" class="link-dark btn btn-success" style="text-align: center; height: 32.5px;" ><i class="fa-solid fa-pen-to-square fs-5"></i></a>
-                                        <button type="button" name="detail" class="btn btn-primary btn-sm mr-1 btn-show-overview" style="margin-left: 10px;">Xem chi tiết</button>
                                     </td>
                                 </tr>
                             </form>

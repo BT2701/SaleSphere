@@ -24,6 +24,10 @@ $dvtlist = $dvt->getList();
                                 <input type="text" class="form-control" id="productName" name="productName" placeholder="Nhập tên sản phẩm">
                             </div>
                             <div class="form-group">
+                                <label for="productRoot">Giá nhập</label>
+                                <input type="text" class="form-control" id="productRoot" name="productRoot" placeholder="Nhập giá nhập">
+                            </div>
+                            <div class="form-group">
                                 <label for="productPrice">Giá bán</label>
                                 <input type="text" class="form-control" id="productPrice" name="productPrice" placeholder="Nhập giá bán">
                             </div>

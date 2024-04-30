@@ -4,32 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/web2/STATIC/css/category.css">
+    <link rel="stylesheet" href="/web2/STATIC/css/nhaphang.css">
     <title>Quản lý nhập hàng</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- CSS để tùy chỉnh một số phần trên trang -->
-    <style>
-        .product-image {
-            max-width: 100px;
-            height: auto;
-        }
-        .add-to-cart-btn {
-            margin-top: 10px;
-        }
-        .table-wrapper {
-            max-height: 60vh; /* Chiều cao cố định */
-            overflow-y: auto; /* Hiển thị thanh cuộn dọc khi bảng tràn ra ngoài */
-        }
-    </style>
 </head>
 <body>
+    <?php 
+        if(isset($_GET['luachon'])&&$_GET['luachon']=='giohang'){
+            include 'giohang.php';
+        }
+        else{
+
+        
+    ?>
+
     <?php require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php'; 
         $products = $controller->getList(PHP_INT_MAX);?>
     <div class="container mt-5">
         <!-- Form for adding a new product -->
         
         <!-- Table to display products -->
-        <h2 class="mt-5">Nhập hàng</h2>
+        <div class="main">
+            <h2 class="mt-5">Nhập hàng</h2>
+            <div class="cart-icon">
+                <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang&&luachon=giohang" id="cart"><i class="fa-solid fa-cart-shopping" style="font-size:30px;"></i></a>
+                <span class="item-count">3</span> <!-- Số lượng hiển thị -->
+            </div>
+        </div>
         <div class="category-right">
             <div class="input-group" style="max-width: 250px; max-height: 50px;">
                     <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="searchButton" id="searchInput">
@@ -63,13 +66,14 @@
             </div>
             <div class="table-wrapper">
         <table class="table">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
-                    <th>Product Image</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Add to Cart</th>
+                    <th>Hình ảnh</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá nhập</th>
+                    <th>Giá bán</th>
+                    <th>Tồn kho</th>
+                    <th>Thêm vào giỏ</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,8 +81,9 @@
                     <tr>
                         <td><img src="<?php echo $product['src']; ?>" alt="Product Image" class="product-image"></td>
                         <td><?php echo $product['tenSanPham']; ?></td>
+                        <td><?php echo $product['giaNhap']; ?></td>
                         <td><?php echo $product['giaBan']; ?></td>
-                        <td><?php echo $product['giaBan']; ?></td>
+                        <td><?php echo $controller->quantityProduct($product['id']); ?></td>
                         <td><button type="button" class="btn btn-success add-to-cart-btn">+</button></td>
                     </tr>
                 <?php endforeach; ?>
@@ -91,5 +96,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <?php } ?>
 </body>
 </html>
