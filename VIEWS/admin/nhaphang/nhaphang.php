@@ -11,6 +11,15 @@
     <!-- CSS để tùy chỉnh một số phần trên trang -->
 </head>
 <body>
+    <?php 
+        if(isset($_GET['luachon'])&&$_GET['luachon']=='giohang'){
+            include 'giohang.php';
+        }
+        else{
+
+        
+    ?>
+
     <?php require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php'; 
         $products = $controller->getList(PHP_INT_MAX);?>
     <div class="container mt-5">
@@ -20,7 +29,7 @@
         <div class="main">
             <h2 class="mt-5">Nhập hàng</h2>
             <div class="cart-icon">
-                <a href="#" id="cart"><i class="fa-solid fa-cart-shopping" style="font-size:30px;"></i></a>
+                <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang&&luachon=giohang" id="cart"><i class="fa-solid fa-cart-shopping" style="font-size:30px;"></i></a>
                 <span class="item-count">3</span> <!-- Số lượng hiển thị -->
             </div>
         </div>
@@ -85,5 +94,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <?php } ?>
 </body>
 </html>
