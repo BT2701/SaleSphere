@@ -9,16 +9,26 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- CSS để tùy chỉnh một số phần trên trang -->
     <style>
-        .product-image {
-            max-width: 100px;
-            height: auto;
-        }
-        .add-to-cart-btn {
-            margin-top: 10px;
+        .product-image{
+            width: 100%;
+            max-width: 50px;
+            max-height: 50px;
+            border-radius: 20%;
         }
         .table-wrapper {
             max-height: 60vh; /* Chiều cao cố định */
             overflow-y: auto; /* Hiển thị thanh cuộn dọc khi bảng tràn ra ngoài */
+        }
+        
+        #image-selected{
+            width: 100%;
+            max-width: 40px;
+            max-height: 40px;
+            border-radius: 20%;
+        }
+        .image-selection{
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
@@ -63,7 +73,7 @@
             </div>
             <div class="table-wrapper">
         <table class="table">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>Product Image</th>
                     <th>Product Name</th>
@@ -78,7 +88,7 @@
                         <td><img src="<?php echo $product['src']; ?>" alt="Product Image" class="product-image"></td>
                         <td><?php echo $product['tenSanPham']; ?></td>
                         <td><?php echo $product['giaBan']; ?></td>
-                        <td><?php echo $product['giaBan']; ?></td>
+                        <td><?php echo $controller->quantityProduct($product['id']); ?></td>
                         <td><button type="button" class="btn btn-success add-to-cart-btn">+</button></td>
                     </tr>
                 <?php endforeach; ?>

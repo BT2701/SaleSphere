@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<body>
+    
+
 <div class="modal fade" id="importProductModal" tabindex="-1" role="dialog" aria-labelledby="importProductModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -30,3 +41,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>
