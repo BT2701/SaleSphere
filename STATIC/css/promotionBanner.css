@@ -1,51 +1,51 @@
-
-body {
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 .slide-show {
-    width: 100%;
-    overflow: hidden;
     position: relative;
+    max-width: 100%;
+    overflow: hidden;
 }
+
 .list-images {
     display: flex;
-   transition: 0.5s;
-   border-radius: 5px;
+    transition: transform 0.5s ease-in-out;
 }
-.btn:hover {
-    color: white;
+
+.list-images img {
+    width: 100%;
+    
+    display: block;
 }
-.btn {
-    font-size: 45px;
-    color: #999;
+
+.btns {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    transition: 0.5s;
-    cursor: pointer;
-}
-.btn-left {
-    left: 30px;
-}
-.btn-right {
-    right: 30px;
-}
-.index-images {
-    position: absolute;
-    bottom: 10px;
+    width: 100%;
     display: flex;
-    left: 50%;
-    transform: translateX(-50%);
+    justify-content: space-between;
 }
-.index-item {
-    border: 2px solid #5f5f5f;
-    padding: 5px;
-    margin: 3px;
+
+.btn {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
     border-radius: 50%;
 }
-.active {
-    background-color: #5f5f5f;
+
+.index-images {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.index-item {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.index-item.active {
+    background-color: #333;
 }

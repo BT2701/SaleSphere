@@ -37,6 +37,7 @@
                     $result=  $cartController->createInvoiceAndInvoiceDetails($userid, $tongTien, $selectedProductIDs);
                     echo json_encode($result);
                 }   
+                
         }
     
      }
@@ -46,7 +47,7 @@
 
     class CartController{
         public function getInstance(){
-            require_once 'C:\xampp\htdocs\web2\MODEL\CartModel.php';
+             require_once 'C:\xampp\htdocs\web2\MODEL\CartModel.php';
         }
         public function getCartList($userid) {
             $this->getInstance();
