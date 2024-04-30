@@ -42,6 +42,10 @@
         else if ($page == 'quanLyPhanQuyen') {
             include 'phanquyen/phanquyen.php';
         }
+        else if ($page == 'quanLyHoaDon') {
+            include 'invoiceManagement/invoiceManagement.php';
+        }
+        
         
     } else {
         // Mặc định khi không có tham số, hiển thị trang home.php

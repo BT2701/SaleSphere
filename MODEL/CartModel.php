@@ -41,7 +41,7 @@ class CartModel{
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
-        $sql=" SELECT khuyenmai.giaTri
+        $sql=" SELECT khuyenmai.giaTri, khuyenmai.hanSuDung
         FROM chitietkhuyenmai
         INNER JOIN khuyenmai
         ON chitietkhuyenmai.idkhuyenmai= khuyenmai.id
@@ -106,7 +106,6 @@ class CartModel{
         // Lấy ID của hóa đơn vừa tạo
         $idHoaDon = mysqli_insert_id($connection);
         if ($idHoaDon > 0) {
-
             // 2/ Tạo chi tiết hóa đơn
             $strSQL1 = "SELECT * FROM chitietgiohang WHERE userid = $userid AND idsanpham IN ($idsString)";
             $result1 = mysqli_query($connection, $strSQL1);
@@ -114,7 +113,6 @@ class CartModel{
                 while ($row = mysqli_fetch_array($result1)) {
                     $idSanPham = $row[0];
                     $soLuong = $row[1];
-
                     // Thực hiện INSERT vào bảng chitiethoadon với idHoaDon vừa lấy được
                     $strSQL2 = "INSERT INTO chitiethoadon(`idHoaDon`, `idSanPham`, `soLuong`)
                                 VALUES ($idHoaDon, $idSanPham, $soLuong)";
@@ -122,39 +120,40 @@ class CartModel{
                     // Kiểm tra kết quả truy vấn INSERT vào bảng chitiethoadon
                     if ($result2) {
                         $strSQL3 = "SELECT * FROM chitiethoadon
-                        WHERE idHoaDon=$idHoaDon
-                        ";
+                                    WHERE idHoaDon=$idHoaDon
+                                     ";
                         $result3 = mysqli_query($connection, $strSQL3);
                         if (mysqli_num_rows($result3) > 0) {
                             while ($row = mysqli_fetch_array($result3)) {
                                 $idSanPham = $row[1];
                                 $strSQL4 = "DELETE FROM chitietgiohang
-                                WHERE userid=$userid AND idsanpham=$idSanPham
-                                ";
+                                             WHERE userid=$userid AND idsanpham=$idSanPham
+                                             ";
                                 $result4 = mysqli_query($connection, $strSQL4);
-                                    return true;
+                                      
                                 
                             }
                         } else {
+
                             break; 
                         }
 
                     } else {
+
                         break; 
                     }
+                    
                 }
+                return true; 
             }
         } else {
+            // echo "Không thể lấy ID của hóa đơn";
             return false;
         }
     } else {
+        // echo "Lỗi khi thực hiện truy vấn: " . mysqli_error($connection);
         return false;
     }
   }
-  
-  
-  
 }
-
-
 ?>
