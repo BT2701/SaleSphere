@@ -145,6 +145,21 @@ class SanPhamModel {
         $stmt->close();
         $conn->close();
     }
+    public function updateProduct($id,$productName, $productPrice, $productType, $productUnit, $productDescription, $src){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql = "UPDATE sanpham SET tenSanPham =?, giaBan =?, idLoaiSP=?, maDVT=?, moTa=?, src=? WHERE id = ?";
+
+        // Chuẩn bị câu lệnh SQL và truyền tham số
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("siiissi",$productName, $productPrice, $productType, $productUnit, $productDescription, $src, $id);
+        $result=$stmt->execute();
+        // Thực thi câu lệnh xóa
+        $stmt->close();
+        $conn->close();
+        return $result;
+    }
     public function getSanPhamList($start,$limit ) {
         $this->getInstance();
         $db = new Database();

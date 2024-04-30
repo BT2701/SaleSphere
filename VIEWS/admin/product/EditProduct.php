@@ -58,7 +58,10 @@ $detail=$controller->loadEditInfor();
                     </div>
                     <div class="form-group">
                         <label for="eproductImage">Chọn ảnh</label>
-                        <input type="file" class="form-control-file" id="eproductImage" name="productImage">
+                        <div class="image-selection">
+                            <img id="image-selected" src="<?php echo $detail['src']; ?>" alt="" >
+                            <input type="file" class="form-control-file" id="eproductImage" name="productImage" style="padding-left: 20px;">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <a href="/web2/VIEWS/admin/admin_home.php?page=quanLySanPham"><button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button></a>
@@ -69,3 +72,17 @@ $detail=$controller->loadEditInfor();
         </div>
     </div>
 </div>
+
+<script>
+    // Lắng nghe sự kiện thay đổi của input type=file
+document.getElementById('eproductImage').addEventListener('change', function() {
+    // Lấy file đã chọn
+    const selectedFile = this.files[0];
+    if (selectedFile) {
+        // Tạo đường dẫn đến file đã chọn
+        const objectURL = URL.createObjectURL(selectedFile);
+        // Hiển thị ảnh đã chọn lên thẻ <img>
+        document.getElementById('image-selected').src = objectURL;
+    }
+});
+</script>

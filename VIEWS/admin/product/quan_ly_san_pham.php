@@ -25,9 +25,10 @@
             color: #ff9800; /* Màu sao được đánh dấu */
         }
         .imageproduct{
-            
-            max-width: 100px;
-            max-height: auto;
+            width: 100%;
+            max-width: 50px;
+            max-height: 50px;
+            border-radius: 20%;
         }
         .table-wrapper {
             max-height: 60vh; /* Chiều cao cố định */
@@ -35,6 +36,16 @@
         }
         th{
             background-color: #48dbfb;
+        }
+        #image-selected{
+            width: 100%;
+            max-width: 40px;
+            max-height: 40px;
+            border-radius: 20%;
+        }
+        .image-selection{
+            display: flex;
+            align-items: center;
         }
     </style>
     <div class="container mt-5">
