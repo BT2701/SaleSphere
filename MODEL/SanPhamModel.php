@@ -105,15 +105,15 @@ class SanPhamModel {
         $conn->close();
         return $total;
     }
-    public function insertProduct($productName, $productPrice, $productType, $productUnit, $productDescription, $src){
+    public function insertProduct($productName, $productRoot, $productPrice, $productType, $productUnit, $productDescription, $src){
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
-        $sql = "INSERT INTO sanpham (tenSanPham, giaBan, idLoaiSP, maDVT, moTa, src, trangthai) VALUES (?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO sanpham (tenSanPham, giaNhap, giaBan, idLoaiSP, maDVT, moTa, src, trangthai) VALUES (?,?,?,?,?,?,?,?)";
         // '$productName', '$productPrice', '$productType', '$productUnit', '$productDescription', $src, 1
         $stmt = $conn->prepare($sql);
         $trangthai=1;
-        $stmt->bind_param("siiisss", $productName, $productPrice,$productType,$productUnit,$productDescription,$src,$trangthai);
+        $stmt->bind_param("siiiisss", $productName, $productRoot, $productPrice,$productType,$productUnit,$productDescription,$src,$trangthai);
         if ($stmt->execute()) {
             // Nếu thêm sản phẩm thành công, chuyển hướng tới trang quản lý sản phẩm
             header('Location: /web2/VIEWS/ADMIN/admin_home.php?page=quanLySanPham');
@@ -145,15 +145,15 @@ class SanPhamModel {
         $stmt->close();
         $conn->close();
     }
-    public function updateProduct($id,$productName, $productPrice, $productType, $productUnit, $productDescription, $src){
+    public function updateProduct($id,$productName,$productRoot, $productPrice, $productType, $productUnit, $productDescription, $src){
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
-        $sql = "UPDATE sanpham SET tenSanPham =?, giaBan =?, idLoaiSP=?, maDVT=?, moTa=?, src=? WHERE id = ?";
+        $sql = "UPDATE sanpham SET tenSanPham =?, giaNhap=?, giaBan =?, idLoaiSP=?, maDVT=?, moTa=?, src=? WHERE id = ?";
 
         // Chuẩn bị câu lệnh SQL và truyền tham số
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("siiissi",$productName, $productPrice, $productType, $productUnit, $productDescription, $src, $id);
+        $stmt->bind_param("siiiissi",$productName,$productRoot, $productPrice, $productType, $productUnit, $productDescription, $src, $id);
         $result=$stmt->execute();
         // Thực thi câu lệnh xóa
         $stmt->close();
@@ -167,7 +167,8 @@ class SanPhamModel {
         $start = intval($start);
         $limit = intval($limit);
         $sql = "SELECT s.id, 
-        s.tenSanPham, 
+        s.tenSanPham,
+        s.giaNhap,  
         s.giaBan, 
         s.src, 
         k.giaTri, 
@@ -272,7 +273,7 @@ class SanPhamModel {
         $start = intval($start);
         $limit = intval($limit);
         $sanphamList = array();
-        $sql = "SELECT s.tenSanPham, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP, k.hansudung 
+        $sql = "SELECT s.tenSanPham,s.giaNhap, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP, k.hansudung 
         FROM sanpham s
         LEFT JOIN chitietkhuyenmai ctk ON s.id = ctk.idsanpham
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
@@ -303,7 +304,7 @@ class SanPhamModel {
         $start = intval($start);
         $limit = intval($limit);
         $sanphamList = array();
-        $sql = "SELECT s.tenSanPham, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP, k.hansudung 
+        $sql = "SELECT s.tenSanPham,s.giaNhap, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP, k.hansudung 
         FROM sanpham s
         LEFT JOIN chitietkhuyenmai ctk ON s.id = ctk.idsanpham
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
@@ -335,7 +336,7 @@ class SanPhamModel {
         $start = intval($start);
         $limit = intval($limit);
         $sanphamList = array();
-        $sql = "SELECT s.tenSanPham, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP, k.hansudung 
+        $sql = "SELECT s.tenSanPham,s.giaNhap, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP, k.hansudung 
         FROM sanpham s
         LEFT JOIN chitietkhuyenmai ctk ON s.id = ctk.idsanpham
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id

@@ -24,6 +24,7 @@ class SanPhamController {
             // Kiểm tra xem có dữ liệu không
             if(isset($_POST['productName']) && isset($_POST['productPrice']) && isset($_POST['productType']) && isset($_POST['productUnit']) && isset($_POST['productDescription'])) {
                 $productName = $_POST['productName'];
+                $productRoot=$_POST['productRoot'];
                 $productPrice = $_POST['productPrice'];
                 $productType = $_POST['productType'];
                 $type= trim(explode("-", $productType)[0]);
@@ -79,7 +80,7 @@ class SanPhamController {
                     }
                 }
                 $src=str_replace("../", "/web2/", $targetFile);
-                $this->sanphamModel->insertProduct($productName,$productPrice,$productType, $productUnit, $productDescription, $src);
+                $this->sanphamModel->insertProduct($productName,$productRoot,$productPrice,$productType, $productUnit, $productDescription, $src);
             }else {
                 echo "Dữ liệu không hợp lệ.";
             }
@@ -97,6 +98,7 @@ class SanPhamController {
             if(isset($_POST['productName']) && isset($_POST['productPrice']) && isset($_POST['productType']) && isset($_POST['productUnit']) && isset($_POST['productDescription'])) {
                 $id=$_POST['productId'];
                 $productName = $_POST['productName'];
+                $productRoot=$_POST['productRoot'];
                 $productPrice = $_POST['productPrice'];
                 $productType = $_POST['productType'];
                 $type= trim(explode("-", $productType)[0]);
@@ -153,7 +155,7 @@ class SanPhamController {
                 }
                 $src=str_replace("../../", "/web2/", $targetFile);
 
-                $result=$this->sanphamModel->updateProduct($id,$productName,$productPrice,$productType, $productUnit, $productDescription, $src);
+                $result=$this->sanphamModel->updateProduct($id,$productName,$productRoot,$productPrice,$productType, $productUnit, $productDescription, $src);
                 if ($result) {
                     echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLySanPham";</script>';
                     exit; // Đảm bảo dừng kịch bản sau khi chuyển hướng

@@ -68,11 +68,12 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th>Product Image</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Add to Cart</th>
+                    <th>Hình ảnh</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá nhập</th>
+                    <th>Giá bán</th>
+                    <th>Tồn kho</th>
+                    <th>Thêm vào giỏ</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,6 +81,7 @@
                     <tr>
                         <td><img src="<?php echo $product['src']; ?>" alt="Product Image" class="product-image"></td>
                         <td><?php echo $product['tenSanPham']; ?></td>
+                        <td><?php echo $product['giaNhap']; ?></td>
                         <td><?php echo $product['giaBan']; ?></td>
                         <td><?php echo $controller->quantityProduct($product['id']); ?></td>
                         <td><button type="button" class="btn btn-success add-to-cart-btn">+</button></td>

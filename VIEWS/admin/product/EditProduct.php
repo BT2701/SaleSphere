@@ -31,6 +31,10 @@ $detail=$controller->loadEditInfor();
                         <input type="text" class="form-control" id="eproductName" name="productName" placeholder="Nhập tên sản phẩm" value="<?php echo $detail['tenSanPham']; ?>">
                     </div>
                     <div class="form-group">
+                        <label for="eproductRoot">Giá nhập</label>
+                        <input type="text" class="form-control" id="eproductRoot" name="productRoot" placeholder="Nhập giá nhập" value="<?php echo $detail['giaNhap']; ?>">
+                    </div>
+                    <div class="form-group">
                         <label for="eproductPrice">Giá bán</label>
                         <input type="text" class="form-control" id="eproductPrice" name="productPrice" placeholder="Nhập giá bán" value="<?php echo $detail['giaBan']; ?>">
                     </div>
