@@ -91,6 +91,79 @@ class SanPhamController {
             return $this->sanphamModel->getProductDetail($id);
         }   
     }
+    public function updateProduct(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
+            // Kiểm tra xem có dữ liệu không
+            if(isset($_POST['productName']) && isset($_POST['productPrice']) && isset($_POST['productType']) && isset($_POST['productUnit']) && isset($_POST['productDescription'])) {
+                $id=$_POST['productId'];
+                $productName = $_POST['productName'];
+                $productPrice = $_POST['productPrice'];
+                $productType = $_POST['productType'];
+                $type= trim(explode("-", $productType)[0]);
+                $productUnit = $_POST['productUnit'];
+                $unit=trim(explode("-", $productUnit)[0]);
+                $productDescription = $_POST['productDescription'];
+                // $src="/web2/STATIC/assets/product3.png";
+                // Xử lý upload ảnh nếu cần
+                // Đường dẫn đến thư mục lưu ảnh
+                $targetDir = "../../STATIC/assets/";
+                $targetFile = $targetDir . basename($_FILES["productImage"]["name"]);
+                $uploadOk = 1;
+                $imageFileType = strtolower(pathinfo($targetFile,PATHINFO_EXTENSION));
+                
+                // Kiểm tra xem tệp ảnh có tồn tại không
+                if(isset($_FILES["productImage"])) {
+                    $check = getimagesize($_FILES["productImage"]["tmp_name"]);
+                    if($check !== false) {
+                        $uploadOk = 1;
+                    } else {
+                        echo "File không phải là ảnh.";
+                        $uploadOk = 0;
+                    }
+                }
+
+                // Kiểm tra xem tệp ảnh đã tồn tại chưa
+                if (file_exists($targetFile)) {
+                    echo "Tệp ảnh đã tồn tại.";
+                    $uploadOk = 0;
+                }
+
+                // Kiểm tra kích thước ảnh
+                if ($_FILES["productImage"]["size"] > 5000000) {
+                    echo "Tệp ảnh quá lớn.";
+                    $uploadOk = 0;
+                }
+
+                // Cho phép các định dạng ảnh nhất định
+                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                    && $imageFileType != "gif" ) {
+                    echo "Chỉ cho phép tải lên các tệp JPG, JPEG, PNG & GIF.";
+                    $uploadOk = 0;
+                }
+
+                // Kiểm tra nếu $uploadOk không bằng 0, thực hiện lưu tệp
+                if ($uploadOk == 0) {
+                    echo "Tệp của bạn không được tải lên.";
+                } else {
+                    if (move_uploaded_file($_FILES["productImage"]["tmp_name"], $targetFile)) {
+                        echo "Tệp ". basename( $_FILES["productImage"]["name"]). " đã được tải lên thành công.";
+                    } else {
+                        echo "Đã xảy ra lỗi khi tải tệp lên.";
+                    }
+                }
+                $src=str_replace("../../", "/web2/", $targetFile);
+
+                $result=$this->sanphamModel->updateProduct($id,$productName,$productPrice,$productType, $productUnit, $productDescription, $src);
+                if ($result) {
+                    echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLySanPham";</script>';
+                    exit; // Đảm bảo dừng kịch bản sau khi chuyển hướng
+                }
+            }else {
+                echo "Dữ liệu không hợp lệ.";
+            }
+        }
+    }
+    
     public function deleteProduct(){
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
             if(isset($_POST['product_id'])) {
@@ -240,5 +313,6 @@ $controller->getDsSPtheoKhoangGia();
 $controller->phanTrangMainList();
 $controller->insertProduct();
 $controller->deleteProduct();
+$controller->updateProduct();
 // $controller->loadInformationById();
 ?>
