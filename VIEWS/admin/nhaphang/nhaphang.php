@@ -4,33 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/web2/STATIC/css/category.css">
+    <link rel="stylesheet" href="/web2/STATIC/css/nhaphang.css">
     <title>Quản lý nhập hàng</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- CSS để tùy chỉnh một số phần trên trang -->
-    <style>
-        .product-image{
-            width: 100%;
-            max-width: 50px;
-            max-height: 50px;
-            border-radius: 20%;
-        }
-        .table-wrapper {
-            max-height: 60vh; /* Chiều cao cố định */
-            overflow-y: auto; /* Hiển thị thanh cuộn dọc khi bảng tràn ra ngoài */
-        }
-        
-        #image-selected{
-            width: 100%;
-            max-width: 40px;
-            max-height: 40px;
-            border-radius: 20%;
-        }
-        .image-selection{
-            display: flex;
-            align-items: center;
-        }
-    </style>
 </head>
 <body>
     <?php require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php'; 
@@ -39,7 +17,13 @@
         <!-- Form for adding a new product -->
         
         <!-- Table to display products -->
-        <h2 class="mt-5">Nhập hàng</h2>
+        <div class="main">
+            <h2 class="mt-5">Nhập hàng</h2>
+            <div class="cart-icon">
+                <a href="#" id="cart"><i class="fa-solid fa-cart-shopping" style="font-size:30px;"></i></a>
+                <span class="item-count">3</span> <!-- Số lượng hiển thị -->
+            </div>
+        </div>
         <div class="category-right">
             <div class="input-group" style="max-width: 250px; max-height: 50px;">
                     <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="searchButton" id="searchInput">
