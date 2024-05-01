@@ -32,8 +32,6 @@ function increaseQuantity(maxProduct) {
   quantityValue = parseInt(quantity_input) || 0;
   if (quantityValue < maxProduct) {
     document.querySelector(".quantity-input").value = quantityValue + 1;
-  } else {
-    //not do something
   }
 }
 
@@ -185,7 +183,7 @@ function loadDanhGia(idSanPham, loaiDanhGia, pageNumber) {
   let soLuongDanhGiaChoMotTrang = 5;
   let danhGiaBatDau = (pageNumber - 1) * soLuongDanhGiaChoMotTrang;
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/web2/CONTROLLER/DanhGiaController.php", true);
+  xhr.open("POST", "CONTROLLER/DanhGiaController.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -261,27 +259,70 @@ function xuLyPhanTrang(
   });
 }
 
-function AddProductToCart(idSanPham, idUser, soLuongConLai) {
+// function AddProductToCart(idSanPham, idUser, soLuongSanPha) {
+//   let soLuongThem = document.getElementById("quantityInput").value;
+//   var xhr = new XMLHttpRequest();
+//   xhr.open("POST", "CONTROLLER/GioHangController.php", true);
+//   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//   xhr.onreadystatechange = function () {
+//     if (xhr.readyState == 4 && xhr.status == 200) {
+//       response = JSON.parse(this.responseText);
+//       if (response["statusAddProduct"]) {
+//         alert("Thêm sản phẩm thành công");
+//       } else {
+//         alert("Thêm sản phẩm thất bại");
+//       }
+//       if (this.response["numberProductInCart"]) {
+//         document.querySelector(".quantity-product").classList =
+//           "quantity-product d-none";
+//       } else {
+//         document.querySelector(".quantity-product").classList =
+//           "quantity-product d-block";
+//         document.querySelector(".quantity-product").innerHTML =
+//           response["quantityProductInCart"];
+//       }
+//       checkQuantity(this.response["quantityProductInCart"]);
+//     }
+//   };
+//   xhr.send(
+//     `action=AddProductToCart&idSanPham=${idSanPham}&idUser=${idUser}&soLuongThem=${soLuongThem}`
+//   );
+// }
+
+function AddProductToCart(idSanPham, idUser, soLuongCoTheThem) {
+  if (soLuongCoTheThem <= 0) {
+    alert("Vượt mức khả năng mua hàng của sản phẩm");
+    return;
+  }
   let soLuongThem = document.getElementById("quantityInput").value;
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/web2/CONTROLLER/GioHangController.php", true);
+  xhr.open("POST", "ROUTES/ChiTietSanPhamRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
+      // alert(this.responseText);
       response = JSON.parse(this.responseText);
       if (response["statusAddProduct"]) {
         alert("Thêm sản phẩm thành công");
+        document.getElementById("quantityInput").max =
+          response["quantityCanAdd"];
+        document.getElementById("quantity-btn-increase").onclick = function () {
+          increaseQuantity(response["quantityCanAdd"]);
+        };
+        document.getElementById("btn-add-product").onclick = () => {
+          AddProductToCart(idSanPham, idUser, response["quantityCanAdd"]);
+        };
       } else {
         alert("Thêm sản phẩm thất bại");
       }
-      if (this.response["quantityProductInCart"]) {
-        document.querySelector(".quantity-product").classList =
-          "quantity-product d-none";
-      } else {
+      if (response["numberProductInCart"]) {
         document.querySelector(".quantity-product").classList =
           "quantity-product d-block";
         document.querySelector(".quantity-product").innerHTML =
-          response["quantityProductInCart"];
+          response["numberProductInCart"];
+      } else {
+        document.querySelector(".quantity-product").classList =
+          "quantity-product d-none";
       }
     }
   };
@@ -303,3 +344,5 @@ function checkQuantity(soLuongSanPham) {
       "case-has-quantity d-block";
   }
 }
+
+// soLuongCoTheThem = <?php echo $detailProduct['quantityProductBaseOnUserID'] ?>;

@@ -1,5 +1,6 @@
 <?php
     require_once 'C:\xampp\htdocs\web2\CONTROLLER\ProfileController.php';
+    
     $profileController= new ProfileController();
     $user="";
     if(isset($_SESSION['login_name'])&&$_SESSION['login_name']!="")
@@ -62,7 +63,7 @@
                         <a href="#" class="user-info_cart circle-bg-icon">
                             <i class="fa-solid fa-cart-shopping" id="viewCartButton"></i>
                             <div class="quantity-product" >
-                                
+                                <?php echo $numberProductIncart?>
                             </div>
                            
                         </a>

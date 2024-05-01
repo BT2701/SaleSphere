@@ -59,9 +59,9 @@ class GioHangModel
 
 
 
-    public function getQuantityProductInCart($userID){
+    public function getNumberProductInCart($userID){
         $conn = $this->getInstance();
-        $sql = "SELECT COUNT(*) as quantity
+        $sql = "SELECT COUNT(*) as numberProduct
         FROM chitietgiohang
         WHERE userid = ?";
          $stmt = $conn->prepare($sql);
@@ -70,7 +70,27 @@ class GioHangModel
          $result = $stmt->get_result();
          $row = $result->fetch_assoc();
          $stmt->close();
-         return $row['quantity'];
+         return $row['numberProduct'];
+    }
+
+
+
+    //HÀM MỚI ĐƯỢC THÊM 
+    public function getQuantityProductInCart($productID, $userID){
+        $conn = $this->getInstance();
+        $sql = "SELECT soluong 
+        FROM chitietgiohang
+        WHERE userid = ? AND idsanpham =?";
+         $stmt = $conn->prepare($sql);
+         $stmt->bind_param("ii",$userID,$productID);
+         $stmt->execute();
+         $result = $stmt->get_result();
+         $row = $result->fetch_assoc();
+         $stmt->close();
+         if($row == null){
+            return 0;
+         }
+         return $row['soluong'];
     }
 
 

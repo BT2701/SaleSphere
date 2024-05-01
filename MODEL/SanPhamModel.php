@@ -518,7 +518,28 @@ function getQuantityInventoryProduct($productID){
      $conn->close();
      return $countOfEvaluate['tongSoLuongDanhGia'];
     }
-
+    public function GetALlProduct()
+    {
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql = "SELECT s.id, s.tenSanPham, IFNULL(ctk.idkhuyenmai, NULL) AS idkhuyenmai
+        FROM sanpham s
+        LEFT JOIN chitietkhuyenmai ctk ON s.id = ctk.idsanpham;
+        -- LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
+        -- LEFT JOIN danhgia dg ON s.id = dg.idsanpham
+        -- WHERE k.hansudung > NOW() OR k.hansudung IS NULL;
+        ";
+        $result = $conn->query($sql);
+        $sanphamList = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $sanphamList[] = $row;
+            }
+        }
+        $conn->close();
+        return $sanphamList;
+    }
     
     // --------------------------Du-------------------
 }

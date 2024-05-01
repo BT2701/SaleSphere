@@ -113,18 +113,32 @@ class NhapHangModel{
         $conn->close();
         return $total;
     }
-    // KẾT THÚC GIỎ HÀNG NHẬP
+    //1. KẾT THÚC GIỎ HÀNG NHẬP
 
 
 
-    // KHU VỰC NHẬP HÀNG VÀ CHI TIẾT NHẬP HÀNG
+    //2. KHU VỰC NHẬP HÀNG VÀ CHI TIẾT NHẬP HÀNG
+    public function layDanhSachPhieuNhap(){
 
-    // KẾT THÚC NHẬP HÀNG
+    }
+    public function themPhieuNhap($id, $ngayNhap, $idUser, $tongTien){
+
+    }
+    public function themChiTietPhieuNhap($idPhieuNhap, $idSanPham, $soLuong){
+
+    }
+    public function themKiemKe($id, $ngayKiem){
+
+    }
+    public function themChiTietKiemKe($idKiemKe, $idSanPham, $soLuongTonKho){
+
+    }
+    //2. KẾT THÚC NHẬP HÀNG
 
 
 
-    // KHU VỰC XEM LỊCH SỬ NHẬP HÀNG
+    //3. KHU VỰC XEM LỊCH SỬ NHẬP HÀNG
 
-    // KẾT THÚC LỊCH SỬ
+    //3. KẾT THÚC LỊCH SỬ
 }
 ?>

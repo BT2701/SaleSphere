@@ -45,6 +45,9 @@
         else if ($page == 'quanLyHoaDon') {
             include 'invoiceManagement/invoiceManagement.php';
         }
+        else if($page=='quanLyKhuyenMai'){
+            include '../../ROUTES/KhuyenMaiRoutes.php';
+        }
         
         
     } else {
