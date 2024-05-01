@@ -32,6 +32,21 @@
     margin-top: -20px;
     border-bottom:2px solid black ;
 }
+.main-detail{
+    display: flex;
+
+}
+#history{
+    text-decoration: none;
+    color: aqua;
+    font-size: 30px;
+    padding-left: 30px;
+    position: absolute;
+    top: 190px;
+}
+.details{
+    margin-bottom: 0px;
+}
 
 /* CSS để tạo số trên giỏ hàng */
 .cart-icon {

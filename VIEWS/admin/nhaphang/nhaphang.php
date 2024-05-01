@@ -20,17 +20,26 @@
         
     ?>
 
-    <?php require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php'; 
-        $products = $controller->getList(PHP_INT_MAX);?>
+    <?php require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php';
+        require_once 'C:\xampp\htdocs\web2\CONTROLLER\NhapHangController.php'; 
+        $products = $controller->getList(PHP_INT_MAX);
+        $count=$nhapHangController->countGioHangNhap();
+    ?>
     <div class="container mt-5">
         <!-- Form for adding a new product -->
         
         <!-- Table to display products -->
         <div class="main">
             <h2 class="mt-5">Nhập hàng</h2>
-            <div class="cart-icon">
-                <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang&&luachon=giohang" id="cart"><i class="fa-solid fa-cart-shopping" style="font-size:30px;"></i></a>
-                <span class="item-count">3</span> <!-- Số lượng hiển thị -->
+            <div class="main-detail">
+                <div class="cart-icon">
+                    <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang&&luachon=giohang" id="cart"><i class="fa-solid fa-cart-shopping" style="font-size:30px;"></i></a>
+                    <span class="item-count"><?php echo $count; ?></span> <!-- Số lượng hiển thị -->
+                    
+                </div>
+                <div class="details">
+                    <a href="#" id="history"><i class="fa-solid fa-list" style="font-size:30px;"></i></a>
+                </div>
             </div>
         </div>
         <div class="category-right">
@@ -68,6 +77,7 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
+                    <th>id</th>
                     <th>Hình ảnh</th>
                     <th>Tên Sản Phẩm</th>
                     <th>Giá nhập</th>
@@ -77,16 +87,26 @@
                 </tr>
             </thead>
             <tbody>
+                
                 <?php foreach ($products as $product): ?>
+                    <form action="\web2\CONTROLLER\NhapHangController.php" method="post" enctype="multipart/form-data">
                     <tr>
+                        <td>
+                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                            <?php echo $product['id']; ?>
+                        </td>
                         <td><img src="<?php echo $product['src']; ?>" alt="Product Image" class="product-image"></td>
                         <td><?php echo $product['tenSanPham']; ?></td>
                         <td><?php echo $product['giaNhap']; ?></td>
                         <td><?php echo $product['giaBan']; ?></td>
                         <td><?php echo $controller->quantityProduct($product['id']); ?></td>
-                        <td><button type="button" class="btn btn-success add-to-cart-btn">+</button></td>
+                        <td>
+                            <button type="submit" name="themgiohangnhap" class="btn btn-success add-to-cart-btn">+</button>
+                        </td>
                     </tr>
+                    </form>
                 <?php endforeach; ?>
+                
             </tbody>
         </table>
         </div>
