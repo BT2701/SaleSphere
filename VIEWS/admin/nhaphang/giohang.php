@@ -21,6 +21,16 @@
             justify-content: center;
             width: 100%;
         }
+        .product-image{
+            width: 100%;
+            max-width: 50px;
+            max-height: 50px;
+            border-radius: 20%;
+        }
+        .table-wrapper {
+            max-height: 60vh; /* Chiều cao cố định */
+            overflow-y: auto; /* Hiển thị thanh cuộn dọc khi bảng tràn ra ngoài */
+        }
 
         /* Đảm bảo container không bị nhảy lên khi màn hình nhỏ hơn */
         @media (max-width: 800px) {
@@ -33,66 +43,87 @@
 </head>
 
 <body>
+    <?php require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php';
+        require_once 'C:\xampp\htdocs\web2\CONTROLLER\NhapHangController.php'; 
+        $detailCartList=$nhapHangController->layDsGioHangNhap();
+        $tongThanhToan=0;
+        $idUser=2; /* ĐẶT TẠM GIÁ TRỊ USER */
+    ?>
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8">
                 <h2>Giỏ Hàng</h2>
+                <div class="table-wrapper">
                 <table class="table">
-                    <thead>
+                    <thead class="thead-dark">
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">Ảnh</th>
                             <th scope="col">Tên Sản Phẩm</th>
                             <th scope="col">Số Lượng</th>
                             <th scope="col">Giá</th>
                             <th scope="col">Thành Tiền</th>
-                            <th scope="col"></th>
+                            <th scope="col">Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach($detailCartList as $item){
+                                if($item['idUser']==$idUser) {?>
+                        <form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm">
                         <tr>
-                            <td>1</td>
-                            <td>Áo Polo</td>
+                            <td>
+                                <input type="hidden" name="product_id" value="<?php echo $item['idSanPham']; ?>">
+                                <input type="hidden" name="user_id" value="<?php echo $idUser; ?>">
+                                <?php echo $item['idSanPham']; ?>
+                            </td>
+                            <td><img src="<?php echo $controller->detailProduct($item['idSanPham'])['src']; ?>" alt="Product Image" class="product-image"></td>
+                            <td><?php echo $controller->detailProduct($item['idSanPham'])['tenSanPham']; ?></td>
                             <td>
                                 <div class="input-group">
-                                    <button class="btn btn-outline-secondary" type="button">-</button>
-                                    <input type="text" class="form-control" value="2">
-                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                    <button class="btn btn-outline-secondary" type="submit" name="minus">-</button>
+                                    <input type="text" class="form-control" id="soLuong" name="soLuong" value="<?php echo $item['soLuong']; ?>">
+                                    <button class="btn btn-outline-secondary" type="submit" name="plus">+</button>
                                 </div>
                             </td>
-                            <td>$20</td>
-                            <td>$40</td>
-                            <td><i class="fas fa-times text-danger"></i></td>
+                            <td><?php echo $controller->detailProduct($item['idSanPham'])['giaNhap']; ?></td>
+                            <?php $gianhap =  $controller->detailProduct($item['idSanPham'])['giaNhap'];
+                                $soluong= $item['soLuong'];
+                                $tongtien=$gianhap*$soluong;
+                                $tongThanhToan=$tongThanhToan+$tongtien;
+                            ?>
+                            <td><?php echo $tongtien; ?></td>
+                            <td><button type="submit" name="remove" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash fs-5"></i></button></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Quần Jean</td>
-                            <td>
-                                <div class="input-group">
-                                    <button class="btn btn-outline-secondary" type="button">-</button>
-                                    <input type="text" class="form-control" value="1">
-                                    <button class="btn btn-outline-secondary" type="button">+</button>
-                                </div>
-                            </td>
-                            <td>$30</td>
-                            <td>$30</td>
-                            <td><i class="fas fa-times text-danger"></i></td>
-                        </tr>
+                        </form>
+                        <?php }} ?>
                     </tbody>
                 </table>
+                </div>
             </div>
             
         </div>
         <div class="col-md-4">
-                <h3>Tổng thanh toán: $75</h3>
+                <h3>Tổng thanh toán: <?php echo $tongThanhToan; ?></h3>
 
                 <button class="btn btn-success">Thanh Toán</button>
-                <button class="btn btn-danger float-right">Đóng</button>
+                <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang"><button class="btn btn-danger float-right">Đóng</button></a>
             </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var inputSoLuong = document.getElementById('soLuong');
+            inputSoLuong.addEventListener("keyup", function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Ngăn chặn hành động mặc định của nút Enter
+                    document.getElementById('myForm').submit(); // Gửi form
+                }
+            });
+        });
+</script>
 </body>
 
 </html>

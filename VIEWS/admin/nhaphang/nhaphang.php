@@ -23,7 +23,8 @@
     <?php require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php';
         require_once 'C:\xampp\htdocs\web2\CONTROLLER\NhapHangController.php'; 
         $products = $controller->getList(PHP_INT_MAX);
-        $count=$nhapHangController->countGioHangNhap();
+        $idUser=2;  //ĐẶT TẠM GIÁ TRỊ USER
+        $count=$nhapHangController->countGioHangNhap($idUser);
     ?>
     <div class="container mt-5">
         <!-- Form for adding a new product -->

@@ -24,6 +24,25 @@ class NhapHangModel{
         $conn->close();
         return $result;
     }
+    public function laySoLuong($idSanPham, $idUser){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql="SELECT soLuong FROM giohangnhap WHERE idSanPham= '$idSanPham' and idUser= '$idUser' ";
+        $result = $conn->query($sql);
+        $total=0;
+        // Kiểm tra xem có kết quả nào không
+        if ($result->num_rows > 0) {
+            // Lặp qua từng dòng dữ liệu
+            while($row = $result->fetch_assoc()) {
+                $total= $row["soLuong"];
+            }
+        } 
+        
+        // Đóng kết nối
+        $conn->close();
+        return $total;
+    }
     public function capNhatSoLuong($idSanPham, $idUser, $soLuong){
         $this->getInstance();
         $db = new Database();
@@ -75,11 +94,11 @@ class NhapHangModel{
         return $result;
     }
 
-    public function countGioHangNhap(){
+    public function countGioHangNhap($idUser){
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
-        $sql="SELECT COUNT(*) as total FROM giohangnhap";
+        $sql="SELECT COUNT(*) as total FROM giohangnhap WHERE idUser= '$idUser'";
         $result = $conn->query($sql);
         $total=0;
         // Kiểm tra xem có kết quả nào không
@@ -104,7 +123,7 @@ class NhapHangModel{
 
 
 
-    // KHU VỰC XEM LỊCH SỬ MUA HÀNG
+    // KHU VỰC XEM LỊCH SỬ NHẬP HÀNG
 
     // KẾT THÚC LỊCH SỬ
 }
