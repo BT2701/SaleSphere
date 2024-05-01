@@ -305,6 +305,11 @@ class SanPhamController {
         $giaTriKhuyenMai = $sanPhamModel->getInfoDiscount($productID);
         return $giaTriKhuyenMai;
     }
+    public function GetAllProduct(){
+        $sanPhamModel = new SanPhamModel();
+        $Products = $sanPhamModel->GetALlProduct();
+        return $Products;
+    }
     // ---------------------DU---------------------
 
 }

@@ -92,6 +92,9 @@ class NhapHangController{
     public function layDsGioHangNhap(){
         return $this->nhapHangModel->layDsGioHangNhap();
     }
+    public function getNewestId(){
+        
+    }
     public function countGioHangNhap($idUser){
         return $this->nhapHangModel->countGioHangNhap($idUser);
     }

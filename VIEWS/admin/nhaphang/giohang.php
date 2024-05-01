@@ -105,7 +105,11 @@
         <div class="col-md-4">
                 <h3>Tổng thanh toán: <?php echo $tongThanhToan; ?></h3>
 
-                <button class="btn btn-success">Thanh Toán</button>
+                <form action="/web2/CONTROLLER/NhapHangController.php" method="post">
+                    <input type="hidden" name="user_id" value="<?php echo $idUser; ?>">
+                    <input type="hidden" name="tongThanhToan" value="<?php echo $tongThanhToan; ?>">
+                    <button type="submit" name="thanhToan" class="btn btn-success">Thanh Toán</button>
+                </form>
                 <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang"><button class="btn btn-danger float-right">Đóng</button></a>
             </div>
     </div>
