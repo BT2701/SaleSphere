@@ -7,57 +7,7 @@
     <title>Trang Giỏ Hàng</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        .container {
-            max-width: 100%; /* giới hạn chiều rộng của container */
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .row{
-            display: flex;
-            max-width: 100%;
-            justify-content: center;
-            width: 100%;
-        }
-        .product-image{
-            width: 100%;
-            max-width: 50px;
-            max-height: 50px;
-            border-radius: 20%;
-        }
-        .table-wrapper {
-            max-height: 60vh; /* Chiều cao cố định */
-            overflow-y: auto; /* Hiển thị thanh cuộn dọc khi bảng tràn ra ngoài */
-        }
-        .title-content{
-            max-width: 65%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-        }
-        .title-content a{
-            font-size: 30px;
-            color: red;
-        }
-        .title-content a i{
-            font-size: 30px;
-        }
-        .col-md-4{
-            max-width: 65%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* Đảm bảo container không bị nhảy lên khi màn hình nhỏ hơn */
-        @media (max-width: 800px) {
-            .container {
-                max-width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/web2/STATIC/css/phieunhaplist.css">
     <!-- Thêm icon của Font Awesome -->
 </head>
 
@@ -69,11 +19,11 @@
         $idUser=2; /* ĐẶT TẠM GIÁ TRỊ USER */
     ?>
     <div class="container mt-5">
-        <div class="title-content">
+        <div class="title-content" >
             <h2>Giỏ Hàng</h2>
             <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang"><i class="fa-solid fa-xmark"></i></a>
         </div>
-        <div class="row">
+        <div class="row" style="padding-top: 10px;padding-bottom: 10px; ">
             <div class="col-md-8">
                 <div class="table-wrapper">
                 <table class="table">
@@ -124,7 +74,7 @@
             </div>
             
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="border-top:1px solid gray; padding-top:5px;">
                 <h3>Tổng thanh toán: <?php echo $tongThanhToan; ?></h3>
 
                 <form action="/web2/CONTROLLER/NhapHangController.php" method="post">

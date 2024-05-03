@@ -152,11 +152,11 @@ class NhapHangModel{
         $conn->close();
         return $list;
     }
-    public function layDsChiTietPhieuNhap(){
+    public function layDsChiTietPhieuNhap($idPhieuNhap){
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
-        $sql ="SELECT * FROM chitietphieunhap";
+        $sql ="SELECT * FROM chitietphieunhap WHERE idPhieuNhap ='$idPhieuNhap'";
         $stmt=$conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();

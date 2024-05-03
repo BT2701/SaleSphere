@@ -103,6 +103,14 @@
                 echo "Failed";
             }
         }
+
+        // TRƯỞNG
+        public function getByID($id){
+            $this->getInstance();
+            $usermodel= new UserModel;
+            return $usermodel->getById($id);
+        }
+        // FINISH
     }
     $userController= new UserController();
     if(isset($_GET['controller'])&&$_GET['controller']=='sua'){

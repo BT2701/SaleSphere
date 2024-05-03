@@ -133,6 +133,18 @@ class NhapHangController{
             }
         }
     }
+    public function layDsPhieuNhap(){
+        return $this->nhapHangModel->layDanhSachPhieuNhap();
+    }
+    public function layDsChiTietPhieuNhap(){
+        $list=array();
+        if(isset($_POST['idPhieuNhap'])) {
+            // Lấy ID phiếu nhập từ yêu cầu AJAX
+            $idPhieuNhap = $_POST['idPhieuNhap'];
+            return $this->nhapHangModel->layDsChiTietPhieuNhap($idPhieuNhap);
+        }
+        return $list;
+    }
     // 2. END
 
     

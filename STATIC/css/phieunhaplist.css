@@ -1,0 +1,91 @@
+.container {
+    max-width: 100%;
+    /* giới hạn chiều rộng của container */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 20%;
+}
+
+.table-wrapper {
+    max-height: 60vh;
+    /* Chiều cao cố định */
+    overflow-y: auto;
+    /* Hiển thị thanh cuộn dọc khi bảng tràn ra ngoài */
+}
+
+.title-content {
+    max-width: 65%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+}
+
+.title-content a {
+    font-size: 30px;
+    color: red;
+}
+
+.title-content a i {
+    font-size: 30px;
+}
+
+.col-md-4 {
+    max-width: 65%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    width: 100%;
+    padding: 10px;
+}
+.search-by-thoigian{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 30%;
+    width: 100%;
+
+}
+.search-by-thoigian label{
+    margin-top: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.search-by-nhanvien{
+    display: block;
+}
+.type-selection{
+    padding-left: 10px;
+}
+
+
+/* Đảm bảo container không bị nhảy lên khi màn hình nhỏ hơn */
+@media (max-width: 800px) {
+    .container {
+        max-width: 100%;
+    }
+}
