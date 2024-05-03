@@ -92,13 +92,48 @@ class NhapHangController{
     public function layDsGioHangNhap(){
         return $this->nhapHangModel->layDsGioHangNhap();
     }
-    public function getNewestId(){
-        
-    }
+    
     public function countGioHangNhap($idUser){
         return $this->nhapHangModel->countGioHangNhap($idUser);
     }
     //END 1.
+
+
+    // 2. KHU VỰC TRUY VẤN VỚI PHIẾU NHẬP
+    public function getNewestIdPhieuNhap(){
+        $newestId=0;
+        foreach($this->nhapHangModel->layDanhSachPhieuNhap() as $phieuNhap){
+            if($phieuNhap['id']>$newestId){
+                $newestId=$phieuNhap['id'];
+            }
+        }
+        return $newestId+1;
+    }
+
+    public function xuLyThanhToan(){
+        if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['thanhToan'])){
+            $idUser=$_POST['user_id'];
+            $tongTien=$_POST['tongThanhToan'];
+            $currentDate = date("Y-m-d");
+            $idPhieuNhap=$this->getNewestIdPhieuNhap();
+            $resultPhieuNhap=$this->nhapHangModel->themPhieuNhap($idPhieuNhap,$currentDate,$idUser,$tongTien);
+            foreach($this->layDsGioHangNhap() as $item){
+                if($item['idUser']==$idUser){
+                    $resultDetail=$this->nhapHangModel->themChiTietPhieuNhap($idPhieuNhap,$item['idSanPham'],$item['soLuong']);
+                }
+            }
+            foreach($this->layDsGioHangNhap() as $item){
+                if($item['idUser']==$idUser){
+                    $resultCtKK=$this->nhapHangModel->themChiTietKiemKe($item['idSanPham'],$item['soLuong']);
+                }
+            }
+            $resultClear=$this->nhapHangModel->clearGioHangNhap();
+            if($resultPhieuNhap&&$resultClear){
+                echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang";</script>';
+            }
+        }
+    }
+    // 2. END
 
     
 }
@@ -106,4 +141,5 @@ $nhapHangController= new NhapHangController();
 $nhapHangController->themGioHangNhap();
 $nhapHangController->xoaDong();
 $nhapHangController->capNhatSoLuong();
+$nhapHangController->xuLyThanhToan();
 ?>

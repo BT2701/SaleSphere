@@ -119,20 +119,116 @@ class NhapHangModel{
 
     //2. KHU VỰC NHẬP HÀNG VÀ CHI TIẾT NHẬP HÀNG
     public function layDanhSachPhieuNhap(){
-
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql ="SELECT * FROM phieunhap";
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $list = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $list[] = $row;
+            }
+        }
+        $conn->close();
+        return $list;
+    }
+    public function layDsChiTietKiemKE(){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql ="SELECT * FROM chitietkiemke";
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $list = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $list[] = $row;
+            }
+        }
+        $conn->close();
+        return $list;
+    }
+    public function layDsChiTietPhieuNhap(){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql ="SELECT * FROM chitietphieunhap";
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $list = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $list[] = $row;
+            }
+        }
+        $conn->close();
+        return $list;
     }
     public function themPhieuNhap($id, $ngayNhap, $idUser, $tongTien){
-
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql="INSERT INTO phieunhap (id, ngayNhap, idUser, tongtien) VALUES (?,?,?,?) ";
+        $stmt=$conn->prepare($sql);
+        $date=$ngayNhap;
+        $stmt->bind_param("isii",$id,$date,$idUser,$tongTien);
+        $result=$stmt->execute();
+        $conn->close();
+        return $result;
     }
     public function themChiTietPhieuNhap($idPhieuNhap, $idSanPham, $soLuong){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql="INSERT INTO chitietphieunhap (idPhieuNhap, idSanPham, soLuong) VALUES (?,?,?) ";
+        $stmt=$conn->prepare($sql);
+        $stmt->bind_param("iii", $idPhieuNhap, $idSanPham, $soLuong);
+        $result=$stmt->execute();
 
+        $conn->close();
+        return $result;
     }
-    public function themKiemKe($id, $ngayKiem){
+    
 
-    }
-    public function themChiTietKiemKe($idKiemKe, $idSanPham, $soLuongTonKho){
+    public function themChiTietKiemKe($idSanPham, $soLuongTonKho){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        foreach($this->layDsChiTietKiemKE() as $item){
+            if($item['idSanPham']==$idSanPham){
+                $sl=$item['soLuongTonKho'] + $soLuongTonKho;
+                $result=$this->capNhatSoLuongChiTietKiemKe($idSanPham, $sl);
+                return $result;
+            }
+        }
+        $sql="INSERT INTO chitietkiemke (idSanPham, soLuongTonKho) VALUES (?,?) ";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii",$idSanPham, $soLuongTonKho);
+        $result=$stmt->execute();
 
+
+        $conn->close();
+        return $result;
     }
+    public function capNhatSoLuongChiTietKiemKe( $idSanPham, $soLuong){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql="UPDATE chitietkiemke SET soLuongTonKho=? WHERE idSanPham=? ";
+        $stmt= $conn->prepare($sql);
+        $stmt->bind_param("ii",$soLuong, $idSanPham);
+        $result=$stmt->execute();
+
+        $conn->close();
+        return $result;
+    }
+
+    
     //2. KẾT THÚC NHẬP HÀNG
 
 
