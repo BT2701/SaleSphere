@@ -89,5 +89,26 @@
             $conn->close();
             return $quyenList;
         }
+
+
+        // TRƯỞNG
+        public function getById($id){
+            $this->getInstance();
+            $db=new Database();
+            $conn=$db->getConnection();
+            $sql="SELECT * FROM users WHERE id = ?";
+            $stmt=$conn->prepare($sql);
+            $stmt->bind_param("i",$id);
+            $stmt->execute();
+            $result=$stmt->get_result();
+            $user=null;
+            if($result->num_rows>0){
+                while($row = $result->fetch_assoc()){
+                    $user=$row;
+                }
+            }
+            $conn->close();
+            return $user;
+        }
     }
 ?>

@@ -203,6 +203,23 @@ class SanPhamModel {
         $conn->close();
         return $sanphamList;
     }
+    public function getById($id){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql="SELECT * FROM sanpham WHERE id =?";
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        $result=$stmt->get_result();
+        $item=null;
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $item = $row;
+            }
+        }
+        $conn->close();
+        return $item;
+    }
     public function getListSPNoiBac(){
         $this->getInstance();
         $db = new Database();

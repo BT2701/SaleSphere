@@ -165,7 +165,9 @@ class SanPhamController {
             }
         }
     }
-    
+    public function getById($id){
+        return $this->sanphamModel->getById($id);
+    }
     public function deleteProduct(){
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
             if(isset($_POST['product_id'])) {

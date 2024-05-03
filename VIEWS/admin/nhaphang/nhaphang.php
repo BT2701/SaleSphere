@@ -15,6 +15,9 @@
         if(isset($_GET['luachon'])&&$_GET['luachon']=='giohang'){
             include 'giohang.php';
         }
+        else if(isset($_GET['luachon'])&&$_GET['luachon']=='nhaphang-list'){
+            include 'PhieuNhapList.php';
+        }
         else{
 
         
@@ -39,7 +42,7 @@
                     
                 </div>
                 <div class="details">
-                    <a href="#" id="history"><i class="fa-solid fa-list" style="font-size:30px;"></i></a>
+                    <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang&&luachon=nhaphang-list" id="history"><i class="fa-solid fa-list" style="font-size:30px;"></i></a>
                 </div>
             </div>
         </div>
