@@ -31,6 +31,25 @@
             max-height: 60vh; /* Chiều cao cố định */
             overflow-y: auto; /* Hiển thị thanh cuộn dọc khi bảng tràn ra ngoài */
         }
+        .title-content{
+            max-width: 65%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .title-content a{
+            font-size: 30px;
+            color: red;
+        }
+        .title-content a i{
+            font-size: 30px;
+        }
+        .col-md-4{
+            max-width: 65%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
 
         /* Đảm bảo container không bị nhảy lên khi màn hình nhỏ hơn */
         @media (max-width: 800px) {
@@ -50,9 +69,12 @@
         $idUser=2; /* ĐẶT TẠM GIÁ TRỊ USER */
     ?>
     <div class="container mt-5">
+        <div class="title-content">
+            <h2>Giỏ Hàng</h2>
+            <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang"><i class="fa-solid fa-xmark"></i></a>
+        </div>
         <div class="row">
             <div class="col-md-8">
-                <h2>Giỏ Hàng</h2>
                 <div class="table-wrapper">
                 <table class="table">
                     <thead class="thead-dark">
@@ -110,8 +132,9 @@
                     <input type="hidden" name="tongThanhToan" value="<?php echo $tongThanhToan; ?>">
                     <button type="submit" name="thanhToan" class="btn btn-success">Thanh Toán</button>
                 </form>
-                <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang"><button class="btn btn-danger float-right">Đóng</button></a>
+                
             </div>
+            
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
