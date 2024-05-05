@@ -1,12 +1,12 @@
 <?php
-require_once 'C:\xampp\htdocs\web2\CONTROLLER\DanhGiaController.test.php';
-require_once 'C:\xampp\htdocs\web2\CONTROLLER\GioHangController.test.php';
-require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.test.php';
+require_once __DIR__.'\DanhGiaController.test.php';
+require_once __DIR__.'\GioHangController.test.php';
+require_once __DIR__.'\SanPhamController.test.php';
 
 function index($idSanPham)
 {
     $detailProduct = getDetailProduct($idSanPham,1);
-    require_once 'C:\xampp\htdocs\web2\VIEWS\productdetail\product-detail.test.php';
+    require_once __DIR__.'\..\VIEWS\productdetail\product-detail.test.php';
 }
 
 

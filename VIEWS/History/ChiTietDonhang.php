@@ -29,7 +29,8 @@
         $(document).ready(function() {
         var customerId=<?php echo $_POST['idkhachhang']?>;
         var iddonhang=<?php echo $_POST['iddonhang']?>;
-        FirstLoad(customerId,iddonhang);
+        var trangthai=<?php echo $_POST['trangthai']?>;
+        FirstLoad(customerId,iddonhang,trangthai);
         });
     </script>
 

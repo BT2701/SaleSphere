@@ -1,9 +1,9 @@
 <?php 
-require_once 'C:\xampp\htdocs\web2\CONTROLLER\LoaiSPController.php';
+require_once __DIR__.'\..\..\..\CONTROLLER\LoaiSPController.php';
 $categoryController = new LoaiSPController();
 $categoryList = $categoryController->getCategoryList();
 
-require_once 'C:\xampp\htdocs\web2\CONTROLLER\DonViTinhController.php';
+require_once __DIR__.'\..\..\..\CONTROLLER\DonViTinhController.php';
 $dvt = new DonViTinhController();
 $dvtlist = $dvt->getList();
 ?>

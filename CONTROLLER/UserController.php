@@ -2,7 +2,7 @@
     class UserController{
         public function getInstance()
         {
-            require_once 'C:\xampp\htdocs\web2\MODEL\UserModel.php';
+            require_once __DIR__.'\..\MODEL\UserModel.php';
         }
         public function getDataForView(){
                 $this->getInstance();

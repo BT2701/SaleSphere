@@ -4,7 +4,7 @@ class SanPhamController {
     public $sanphamModel;
     private $soLuongSanPham;
     public function __construct() {
-        require_once 'C:\xampp\htdocs\web2\MODEL\SanPhamModel.php';
+        require_once __DIR__.'\..\MODEL\SanPhamModel.php';
         $this->sanphamModel = new SanPhamModel();
     }
 

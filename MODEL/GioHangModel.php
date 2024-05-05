@@ -3,7 +3,7 @@ class GioHangModel
 {
     public function getInstance()
     {
-        require_once 'C:\xampp\htdocs\web2\MODEL\Database.php';
+        require_once __DIR__.'\..\MODEL\Database.php';
         $db = new Database();
         $conn = $db->getConnection();
         return $conn;

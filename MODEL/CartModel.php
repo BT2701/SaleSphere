@@ -3,7 +3,7 @@
 class CartModel{
     
     public function getInstance(){
-        require_once 'C:\xampp\htdocs\web2\MODEL\Database.php';
+        require_once __DIR__.'\..\MODEL\Database.php';
     }
 
     public function getCartList($userid){

@@ -1,5 +1,5 @@
 <?php
-    require_once 'C:\xampp\htdocs\web2\CONTROLLER\ProfileController.php';
+    require_once __DIR__.'\..\..\CONTROLLER\ProfileController.php';
     $profileController= new ProfileController();
     $user="";
     if(isset($_SESSION['login_name'])&&$_SESSION['login_name']!="")

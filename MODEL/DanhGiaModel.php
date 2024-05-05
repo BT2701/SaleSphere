@@ -2,7 +2,7 @@
 class DanhGiaModel{
     public function getInstance()
     {
-        require_once 'C:\xampp\htdocs\web2\MODEL\Database.php';
+        require_once __DIR__.'\..\MODEL\Database.php';
     }
 
     //LẤY TOÀN BỘ THÔNG TN ĐÁNH GIÁ CỦA CÁC KHÁCH HÀNG ĐỐI VỚI SẢN PHẨM

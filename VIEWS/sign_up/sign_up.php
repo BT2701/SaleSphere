@@ -3,7 +3,7 @@
     session_regenerate_id(true);
     require 'C:\xampp\htdocs\web2\MODEL\Database.php';
     require_once 'google-api/vendor/autoload.php';
-    require_once 'C:\xampp\htdocs\web2\CONTROLLER\ProfileController.php';
+    require_once __DIR__.'\..\..\CONTROLLER\ProfileController.php';
     $profileController= new ProfileController();
     $client= new Google_Client();
     $client->setClientId('738185340571-n1nhvd916p7boq245k5bubcol4tbksg9.apps.googleusercontent.com');

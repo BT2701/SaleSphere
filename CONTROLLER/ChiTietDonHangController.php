@@ -36,7 +36,7 @@ class ChiTietDonHangController {
     // Function để lấy lịch sử đơn hàng
     public function LayChiTietDonHang($CustomerID,$page,$limit,$IDDonHang) {
         // Gọi hàm từ Model để lấy lịch sử đơn hàng
-        require_once 'C:\xampp\htdocs\web2\MODEL\ChiTietDonHangModel.php';
+        require_once __DIR__.'\..\MODEL\ChiTietDonHangModel.php';
         $ChiTietDonHangModel = new ChiTietDonHangModel();
         // Tính toán offset
         $offset = ($page - 1) * $limit;
@@ -47,7 +47,7 @@ class ChiTietDonHangController {
         return $result;
     }
     public function CheckEvaluate($idKhachHang,$idHoaDon,$idSanPham){
-        require_once 'C:\xampp\htdocs\web2\MODEL\ChiTietDonHangModel.php';
+        require_once __DIR__.'\..\MODEL\ChiTietDonHangModel.php';
         $ChiTietDonHangModel = new ChiTietDonHangModel();
         return  $ChiTietDonHangModel->CheckEvaluate($idKhachHang,$idHoaDon,$idSanPham);        
       }

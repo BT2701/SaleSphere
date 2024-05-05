@@ -74,7 +74,7 @@ class InvoiceManagementController
 {
     public function getInstance()
     {
-        require_once 'C:\xampp\htdocs\web2\MODEL\InvoiceManagementModel.php';
+        require_once __DIR__.'\..\MODEL\InvoiceManagementModel.php';
     }
     public function checkAll()
     {

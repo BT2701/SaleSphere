@@ -1,7 +1,7 @@
 <?php
     class evaluateModel{
         public function getInstance(){
-            require_once 'C:\xampp\htdocs\web2\MODEL\Database.php';
+            require_once __DIR__.'\..\MODEL\Database.php';
         }
         function GetSanPhamDanhGia($id){
             $this->getInstance();

@@ -1,5 +1,5 @@
 <?php
-    require_once 'C:\xampp\htdocs\web2\MODEL\ProfileModel.php';
+    require_once __DIR__.'\..\MODEL\ProfileModel.php';
     $profileModel = new ProfileModel();
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id1=$_POST['IdProfile'];

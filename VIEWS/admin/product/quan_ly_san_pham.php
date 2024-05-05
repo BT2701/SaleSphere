@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <?php require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php'; 
+    <?php require_once __DIR__.'\..\..\..\CONTROLLER\SanPhamController.php'; 
     $sanphamList = $controller->getList(PHP_INT_MAX);?>
     <style>
         /* CSS cho đánh giá sao */

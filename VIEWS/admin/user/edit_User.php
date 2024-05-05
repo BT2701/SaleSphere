@@ -1,5 +1,5 @@
 <?php
-    require_once 'C:\xampp\htdocs\web2\CONTROLLER\UserController.php';
+    require_once __DIR__.'\..\..\..\CONTROLLER\UserController.php';
     $userController= new UserController();
     $userListDetail=$userController->getList();
     $QuyenList2= $userController->getListTenQuyen();
