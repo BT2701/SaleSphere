@@ -1,0 +1,127 @@
+.headerThongKe{
+     display: flex; 
+     border-bottom: 2px solid black;
+}
+.twoheaderBox{
+    display: flex;
+    width: 50%;
+}
+.headderBox{
+    width: 50%;
+    height: 15vh;
+    background-color: aliceblue;
+    margin: 2% 5% 2% 5%;
+    border-radius: 5px;
+    border: 2px solid; /* Kết hợp khai báo đường viền */
+    display: flex;
+}
+.leftheaderBox{
+    width: 40%;
+    height: 100%;
+}
+.rightheaderBox{
+    padding-left: 3%;
+    padding-top: 3%;
+    font-size: 20px;
+}
+.container-chart{
+    display: flex;
+}
+.chart{
+    width: 100%;
+    height:70vh;
+}
+.comboboxMonthYear{
+    display: flex;
+    margin: 0 0% 0% 15%;
+}
+.select{
+    margin-left: 5%;
+    display: flex;
+}
+.selectLoaisanpham{
+    font-size: 20px; width: 20%;
+}
+
+
+@media only screen and (max-width: 900px) {
+    .headderBox{
+        width: 40%;
+        height: 15vh;
+        background-color: aliceblue;
+        margin: 2% 5% 2% 5%;
+        border-radius: 5px;
+        border: 2px;
+        border-style: solid;
+        display: flex;
+    }
+    .headerThongKe{
+        display: block;
+    }
+    .container-chart{
+        display: block;
+    }
+    .chart{
+        width: 100%;
+        height: 100%;
+    }
+    .comboboxMonthYear{
+        display: flex;
+    }
+    .twoheaderBox{
+        width: 100%;
+        display: flex;
+    }
+    .comboboxMonthYear{
+        display: flex;
+        margin: 0 0 0 0;
+    }
+    .selectLoaisanpham{
+        font-size: 20px; width: 50%;
+        
+    }
+
+  }
+  
+@media only screen and (max-width: 526px) {
+    .headderBox{
+        width: 90%;
+        height: 15vh;
+        background-color: aliceblue;
+        margin: 2% 5% 2% 5%;
+        border-radius: 5px;
+        border: 2px;
+        border-style: solid;
+        display: flex;
+    }
+    .headerThongKe{
+        display: block;
+    }
+    .container-chart{
+        display: block;
+    }
+    .chart{
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+    .comboboxMonthYear{
+        display: block;
+        margin: auto;
+    }
+    .twoheaderBox{
+        width: 100%;
+        display: block;
+    }
+    .comboboxMonthYear{
+        display: block;
+        margin-top: 2%;
+    }
+    .select{
+        margin-top: 2%;
+    }
+    .selectLoaisanpham{
+        font-size: 20px; width: 80%;
+    }
+
+  }

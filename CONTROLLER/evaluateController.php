@@ -4,7 +4,7 @@
 
 class evaluateController {
     public function getInstance(){
-        require_once 'C:\xampp\htdocs\web2\MODEL\evaluateModel.php';
+        require_once __DIR__.'\..\MODEL\evaluateModel.php';
     }
     public function GetSanPhamDanhGia($idProduct) {
         $this->getInstance();
@@ -28,6 +28,7 @@ class evaluateController {
                 echo '<form id="redirectForm" action="../History/ChiTietDonHang.php" method="POST">';
                 echo '<input type="hidden" name="idkhachhang" value="' . $idKhachHang . '">';
                 echo '<input type="hidden" name="iddonhang" value="' . $idHoaDon . '">';
+                echo '<input type="hidden" name="trangthai" value="3">';
                 echo '</form>';
                 echo '<script>document.getElementById("redirectForm").submit();</script>';
                 exit(); // Kết thúc kịch bản để ngăn việc thực hiện các mã khác

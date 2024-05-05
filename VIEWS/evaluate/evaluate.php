@@ -17,9 +17,9 @@
         }
     </style>
 </head>
-<body style="">
+<body>
     <?php
-        require_once 'C:\xampp\htdocs\web2\CONTROLLER\evaluateController.php';
+        require_once __DIR__.'\..\..\CONTROLLER\evaluateController.php';
         $evaluateController =new evaluateController();
         $idSanPham=$_POST['idsanpham'];
         $idKhachHang=$_POST['idkhachhang'];

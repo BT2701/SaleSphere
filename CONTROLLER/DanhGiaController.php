@@ -1,6 +1,6 @@
 <?php
 // include '/web2/MODEL/DanhGiaModel.php';
-require_once 'C:\xampp\htdocs\web2\MODEL\DanhGiaModel.php';
+require_once __DIR__.'\..\MODEL\DanhGiaModel.php';
 
 if(isset($_POST['action']) && $_POST['action']=='LoadDanhGia'){
     $danhGiaModel = new DanhGiaModel();

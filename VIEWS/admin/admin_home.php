@@ -48,6 +48,9 @@
         else if($page=='quanLyKhuyenMai'){
             include '../../ROUTES/KhuyenMaiRoutes.php';
         }
+        else if($page=='thongKe'){
+            include 'ThongKe/ThongKe.php';
+        }
         
         
     } else {

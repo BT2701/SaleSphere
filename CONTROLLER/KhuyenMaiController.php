@@ -1,11 +1,11 @@
 <?php
 // class KhuyenMaiController{
-require_once 'C:\xampp\htdocs\web2\MODEL\KhuyenMaiModel.php';
-require_once 'C:\xampp\htdocs\web2\MODEL\SanPhamModel.php';
+require_once __DIR__.'\..\MODEL\KhuyenMaiModel.php';
+require_once __DIR__.'\..\MODEL\SanPhamModel.php';
 function index()
 {
     $coupondList = DanhSachKhuyenMaiModel();
-    require_once 'C:\xampp\htdocs\web2\VIEWS\admin\coupond\quanlykhuyenmai.php';
+    require_once __DIR__.'\..\VIEWS\admin\coupond\quanlykhuyenmai.php';
 }
 
 

@@ -1,5 +1,5 @@
 <?php
-        require_once 'C:\xampp\htdocs\web2\CONTROLLER\PhanQuyenController.php';
+        require_once __DIR__.'\..\..\..\CONTROLLER\PhanQuyenController.php';
         $phanquyenController= new PhanQuyenController();
         $phanquyenListDetail=$phanquyenController->getList();
         $phanquyenListChucnang=$phanquyenController->getListChucNang();

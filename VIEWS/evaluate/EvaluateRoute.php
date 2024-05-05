@@ -1,6 +1,6 @@
 <?php 
 
-require_once 'C:\xampp\htdocs\web2\CONTROLLER\evaluateController.php';
+require_once __DIR__.'\..\..\CONTROLLER\evaluateController.php';
 
 $action = isset($_POST['act']) ? $_POST['act'] : '';
 echo "vaooo";

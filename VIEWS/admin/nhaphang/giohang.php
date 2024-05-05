@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    <?php require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php';
-        require_once 'C:\xampp\htdocs\web2\CONTROLLER\NhapHangController.php'; 
+    <?php require_once __DIR__.'\..\..\..\CONTROLLER\SanPhamController.php';
+        require_once __DIR__.'\..\..\..\CONTROLLER\NhapHangController.php'; 
         $detailCartList=$nhapHangController->layDsGioHangNhap();
         $tongThanhToan=0;
         $idUser=2; /* ĐẶT TẠM GIÁ TRỊ USER */

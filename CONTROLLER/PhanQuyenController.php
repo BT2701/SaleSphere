@@ -1,7 +1,7 @@
 <?php
     class PhanQuyenController{
         public function getInstance(){
-            require_once 'C:\xampp\htdocs\web2\MODEL\PhanQuyenModel.php';
+            require_once __DIR__.'\..\MODEL\PhanQuyenModel.php';
         }
         public function getList(){
             $id=$_GET['id'];
@@ -46,7 +46,7 @@
     //$phanquyenController = new PhanQuyenController();
     if(isset($_GET['controller'])&&$_GET['controller']=='sua'){
     $id=$_POST['phanloai'];
-    require_once 'C:\xampp\htdocs\web2\MODEL\PhanQuyenModel.php';
+    require_once __DIR__.'\..\MODEL\PhanQuyenModel.php';
     $phanquyenModel = new PhanQuyenModel();
     $phanquyenController= new PhanQuyenController();
     $phanquyenList=$phanquyenController->getListChucNang();
@@ -68,7 +68,7 @@
     }
     if(isset($_GET['controller'])&&$_GET['controller']=='them'){
         $username=$_POST['username'];
-        require_once 'C:\xampp\htdocs\web2\MODEL\PhanQuyenModel.php';
+        require_once __DIR__.'\..\MODEL\PhanQuyenModel.php';
         $phanquyenModel = new PhanQuyenModel();
         $result= $phanquyenModel->insesrtQuyen($username);
         if($result){
@@ -80,7 +80,7 @@
         $phanquyenController= new PhanQuyenController();
         $phanquyenList=$phanquyenController->getListChucNang();
         
-        require_once 'C:\xampp\htdocs\web2\MODEL\PhanQuyenModel.php';
+        require_once __DIR__.'\..\MODEL\PhanQuyenModel.php';
         $phanquyenModel= new  PhanQuyenModel();
         $phanquyenModel->updateTenQuyenById($_GET['id'],$username);
         if(isset($phanquyenList)&&!empty($phanquyenList))

@@ -23,7 +23,7 @@
 
   <?php
     $userid = 1;
-    require_once 'C:\xampp\htdocs\web2\CONTROLLER\CartController.php';
+    require_once __DIR__.'\..\..\CONTROLLER\CartController.php';
     $cartController=new CartController();
     $cartList= $cartController->getCartList($userid);
   ?>

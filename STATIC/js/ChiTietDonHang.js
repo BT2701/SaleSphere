@@ -5,13 +5,13 @@ var endPage = false; // Biến để kiểm tra xem đã tải hết tất cả 
 var customerID;
 var IDDonHang;
 var IDSanPham;
-function FirstLoad(CustomerID,idDonHang){
+function FirstLoad(CustomerID,idDonHang,trangthai){
     customerID=CustomerID;
     IDDonHang=idDonHang;
-    LoadThongTinDonHang(customerID,idDonHang);
+    LoadThongTinDonHang(customerID,idDonHang,trangthai);
 }
     // Sự kiện cuộn trang
-function LoadThongTinDonHang(CustomerID,idDonHang) {
+function LoadThongTinDonHang(CustomerID,idDonHang,trangthai) {
     customerID=CustomerID;
     IDDonHang=idDonHang;
     if (!isLoading && endPage==false) {
@@ -27,7 +27,7 @@ function LoadThongTinDonHang(CustomerID,idDonHang) {
                 }
                 if (response.length > 0 ) {
                     page++; // Tăng số trang sau mỗi lần tải dữ liệu
-                    displayOrders(response);
+                    displayOrders(response,trangthai);
                     isLoading = false;
                 } else {
                     endPage = true; // Đánh dấu là đã tải hết tất cả các trang dữ liệu
@@ -47,27 +47,27 @@ function formatPrice(price) {
 }
 
 
-function displayOrders(orders) {
+function displayOrders(orders,trangthai) {
     if (orders.length > 0) {
         // Xóa sự kiện click trước khi đính kèm sự kiện mới
         $('#ChiTietDonHang').off('click', '.view-details');
 
         orders.forEach(function(order) {
             IDSanPham=order.id;
-            checkIfEvaluated(customerID, IDDonHang, IDSanPham); // Kiểm tra và hiển thị/ẩn button
-            var viewButton;
+            if(trangthai==3){
+                checkIfEvaluated(customerID, IDDonHang, IDSanPham); // Kiểm tra và hiển thị/ẩn button
+            }
             var orderItem = $('<div class="col-md-12 order-item">' +
                 '<div class="d-flex">' +
                 '<img src="' + order.src + '" alt="Product Image" class="imageProduct">' +
                 '<div class="d-flex" style="width:90%;">' +
                 '<div class="product-name w-80">' + order.tenSanPham + '</div>' +
-                // '<div class="product-price">' + formatPrice(order.giaBan) + '</div>' +
                 '</div>' +
                 '</div>' +
                 '<div>' +
-                '<p class=" text-end" style="color: #c70039;  font-size: 20px;">' + formatPrice(order.giaBan) + '</p>' +
+                '<p class=" text-end " style="color: #c70039;  font-size: 20px; ">' + formatPrice(order.giaBan) + '</p>' +
                 '<p class="fw-bold text-center ">Số Lượng: ' + order.soLuong + '</p>' +
-                '<button class="btn btn-primary float-end view-details" type="button" data-idkhachhang=' + customerID + '" data-iddonhang="' + IDDonHang +'" data-idsanpham="' + order.id+ '">Đánh Giá Sản Phẩm</button>' +
+                '<button class="btn btn-primary float-end view-details" style="display: none;" type="button" data-idkhachhang=' + customerID + '" data-iddonhang="' + IDDonHang +'" data-idsanpham="' + order.id+ '">Đánh Giá Sản Phẩm</button>' +
                 '<p class="label-success text-end fw-bold" data-idsanpham="' + order.id + '" style="display: none;">Đã đánh giá</p>' +
                 '</div>' +
                 '</div>');
@@ -75,7 +75,6 @@ function displayOrders(orders) {
             $('#ChiTietDonHang').append(orderItem);
         });
 
-        // Đính kèm sự kiện click một lần cho mỗi nút "Xem chi tiết"
         $('.view-details').click(function() {
             var idKhachHang = $(this).data('idkhachhang');
             var idDonHang = $(this).data('iddonhang');
@@ -114,7 +113,6 @@ function checkIfEvaluated(CustomerID, idDonHang, idSanPham) {
                 $('.view-details[data-idsanpham="' + idSanPham + '"]').show(); // Hiển thị nút
                 $('.label-success[data-idsanpham="' + idSanPham + '"]').hide(); // Ẩn label
             }
-            
         },
         error: function(xhr, status, error) {
             console.error('Lỗi khi gửi yêu cầu:', error);

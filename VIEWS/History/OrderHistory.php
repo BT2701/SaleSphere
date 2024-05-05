@@ -26,8 +26,8 @@
     <script>
         $(document).ready(function() {
         var customerId=<?php echo $_POST['customerId']?>;
-        FirstLoad(customerId);
-        });
+        FirstLoad(customerId);      
+    });
     </script>
 
     

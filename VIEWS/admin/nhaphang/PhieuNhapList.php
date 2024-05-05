@@ -9,8 +9,8 @@
 </head>
 <body>
 <?php 
-        require_once 'C:\xampp\htdocs\web2\CONTROLLER\NhapHangController.php'; 
-        require_once 'C:\xampp\htdocs\web2\CONTROLLER\UserConTroller.php'; 
+        require_once __DIR__.'\..\..\..\CONTROLLER\NhapHangController.php'; 
+        require_once __DIR__.'\..\..\..\CONTROLLER\UserConTroller.php'; 
         $list=$nhapHangController->layDsPhieuNhap();
         include 'phieunhap_detail.php';
     ?>

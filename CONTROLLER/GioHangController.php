@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\xampp\htdocs\web2\MODEL\GioHangModel.php';
-require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php';
+require_once __DIR__.'\..\MODEL\GioHangModel.php';
+require_once __DIR__.'\..\..\CONTROLLER\SanPhamController.php';
 function AddProductToCartController($idSanPham,$idUser,$soLuongThem){
     $gioHangModel = new GioHangModel();
     $statusAddProduct = $gioHangModel->addProductToCart($idSanPham,$idUser,$soLuongThem);

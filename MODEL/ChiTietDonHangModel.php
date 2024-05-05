@@ -4,7 +4,7 @@
 class ChiTietDonHangModel {
 
     public function getInstance(){
-        require_once 'C:\xampp\htdocs\web2\MODEL\Database.php';
+        require_once __DIR__.'\..\MODEL\Database.php';
     }
 
     public function LayChiTietDonHang($customerId, $offset, $limit,$IDDonhang) {//offset là vị trí dữ liệu bắt đầu lấy limit là số lượng sữ liệu

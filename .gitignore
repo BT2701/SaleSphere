@@ -1,2 +1,4 @@
 *.7zip
 *.zip
+
+vendor/phpmailer/phpmailer

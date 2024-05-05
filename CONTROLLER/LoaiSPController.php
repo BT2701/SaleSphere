@@ -1,7 +1,7 @@
 <?php
 class LoaiSPController{
     public function getInstance(){
-        require_once 'C:\xampp\htdocs\web2\MODEL\LoaiSPModel.php';
+        require_once __DIR__.'\..\MODEL\LoaiSPModel.php';
     }
     public function getCategoryList(){
         $this->getInstance();

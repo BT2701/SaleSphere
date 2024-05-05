@@ -16,8 +16,6 @@
 
 .clicked {
     color: yellow; /* Màu của ngoi sao khi được nhấn */
-    
-
 }
 
 .clicked::before {

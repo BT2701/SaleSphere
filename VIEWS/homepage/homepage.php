@@ -10,7 +10,7 @@
 
 <body>
 <?php
-    require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php';
+    require_once __DIR__.'\..\..\CONTROLLER\SanPhamController.php';
     $sanphamController = new SanPhamController();
     $sanphamList = $sanphamController->getDataForView();
     $sanphamListnoibac = $sanphamController->getDataForViewNoiBac();

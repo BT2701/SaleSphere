@@ -1,9 +1,9 @@
 <?php
     session_start();
     session_regenerate_id(true);
-     require_once 'C:\xampp\htdocs\web2\MODEL\Database.php';
+     require_once __DIR__.'\..\MODEL\Database.php';
      require_once 'Facebook/autoload.php';
-     require_once 'C:\xampp\htdocs\web2\CONTROLLER\ProfileController.php';
+     require_once __DIR__.'\..\..\CONTROLLER\ProfileController.php';
     $profileController= new ProfileController();
      $FBOject = new \Facebook\Facebook([
          'app_id' =>'827729482526836',

@@ -57,25 +57,44 @@ function formatPrice(price) {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
 }
 
+function formatTrangThai(trangthai) {
+    switch (trangthai){
+        case '1':
+            return "<span style='color: black;'>Đã đặt hàng</span>"
+        case '2':
+            return "<span style='color: orange;'>Đang giao hàng</span>"
+        case '3':
+            return "<span style='color: green;'>Đã nhận hàng</span>"
+        case '4':
+            return "<span style='color: red;'>Đã Hủy</span>";
+
+    }
+}
+
 function displayOrders(orders) {
+    var ButtonDanhanduochang='';
     if (orders.length > 0) {
         // Xóa sự kiện click trước khi đính kèm sự kiện mới
         $('#orderHistory').off('click', '.view-details');
 
         orders.forEach(function(order) {
+            if(order.trangThai==2){
+                ButtonDanhanduochang='<button class="btn btn-success float-end view-details me-2" type="button"data-action="received" data-idkhachhang=' + order.idKhachHang + '" data-iddonhang="' + order.id +'">Đã nhận được hàng</button>' ;
+            }
+            else ButtonDanhanduochang='';
             var orderItem = $('<div class="col-md-12 order-item">' +
                 '<div class="d-flex">' +
                 '<img src="' + order.src + '" alt="Product Image" class="imageProduct">' +
                 '<div class="d-flex" style="width:90%;">' +
                 '<div class="product-name w-80">' + order.tenSanPham + '</div>' +
-                // '<div class="product-price">' + formatPrice(order.giaBan) + '</div>' +
                 '</div>' +
                 '</div>' +
                 '<div>' +
-                '<p class="fw-bold text-center ">Trạng thái: ' + order.trangThai + '</p>' +
-                '<p class="fw-bold text-end" style="color: #c70039; font-size: larger;">Thành tiền: ' + formatPrice(order.tongTien) + '</p>' +
-                '<p class="fw-bold text-end">MAHOADON: ' + order.id + '</p>' +
-                '<button class="btn btn-primary float-end view-details" type="button" data-idkhachhang=' + order.idKhachHang + '" data-iddonhang="' + order.id + '">Xem chi tiết</button>' +
+                '<p class="fw-bold text-center " style="border: 1px solid rgb(228, 227, 227);">Trạng thái: ' + formatTrangThai(order.trangThai) + '</p>' +
+                '<p class="fw-bold text-end" style="font-size: larger;">Thành tiền: ' +'<span style="color: red;">'+formatPrice(order.tongTien)+'</span></p>' +
+                '<p class="fw-bold text-end">Mã đơn hàng: ' + order.id + '</p>' +
+                '<button class="btn btn-primary float-end view-details" type="button" data-action="view" data-idkhachhang=' + order.idKhachHang + '" data-iddonhang="' + order.id +'" data-trangthaidonhang="' + order.trangThai + '">Xem chi tiết</button>' +
+                ButtonDanhanduochang+
                 '</div>' +
                 '</div>');
 
@@ -84,19 +103,66 @@ function displayOrders(orders) {
 
         // Đính kèm sự kiện click một lần cho mỗi nút "Xem chi tiết"
         $('.view-details').click(function() {
-            var idKhachHang = $(this).data('idkhachhang');
-            var idDonHang = $(this).data('iddonhang');
+            var action=$(this).data('action');
 
-            var form = $('<form action="ChiTietDonHang.php" method="post">' +
-            '<input type="hidden" name="idkhachhang" value="' + idKhachHang + '">' +
-            '<input type="hidden" name="iddonhang" value="' + idDonHang + '">' +
-            '</form>');
+            switch (action) {
+                case 'view':
+                    // Xử lý khi nút "Xem chi tiết" được nhấn
+                    var idKhachHang = $(this).data('idkhachhang');
+                    var idDonHang = $(this).data('iddonhang');
+                    var TrangThai = $(this).data('trangthaidonhang');
 
-            $('body').append(form);
-            form.submit();
+                    var form = $('<form action="ChiTietDonHang.php" method="post">' +
+                    '<input type="hidden" name="idkhachhang" value="' + idKhachHang + '">' +
+                    '<input type="hidden" name="iddonhang" value="' + idDonHang + '">' +
+                    '<input type="hidden" name="trangthai" value="' + TrangThai + '">' +
+                    '</form>');
+
+                    $('body').append(form);
+                    form.submit();
+                    break;
+                case 'received':
+                    var idDonHang = $(this).data('iddonhang');
+                    var idKhachHang = $(this).data('idkhachhang');
+                    // Hiển thị hộp thoại xác nhận
+                    var confirmation = confirm("Bạn có chắc chắn muốn xác nhận đã nhận được hàng không?");
+                    
+                    // Kiểm tra xem người dùng đã xác nhận hay không
+                    if (confirmation) {
+                        // Nếu người dùng đã xác nhận, thực hiện hành động "Đã nhận được hàng"
+                        daNhanDuocHang(idKhachHang, idDonHang);
+                    }
+                    // Xử lý khi nút "Đã nhận được hàng" được nhấn
+                    break;
+                default:
+                    // Xử lý khi không có hành động nào khớp
+                    break;
+            }
         });
     } else {
         $('#orderHistory').append('<p>Không có đơn hàng nào.</p>');
     }
 }
-
+function daNhanDuocHang(CustomerID,idHoaDon) {
+    $.ajax({
+        url: "/web2/CONTROLLER/OderController.php",
+        method: 'POST',
+        dataType: 'json',
+        data: { action:'daNhanDuocHang',idhoadon:idHoaDon},
+        success: function(response) {
+            if(response=='true'){
+                alert("Xác nhận hoàn thành đơn hàng thành công");
+                var form = $('<form action="OrderHistory.php" method="post">' +
+                '<input type="hidden" name="customerId" value="' + CustomerID + '">' +
+                '</form>');
+                // Thêm form vào trang hiện tại
+                $('body').append(form);
+                // Gửi form đi
+                form.submit();
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Lỗi khi gửi yêu cầu:', error);
+        }
+    });
+}

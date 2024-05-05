@@ -2,7 +2,7 @@
 class NhapHangController{
     public $nhapHangModel;
     public function __construct() {
-        require_once 'C:\xampp\htdocs\web2\MODEL\NhapHangModel.php';
+        require_once __DIR__.'\..\MODEL\NhapHangModel.php';
         $this->nhapHangModel = new NhapHangModel();
     }
 
