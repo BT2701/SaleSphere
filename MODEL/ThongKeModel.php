@@ -13,7 +13,7 @@
             // Tính tổng số đơn hàng
             $sql_orders = "SELECT COUNT(id) AS total_orders 
                         FROM hoadon 
-                        WHERE MONTH(ngayLap) = $Month AND YEAR(ngayLap) = $Year";
+                        WHERE MONTH(ngayLap) = $Month AND YEAR(ngayLap) = $Year AND trangThai=3";
             $result_orders = $conn->query($sql_orders);
             $row_orders = $result_orders->fetch_assoc();
             $result['total_orders'] = $row_orders['total_orders'];
@@ -24,8 +24,8 @@
                                 WHERE idHoaDon IN (
                                     SELECT id 
                                     FROM hoadon 
-                                    WHERE MONTH(ngayLap) = $Month AND YEAR(ngayLap) = $Year
-                                )";
+                                    WHERE MONTH(ngayLap) = $Month AND YEAR(ngayLap) = $Year AND trangThai=3
+                                    )";
             $result_products_sold = $conn->query($sql_products_sold);
             $row_products_sold = $result_products_sold->fetch_assoc();
             $result['total_products_sold'] = $row_products_sold['total_products_sold'];
@@ -33,7 +33,7 @@
             // Tính tổng doanh thu
             $sql_revenue = "SELECT SUM(tongTien) AS total_revenue 
                             FROM hoadon 
-                            WHERE MONTH(ngayLap) = $Month AND YEAR(ngayLap) = $Year";
+                            WHERE MONTH(ngayLap) = $Month AND YEAR(ngayLap) = $Year AND trangThai=3";
             $result_revenue = $conn->query($sql_revenue);
             $row_revenue = $result_revenue->fetch_assoc();
             $result['total_revenue'] = $row_revenue['total_revenue'];
@@ -42,7 +42,7 @@
             $sql_good_reviews = "SELECT COUNT(*) AS total_good_reviews
             FROM danhgia
             INNER JOIN hoadon ON danhgia.idhoadon = hoadon.id
-            WHERE MONTH(hoadon.ngayLap) = $Month AND YEAR(hoadon.ngayLap) = $Year
+            WHERE MONTH(hoadon.ngayLap) = $Month AND YEAR(hoadon.ngayLap) = $Year AND hoadon.trangThai=3
             AND star >= 4"; // Điều kiện rating >= 4 có thể được điều chỉnh tùy theo định nghĩa cụ thể của "đánh giá tốt"
             $result_good_reviews = $conn->query($sql_good_reviews);
             $row_good_reviews = $result_good_reviews->fetch_assoc();
@@ -59,7 +59,7 @@
             $conn = $db->getConnection();
             $result = array();
             // Truy vấn dữ liệu từ cơ sở dữ liệu
-            $sql = "SELECT ngayLap, SUM(tongTien) AS revenue FROM hoadon WHERE MONTH(ngayLap) = $Month AND YEAR(ngayLap) = $Year GROUP BY ngayLap";
+            $sql = "SELECT ngayLap, SUM(tongTien) AS revenue FROM hoadon WHERE MONTH(ngayLap) = $Month AND YEAR(ngayLap) = $Year AND trangThai=3 GROUP BY ngayLap";
             $query = $conn->query($sql);
             while ($row = $query->fetch_assoc()) {
                 $result[] = $row;
@@ -79,7 +79,7 @@
                     INNER JOIN loaisp ON sanpham.idLoaiSP = loaisp.id 
                     INNER JOIN chitiethoadon ON sanpham.id = chitiethoadon.idSanPham 
                     INNER JOIN hoadon ON chitiethoadon.idHoaDon = hoadon.id 
-                    WHERE MONTH(hoadon.ngayLap) = $Month AND YEAR(hoadon.ngayLap) = $Year";
+                    WHERE MONTH(hoadon.ngayLap) = $Month AND YEAR(hoadon.ngayLap) = $Year AND hoadon.trangThai=3";
             $query = $conn->query($sql);
             while ($row = $query->fetch_assoc()) {
                 // Lưu cả id và tên loại sản phẩm vào mảng kết quả
@@ -112,7 +112,7 @@
                     FROM sanpham
                     INNER JOIN chitiethoadon ON sanpham.id = chitiethoadon.idSanPham
                     INNER JOIN hoadon ON chitiethoadon.idHoaDon = hoadon.id
-                    WHERE MONTH(hoadon.ngayLap) = $Month AND YEAR(hoadon.ngayLap) = $Year
+                    WHERE MONTH(hoadon.ngayLap) = $Month AND YEAR(hoadon.ngayLap) = $Year AND hoadon.trangThai=3
                     $productTypeCondition
                     GROUP BY sanpham.id
                     ORDER BY total_sold DESC
@@ -152,7 +152,7 @@
             // Tính tổng số đơn hàng
             $sql_orders = "SELECT COUNT(id) AS total_orders 
                         FROM hoadon 
-                        WHERE ngayLap BETWEEN '$fromDate' AND '$toDate'";
+                        WHERE ngayLap BETWEEN '$fromDate' AND '$toDate' AND trangThai = 3";
             $result_orders = $conn->query($sql_orders);
             $row_orders = $result_orders->fetch_assoc();
             $result['total_orders'] = $row_orders['total_orders'];
@@ -163,8 +163,10 @@
                                 WHERE idHoaDon IN (
                                     SELECT id 
                                     FROM hoadon 
-                                    WHERE ngayLap BETWEEN '$fromDate' AND '$toDate'
+                                    WHERE ngayLap BETWEEN '$fromDate' AND '$toDate' 
+                                    AND trangThai = 3
                                 )";
+
             $result_products_sold = $conn->query($sql_products_sold);
             $row_products_sold = $result_products_sold->fetch_assoc();
             $result['total_products_sold'] = $row_products_sold['total_products_sold'];
@@ -172,7 +174,7 @@
             // Tính tổng doanh thu
             $sql_revenue = "SELECT SUM(tongTien) AS total_revenue 
                             FROM hoadon 
-                            WHERE ngayLap BETWEEN '$fromDate' AND '$toDate'";
+                            WHERE ngayLap BETWEEN '$fromDate' AND '$toDate' AND trangThai = 3";
             $result_revenue = $conn->query($sql_revenue);
             $row_revenue = $result_revenue->fetch_assoc();
             $result['total_revenue'] = $row_revenue['total_revenue'];
@@ -205,7 +207,7 @@
                     INNER JOIN loaisp ON sanpham.idLoaiSP = loaisp.id 
                     INNER JOIN chitiethoadon ON sanpham.id = chitiethoadon.idSanPham 
                     INNER JOIN hoadon ON chitiethoadon.idHoaDon = hoadon.id 
-                    WHERE ngayLap BETWEEN '$fromDate' AND '$toDate'";
+                    WHERE ngayLap BETWEEN '$fromDate' AND '$toDate' AND hoadon.trangThai = 3";
             $query = $conn->query($sql);
             while ($row = $query->fetch_assoc()) {
                 // Lưu cả id và tên loại sản phẩm vào mảng kết quả
@@ -238,7 +240,7 @@
                     FROM sanpham
                     INNER JOIN chitiethoadon ON sanpham.id = chitiethoadon.idSanPham
                     INNER JOIN hoadon ON chitiethoadon.idHoaDon = hoadon.id
-                    WHERE ngayLap BETWEEN '$fromDate' AND '$toDate'
+                    WHERE ngayLap BETWEEN '$fromDate' AND '$toDate' AND hoadon.trangThai = 3
                     $productTypeCondition
                     GROUP BY sanpham.id
                     ORDER BY total_sold DESC

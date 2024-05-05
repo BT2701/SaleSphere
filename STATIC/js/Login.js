@@ -67,8 +67,15 @@ function checkLogin(username,password){
         success: function(response) {
             console.log(response);
             if(response!=false){
-                console.log(response);
-                window.location.href = "/web2/index.php?page=homepage";
+                if('maQuyen' in response) {
+                    if(response.maQuyen == 2) {
+                        window.location.href = "/web2/index.php?page=homepage";
+                    } else {
+                        window.location.href = "/web2/VIEWS/admin/admin_home.php";
+                    }
+                } else {
+                    console.error("Thuộc tính 'maQuyen' không tồn tại trong phản hồi.");
+                }
             }
             if(response==false){
                 alert("Sai tên đăng nhập hoặc mật khẩu");
