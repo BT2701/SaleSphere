@@ -183,7 +183,7 @@ function loadDanhGia(idSanPham, loaiDanhGia, pageNumber) {
   let soLuongDanhGiaChoMotTrang = 5;
   let danhGiaBatDau = (pageNumber - 1) * soLuongDanhGiaChoMotTrang;
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "CONTROLLER/DanhGiaController.php", true);
+  xhr.open("POST", "ROUTES/ChiTietSanPhamRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -223,7 +223,6 @@ function loadDanhGia(idSanPham, loaiDanhGia, pageNumber) {
               </div>
           </div>`;
       });
-
       if (html === "") {
         document.querySelector(".case-has-evaluate").innerHTML = "";
         document.querySelector(

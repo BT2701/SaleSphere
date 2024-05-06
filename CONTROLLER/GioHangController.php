@@ -1,14 +1,15 @@
 <?php
 require_once __DIR__.'\..\MODEL\GioHangModel.php';
-require_once __DIR__.'\..\..\CONTROLLER\SanPhamController.php';
+require_once __DIR__.'\SanPhamController.php';
 function AddProductToCartController($idSanPham,$idUser,$soLuongThem){
     $gioHangModel = new GioHangModel();
+    $SanPhamController = new SanPhamController();
     $statusAddProduct = $gioHangModel->addProductToCart($idSanPham,$idUser,$soLuongThem);
     // $numberProductInCart = $gioHangModel->getNumberProductInCart($idUser);
     $numberProductInCart = NumberProductInCart($idUser);
 
     $soLuongSanPhamTrongGioHang = QuantityProductInCart($idSanPham,$idUser);
-    $soLuongSanPhamTrongKho = quantityProduct($idSanPham);
+    $soLuongSanPhamTrongKho = $SanPhamController->quantityProduct($idSanPham);
     $soLuongCoTheThem = $soLuongSanPhamTrongKho - $soLuongSanPhamTrongGioHang;
     
     $data = array(
