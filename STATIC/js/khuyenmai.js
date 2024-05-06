@@ -7,7 +7,7 @@ function confirmDeleteCoupond(idKhuyenMai, tenKhuyenMai) {
 
 function deleteCoupond(idKhuyeMai) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../../ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -40,7 +40,7 @@ function PrepareDataApplyModal(idKhuyenMai, tenKhuyenMai) {
 
   // Make request to fetch products
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../../ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -79,7 +79,7 @@ function SaveDetailApplyCoupond(idKhuyenMai) {
   let typeApply = document.getElementById("applyFor").value;
   let listproductidwannaapply = GetListProductIDWannaApply();
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../../ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -111,7 +111,7 @@ function GetListProductIDWannaApply() {
 
 function ViewDetailCoupond(idKhuyenMai) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../../ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -145,7 +145,7 @@ function ViewDetailCoupond(idKhuyenMai) {
 
 function PrepareInfoCoupondEditModal(idKhuyenMai) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../../ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -171,7 +171,7 @@ function UpdateCoupondInfo(idKhuyenMai) {
   let UserInputInfoCoupond = GetUserInputForm();
   if (!validInfoCoupond(UserInputInfoCoupond)) return;
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../../ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -183,7 +183,7 @@ function UpdateCoupondInfo(idKhuyenMai) {
       }
       let html = ``;
       dataResponse.couponsList.forEach(function (coupon) {
-        html += `<div class="row pt-1 pb-1 border-bottom  d-flex justify-content-center align-items-center"
+        html += `<div class="row coupond pt-1 pb-1 border-bottom  d-flex justify-content-center align-items-center"
         id="coupond${coupon.id}">
         <div class="col-2">
           <p class="mb-0">${coupon.tenKhuyenMai}</p>
@@ -212,27 +212,6 @@ function UpdateCoupondInfo(idKhuyenMai) {
             onclick="PrepareDataApplyModal(${coupon.id},'${coupon.tenKhuyenMai}')"><i
               class="fas fa-arrow-right"></i> Áp dụng</button>
         </div>
-        <div class="col-4 dropdown d-flex align-items-center justify-content-center d-xl-none">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          Thao tác
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li> <button class="btn btn-primary btn-sm w-100 mb-1" data-bs-toggle="modal" data-bs-target="#createCouponModal"
-          onclick="PrepareInfoCoupondEditModal(${coupon.id})"><i class="fas fa-edit"></i>
-          Sửa</button></li>
-          <li>  <button class="btn btn-danger btn-sm w-100 mb-1"
-          onclick="confirmDeleteCoupond(${coupon.id},'${coupon.tenKhuyenMai}')"><i
-            class="fas fa-trash-alt"></i> Xóa</button></li>
-          <li> <button class="btn btn-secondary btn-sm w-100 mb-1" data-bs-toggle="modal" data-bs-target="#viewDetailCoupondModal"
-          onclick="ViewDetailCoupond(${coupon.id})"><i class="fas fa-eye"></i>Chi tiết</button></li>
-          <li> <button class="btn btn-success btn-sm btn-apply-coupond w-100 mb-1" data-bs-toggle="modal"
-          data-bs-target="#applyCouponModal" coupond-id="${coupon.id}"
-          coupon-name="${coupon.tenKhuyenMai}"
-          onclick="PrepareDataApplyModal(${coupon.id},'${coupon.tenKhuyenMai}')"><i
-            class="fas fa-arrow-right"></i> Áp dụng</button></li>
-        </ul>
-      </div>
       </div>`;
       });
       document.getElementById("coupond-container-body").innerHTML = html;
@@ -283,7 +262,7 @@ function CreateCoupond() {
   // alert();
   if (!validInfoCoupond(UserInputInfoCoupond)) return;
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../../ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -297,7 +276,7 @@ function CreateCoupond() {
       autoLoadView(dataResponse.couponsList.length);
       let html = ``;
       dataResponse.couponsList.forEach(function (coupon) {
-        html += `<div class="row pt-1 pb-1 border-bottom  d-flex justify-content-center align-items-center"
+        html += `<div class="row coupond pt-1 pb-1 border-bottom  d-flex justify-content-center align-items-center"
         id="coupond${coupon.id}">
         <div class="col-2">
           <p class="mb-0">${coupon.tenKhuyenMai}</p>
@@ -326,27 +305,6 @@ function CreateCoupond() {
             onclick="PrepareDataApplyModal(${coupon.id},'${coupon.tenKhuyenMai}')"><i
               class="fas fa-arrow-right"></i> Áp dụng</button>
         </div>
-        <div class="col-4 dropdown d-flex align-items-center justify-content-center d-xl-none">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          Thao tác
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li> <button class="btn btn-primary btn-sm w-100 mb-1" data-bs-toggle="modal" data-bs-target="#createCouponModal"
-          onclick="PrepareInfoCoupondEditModal(${coupon.id})"><i class="fas fa-edit"></i>
-          Sửa</button></li>
-          <li>  <button class="btn btn-danger btn-sm w-100 mb-1"
-          onclick="confirmDeleteCoupond(${coupon.id},'${coupon.tenKhuyenMai}')"><i
-            class="fas fa-trash-alt"></i> Xóa</button></li>
-          <li> <button class="btn btn-secondary btn-sm w-100 mb-1" data-bs-toggle="modal" data-bs-target="#viewDetailCoupondModal"
-          onclick="ViewDetailCoupond(${coupon.id})"><i class="fas fa-eye"></i>Chi tiết</button></li>
-          <li> <button class="btn btn-success btn-sm btn-apply-coupond w-100 mb-1" data-bs-toggle="modal"
-          data-bs-target="#applyCouponModal" coupond-id="${coupon.id}"
-          coupon-name="${coupon.tenKhuyenMai}"
-          onclick="PrepareDataApplyModal(${coupon.id},'${coupon.tenKhuyenMai}')"><i
-            class="fas fa-arrow-right"></i> Áp dụng</button></li>
-        </ul>
-      </div>
       </div>`;
       });
       document.getElementById("coupond-container-body").innerHTML = html;
@@ -463,7 +421,7 @@ function clearAllErrorMessage() {
 //Make request to server to auto unapplied coupond for poduct is it was get time
 function autoUnppliedCoupond() {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "../../ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     // if (xhr.readyState == 4 && xhr.status == 200) {

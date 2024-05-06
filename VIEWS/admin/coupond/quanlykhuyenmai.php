@@ -10,66 +10,7 @@
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <style>
-    /* Custom CSS */
-    .coupon-table th,
-    .coupon-table td {
-      vertical-align: middle;
-    }
-
-    #productTypeCheckbox {
-      max-height: 200px;
-      overflow-y: auto;
-      border: 1px solid #ccc;
-      padding: 5px;
-    }
-
-    .checkbox-label {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-
-    .product-applied-container {
-      min-height: 300px;
-      max-height: 300px;
-      overflow-y: auto;
-      padding: 5px;
-
-    }
-
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    /* For Firefox */
-    input[type="number"] {
-      -moz-appearance: textfield;
-    }
-
-    .empty-coupond-container {
-      text-align: center;
-    }
-
-    .empty-coupond-img {
-      display: inline-block;
-      height: 200px;
-    }
-
-    .empty-coupond-message {
-      display: block;
-      margin-top: 10px;
-      font-weight: 600;
-    }
-
-    .coupond-container-body {
-      min-height: 300px;
-      max-height: 300px;
-      overflow-y: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="STATIC/css/khuyenmai.css">
 </head>
 
 <body onload="autoLoadView(<?php echo count($coupondList) ?>)">
@@ -92,8 +33,8 @@
       </div>
     </div>
 
-    <div class="coupond-container container mb-5">
-      <div class="row mt-5 border-bottom border-dark">
+    <div class="coupond-container container my-5">
+      <div class="row coupond-container-header border-bottom border-dark">
         <div class="col-2">
           <p class="text-center fw-bold">Tên Khuyến Mãi</p>
         </div>
@@ -118,7 +59,7 @@
 
       <div class="row coupond-container-body" id="coupond-container-body">
         <?php foreach ($coupondList as $coupond): ?>
-          <div class="row pt-1 pb-1 border-bottom  d-flex justify-content-center align-items-center"
+          <div class="row coupond pt-1 pb-1 border-bottom  d-flex justify-content-center align-items-center"
             id="coupond<?php echo $coupond['id'] ?>" oncontextmenu="showContextMenu(event, <?php echo $coupond['id'] ?>)">
             <div class="col-2">
               <p class="mb-0"><?php echo $coupond['tenKhuyenMai'] ?></p>
@@ -132,7 +73,7 @@
             <div class="col-2">
               <p class="mb-0 text-center"><?php echo $coupond['background'] ?></p>
             </div>
-            <div class="col-4 d-flex align-items-center justify-content-center d-none d-xl-block">
+            <div class="col-4 d-flex align-items-center justify-content-center">
               <button class="btn btn-primary btn-sm ms-1" data-bs-toggle="modal" data-bs-target="#createCouponModal"
                 onclick="PrepareInfoCoupondEditModal(<?php echo $coupond['id'] ?>)"><i class="fas fa-edit"></i>
                 Sửa</button>
@@ -148,92 +89,8 @@
                 onclick="PrepareDataApplyModal(<?php echo $coupond['id'] ?>,'<?php echo $coupond['tenKhuyenMai'] ?>')"><i
                   class="fas fa-arrow-right"></i> Áp dụng</button>
             </div>
-            <div class="col-4 dropdown d-flex align-items-center justify-content-center d-xl-none">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Thao tác
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li> <button class="btn btn-primary btn-sm w-100 mb-1" data-bs-toggle="modal" data-bs-target="#createCouponModal"
-                onclick="PrepareInfoCoupondEditModal(<?php echo $coupond['id'] ?>)"><i class="fas fa-edit"></i>
-                Sửa</button></li>
-                <li> <button class="btn btn-danger btn-sm w-100 mb-1"
-                onclick="confirmDeleteCoupond(<?php echo $coupond['id'] ?>,`<?php echo $coupond['tenKhuyenMai'] ?>`)"><i
-                  class="fas fa-trash-alt"></i> Xóa</button></li>
-                <li> <button class="btn btn-secondary btn-sm w-100 mb-1" data-bs-toggle="modal"
-                data-bs-target="#viewDetailCoupondModal" onclick="ViewDetailCoupond(<?php echo $coupond['id'] ?>)"><i
-                  class="fas fa-eye"></i>Chi tiết</button></li>
-                <li> <button class="btn btn-success btn-sm btn-apply-coupond w-100" data-bs-toggle="modal"
-                data-bs-target="#applyCouponModal" coupond-id="<?php echo $coupond['id'] ?>"
-                coupon-name="<?php echo $coupond['tenKhuyenMai'] ?>"
-                onclick="PrepareDataApplyModal(<?php echo $coupond['id'] ?>,'<?php echo $coupond['tenKhuyenMai'] ?>')"><i
-                  class="fas fa-arrow-right"></i> Áp dụng</button></li>
-              </ul>
-            </div>
           </div>
         <?php endforeach; ?>
-      </div>
-    </div>
-
-
-
-
-    <!-- <div class="table-responsive" style="overflow-x:auto;">
-      <table class="table coupon-table">
-        <thead>
-          <tr>
-            <th>Tên khuyến mãi</th>
-            <th>Giá trị (%)</th>
-            <th>Hạn sử dụng</th>
-            <th>Background</th>
-            <th>Thao tác</th>
-          </tr>
-        </thead>
-        <tbody id="coupond-container">
-
-          <?php foreach ($coupondList as $coupond): ?>
-            <tr id="coupond<?php echo $coupond['id'] ?>">
-              <td><?php echo $coupond['tenKhuyenMai'] ?></td>
-              <td><?php echo $coupond['giaTri'] ?></td>
-              <td><?php echo $coupond['hanSuDung'] ?></td>
-              <td><?php echo $coupond['background'] ?></td>
-              <td>
-                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createCouponModal"
-                  onclick="PrepareInfoCoupondEditModal(<?php echo $coupond['id'] ?>)"><i class="fas fa-edit"></i>
-                  Sửa</button>
-                <button class="btn btn-danger btn-sm"
-                  onclick="confirmDeleteCoupond(<?php echo $coupond['id'] ?>,`<?php echo $coupond['tenKhuyenMai'] ?>`)"><i
-                    class="fas fa-trash-alt"></i> Xóa</button>
-                <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#viewDetailCoupondModal"
-                  onclick="ViewDetailCoupond(<?php echo $coupond['id'] ?>)"><i class="fas fa-eye"></i>Chi tiết</button>
-                <button class="btn btn-success btn-sm btn-apply-coupond" data-bs-toggle="modal"
-                  data-bs-target="#applyCouponModal" coupond-id="<?php echo $coupond['id'] ?>"
-                  coupon-name="<?php echo $coupond['tenKhuyenMai'] ?>"
-                  onclick="PrepareDataApplyModal(<?php echo $coupond['id'] ?>,'<?php echo $coupond['tenKhuyenMai'] ?>')"><i
-                    class="fas fa-arrow-right"></i> Áp dụng</button>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
-    </div> -->
-  </div>
-
-
-  <div class="modal fade" id="contextMenuModal" tabindex="-1" aria-labelledby="contextMenuModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="contextMenuModalLabel">Context Menu</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <button class="btn btn-primary btn-sm">Option 1</button>
-          <button class="btn btn-secondary btn-sm">Option 2</button>
-          <button class="btn btn-info btn-sm">Option 3</button>
-          <button class="btn btn-danger btn-sm">Option 4</button>
-        </div>
       </div>
     </div>
   </div>
@@ -399,9 +256,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
-  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
-  <script src="../../STATIC/js/khuyenmai.js"></script>
+  <script src="STATIC/js/khuyenmai.js"></script>
   <script>
     document.getElementById('applyFor').addEventListener('change', function () {
       applyForValue = this.value;
@@ -415,18 +270,6 @@
         document.getElementById('productTypeCheckbox').style.display = 'none';
       }
     });
-
-
-    function showContextMenu(event, coupondId) {
-      event.preventDefault();
-      contextMenuModal = document.getElementById('contextMenuModal');
-      contextMenuModal.style.top = event.clientY + 'px';
-      contextMenuModal.style.left = event.clientX + 'px';
-
-      // Show the modal
-      var contextMenuModal = new bootstrap.Modal(document.getElementById('contextMenuModal'));
-      contextMenuModal.show();
-    }
   </script>
 </body>
 
