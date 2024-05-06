@@ -25,7 +25,7 @@
 <?php
     session_start();
     $idUser = 2;
-    require("CONTROLLER/GioHangController.test.php");
+    require("CONTROLLER/GioHangController.php");
     $numberProductIncart =  NumberProductInCart($idUser);
     include 'VIEWS/header_footer/header.php';
     ///-Van Du add ---------start 

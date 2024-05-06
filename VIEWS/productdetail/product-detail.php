@@ -15,78 +15,38 @@
     <body>
         <!-- ------------------------Du------------------ -->
         <?php
-        require_once ("./CONTROLLER/SanPhamController.php");
-        // require_once ("./CONTROLLER/DanhGiaController.php");
         require_once ("./HELPER/BaseFunction.php");
         $idUser = 1;
-        if (isset($_GET['id'])) {
-            $sanphamController = new SanPhamController();
-            $idSanPham = $_GET['id'];
-            $chiTietSanPham = $sanphamController->detailProduct($idSanPham);
-            $tenSanPham = $chiTietSanPham['tenSanPham'];
-            $giaGoc = $chiTietSanPham['giaBan'];
-            $moTaSanPham = $chiTietSanPham['moTa'];
-            $donViTinh = $chiTietSanPham['tenDonViTinh'];
-            $giaTriKhuyenMai = $sanphamController->sumOfValueDiscount($idSanPham);
-            $giaKhuyenMai = $giaGoc - $giaGoc * ($giaTriKhuyenMai / 100);
-            $soLuongSanPham = $sanphamController->quantityProduct($idSanPham);
-            $soLuongDaBan = $sanphamController->quantityOfProductsSold($idSanPham);
-            $soLuongDanhGiaTatCa = $sanphamController->countOfEvaluate($idSanPham, "_");
-            $soLuongDanhGia5Sao = $sanphamController->countOfEvaluate($idSanPham, "5");
-            $soLuongDanhGia4Sao = $sanphamController->countOfEvaluate($idSanPham, "4");
-            $soLuongDanhGia3Sao = $sanphamController->countOfEvaluate($idSanPham, "3");
-            $soLuongDanhGia2Sao = $sanphamController->countOfEvaluate($idSanPham, "2");
-            $soLuongDanhGia1Sao = $sanphamController->countOfEvaluate($idSanPham, "1");
-            $danhGiaTrungBinh = $sanphamController->avgOfStarEvaluate($idSanPham);
-        }
         ?>
         <!-- ------------------------Du------------------ -->
         <section class="product-detail_wraper">
             <div class="container">
                 <div class="row pb-5 pt-3">
                     <div class="col-lg-5 col-12">
-                        <img src="<?php echo $chiTietSanPham['src'] ?>" class="product-detail_image"
+                        <img src="<?php echo $detailProduct['infoProduct']['src'] ?>" class="product-detail_image"
                             alt="product image for detail">
-                        <!-- <div class="product-detail_list-image ">
-                        <div class="image-item image-item1"
-                            onmouseover="show_product_detail('image-item1','STATIC/assets/flower1.jpg')" style="">
-                            <img src="STATIC/assets/flower1.jpg" alt="">
-                        </div>
-                        <div class="image-item image-item2"
-                            onmouseover="show_product_detail('image-item2','STATIC/assets/flower2.jpg')" style="">
-                            <img src="STATIC/assets/flower2.jpg" alt="">
-                        </div>
-                        <div class="image-item image-item3"
-                            onmouseover="show_product_detail('image-item3','STATIC/assets/flower3.jpg')" style="">
-                            <img src="STATIC/assets/flower3.jpg" alt="">
-                        </div>
-                        <div class="image-item image-item4"
-                            onmouseover="show_product_detail('image-item4','STATIC/assets/flower4.jpg')" style="">
-                            <img src="STATIC/assets/flower4.jpg" alt="">
-                        </div>
-                    </div> -->
                     </div>
                     <div class="col-lg-7 col-12 mt-5 mt-lg-0 product-detail">
                         <span class="product-name">
-                            <?php echo $tenSanPham ?>
+                            <?php echo $detailProduct['infoProduct']['tenSanPham'] ?>
                         </span>
                         <div class="product-info">
                             <div class="rating-info">
                                 <a href="#user-evaluate-container" class="number-rating">
-                                    <?php echo roundToNearestTenth($danhGiaTrungBinh) ?>
+                                    <?php echo roundToNearestTenth($detailProduct['avgEvaluate']) ?>
                                 </a>
                                 <div class="avarage-star-container"></div>
                             </div>
                             <span class="sperate"></span>
                             <div class="feedback">
                                 <a href="#user-evaluate-container" class="number-feedback">
-                                    <?php echo $soLuongDanhGiaTatCa ?>
+                                    <?php echo $detailProduct['quantityEvaluateAll']?>
                                 </a>
                                 Đánh giá
                             </div>
                             <span class="sperate"></span>
                             <div class="sold">
-                                <?php echo $soLuongDaBan ?> Đã bán
+                                <?php echo $detailProduct['quantityEvaluateAll'] ?> Đã bán
                             </div>
                         </div>
                         <div class="product-price">
@@ -94,24 +54,24 @@
                             <div class="has-discount">
                                 <div class="original-price">
                                     <?php
-                                    if ($giaTriKhuyenMai == 0) {
+                                    if ($detailProduct['valueDiscount']  == 0) {
                                         echo "";
                                     } else {
-                                        echo (formatMoney($giaGoc) . "đ");
+                                        echo (formatMoney($detailProduct['infoProduct']['giaBan']) . "đ");
                                     }
                                     ?>
                                 </div>
                                 <div class="discount-price">
                                     <?php
-                                    echo formatMoney($giaKhuyenMai) . "đ";
+                                    echo formatMoney($detailProduct['discountPrice']) . "đ";
                                     ?>
                                 </div>
                                 <div class="percent-discount">
                                     <?php
-                                    if ($giaTriKhuyenMai == 0) {
+                                    if ($detailProduct['valueDiscount'] == 0) {
                                         echo "";
                                     } else {
-                                        echo $giaTriKhuyenMai . "% GIẢM";
+                                        echo $detailProduct['valueDiscount'] . "% GIẢM";
                                     }
                                     ?>
                                 </div>
@@ -119,26 +79,26 @@
                         </div>
 
                         <div class="product-discription">
-                            <?php echo $moTaSanPham ?>
+                            <?php echo $detailProduct['infoProduct']['moTa'] ?>
                         </div>
 
 
                         <div class="case-has-quantity">
                             <div class="quantity">
-                                <label for="quantity" class="quantity-title">Số lượng</label>
-                                <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
-                                <input class="quantity-input" type="number" id="quantityInput" name="quantityInput"
-                                    value="1" min="1" max="<?php echo $soLuongSanPham ?>"
+                                <label for="quantity" class="quantity-title" >Số lượng</label>
+                                <button class="quantity-btn" id="quantity-btn-decrease" onclick="decreaseQuantity()">-</button>
+                                <input class="quantity-input"  type="number" id="quantityInput" name="quantityInput"
+                                    value="1" min="1" max= <?php echo $detailProduct['quantityProductBaseOnUserID'] ?>
                                     oninput="validity.valid||(value='');">
-                                <button class="quantity-btn"
-                                    onclick="increaseQuantity(<?php echo $soLuongSanPham ?>)">+</button>
+                                <button class="quantity-btn" id="quantity-btn-increase"
+                                    onclick="increaseQuantity(<?php echo $detailProduct['quantityProductBaseOnUserID'] ?>)">+</button>
                                 <label for="" class="quantity-current">Còn
-                                    <?php echo $soLuongSanPham . " " . $donViTinh ?>
+                                    <?php echo $detailProduct['quantityProductInStore'] . " " . $detailProduct['infoProduct']['tenDonViTinh'] ?>
                                 </label>
                             </div>
 
-                            <button class="btn-add-product"
-                                onclick="AddProductToCart(<?php echo $idSanPham ?>,<?php echo $idUser ?>,<?php echo $soLuongSanPham ?>)">
+                            <button class="btn-add-product" id="btn-add-product"
+                                onclick="AddProductToCart(<?php echo $idSanPham ?>,<?php echo $idUser ?>, <?php echo $detailProduct['quantityProductBaseOnUserID'] ?>)">
                                 <i class="fa-solid fa-cart-plus"></i>
                                 Thêm vào giỏ hàng
                             </button>
@@ -168,7 +128,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div class="average-rating">
                         <strong>
-                            <?php echo roundToNearestTenth($danhGiaTrungBinh) . " trên 5" ?>
+                            <?php echo roundToNearestTenth($detailProduct['avgEvaluate']) . " trên 5" ?>
                         </strong>
                         <div class="avarage-star-container"></div>
                     </div>
@@ -176,22 +136,22 @@
                     <!-- Filter buttons as dropdown on small screens -->
                     <div class="filter-buttons d-none d-md-block">
                         <button type="button" class="btn btn-primary"
-                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'_',<?php echo $soLuongDanhGiaTatCa ?>, 5)">Tất
+                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'_',<?php echo $detailProduct['quantityEvaluateAll'] ?>, 5)">Tất
                             cả</button>
                         <button type="button" class="btn btn-primary"
-                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'5',<?php echo $soLuongDanhGia5Sao ?>, 5)">5
+                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'5',<?php echo $detailProduct['quantityEvaluate5Star'] ?>, 5)">5
                             sao</button>
                         <button type="button" class="btn btn-primary"
-                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'4',<?php echo $soLuongDanhGia4Sao ?>, 5)">4
+                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'4',<?php echo $detailProduct['quantityEvaluate4Star'] ?>, 5)">4
                             sao</button>
                         <button type="button" class="btn btn-primary"
-                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'3',<?php echo $soLuongDanhGia3Sao ?>, 5)">3
+                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'3',<?php echo $detailProduct['quantityEvaluate3Star'] ?>, 5)">3
                             sao</button>
                         <button type="button" class="btn btn-primary"
-                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'2',<?php echo $soLuongDanhGia2Sao ?>, 5)">2
+                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'2',<?php echo $detailProduct['quantityEvaluate2Star'] ?>, 5)">2
                             sao</button>
                         <button type="button" class="btn btn-primary"
-                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'1',<?php echo $soLuongDanhGia1Sao ?>, 5)">1
+                            onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'1',<?php echo $detailProduct['quantityEvaluate1Star'] ?>, 5)">1
                             sao</button>
                     </div>
                     <!-- Filter buttons as dropdown on small screens -->
@@ -202,26 +162,25 @@
                             Filter
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><button class="dropdown-item" onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'_',<?php echo $soLuongDanhGiaTatCa ?>, 5)">Tất cả</button></li>
+                            <li><button class="dropdown-item" onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'_',<?php echo $detailProduct['quantityEvaluateAll'] ?>, 5)">Tất cả</button></li>
                             <li><button class="dropdown-item"
-                                    onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'5',<?php echo $soLuongDanhGia5Sao ?>, 5)">5
-                                    sao</button>
-                            </li>
-
-                            <li><button class="dropdown-item"
-                                    onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'4',<?php echo $soLuongDanhGia4Sao ?>, 5)">4
+                                    onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'5',<?php echo $detailProduct['quantityEvaluate5Star'] ?>, 5)">5
                                     sao</button>
                             </li>
                             <li><button class="dropdown-item"
-                                    onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'3',<?php echo $soLuongDanhGia3Sao ?>, 5)">3
+                                    onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'4',<?php echo $detailProduct['quantityEvaluate4Star'] ?>, 5)">4
                                     sao</button>
                             </li>
                             <li><button class="dropdown-item"
-                                    onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'2',<?php echo $soLuongDanhGia2Sao ?>, 5)">2
+                                    onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'3',<?php echo $detailProduct['quantityEvaluate3Star'] ?>, 5)">3
                                     sao</button>
                             </li>
                             <li><button class="dropdown-item"
-                                    onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'1',<?php echo $soLuongDanhGia1Sao ?>, 5)">1
+                                    onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'2',<?php echo $detailProduct['quantityEvaluate2Star'] ?>, 5)">2
+                                    sao</button>
+                            </li>
+                            <li><button class="dropdown-item"
+                                    onclick="xuLyPhanTrang(<?php echo $idSanPham ?>,'1',<?php echo $detailProduct['quantityEvaluate1Star'] ?>, 5)">1
                                     sao</button>
                             </li>
                         </ul>
@@ -260,7 +219,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", xuLyPhanTrang(<?php echo $idSanPham ?>, "_", <?php echo $soLuongDanhGiaTatCa ?>, 5), checkQuantity(<?php echo $soLuongSanPham ?>));
-        hienthisaotrungbinh(<?php echo roundToNearestTenth($danhGiaTrungBinh) ?>);
+        document.addEventListener("DOMContentLoaded", xuLyPhanTrang(<?php echo $idSanPham ?>, "_", <?php echo $detailProduct['quantityEvaluateAll'] ?>, 5), checkQuantity(<?php echo $detailProduct['quantityProductInStore']  ?>));
+        hienthisaotrungbinh(<?php echo roundToNearestTenth($detailProduct['avgEvaluate']) ?>);
     </script>
 </html>

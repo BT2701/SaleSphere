@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__.'\DanhGiaController.test.php';
-require_once __DIR__.'\GioHangController.test.php';
-require_once __DIR__.'\SanPhamController.test.php';
+require_once __DIR__.'\DanhGiaController.php';
+require_once __DIR__.'\GioHangController.php';
+require_once __DIR__.'\SanPhamController.php';
 
 function index($idSanPham)
 {
     $detailProduct = getDetailProduct($idSanPham,1);
-    require_once __DIR__.'\..\VIEWS\productdetail\product-detail.test.php';
+    require_once __DIR__.'\..\VIEWS\productdetail\product-detail.php';
 }
 
 
@@ -26,19 +26,20 @@ function addProductToCart($infoRequest){
 }
 
 function getDetailProduct($idSanPham,$idUser){
-    $infoProduct = detailProduct($idSanPham);
-    $giaTriKhuyenMai = sumOfValueDiscount($idSanPham);
+    $SanPhamController =  new SanPhamController();
+    $infoProduct = $SanPhamController->detailProduct($idSanPham);
+    $giaTriKhuyenMai = $SanPhamController->sumOfValueDiscount($idSanPham);
     $giaKhuyenMai = $infoProduct['giaBan'] - $infoProduct['giaBan'] * ($giaTriKhuyenMai / 100);
-    $soLuongDaBan = quantityOfProductsSold($idSanPham);
-    $soLuongDanhGiaTatCa = countOfEvaluate($idSanPham, "_");
-    $soLuongDanhGia5Sao = countOfEvaluate($idSanPham, "5");
-    $soLuongDanhGia4Sao = countOfEvaluate($idSanPham, "4");
-    $soLuongDanhGia3Sao = countOfEvaluate($idSanPham, "3");
-    $soLuongDanhGia2Sao = countOfEvaluate($idSanPham, "2");
-    $soLuongDanhGia1Sao = countOfEvaluate($idSanPham, "1");
-    $danhGiaTrungBinh = avgOfStarEvaluate($idSanPham);
+    $soLuongDaBan = $SanPhamController->quantityOfProductsSold($idSanPham);
+    $soLuongDanhGiaTatCa = $SanPhamController->countOfEvaluate($idSanPham, "_");
+    $soLuongDanhGia5Sao = $SanPhamController->countOfEvaluate($idSanPham, "5");
+    $soLuongDanhGia4Sao = $SanPhamController->countOfEvaluate($idSanPham, "4");
+    $soLuongDanhGia3Sao = $SanPhamController->countOfEvaluate($idSanPham, "3");
+    $soLuongDanhGia2Sao = $SanPhamController->countOfEvaluate($idSanPham, "2");
+    $soLuongDanhGia1Sao = $SanPhamController->countOfEvaluate($idSanPham, "1");
+    $danhGiaTrungBinh = $SanPhamController->avgOfStarEvaluate($idSanPham);
     $soLuongSanPhamTrongGioHang = QuantityProductInCart($idSanPham,$idUser);
-    $soLuongSanPhamTrongKho = quantityProduct($idSanPham);
+    $soLuongSanPhamTrongKho = $SanPhamController->quantityProduct($idSanPham);
     $soLuongSanPhamCoTheThem = $soLuongSanPhamTrongKho - $soLuongSanPhamTrongGioHang;
     $detailProduct = array(
         'infoProduct' => $infoProduct,
