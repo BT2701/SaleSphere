@@ -353,3 +353,31 @@ function checkQuantity(soLuongSanPham) {
 }
 
 // soLuongCoTheThem = <?php echo $detailProduct['quantityProductBaseOnUserID'] ?>;
+
+function BuyNow(userID, idProduct, giaBan, soLuongConLaiTrongKho) {
+  let soLuongMua = document.getElementById("quantityInput").value;
+  if (soLuongMua == 0) {
+    alert("Số lượng phải lớn hơn 0");
+    return;
+  }
+  let confirmed = confirm("Bạn có chắc chắn muốn mua hàng?");
+  if (confirmed) {
+    let total = parseInt(soLuongMua) * giaBan;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "ROUTES/ChiTietSanPhamRoutes.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        if (this.responseText === "1") {
+          alert("Bạn mua hàng thành công!");
+          location.reload();
+        } else {
+          alert("Bạn mua hàng thất bại!");
+        }
+      }
+    };
+    xhr.send(
+      `action=PayNow&idsanpham=${idProduct}&userid=${userID}&soluong=${soLuongMua}&tongTien=${total}&soLuongTrongKho=${soLuongConLaiTrongKho}`
+    );
+  }
+}

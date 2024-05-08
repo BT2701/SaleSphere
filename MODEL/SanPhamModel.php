@@ -224,7 +224,7 @@ class SanPhamModel {
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
-        $sql = "SELECT s.tenSanPham, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, 
+        $sql = "SELECT s.tenSanPham,s.id, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, 
         k.tenKhuyenMai, 
         CASE 
             WHEN AVG(dg.star) - FLOOR(AVG(dg.star)) >= 0.5 THEN CEIL(AVG(dg.star))

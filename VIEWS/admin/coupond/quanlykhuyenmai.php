@@ -206,37 +206,37 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="couponModalLabel">Coupon Details</h5>
+          <h5 class="modal-title" id="couponModalLabel">Chi tiết khuyến mãi</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
             <div class="mb-2 row">
-              <label class="col-sm-4 col-form-label">Name:</label>
+              <label class="col-sm-4 col-form-label">Tên khuyến mãi:</label>
               <div class="col-sm-8">
                 <span id="coupond-name" class="form-control">
               </div>
             </div>
             <div class="mb-2 row">
-              <label class="col-sm-4 col-form-label">Value Discount:</label>
+              <label class="col-sm-4 col-form-label">Giá trị khuyến mãi:</label>
               <div class="col-sm-8">
                 <span id="coupond-value" class="form-control"></span>
               </div>
             </div>
             <div class="mb-2 row">
-              <label class="col-sm-4 col-form-label">Date:</label>
+              <label class="col-sm-4 col-form-label">Hạn sử dụng:</label>
               <div class="col-sm-8">
                 <span id="expiration-date" class="form-control"></span>
               </div>
             </div>
             <div class="mb-2 row">
-              <label class="col-sm-4 col-form-label">Background Color:</label>
+              <label class="col-sm-4 col-form-label">Background:</label>
               <div class="col-sm-8">
                 <span id="background-color" class="form-control"></span>
               </div>
             </div>
             <div class="mb-2 row">
-              <label class="col-sm-4 col-form-label">Products applied:</label>
+              <label class="col-sm-4 col-form-label">Áp dụng cho:</label>
               <div class="col-sm-8 product-applied-container">
 
               </div>

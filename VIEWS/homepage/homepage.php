@@ -128,7 +128,7 @@ for ($i = 0; $i < $numOfSlides; $i++) {
                 <div class="product-gallery-content-product">
                 <?php if(isset($sanphamListnoibac) && !empty($sanphamListnoibac)) {?>
             <?php foreach ($sanphamListnoibac as $sanpham): ?>
-                <div class="product-gallery-content-product-item">
+                <div class="product-gallery-content-product-item" onclick="detailproduct(<?php echo $sanpham['id']; ?>)">
                 <img src="<?php echo $sanpham['src']; ?>" alt="">
                 
                 <div class="product-gallery-content-product-text" >
@@ -220,6 +220,11 @@ for ($i = 0; $i < $numOfSlides; $i++) {
         }
     })
 
+
+    function detailproduct(idProduct){
+            // location.assign("http://localhost/web2/index.php?page=productdetail");
+            window.location.replace(`http://localhost/web2/index.php?page=productdetail&id=${idProduct}`);
+        }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

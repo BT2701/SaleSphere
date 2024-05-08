@@ -31,7 +31,7 @@
     <a class="nav-link " href="#" id="promote" role="button" aria-expanded="false">
         <form id="viewHistoryForm" action="/web2/VIEWS/History/OrderHistory.php" method="post">
             <input type="hidden" name="customerId" value="' . $id . '">
-            <button id="viewHistory" style="background-color: #212529; color:rgba(255, 255, 255, .55);border:none" type="submit">View Order History</button>
+            <button id="viewHistory" style="background-color: #212529; color:rgba(255, 255, 255, .55);border:none" type="submit">Lịch sử đơn hàng</button>
         </form>
     </a>
     </li>';
@@ -40,7 +40,7 @@
         $cart = `hehe`;
         $XemLichSuDonHang = '';
         $logined= '<span class="user-name">Đăng nhập/Đăng ký</span>';
-        $login='<li class="user-action_list-item"><a href="#">Đăng nhập</a></li>';
+        $login='<li class="user-action_list-item"><a href="/web2/VIEWS/login/login.php">Đăng nhập</a></li>';
         $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a></li>';
         $logined_mini='<a class="nav-link" href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a>';
     }   
