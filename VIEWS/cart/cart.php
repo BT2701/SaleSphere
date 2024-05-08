@@ -35,15 +35,15 @@
     $cartController=new CartController();
     $cartList= $cartController->getCartList($userid);
 
-  session_start();
-  if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
-    $userid = $_SESSION['id'];
-  } else {
-    $userid = 0;
-  }
-  require_once __DIR__ . '\..\..\CONTROLLER\CartController.php';
-  $cartController = new CartController();
-  $cartList = $cartController->getCartList($userid);
+  // session_start();
+  // if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+  //   $userid = $_SESSION['id'];
+  // } else {
+  //   $userid = 0;
+  // }
+  // require_once __DIR__ . '\..\..\CONTROLLER\CartController.php';
+  // $cartController = new CartController();
+  // $cartList = $cartController->getCartList($userid);
 
   ?>
   <div class="container-md ">
