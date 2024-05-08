@@ -84,12 +84,9 @@ function increaseQuantity(btn) {
   
   if (currentValue < 999) {
     currentValue++;
+    updateQuantity(userID, productID, currentValue);
   }
   soLuongInput.value = currentValue;
-  
-  
-    updateQuantity(userID, productID, currentValue);
-  
   
   if (checkboxElement.checked) {
     if (currentValue >= 999) {
@@ -144,8 +141,9 @@ function updateQuantity(userID, idsanpham, soLuongMoi){
 
         var productID= parentRow.getAttribute("data-product-id")
         var userID = document.getElementById("item-cart").getAttribute("data-user-id");
-        updateQuantity(userID, productID, newInputValue)
-
+        if(oldInputValue!=newInputValue){
+          updateQuantity(userID, productID, newInputValue)
+        }
         if(checkboxElement.checked){
           total-= oldInputValue*price
           total+= newInputValue*price
@@ -246,6 +244,12 @@ document.addEventListener("DOMContentLoaded", function () {
           let message="";
           var listDeleteMultipleProduct=[];
           console.log("userID: " + userID + " selected: " + selectedProductIDs + " tongTien: " + total);
+
+          if (listSelectedProductID.length === 0) {
+            alert("Bạn chưa xác nhận chọn sản phẩm nào để thanh toán!");
+            return; // Dừng xử lý tiếp theo
+          }
+
           $.ajax({
               url: "/web2/CONTROLLER/CartController.php",
               method: 'POST',
