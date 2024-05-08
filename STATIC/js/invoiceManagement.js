@@ -98,7 +98,9 @@ function displayInvoiceList(invoiceList) {
           "<td>" + invoice.id + "</td>" +
           "<td>" + invoice.idKhachHang + "</td>" +
           "<td>" + formatDate(invoice.ngayLap) + "</td>" +
-          "<td>" + invoice.maNV + "</td>" +
+
+          "<td>" + invoice.idNV + "</td>" +
+
           "<td>" + invoice.trangThai + "</td>" +
           "<td>" + invoice.tongTien + "</td>" +
           "<td class='chucnang'>" +
@@ -109,13 +111,17 @@ function displayInvoiceList(invoiceList) {
           "</tr>";
       $("#invoiceTable tbody").append(row);
       }
-      else if(invoice.trangThai==2|| invoice.trangThai==3 ){
+
+      else if(invoice.trangThai==2 ){
+
         var row = "<tr>" +
           "<td>" + count + "</td>" +
           "<td>" + invoice.id + "</td>" +
           "<td>" + invoice.idKhachHang + "</td>" +
           "<td>" + formatDate(invoice.ngayLap) + "</td>" +
-          "<td>" + invoice.maNV + "</td>" +
+
+          "<td>" + invoice.idNV + "</td>" +
+
           "<td>" + invoice.trangThai + "</td>" +
           "<td>" + invoice.tongTien + "</td>" +
           "<td class='chucnang'>" +
@@ -125,6 +131,23 @@ function displayInvoiceList(invoiceList) {
           "</tr>";
       $("#invoiceTable tbody").append(row);
       }
+
+      else if( invoice.trangThai==3 ){
+        var row = "<tr>" +
+          "<td>" + count + "</td>" +
+          "<td>" + invoice.id + "</td>" +
+          "<td>" + invoice.idKhachHang + "</td>" +
+          "<td>" + formatDate(invoice.ngayLap) + "</td>" +
+          "<td>" + invoice.idNV + "</td>" +
+          "<td>" + invoice.trangThai + "</td>" +
+          "<td>" + invoice.tongTien + "</td>" +
+          "<td class='chucnang'>" +
+          "<button type='button' class='btn btn-info btn-sm' style='margin: 0px 10px 0px 15px' onclick='showInvoiceDetails(" + invoice.id + ")'>Chi tiết</button>" +
+          "</td>" +
+          "</tr>";
+      $("#invoiceTable tbody").append(row);
+      }
+
       else{count--}
   });
 }
@@ -172,7 +195,9 @@ function displayInvoiceDetails(details, invoiceId) {
       "<th>#</th>" +
       "<th>Sản phẩm</th>" +
       "<th>Số lượng</th>" +
-      // "<th>Giá</th>" +
+
+    // "<th>Giá</th>" +
+
     "</tr>" +
     "</thead>" +
     "<tbody >";
@@ -191,7 +216,9 @@ function displayInvoiceDetails(details, invoiceId) {
      else{
       html += "<tr>" +
       "<td>" + (index + 1) + "</td>" +
-      "<td><img style='width: 70px; height: 70px' src='" + detail.src + "' alt='" + detail.tenSanPham + "'>" + detail.tenSanPham + "</td>" +
+
+      "<td><img style='width: 70px; height: 70px; ' src='" + detail.src + "' alt='" + detail.tenSanPham + "'>  " + detail.tenSanPham + "</td>" +
+
       "<td>" + detail.soLuong + "</td>" +
       // "<td>" + detail.giaBan + "</td>" +
       "</tr>";

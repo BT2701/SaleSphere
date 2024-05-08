@@ -1,7 +1,7 @@
 <?php
     session_start();
     session_regenerate_id(true);
-    require 'C:\xampp\htdocs\web2\MODEL\Database.php';
+    require 'G:\xampp\htdocs\web2\MODEL\Database.php';
     require_once 'google-api/vendor/autoload.php';
     require_once __DIR__.'\..\..\CONTROLLER\ProfileController.php';
     $profileController= new ProfileController();
