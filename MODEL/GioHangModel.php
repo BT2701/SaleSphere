@@ -1,9 +1,10 @@
 <?php
+require_once __DIR__ . '\..\MODEL\NhapHangModel.php';
 class GioHangModel
 {
     public function getInstance()
     {
-        require_once __DIR__.'\..\MODEL\Database.php';
+        require_once __DIR__ . '\..\MODEL\Database.php';
         $db = new Database();
         $conn = $db->getConnection();
         return $conn;
@@ -51,47 +52,91 @@ class GioHangModel
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
         $stmt->close();
-        if($row['count']){
-            return  true;
+        if ($row['count']) {
+            return true;
         }
         return false;
     }
 
 
 
-    public function getNumberProductInCart($userID){
+    public function getNumberProductInCart($userID)
+    {
         $conn = $this->getInstance();
         $sql = "SELECT COUNT(*) as numberProduct
         FROM chitietgiohang
         WHERE userid = ?";
-         $stmt = $conn->prepare($sql);
-         $stmt->bind_param("i",$userID);
-         $stmt->execute();
-         $result = $stmt->get_result();
-         $row = $result->fetch_assoc();
-         $stmt->close();
-         return $row['numberProduct'];
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $stmt->close();
+        return $row['numberProduct'];
     }
 
 
 
     //HÀM MỚI ĐƯỢC THÊM 
-    public function getQuantityProductInCart($productID, $userID){
+    public function getQuantityProductInCart($productID, $userID)
+    {
         $conn = $this->getInstance();
         $sql = "SELECT soluong 
         FROM chitietgiohang
         WHERE userid = ? AND idsanpham =?";
-         $stmt = $conn->prepare($sql);
-         $stmt->bind_param("ii",$userID,$productID);
-         $stmt->execute();
-         $result = $stmt->get_result();
-         $row = $result->fetch_assoc();
-         $stmt->close();
-         if($row == null){
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $userID, $productID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $stmt->close();
+        if ($row == null) {
             return 0;
-         }
-         return $row['soluong'];
+        }
+        return $row['soluong'];
     }
+
+
+    public function BuyNow($idSanPham, $idUser, $tongTien, $soLuong,$soLuongConLaiTrongKho)
+    {
+        $connection = $this->getInstance();
+        $currentTime = date("Y-m-d");
+        // 1. Tạo hóa đơn
+        $strSQL = "INSERT INTO hoadon(`ngayLap`, `idKhachHang`, `trangThai`, `tongTien`)
+                   VALUES ('$currentTime', '$idUser', 1, '$tongTien')";
+    
+        if ($connection->query($strSQL)) {
+            // Lấy ID của hóa đơn vừa tạo
+            $idHoaDon = $connection->insert_id;
+            if ($idHoaDon > 0) {
+                $strSQL1 = "INSERT INTO chitiethoadon(`idHoaDon`, `idSanPham`, `soLuong`)
+                            VALUES ('$idHoaDon', '$idSanPham', '$soLuong')";
+                if (!$connection->query($strSQL1)) {
+                    // Rollback hóa đơn nếu có lỗi khi thêm chi tiết hóa đơn
+                    $connection->query("DELETE FROM hoadon WHERE `idHoaDon` = '$idHoaDon'");
+                    return false;
+                }
+                else{
+                    $nhapHangModel = new NhapHangModel();
+                    $soLuongConLaiTrongKhoCapNhat = $soLuongConLaiTrongKho - $soLuong;
+                    $isSuccess = $nhapHangModel->capNhatSoLuongChiTietKiemKe($idSanPham,$soLuongConLaiTrongKhoCapNhat);
+                    if($isSuccess)
+                        return true;
+                }
+            }
+            else {
+                // echo "Lỗi không tạo được hóa đơn";
+                return false;
+            }
+        } else {
+            // echo "Lỗi khi thực hiện truy vấn: " . $connection->error;
+            return false;
+        }
+    }
+
+
+    
+
 
 
     //version 1 
