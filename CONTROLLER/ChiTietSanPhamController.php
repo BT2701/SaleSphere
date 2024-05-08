@@ -3,9 +3,9 @@ require_once __DIR__.'\DanhGiaController.php';
 require_once __DIR__.'\GioHangController.php';
 require_once __DIR__.'\SanPhamController.php';
 
-function index($idSanPham)
+function index($idSanPham,$idUser)
 {
-    $detailProduct = getDetailProduct($idSanPham,1);
+    $detailProduct = getDetailProduct($idSanPham,$idUser);
     require_once __DIR__.'\..\VIEWS\productdetail\product-detail.php';
 }
 

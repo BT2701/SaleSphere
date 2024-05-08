@@ -16,7 +16,6 @@
         <!-- ------------------------Du------------------ -->
         <?php
         require_once ("./HELPER/BaseFunction.php");
-        $idUser = 1;
         ?>
         <!-- ------------------------Du------------------ -->
         <section class="product-detail_wraper">

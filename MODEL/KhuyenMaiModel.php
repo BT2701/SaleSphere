@@ -21,7 +21,36 @@ class KhuyenMaiModel
         $stmt->close();
         return $isSuccess;
     }
-
+    function searchCoupondByNameModel($keySearch){
+        $conn = $this->getInstance();
+        // Use a prepared statement to avoid SQL injection
+        $sql = "SELECT * FROM `khuyenmai` WHERE (hanSuDung >= CURRENT_DATE()) AND (tenKhuyenMai LIKE ?) ORDER BY id DESC;";
+        $stmt = $conn->prepare($sql);
+        // Add wildcard '%' to search for names containing the keySearch
+        $searchKey = '%' . $keySearch . '%';
+        // Bind the parameter
+        $stmt->bind_param("s", $searchKey);
+        // Execute the query
+        $stmt->execute();
+        // Get the result
+        $result = $stmt->get_result();
+        if ($result) {
+            // Fetch all rows as an associative array
+            $rows = $result->fetch_all(MYSQLI_ASSOC);
+            // Free the result set
+            $result->free();
+            // Close the statement
+            $stmt->close();
+            // Close the connection
+            $conn->close();
+            // Return the fetched rows
+            return $rows;
+        } else {
+            // Query failed
+            echo "Error: " . $conn->error;
+            return null;
+        }
+    }
     function DanhSachKhuyenMaiModel()
     {
         $conn = $this->getInstance();

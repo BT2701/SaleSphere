@@ -289,11 +289,19 @@ function xuLyPhanTrang(
 // }
 
 function AddProductToCart(idSanPham, idUser, soLuongCoTheThem) {
-  if (soLuongCoTheThem <= 0) {
-    alert("Vượt mức khả năng mua hàng của sản phẩm");
+  if (idUser == 0) {
+    window.location.href = "http://localhost/web2/VIEWS/Login/login.php";
     return;
   }
   let soLuongThem = document.getElementById("quantityInput").value;
+  if (soLuongThem > soLuongCoTheThem) {
+    alert(`Không thể thêm, bạn đã thêm toàn bộ sản phẩm còn lại vào giỏ hàng`);
+    return;
+  }
+  if (soLuongThem == 0) {
+    alert("Số lượng phải lớn hơn 0");
+    return;
+  }
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "ROUTES/ChiTietSanPhamRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

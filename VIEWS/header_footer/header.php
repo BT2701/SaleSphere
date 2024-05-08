@@ -13,12 +13,32 @@
     }
     if($user!="")
     {
+        //Khi user là admin thì ẩn giỏ hàng và khi chưa đăng nhập thì ẩn giỏ hàng, 
+            $cart = '
+            <a href="#" class="user-info_cart circle-bg-icon">
+            <i class="fa-solid fa-cart-shopping" id="viewCartButton"></i>
+            <div class="quantity-product">' .
+            $numberProductIncart
+            . '</div>
+            </a>
+        ';
         $logined="&nbsp".$profileController->GetTenById($id);
         $logined_mini="&nbsp" .$profileController->GetTenById($id);
         $login='<li class="user-action_list-item"><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
         $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+        $XemLichSuDonHang =
+        '<li class="nav-item dropdown navbar-item">
+    <a class="nav-link " href="#" id="promote" role="button" aria-expanded="false">
+        <form id="viewHistoryForm" action="/web2/VIEWS/History/OrderHistory.php" method="post">
+            <input type="hidden" name="customerId" value="' . $id . '">
+            <button id="viewHistory" style="background-color: #212529; color:rgba(255, 255, 255, .55);border:none" type="submit">View Order History</button>
+        </form>
+    </a>
+    </li>';
     }
     else {
+        $cart = `hehe`;
+        $XemLichSuDonHang = '';
         $logined= '<span class="user-name">Đăng nhập/Đăng ký</span>';
         $login='<li class="user-action_list-item"><a href="#">Đăng nhập</a></li>';
         $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a></li>';
@@ -60,13 +80,7 @@
                 <div class="col-lg-4 d-flex col-6 align-items-center justify-content-end header-operations">
                     
                     <div class=" d-none d-lg-flex header-operations_user-info ">
-                        <a href="#" class="user-info_cart circle-bg-icon">
-                            <i class="fa-solid fa-cart-shopping" id="viewCartButton"></i>
-                            <div class="quantity-product" >
-                                <?php echo $numberProductIncart?>
-                            </div>
-                           
-                        </a>
+                    <?php echo $cart ?>
 
                         <div class="user-info_wrapper">
                             <i class="fa-solid fa-user circle-bg-icon"></i>
@@ -129,14 +143,7 @@
                             Chương trình khuyến mãi
                         </a>
                     </li>
-                    <li class="nav-item dropdown navbar-item">
-                        <a class="nav-link " href="#" id="promote" role="button" aria-expanded="false">
-                            <form id="viewHistoryForm" action="/web2/VIEWS/History/OrderHistory.php" method="post">
-                                <input type="hidden" name="customerId" value="1"> <!-- Thay đổi thành ID khách hàng tương ứng -->
-                                <button id="viewHistory" type="submit">View Order History</button>
-                            </form>
-                        </a>
-                    </li>
+                    <?php echo $XemLichSuDonHang ?>
                     
 
                     <!-- case user dose not login  -->

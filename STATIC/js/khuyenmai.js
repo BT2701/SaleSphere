@@ -7,7 +7,7 @@ function confirmDeleteCoupond(idKhuyenMai, tenKhuyenMai) {
 
 function deleteCoupond(idKhuyeMai) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -40,7 +40,7 @@ function PrepareDataApplyModal(idKhuyenMai, tenKhuyenMai) {
 
   // Make request to fetch products
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -79,7 +79,7 @@ function SaveDetailApplyCoupond(idKhuyenMai) {
   let typeApply = document.getElementById("applyFor").value;
   let listproductidwannaapply = GetListProductIDWannaApply();
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -111,7 +111,7 @@ function GetListProductIDWannaApply() {
 
 function ViewDetailCoupond(idKhuyenMai) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -145,7 +145,7 @@ function ViewDetailCoupond(idKhuyenMai) {
 
 function PrepareInfoCoupondEditModal(idKhuyenMai) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -171,7 +171,7 @@ function UpdateCoupondInfo(idKhuyenMai) {
   let UserInputInfoCoupond = GetUserInputForm();
   if (!validInfoCoupond(UserInputInfoCoupond)) return;
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -262,7 +262,7 @@ function CreateCoupond() {
   // alert();
   if (!validInfoCoupond(UserInputInfoCoupond)) return;
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -421,7 +421,7 @@ function clearAllErrorMessage() {
 //Make request to server to auto unapplied coupond for poduct is it was get time
 function autoUnppliedCoupond() {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     // if (xhr.readyState == 4 && xhr.status == 200) {
@@ -448,4 +448,56 @@ function autoLoadView(listCoupond) {
     document.getElementById("empty-coupond-container").classList =
       "empty-coupond-container d-none";
   }
+}
+let delayTimer;
+
+function SearchCoupondByName(event) {
+  clearTimeout(delayTimer); // Clear any existing timer
+  // Set a new timer with a delay of 500 milliseconds
+  delayTimer = setTimeout(function () {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        dataResponse = JSON.parse(this.responseText);
+        autoLoadView(dataResponse.couponsList.length);
+        let html = ``;
+        dataResponse.couponsList.forEach(function (coupon) {
+          html += `<div class="row coupond pt-1 pb-1 border-bottom  d-flex justify-content-center align-items-center"
+        id="coupond${coupon.id}">
+        <div class="col-2">
+          <p class="mb-0">${coupon.tenKhuyenMai}</p>
+        </div>
+        <div class="col-2">
+          <p class="mb-0 text-center">${coupon.giaTri}</p>
+        </div>
+        <div class="col-2">
+          <p class="mb-0 text-center">${coupon.hanSuDung}</p>
+        </div>
+        <div class="col-2">
+          <p class="mb-0 text-center">${coupon.background}</p>
+        </div>
+        <div class="col-4 d-flex align-items-center justify-content-center d-none d-xl-block">
+          <button class="btn btn-primary btn-sm ms-1" data-bs-toggle="modal" data-bs-target="#createCouponModal"
+            onclick="PrepareInfoCoupondEditModal(${coupon.id})"><i class="fas fa-edit"></i>
+            Sửa</button>
+          <button class="btn btn-danger btn-sm ms-1 me-1"
+            onclick="confirmDeleteCoupond(${coupon.id},'${coupon.tenKhuyenMai}')"><i
+              class="fas fa-trash-alt"></i> Xóa</button>
+          <button class="btn btn-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#viewDetailCoupondModal"
+            onclick="ViewDetailCoupond(${coupon.id})"><i class="fas fa-eye"></i>Chi tiết</button>
+          <button class="btn btn-success btn-sm btn-apply-coupond  me-1" data-bs-toggle="modal"
+            data-bs-target="#applyCouponModal" coupond-id="${coupon.id}"
+            coupon-name="${coupon.tenKhuyenMai}"
+            onclick="PrepareDataApplyModal(${coupon.id},'${coupon.tenKhuyenMai}')"><i
+              class="fas fa-arrow-right"></i> Áp dụng</button>
+        </div>
+      </div>`;
+        });
+        document.getElementById("coupond-container-body").innerHTML = html;
+      }
+    };
+    xhr.send(`action=SearchCoupondByName&keysearch=${event.target.value}`);
+  }, 300); // Adjust the delay time as needed (in milliseconds)
 }
