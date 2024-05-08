@@ -1,3 +1,12 @@
+<?php
+   require_once __DIR__.'\..\..\..\MODEL\PhanQuyenModel.php'; 
+
+   if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+   {
+       $id=$_SESSION['id'];
+   }
+   $phanquyenmodel= new PhanQuyenModel();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,8 +37,10 @@
     </div>
     <div class="row mb-3">
       <div class="col-md-6 offset-md-3 text-center">
+      <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createCouponModal"
           onclick="PrepareFormCreateCoupond()"><i class="fas fa-plus"></i>Tạo khuyến mãi</button>
+          <?php } else {} ?>
       </div>
     </div>
 
@@ -74,20 +85,28 @@
               <p class="mb-0 text-center"><?php echo $coupond['background'] ?></p>
             </div>
             <div class="col-4 d-flex align-items-center justify-content-center">
+            <?php if($phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
               <button class="btn btn-primary btn-sm ms-1" data-bs-toggle="modal" data-bs-target="#createCouponModal"
                 onclick="PrepareInfoCoupondEditModal(<?php echo $coupond['id'] ?>)"><i class="fas fa-edit"></i>
                 Sửa</button>
+                <?php } else {} ?>
+                <?php if($phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>  
               <button class="btn btn-danger btn-sm ms-1 me-1"
                 onclick="confirmDeleteCoupond(<?php echo $coupond['id'] ?>,`<?php echo $coupond['tenKhuyenMai'] ?>`)"><i
                   class="fas fa-trash-alt"></i> Xóa</button>
+                  <?php } else {} ?>
+                  <?php if($phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
               <button class="btn btn-secondary btn-sm me-1" data-bs-toggle="modal"
                 data-bs-target="#viewDetailCoupondModal" onclick="ViewDetailCoupond(<?php echo $coupond['id'] ?>)"><i
                   class="fas fa-eye"></i>Chi tiết</button>
+                  <?php } else {} ?>
+                  <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))&&$phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))&&$phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))&&$phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
               <button class="btn btn-success btn-sm btn-apply-coupond  me-1" data-bs-toggle="modal"
                 data-bs-target="#applyCouponModal" coupond-id="<?php echo $coupond['id'] ?>"
                 coupon-name="<?php echo $coupond['tenKhuyenMai'] ?>"
                 onclick="PrepareDataApplyModal(<?php echo $coupond['id'] ?>,'<?php echo $coupond['tenKhuyenMai'] ?>')"><i
                   class="fas fa-arrow-right"></i> Áp dụng</button>
+                  <?php } else {} ?>
             </div>
           </div>
         <?php endforeach; ?>

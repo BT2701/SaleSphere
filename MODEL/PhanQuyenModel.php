@@ -71,6 +71,17 @@
                 return $row['id'];
             }
         }
+        public function getTinhTrang($hanhdong,$idchucnang,$idquyen){
+            $this->getInstance();
+            $db= new Database();
+            $conn=$db->getConnection();
+            $sql="SELECT `TinhTrang` FROM `chitietquyen` WHERE `hanhdong`='$hanhdong' AND `idchucnang`='$idchucnang' AND `idquyen`=$idquyen";
+            $resutl=mysqli_query($conn,$sql);
+            if($resutl&&mysqli_num_rows($resutl)>0){
+                $row = mysqli_fetch_assoc($resutl);
+                return $row['TinhTrang'];
+            }
+        }
         public function getlistChucnang(){
             $this->getInstance();
             $db=new Database();
@@ -146,6 +157,28 @@
             if($resutl&&mysqli_num_rows($resutl)>0){
                 $row = mysqli_fetch_assoc($resutl);
                 return $row['next_id'];
+            }
+        }
+        public function getmaQuyenbyId($id){
+            $this->getInstance();
+            $db = new Database();
+            $conn= $db->getConnection();
+            $sql= "SELECT taikhoan.maQuyen FROM `taikhoan` WHERE `id`=$id";
+            $resutl=mysqli_query($conn,$sql);
+            if($resutl&&mysqli_num_rows($resutl)>0){
+                $row = mysqli_fetch_assoc($resutl);
+                return $row['maQuyen'];
+            }
+        }
+        public function getIdChucnangbyTenChucnang($ten){
+            $this->getInstance();
+            $db = new Database();
+            $conn= $db->getConnection();
+            $sql= "SELECT chucnang.id FROM `chucnang` WHERE `ten`='$ten' ";
+            $resutl=mysqli_query($conn,$sql);
+            if($resutl&&mysqli_num_rows($resutl)>0){
+                $row = mysqli_fetch_assoc($resutl);
+                return $row['id'];
             }
         }
     }

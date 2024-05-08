@@ -13,7 +13,7 @@ class LoginModel {
         // Xử lý chuỗi đầu vào để tránh tấn công SQL injection
         $usernameOrEmail = $conn->real_escape_string($usernameOrEmail);
     
-        $query = "SELECT users.id, users.ten, taikhoan.matKhau,taikhoan.maQuyen
+        $query = "SELECT users.id, users.ten, taikhoan.matKhau,taikhoan.maQuyen,taikhoan.TinhTrang
                   FROM taikhoan
                   INNER JOIN users ON taikhoan.id = users.id
                   WHERE (taikhoan.tenTaiKhoan = ? OR users.sdt = ? OR users.email = ?)";

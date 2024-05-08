@@ -1,5 +1,16 @@
 
+<?php
+   require_once __DIR__.'\..\..\..\MODEL\PhanQuyenModel.php'; 
 
+   if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+   {
+       $id=$_SESSION['id'];
+   }
+   $phanquyenmodel= new PhanQuyenModel();
+
+   
+
+?>
 <!-- Lưu ý -->
 <!-- Nhớ cập nhật lại mã nhân viên trong InvoiceManagementModel ( cancelOrder và confirmOrder) vì đang lấy tạm thời maNV=5 -->
 
@@ -79,9 +90,11 @@
                 <th scope="col">Chức năng</th>
             </tr>
         </thead>
+        <?php if($phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý hóa đơn"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
         <tbody>
-
+        
         </tbody>
+        <?php } else {} ?>
     </table>
 
         <!-- Modal -->
@@ -106,7 +119,6 @@
     </div>
   </div>
 </div>
-
 
 
 

@@ -39,7 +39,7 @@
                     <button class="btn btn-danger ButtonEmail "><i class="fab fa-google"></i> Google</button>
                     <div class="container-dangky">
                         <span class="container-dangky">Bạn mới biết đến Shopee?</span>
-                        <a href="facebook.com/truongdeptrai" class="hrefDangky">Đăng ký</a>
+                        <a href="/web2/VIEWS/sign_up/sign_up.php" class="hrefDangky">Đăng ký</a>
                     </div>
                 </div>
             </div>

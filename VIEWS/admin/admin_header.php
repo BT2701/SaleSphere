@@ -1,5 +1,7 @@
 <?php
     require_once __DIR__.'\..\..\CONTROLLER\ProfileController.php';
+    require_once __DIR__.'\..\..\MODEL\PhanQuyenModel.php'; 
+   $phanquyenmodel= new PhanQuyenModel();
     $profileController= new ProfileController();
     $user="";
     if(isset($_SESSION['login_name'])&&$_SESSION['login_name']!="")
@@ -14,7 +16,7 @@
     {
         $logined="&nbsp".$profileController->GetTenById($id);
         $logined_mini="&nbsp" .$profileController->GetTenById($id);
-        $login='<li class="user-action_list-item"><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $login='';
         $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
     }
     else {
@@ -23,6 +25,7 @@
         $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a></li>';
         $logined_mini='<a class="nav-link" href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a>';
     }   
+    
 ?>
 
 <!DOCTYPE html>
@@ -59,13 +62,6 @@
                 <div class="col-lg-4 d-flex col-6 align-items-center justify-content-end header-operations">
                     
                     <div class=" d-none d-lg-flex header-operations_user-info ">
-                        <a href="#" class="user-info_cart circle-bg-icon">
-                            <i class="fa-solid fa-cart-shopping" id="viewCartButton"></i>
-                            <div class="quantity-product" >
-                                
-                            </div>
-                           
-                        </a>
 
                         <div class="user-info_wrapper">
                             <i class="fa-solid fa-user circle-bg-icon"></i>
@@ -116,47 +112,61 @@
                         </a>
                         
                     </li>
+                    <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý sản phẩm"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý sản phẩm"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý sản phẩm"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý sản phẩm"),$phanquyenmodel->getmaQuyenbyId($id))==0){ ?>
+                    <?php } else{?>
                     <li class="nav-item dropdown navbar-item">
                         <a class="nav-link " href="admin_home.php?page=quanLySanPham" id="all-product" role="button" aria-expanded="false">
                             Quản lý sản phẩm
                         </a>
                         
                     </li>
-
+                    <?php }?>
+                    <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý hóa đơn"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý hóa đơn"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý hóa đơn"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý hóa đơn"),$phanquyenmodel->getmaQuyenbyId($id))==0){ ?>
+                    <?php } else{?>
                     <li class="nav-item dropdown navbar-item">
                         <a class="nav-link " href="admin_home.php?page=quanLyHoaDon" id="promote" role="button" aria-expanded="false">
                             Quản lý hóa đơn
                         </a>
                     </li>
-
+                    <?php }?>
+                    <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý thống kê"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý thống kê"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý thống kê"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý thống kê"),$phanquyenmodel->getmaQuyenbyId($id))==0){ ?>
+                    <?php } else{?>
                     <li class="nav-item dropdown navbar-item">
                         <a class="nav-link " href="admin_home.php?page=thongKe" id="promote" role="button" aria-expanded="false">
                             Thống kê
                         </a>
                     </li>
-
-                    <li class="nav-item dropdown navbar-item">
+                    <?php }?>
+                    <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý khuyến mãi"),$phanquyenmodel->getmaQuyenbyId($id))==0){ ?>
+                    <?php } else{?>
+                        <li class="nav-item dropdown navbar-item">
                         <a class="nav-link " href="admin_home.php?page=quanLyKhuyenMai" id="promote" role="button" aria-expanded="false">
                             Quản lý khuyến mãi
                         </a>
-                    </li>
-
+                        </li>
+                    <?php }?>
+                    <?php if($phanquyenmodel->getmaQuyenbyId($id)==1){ ?>
                     <li class="nav-item dropdown navbar-item">
                         <a class="nav-link " href="admin_home.php?page=quanLyTaiKhoan" id="promote" role="button" aria-expanded="false">
                             Quản lý tài khoản
                         </a>
                     </li>
+                    <?php }else {} ?>
+                    <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))==0&&$phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))==0){ ?>
+                    <?php } else{?>
                     <li class="nav-item dropdown navbar-item">
                         <a class="nav-link " href="admin_home.php?page=quanLyNhapHang" id="promote" role="button" aria-expanded="false">
                             Quản lý nhập hàng
                         </a>
                     </li>
+                    <?php }?>
+                    <?php if($phanquyenmodel->getmaQuyenbyId($id)==1){ ?>
                     <li class="nav-item dropdown navbar-item">
                         <a class="nav-link " href="admin_home.php?page=quanLyPhanQuyen" id="promote" role="button" aria-expanded="false">
                             Quản lý phân quyền
                         </a>
                     </li>
-                    
+                    <?php }else {} ?>
                     
 
                     <!-- case user dose not login  -->
