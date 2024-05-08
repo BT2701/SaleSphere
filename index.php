@@ -24,7 +24,12 @@
 <body>
 <?php
     session_start();
-    $idUser = 2;
+    if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+        $idUser = $_SESSION['id'];
+    }
+    else{
+        $idUser = 0;
+    }
     require("CONTROLLER/GioHangController.php");
     $numberProductIncart =  NumberProductInCart($idUser);
     include 'VIEWS/header_footer/header.php';

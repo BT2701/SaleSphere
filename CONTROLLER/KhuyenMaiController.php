@@ -57,7 +57,15 @@ function PrePareDataApplyModal($Products)
     echo $ProductsJson;
 }
 
-
+function searchCoupondByName($infoRequest){
+    $KhuyenMaiModel = new KhuyenMaiModel();
+    $keySearch = $infoRequest['keysearch'];
+    $coupondList = $KhuyenMaiModel->searchCoupondByNameModel($keySearch);
+    $response = array(
+        'couponsList' => $coupondList
+    );
+    print_r(json_encode($response));
+}
 function SaveDetailApplyCoupondController($infoApply)
 {
     $KhuyenMaiModel = new KhuyenMaiModel();

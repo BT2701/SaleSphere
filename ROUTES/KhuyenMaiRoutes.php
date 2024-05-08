@@ -35,6 +35,9 @@ else if(isset($_POST['action']) && $_POST['action'] == 'UpdateCoupondInfo'){
     $coupondInfo = $_POST['coupondInfo'];
     UpdateCoupondInfoController($coupondID,$coupondInfo);
 }
+else if(isset($_POST['action']) && $_POST['action'] =='SearchCoupondByName'){
+    searchCoupondByName($_POST);
+}
 else if(isset($_POST['action']) && $_POST['action'] == 'AutoUnappliedCoupond'){
     AutoUnappliedCoupondController();
 }

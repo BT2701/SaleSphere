@@ -22,7 +22,8 @@ class LoginController {
         $result = $LoginModel->checkLogin($user, $Password);      
         if($result!=false){
             session_start(); // Bắt đầu session
-            $_SESSION['idusers'] = $result['id'];; // Thay $userId bằng ID thực tế của người dùng
+            $_SESSION['id'] = $result['id'];
+            $_SESSION['login_name'] = $result['ten']; // Thay $userId bằng ID thực tế của người dùng
         }
         return $result;
     }

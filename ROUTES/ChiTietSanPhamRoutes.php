@@ -10,5 +10,5 @@ else if(isset($_POST['action']) && $_POST['action'] =='AddProductToCart'){
 }
 else{
    $productID = $_GET['id'];
-   index($productID);
+   index($productID,$idUser);
 }

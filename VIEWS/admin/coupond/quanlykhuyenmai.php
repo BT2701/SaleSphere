@@ -10,7 +10,7 @@
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="STATIC/css/khuyenmai.css">
+  <link rel="stylesheet" href="/web2/STATIC/css/khuyenmai.css">
 </head>
 
 <body onload="autoLoadView(<?php echo count($coupondList) ?>)">
@@ -19,7 +19,7 @@
     <div class="row mb-3">
       <div class="col-md-6 offset-md-3">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search coupons...">
+        <input type="text" class="form-control" oninput="SearchCoupondByName(event)" placeholder="Nhập tên khuyến mãi...">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
           </div>
@@ -256,7 +256,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <script src="STATIC/js/khuyenmai.js"></script>
+  <script src="../../STATIC/js/khuyenmai.js"></script>
   <script>
     document.getElementById('applyFor').addEventListener('change', function () {
       applyForValue = this.value;
