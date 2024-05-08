@@ -58,8 +58,7 @@ class SanPhamModel {
         $conn = $db->getConnection();
         $sql = "SELECT COUNT(*) AS total
         FROM sanpham s  
-        LEFT JOIN loaisp l ON s.idloaisp = l.id
-        WHERE  l.tenLoaiSP = ? and s.trangthai=1";
+        WHERE  s.idLoaiSP = ? and s.trangthai=1";
 
         // Thực thi truy vấn và lấy kết quả
         $stmt = $conn->prepare($sql);
@@ -166,11 +165,7 @@ class SanPhamModel {
         $conn = $db->getConnection();
         $start = intval($start);
         $limit = intval($limit);
-        $sql = "SELECT s.id, 
-        s.tenSanPham,
-        s.giaNhap,  
-        s.giaBan, 
-        s.src, 
+        $sql = "SELECT s.*, 
         k.giaTri, 
         k.background,
         SUM(cthd.soluong) AS TongSoLuongBanDuoc, 
@@ -187,7 +182,6 @@ class SanPhamModel {
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
         WHERE s.trangthai=1 
         GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, k.hansudung
-        ORDER BY TongSoLuongBanDuoc DESC
         LIMIT ?, ?
         ";
         $stmt = $conn->prepare($sql);
@@ -203,6 +197,7 @@ class SanPhamModel {
         $conn->close();
         return $sanphamList;
     }
+    
     public function getById($id){
         $this->getInstance();
         $db = new Database();
@@ -224,7 +219,7 @@ class SanPhamModel {
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
-        $sql = "SELECT s.tenSanPham, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, 
+        $sql = "SELECT s.tenSanPham,s.id, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, 
         k.tenKhuyenMai, 
         CASE 
             WHEN AVG(dg.star) - FLOOR(AVG(dg.star)) >= 0.5 THEN CEIL(AVG(dg.star))
@@ -284,35 +279,44 @@ class SanPhamModel {
         return $sanphamList;
     }
     public function getDsSPtheoLoai($category,$start,$limit ) {
+
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
         $start = intval($start);
         $limit = intval($limit);
-        $sanphamList = array();
-        $sql = "SELECT s.tenSanPham,s.giaNhap, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP, k.hansudung 
+        $sql = "SELECT s.*, 
+        k.giaTri, 
+        k.background,
+        SUM(cthd.soluong) AS TongSoLuongBanDuoc, 
+        k.tenKhuyenMai, 
+        CASE 
+            WHEN AVG(dg.star) - FLOOR(AVG(dg.star)) >= 0.5 THEN CEIL(AVG(dg.star))
+            ELSE FLOOR(AVG(dg.star))
+        END AS TrungBinhStar, 
+        k.hansudung  
         FROM sanpham s
         LEFT JOIN chitietkhuyenmai ctk ON s.id = ctk.idsanpham
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
         LEFT JOIN danhgia dg ON s.id = dg.idsanpham
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
-        LEFT JOIN loaisp l ON s.idloaisp = l.id
-        WHERE  l.tenLoaiSP = ? and s.trangthai=1
-        GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, dg.star
-        ORDER BY TongSoLuongBanDuoc DESC
-        LIMIT ?, ?";
+        WHERE s.trangthai=1 AND s.idLoaiSP = ?
+        GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, k.hansudung
+        LIMIT ?, ?
+        ";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sii", $category, $start, $limit);
+        $stmt->bind_param("iii", $category,$start, $limit);
         $stmt->execute();
         $result = $stmt->get_result();
+        $sanphamList = array();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $sanphamList[] = $row;
             }
         }
-        
         $conn->close();
         return $sanphamList;
+
     }
     public function getDsSPtheoTen($name, $start,$limit ) {
         $this->getInstance();
@@ -320,60 +324,76 @@ class SanPhamModel {
         $conn = $db->getConnection();
         $start = intval($start);
         $limit = intval($limit);
-        $sanphamList = array();
-        $sql = "SELECT s.tenSanPham,s.giaNhap, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP, k.hansudung 
+        $sql = "SELECT s.*, 
+        k.giaTri, 
+        k.background,
+        SUM(cthd.soluong) AS TongSoLuongBanDuoc, 
+        k.tenKhuyenMai, 
+        CASE 
+            WHEN AVG(dg.star) - FLOOR(AVG(dg.star)) >= 0.5 THEN CEIL(AVG(dg.star))
+            ELSE FLOOR(AVG(dg.star))
+        END AS TrungBinhStar, 
+        k.hansudung  
         FROM sanpham s
         LEFT JOIN chitietkhuyenmai ctk ON s.id = ctk.idsanpham
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
         LEFT JOIN danhgia dg ON s.id = dg.idsanpham
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
-        LEFT JOIN loaisp l ON s.idloaisp = l.id
-        WHERE  s.tenSanPham LIKE ? and s.trangthai=1
-        GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, dg.star
-        ORDER BY TongSoLuongBanDuoc DESC
-        LIMIT ?, ?";
+        WHERE  s.tenSanPham LIKE ? and s.trangthai=1 
+        GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, k.hansudung
+        LIMIT ?, ?
+        ";
         $stmt = $conn->prepare($sql);
         $name_param = "%" . $name . "%";
         $stmt->bind_param("sii", $name_param,$start, $limit);
         $stmt->execute();
         $result = $stmt->get_result();
+        $sanphamList = array();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $sanphamList[] = $row;
             }
         }
-        
         $conn->close();
         return $sanphamList;
-    }
+
+    } //có thể kiểm tra tồn tại strpos($chuoi_cha, $chuoi_con)
     public function getDsSPtheoKhoangGia($from, $to,$start,$limit ) {
+        
         $this->getInstance();
         $db = new Database();
         $conn = $db->getConnection();
         $start = intval($start);
         $limit = intval($limit);
-        $sanphamList = array();
-        $sql = "SELECT s.tenSanPham,s.giaNhap, s.giaBan, s.src, k.giaTri, k.background,SUM(cthd.soluong) AS TongSoLuongBanDuoc, k.tenKhuyenMai, dg.star, l.tenLoaiSP, k.hansudung 
+        $sql = "SELECT s.*, 
+        k.giaTri, 
+        k.background,
+        SUM(cthd.soluong) AS TongSoLuongBanDuoc, 
+        k.tenKhuyenMai, 
+        CASE 
+            WHEN AVG(dg.star) - FLOOR(AVG(dg.star)) >= 0.5 THEN CEIL(AVG(dg.star))
+            ELSE FLOOR(AVG(dg.star))
+        END AS TrungBinhStar, 
+        k.hansudung  
         FROM sanpham s
         LEFT JOIN chitietkhuyenmai ctk ON s.id = ctk.idsanpham
         LEFT JOIN khuyenmai k ON ctk.idkhuyenmai = k.id
         LEFT JOIN danhgia dg ON s.id = dg.idsanpham
         LEFT JOIN chitiethoadon cthd ON s.id = cthd.idsanpham
-        LEFT JOIN loaisp l ON s.idloaisp = l.id
         WHERE  s.giaBan >= ? and s.giaBan < ? and s.trangthai=1
-        GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, dg.star
-        ORDER BY TongSoLuongBanDuoc DESC
-        LIMIT ?, ?";
+        GROUP BY cthd.idsanpham, s.tenSanPham, s.giaBan, s.src, k.giaTri, k.tenKhuyenMai, k.hansudung
+        LIMIT ?, ?
+        ";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("iiii", $from, $to,$start, $limit);
         $stmt->execute();
         $result = $stmt->get_result();
+        $sanphamList = array();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $sanphamList[] = $row;
             }
         }
-        
         $conn->close();
         return $sanphamList;
     }

@@ -33,7 +33,7 @@
 
     <!-- slider-product -->
 
-    <section class="first-slider-product">
+    <section class="first-slider-product" style="display:none;">
         <div class="product-container">
             <div class="content">
                 <div class="title">
@@ -119,7 +119,7 @@ for ($i = 0; $i < $numOfSlides; $i++) {
             <div class="product-gallery-content">
                 <div class="product-gallery-tittle">
                     <h2>SẢN PHẨM NỔI BẬT NHẤT</h2>
-                    <ul>
+                    <ul style="display:none;">
                         <li><a href="">Catgories</a></li>
                         <li><a href="">Catgories</a></li>
                         <li><a href="">Tất cả</a></li>
@@ -129,8 +129,11 @@ for ($i = 0; $i < $numOfSlides; $i++) {
                 <?php if(isset($sanphamListnoibac) && !empty($sanphamListnoibac)) {?>
             <?php foreach ($sanphamListnoibac as $sanpham): ?>
                 <div class="product-gallery-content-product-item">
-                <img src="<?php echo $sanpham['src']; ?>" alt="">
-                
+                <div class="split-img">
+                 
+                <img src="<?php echo $sanpham['src']; ?>" alt="" class="image-product-vip">
+                   
+                </div>
                 <div class="product-gallery-content-product-text" >
                 <?php if ($sanpham['tenKhuyenMai']!=null && (strtotime($sanpham['hansudung'])>time() || strtotime($sanpham['hansudung'])==null)){ ?>
                     <?php if ($sanpham['background']!=null){ ?>

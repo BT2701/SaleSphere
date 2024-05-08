@@ -46,6 +46,9 @@
         } elseif($page == 'promote') {
             include 'VIEWS/promote/promote.php';
         }
+        elseif($page=='giohang'){
+            include 'VIEWS/cart/cart.php';
+        }
         //-----------------------DU-------------------------
         else if ($page == 'productdetail') {
             // include 'VIEWS/productdetail/product-detail.php';
