@@ -60,7 +60,7 @@ class InvoiceManagementModel
         //Nhớ cập nhật lại maNV
         // $maNV= $_SESSION['userid'];
         // $maNV=1;
-        session_start();
+        // session_start();
         if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
             $maNV = $_SESSION['id'];
         } else {
@@ -84,7 +84,7 @@ class InvoiceManagementModel
         $conn = $db->getConnection();
         //Nhớ cập nhật lại maNV
         // $maNV= 1;
-        session_start();
+        // session_start();
         if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
             $maNV = $_SESSION['id'];
         }
