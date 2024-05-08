@@ -14,25 +14,25 @@
      <div class="row">
          <!-- Left Section - Social Media Icons -->
          <div class="col-md text-center mt-3 mb-4 footer_follow">
-             <h5 class="footer_follow-title">Follow Us</h5>
+             <h5 class="footer_follow-title">Theo dõi</h5>
              <ul class="list-unstyled d-flex justify-content-center mb-0 footer_follow-list">
                  <li class="me-3 footer_follow-list-item">
-                     <a href="#" class="text-dark">
+                     <a href="https://www.facebook.com/TruongDaihocSaiGon.SGU"  target="_blank" class="text-dark">
                          <i class="fab fa-facebook"></i>
                      </a>
                  </li >
                  <li class="me-3 footer_follow-list-item">
-                     <a href="#" class="text-dark">
+                     <a href="https://www.instagram.com/ngochieu/" target="_blank" class="text-dark">
                          <i class="fab fa-instagram"></i>
                      </a>
                  </li>
                  <li class="me-3 footer_follow-list-item">
-                     <a href="#" class="text-dark">
+                     <a href="https://web.telegram.org/k/#@SinhVienIT" target="_blank"  class="text-dark">
                          <i class="fab fa-telegram"></i>
                      </a>
                  </li>
                  <li class="footer_follow-list-item">
-                     <a href="#" class="text-dark">
+                     <a href="https://www.youtube.com/@hieu-tv" target="_blank" class="text-dark">
                          <i class="fab fa-youtube"></i>
                      </a>
                  </li>
@@ -43,12 +43,12 @@
 
           <!-- center Section - contact section -->
           <div class="col-md text-center mt-md-3 mt-3 mb-4 footer_contact">
-             <h5 class="footer_contact-title">Contact Us</h5>
+             <h5 class="footer_contact-title">Liên hệ</h5>
              <ul class="list-unstyled mb-0 footer_contact-list">
                  <li class="footer_contact-list-item"><i class="fa-solid fa-phone"></i>0379614995</li>
                  <li class="footer_contact-list-item">
                      <i class="fa-regular fa-envelope"></i>
-                     Luxeloom@gmail.com
+                     phamvandu77tphcm@gmail.com
                  </li> 
              </ul>
          </div>
@@ -58,11 +58,11 @@
 
          <!-- Right Section - Website Links -->
          <div class="col-md text-center mt-md-3 mt-3 mb-4 footer_explore">
-             <h5 class="footer_explore-title">Explore</h5>
+             <h5 class="footer_explore-title">Về G1'Shop</h5>
              <ul class="list-unstyled mb-0 footer_explore-list">
-                 <li class="footer_explore-list-item"><a href="#">Home</a></li>
-                 <li class="footer_explore-list-item"><a href="#">Products</a></li>
-                 <li class="footer_explore-list-item"><a href="#">Services</a></li>
+                 <li class="footer_explore-list-item"><a href="http://localhost/web2/index.php?page=homepage">Trang chủ</a></li>
+                 <li class="footer_explore-list-item"><a href="http://localhost/web2/index.php?page=productlist">Danh sách sản phẩm</a></li>
+                 <li class="footer_explore-list-item"><a href="http://localhost/web2/index.php?page=promote">Chương trình khuyến mãi</a></li>
              </ul>
          </div>
      </div>
