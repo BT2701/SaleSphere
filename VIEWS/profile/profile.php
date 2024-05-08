@@ -1,3 +1,28 @@
+<?php
+    session_start();
+    require_once __DIR__.'\..\..\CONTROLLER\ProfileController.php';
+    $profileController= new ProfileController();
+    $profileList = $profileController->getDataForView();
+
+    $user="";
+    $id=1;
+    if(isset($_SESSION['login_name'])&&$_SESSION['login_name']!=''){
+        $user=$_SESSION['login_name'];
+    }
+    if(isset($_SESSION['id'])&&$_SESSION['id']!=''){
+        $id=$_SESSION['id'];
+    }
+    if($user!=""){
+        $taikhoan='<li><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $changepass='';
+        $logout=' <li><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+    }
+    else{
+        $taikhoan='<li><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $changepass='<li><a href="/web2/VIEWS/profile/change_password.php">Đổi mật khẩu</a></li>';
+        $logout=' <li><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +39,7 @@
     <div class="main">
         <div class="header">
             <div class="MyLogo">
-              <a class="LinkTrangChu" href="#">
+              <a class="LinkTrangChu" href="/web2/index.php">
               <img src="/web2/STATIC/assets/banner.jpg" class="img-fluid" style="width: 150px;">
               </a>
               <div class="namepage" style="font-size: 1.5rem; padding: 15px; font-family: 'Roboto'; font-size: 30px;">SHOPPEE</div>
@@ -35,9 +60,9 @@
                             <i class="fa-regular fa-user"></i>
                         </a>
                         <ul class="subnav">
-                            <li><a href="#">Tài khoản</a></li>
-                            <li><a href="#">Đổi mật khẩu</a></li>
-                            <li><a href="#">Đăng xuất</a></li>
+                            <?=$taikhoan?>
+                            <?=$changepass?>
+                            <?=$logout?>
                         </ul>
                     </li>
                 </ul>
@@ -48,13 +73,15 @@
             <p class="inf">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
             <hr>
             <div class="content">
+            <?php if(isset($profileList)&&!empty($profileList)) ?>
+             <?php foreach($profileList as $profile): ?>
                 <div class="left_box">
                         <div class="content_img" style="display: flex; flex-direction: column;">
-                            <img class="img_avatar" style="border-radius: 100%;" src="/web2/STATIC/assets/default_avatar_1.jpg" alt="">
+                            <img class="img_avatar" style="border-radius: 100%;" src="<?php if($profile['src']=='0'||$profile['src']==''){echo '/web2/STATIC/assets/default_avatar_1.jpg';} else {echo $profile['src'];} ?>" alt="">
                         </div>
                 </div>
                 <div class="right_box">
-                    <form action="">
+                <form action="/web2/CONTROLLER/ProfileController1.php" method="post" name="MyForm" id="myform">
                         <table>
                             <tr>
                                 <td class="row_lbusername">
@@ -62,7 +89,7 @@
                                 </td>
                                 <td class="row_txtusername">
                                     <div class="txtusername">
-                                        truongducvuongvipvai
+                                        <?php echo $profile['ten']; ?>
                                     </div>
                                 </td>
                             </tr>
@@ -72,7 +99,7 @@
                                 </td>
                                 <td class="row_txtemail">
                                     <div class="txtemail">
-                                        vu******02@gmail.com
+                                    <?php if($profile['email']=='0') {echo "Chưa cập nhật";} else {echo $profile['email'];}  ?>
                                     </div>
                                 </td>
                             </tr>
@@ -82,7 +109,7 @@
                                 </td>
                                 <td class="row_txtnumber">
                                     <div class="txtnumber">
-                                        *********96
+                                    <?php if($profile['sdt']=='0'){echo "Chưa cập nhật";} else {echo $profile['sdt'];} ?>
                                     </div>
                                 </td>
                             </tr>
@@ -92,7 +119,7 @@
                                 </td>
                                 <td class="row_cbgender">
                                     <div class="cbmale">
-                                        Nam
+                                    <?php echo $profile['gender']; ?>
                                     </div>
                                     <!-- <div class="cbfemale">
                                         Nữ
@@ -105,16 +132,27 @@
                                 </td>
                                 <td class="row_txtdob">
                                     <div class="txtdob">
-                                        02/06/2002
+                                    <?php if(date("d/m/Y",strtotime($profile['dob']))=='01/01/1970'||date("d/m/Y",strtotime($profile['dob']))=='30/11/-0001'||date("d/m/Y",strtotime($profile['dob']))=='00/00/0000'){echo "Chưa cập nhật";} else{ echo date("d/m/Y",strtotime($profile['dob']));} ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="row_lbaddress">
+                                    <label class="lbaddress">Địa chỉ</label>
+                                </td>
+                                <td class="row_txtaddress">
+                                    <div class="txtaddress">
+                                    <?php if($profile['diachi']=='0') {echo "Chưa cập nhật";} else {echo $profile['diachi'];} ?>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="noname"></td>
                                 <td class="row_btnluu">
-                                    <button type="button" class="btnluu btn btn-primary">Sửa</button>
+                                <input type="submit" id="submit1" class="btnluu btn btn-primary" value="Sửa"></input>
                                 </td>
                             </tr>
+                            <?php endforeach;?>
                         </table>
                     </form>
                 </div>

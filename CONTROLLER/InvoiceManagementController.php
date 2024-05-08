@@ -7,6 +7,7 @@ if (isset($_POST['action'])) {
     else{
         $maNV = 0;
     }
+
     $action = $_POST['action'];
     switch ($action) {
         case 'checkAll':

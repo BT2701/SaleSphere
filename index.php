@@ -23,7 +23,19 @@
 </head>
 <body>
 <?php
+    session_start();
+    if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+        $idUser = $_SESSION['id'];
+    }
+    else{
+        $idUser = 0;
+    }
+    require("CONTROLLER/GioHangController.php");
+    $numberProductIncart =  NumberProductInCart($idUser);
     include 'VIEWS/header_footer/header.php';
+    ///-Van Du add ---------start 
+    
+    //-Van Du add ----------end
     // Xác định trang cần hiển thị dựa trên giá trị của biến GET
     if(isset($_GET['page'])) {
         $page = $_GET['page'];
@@ -34,6 +46,18 @@
         } elseif($page == 'promote') {
             include 'VIEWS/promote/promote.php';
         }
+        elseif($page=='giohang'){
+            include 'VIEWS/cart/cart.php';
+        }
+        //-----------------------DU-------------------------
+        else if ($page == 'productdetail') {
+            // include 'VIEWS/productdetail/product-detail.php';
+            include 'ROUTES/ChiTietSanPhamRoutes.php';
+        } 
+        else if ($page == 'coupond') {
+            include 'ROUTES/KhuyenMaiRoutes.php';
+        } 
+        //-----------------------DU-------------------------
         
     } else {
         // Mặc định khi không có tham số, hiển thị trang home.php

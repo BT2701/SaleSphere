@@ -1,7 +1,6 @@
 <?php
 
 
-
 class InvoiceManagementModel
 {
 
@@ -113,6 +112,7 @@ class InvoiceManagementModel
         $conn = $db->getConnection();
 
         $sql = "SELECT sanpham.src, 
+
                             sanpham.id,
                             sanpham.tenSanPham,
                             sanpham.giaBan,
@@ -122,6 +122,7 @@ class InvoiceManagementModel
                     INNER JOIN sanpham ON chitiethoadon.idSanPham = sanpham.id 
                     INNER JOIN hoadon ON chitiethoadon.idHoaDon = hoadon.id
                     WHERE chitiethoadon.idHoaDon= $invoiceId";
+
         $result = $conn->query($sql);
         $invoiceDetailsList = array();
         if ($result->num_rows > 0) {

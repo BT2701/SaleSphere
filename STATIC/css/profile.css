@@ -60,12 +60,12 @@ hr{
 table{
     width: 600px;
 }
-.row_lbusername, .row_lbemail, .row_lbnumber, .row_lbgender, .row_lbdob{
+.row_lbusername, .row_lbemail, .row_lbnumber, .row_lbgender, .row_lbdob, .row_lbaddress{
     text-align: right;
     color: gray;
     padding-bottom: 25px;
 }
-.row_txtusername, .row_txtemail, .row_txtnumber, .row_cbgender, .row_txtdob{
+.row_txtusername, .row_txtemail, .row_txtnumber, .row_cbgender, .row_txtdob, .row_txtaddress{
     padding-bottom: 25px;
     padding-left: 25px;
 }
@@ -120,6 +120,9 @@ form input{
 .main .mid .content .left_box .content_img .img_avatar{
     width: 125%;
 }
+.noname{
+    display: none;
+}
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
     .main .header .MyLogo{
         padding-left: 20px;
@@ -139,6 +142,9 @@ form input{
     }
     h1,.mid .inf,table{
         width: 100%;
+    }
+    .noname{
+        display: none;
     }
 }
 @media only screen and (max-width: 767px)  {
@@ -174,6 +180,7 @@ form input{
     }
     .noname{
         padding-left: 100px;
+        display: block;
     }
     .row_btnluu{
         padding-left: 0;

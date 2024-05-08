@@ -1,50 +1,53 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const listImages = document.querySelector('.list-images');
+    const btnLeft = document.querySelector('.btn-left');
+    const btnRight = document.querySelector('.btn-right');
+    const indexItems = document.querySelectorAll('.index-item');
+    let currentIndex = 0;
 
-const listImage = document.querySelector('.list-images')
-const imgs = document.getElementsByTagName('img')
-const btnLeft = document.querySelector('.btn-left')
-const btnRight = document.querySelector('.btn-right')
-const length = imgs.length
-let current = 0
+    const updateSlide = () => {
+        // Ẩn tất cả các hình ảnh
+        document.querySelectorAll('.list-images img').forEach(img => {
+            img.style.display = 'none';
+        });
+        // Hiển thị hình ảnh hiện tại
+        document.querySelectorAll('.list-images img')[currentIndex].style.display = 'block';
+        // Loại bỏ lớp active từ tất cả các chỉ mục
+        indexItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        // Thêm lớp active cho chỉ mục hiện tại
+        indexItems[currentIndex].classList.add('active');
+    };
 
-const handleChangeSlide = () => {
-    if (current == length - 1) {
-        current = 0
-        let width = imgs[0].offsetWidth
-        listImage.style.transform = `translateX(0px)`
-        document.querySelector('.active').classList.remove('active')
-        document.querySelector('.index-item-'+ current).classList.add('active')
+    const nextSlide = () => {
+        currentIndex = (currentIndex + 1) % indexItems.length;
+        updateSlide();
+    };
 
-    } else {
-        current ++
-        let width = imgs[0].offsetWidth
-        listImage.style.transform = `translateX(${width * -1 * current}px)`
-        document.querySelector('.active').classList.remove('active')
-        document.querySelector('.index-item-'+ current).classList.add('active')
-    }
-}
+    const prevSlide = () => {
+        currentIndex = (currentIndex - 1 + indexItems.length) % indexItems.length;
+        updateSlide();
+    };
 
-let handleEventChangeSlide = setInterval(handleChangeSlide, 4000)
+    // Xử lý sự kiện khi nhấp vào nút trái
+    btnLeft.addEventListener('click', () => {
+        prevSlide();
+    });
 
-btnRight.addEventListener('click', () => {
-    clearInterval(handleEventChangeSlide)
-    handleChangeSlide()
-    handleEventChangeSlide = setInterval(handleChangeSlide, 4000)
-})
+    // Xử lý sự kiện khi nhấp vào nút phải
+    btnRight.addEventListener('click', () => {
+        nextSlide();
+    });
 
-btnLeft.addEventListener('click', () => {
-    clearInterval(handleEventChangeSlide)
-    if (current == 0) {
-        current = length - 1
-        let width = imgs[0].offsetWidth
-        listImage.style.transform = `translateX(${width * -1 * current}px)`
-        document.querySelector('.active').classList.remove('active')
-        document.querySelector('.index-item-'+ current).classList.add('active')
-    } else {
-        current --
-        let width = imgs[0].offsetWidth
-        listImage.style.transform = `translateX(${width * -1 * current}px)`
-        document.querySelector('.active').classList.remove('active')
-        document.querySelector('.index-item-'+ current).classList.add('active')
-    }
-    handleEventChangeSlide = setInterval(handleChangeSlide, 4000)
-})
+    // Xử lý sự kiện khi nhấp vào chỉ mục
+    indexItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentIndex = index;
+            updateSlide();
+        });
+    });
+
+    // Bắt đầu trình chiếu tự động sau mỗi 4 giây
+    setInterval(nextSlide, 2000);
+});

@@ -65,18 +65,22 @@
     font-size: 0.8rem;
 }
 
-.ranting{
+.rating-info{
     display: flex;
     align-items: center;
 }
 
-.ranting a{
+.rating-info a{
     margin-right: 6px;
 }
 
+.rating {
+    color: #ffc107;
+    font-size: 0.8rem;
+}
 
-.ranting i{
-    color:var(--primary-color);
+.rating i{
+    color: #ffc107;
     font-size: 0.8rem;
 }
 
@@ -190,12 +194,13 @@ input[type="number"] {
 
 .btn-add-product{
     margin-top: 30px;
-    background-color: var(--primary-color);
-    color: var(--text-color);
+    /* background-color: var(--primary-color); */
+    color: #231926;
     font-weight: 500;
     padding: 10px 20px 10px 20px;
     border-radius: 2px;
     border: 1px solid #a8a6a0;
+    min-width: 206px;
 }
 
 .btn-add-product i{
@@ -204,10 +209,58 @@ input[type="number"] {
 
 
 .btn-add-product:hover{
-    background-color: #90d8ff;
+    background-color: #231926;
+    color: #f8f9fa;
 }
 
 
+.btn-buy-product{
+    margin-top: 30px;
+    background-color: var(--primary-color);
+    color: #231926;
+    font-weight: 500;
+    padding: 10px 20px 10px 20px;
+    border-radius: 2px;
+    border: 1px solid #a8a6a0;
+    min-width: 206px;
+}
+
+.btn-buy-product:hover{
+    background-color: #00a6ff;
+    color: #f8f9fa;
+}
+
+
+
+
+/* avaluate  */
+.user-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    border: 1px solid #cccccc;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: auto;
+}
+
+
+.average-rating {
+    border: 1px solid #007bff;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.case-none-evaluate {
+    padding: 20px; /* Add some padding */
+    font-size: 1.6rem;
+    color:#80d8ff;
+}
 
 
 
@@ -219,8 +272,13 @@ input[type="number"] {
         font-size: 1.2rem;
     }
 
-    .ranting i{
-        color:var(--primary-color);
+    .rating {
+        color: #ffc107;
+        font-size: 0.6rem;
+    }
+    
+    .rating i{
+        color: #ffc107;
         font-size: 0.6rem;
     }
 
@@ -245,6 +303,13 @@ input[type="number"] {
         margin-left: 10px;
         font-size: 0.8rem;
     } */
+
+    .btn-add-product{
+        width: 100%;
+    }
+
+
+
 }
 
 

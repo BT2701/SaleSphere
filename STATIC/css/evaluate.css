@@ -1,0 +1,23 @@
+/*them moi*/
+.star-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    font-size: 50px; /* Kích thước của ngôi sao */
+    color: black; /* Màu mặc định của ngoi sao */
+    
+}
+
+.star-button::before {
+    color: yellow; /* Màu mặc định của phần trong viền của ngoi sao */
+}
+
+.clicked {
+    color: yellow; /* Màu của ngoi sao khi được nhấn */
+}
+
+.clicked::before {
+    color: yellow; /* Màu của phần trong viền của ngoi sao khi được nhấn */
+}

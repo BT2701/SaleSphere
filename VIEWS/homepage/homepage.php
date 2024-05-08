@@ -10,7 +10,7 @@
 
 <body>
 <?php
-    require_once 'C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php';
+    require_once __DIR__.'\..\..\CONTROLLER\SanPhamController.php';
     $sanphamController = new SanPhamController();
     $sanphamList = $sanphamController->getDataForView();
     $sanphamListnoibac = $sanphamController->getDataForViewNoiBac();
@@ -33,7 +33,7 @@
 
     <!-- slider-product -->
 
-    <section class="first-slider-product">
+    <section class="first-slider-product" style="display:none;">
         <div class="product-container">
             <div class="content">
                 <div class="title">
@@ -77,8 +77,8 @@ for ($i = 0; $i < $numOfSlides; $i++) {
         echo '<li><a href="">' . $sanpham['giaBan'] . '<sup>đ</sup></a><span>-' . ($sanpham['giaTri'] ?? 0) . '%</span></li>';
         echo '<li>' . ($sanpham['giaTri'] != null ? $sanpham['giaBan'] - $sanpham['giaBan'] * $sanpham['giaTri'] / 100 : $sanpham['giaBan']) . '<sup>đ</sup></li>';
         echo '<li>';
-        if ($sanpham['star'] != null) {
-            for ($k = 0; $k < $sanpham['star']; $k++) {
+        if ($sanpham['TrungBinhStar'] != null) {
+            for ($k = 0; $k < $sanpham['TrungBinhStar']; $k++) {
                 echo '<i class="fa-solid fa-star" style="color: #FB6E2E;"></i>';
             }
         }
@@ -119,7 +119,7 @@ for ($i = 0; $i < $numOfSlides; $i++) {
             <div class="product-gallery-content">
                 <div class="product-gallery-tittle">
                     <h2>SẢN PHẨM NỔI BẬT NHẤT</h2>
-                    <ul>
+                    <ul style="display:none;">
                         <li><a href="">Catgories</a></li>
                         <li><a href="">Catgories</a></li>
                         <li><a href="">Tất cả</a></li>
@@ -128,9 +128,14 @@ for ($i = 0; $i < $numOfSlides; $i++) {
                 <div class="product-gallery-content-product">
                 <?php if(isset($sanphamListnoibac) && !empty($sanphamListnoibac)) {?>
             <?php foreach ($sanphamListnoibac as $sanpham): ?>
-                <div class="product-gallery-content-product-item">
-                <img src="<?php echo $sanpham['src']; ?>" alt="">
+
+                <div class="product-gallery-content-product-item" onclick="detailproduct(<?php echo $sanpham['id']; ?>)">
                 
+                <div class="split-img">
+                 
+                <img src="<?php echo $sanpham['src']; ?>" alt="" class="image-product-vip">
+                   
+                </div>
                 <div class="product-gallery-content-product-text" >
                 <?php if ($sanpham['tenKhuyenMai']!=null && (strtotime($sanpham['hansudung'])>time() || strtotime($sanpham['hansudung'])==null)){ ?>
                     <?php if ($sanpham['background']!=null){ ?>
@@ -153,8 +158,8 @@ for ($i = 0; $i < $numOfSlides; $i++) {
                         echo $giaban;}else{echo $sanpham['giaBan'];} ?> <sup>đ</sup></li>
                     <li>
                         <?php
-                        if ($sanpham['star']!=null){
-                            for ($i=0;$i<$sanpham['star'];$i++){
+                        if ($sanpham['TrungBinhStar']!=null){
+                            for ($i=0;$i<$sanpham['TrungBinhStar'];$i++){
                                 echo '<i class="fa-solid fa-star" style="color: #FB6E2E;"></i>';
                             }
                         }
@@ -220,6 +225,11 @@ for ($i = 0; $i < $numOfSlides; $i++) {
         }
     })
 
+
+    function detailproduct(idProduct){
+            // location.assign("http://localhost/web2/index.php?page=productdetail");
+            window.location.replace(`http://localhost/web2/index.php?page=productdetail&id=${idProduct}`);
+        }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

@@ -1,0 +1,91 @@
+.coupon-table th,
+.coupon-table td {
+  vertical-align: middle;
+}
+
+#productTypeCheckbox {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.checkbox-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+
+.product-applied-container {
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 5px;
+
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.empty-coupond-container {
+  text-align: center;
+}
+
+.empty-coupond-img {
+  display: inline-block;
+  height: 200px;
+}
+
+.empty-coupond-message {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+
+
+.coupond-container{
+  position: relative;
+  overflow: auto;
+  height: 200px;
+  white-space: nowrap;
+}
+
+
+.coupond-container-header{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  background-color: #80d8ff;
+  min-width: 938px;
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+.coupond-container-header p{
+  margin: 6px 0;
+}
+
+
+.coupond{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  min-width: 938px;
+}
+
+.coupond:hover{
+  background-color: #eee;
+}

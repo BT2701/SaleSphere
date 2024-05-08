@@ -1,0 +1,46 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+table,
+.formxuly {
+  margin: 0 auto;
+}
+hr {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 100%;
+}
+.custom-border {
+  border: 0.5px solid black; /* Định dạng border tùy chỉnh */
+}
+body {
+  background-color: powderblue;
+}
+label {
+  width: 80px;
+}
+.btnthem {
+  margin-left: 50px;
+  width: 100px;
+}
+.formxuly {
+  text-align: center;
+}
+form input {
+  width: 300px;
+  padding-left: 5px;
+}
+h2 {
+  padding-left: 40px;
+}
+.cb {
+  width: 60px;
+}
+p {
+  padding-left: 40px;
+  color: red;
+  font-size: 12px;
+  padding-top: 5px;
+}

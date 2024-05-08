@@ -52,20 +52,15 @@
                     $result=  $cartController->createInvoiceAndInvoiceDetails($userid, $tongTien, $selectedProductIDs);
                     
                     echo json_encode($result);
-<<<<<<< Updated upstream
+
                 }   
-=======
-                }      
->>>>>>> Stashed changes
+
         }
      }
     class CartController{
         public function getInstance(){
-<<<<<<< Updated upstream
-             require_once 'D:\Github\SaleSphere\MODEL\CartModel.php';
-=======
-             require_once 'G:\XAMPP\htdocs\web2\MODEL\CartModel.php';
->>>>>>> Stashed changes
+
+             require_once __DIR__.'\..\MODEL\CartModel.php';
         }
         public function getCartList($userid) {
             $this->getInstance();

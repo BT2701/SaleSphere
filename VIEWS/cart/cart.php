@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../STATIC/css/cart.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="../../STATIC/js/cart.js"></script>
+  <script src="/web2/STATIC/js/cart.js"></script>
   <title>Cart</title>
 
 </head>
@@ -22,12 +22,19 @@
 <body style="background: #d0f0fa">
 
   <?php
-<<<<<<< Updated upstream
-    $userid = 1;
-    require_once 'G:\XAMPP\htdocs\web2\CONTROLLER\CartController.php';
+
+    // session_start();
+    if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+        $userid = $_SESSION['id'];
+    }
+    else{
+        $userid = 0;
+    }
+    require_once __DIR__.'\..\..\CONTROLLER\CartController.php';
+
     $cartController=new CartController();
     $cartList= $cartController->getCartList($userid);
-=======
+
   session_start();
   if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
     $userid = $_SESSION['id'];
@@ -37,7 +44,7 @@
   require_once __DIR__ . '\..\..\CONTROLLER\CartController.php';
   $cartController = new CartController();
   $cartList = $cartController->getCartList($userid);
->>>>>>> Stashed changes
+
   ?>
   <div class="container-md ">
     <table id="chooseProduct" class="table table-hover table-borderless custom-table " style="margin-top: 20px; ">
