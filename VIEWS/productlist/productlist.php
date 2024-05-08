@@ -42,7 +42,7 @@
                     <option value="Tất cả sản phẩm">Tất cả sản phẩm</option>
                     <?php if (isset($categoryList) && !empty($categoryList)): ?>
                                 <?php foreach ($categoryList as $cate): ?>
-                                    <option value="<?php echo $cate['tenLoaiSP']; ?>" ><?php echo $cate['tenLoaiSP']; ?></option>
+                                    <option value="<?php echo $cate['id']; ?>" ><?php echo $cate['tenLoaiSP']; ?></option>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                     
@@ -62,8 +62,9 @@
         <?php if(isset($sanphamList) && !empty($sanphamList)) {?>
             <?php foreach ($sanphamList as $sanpham): ?>
                 <div class="product-gallery-content-product-item" onclick="test(<?php echo $sanpham['id']; ?>)">
-                <img src="<?php echo $sanpham['src']; ?>" alt="">
-                
+                <div class="split-img">
+                <img src="<?php echo $sanpham['src']; ?>" alt="" class="image-product-vip">
+                </div>
                 <div class="product-gallery-content-product-text" >
                 <?php if ($sanpham['tenKhuyenMai']!=null && (strtotime($sanpham['hansudung'])>time() || strtotime($sanpham['hansudung'])==null)){ ?>
                     <?php if ($sanpham['background']!=null){ ?>
