@@ -15,7 +15,7 @@
     {
         //Khi user là admin thì ẩn giỏ hàng và khi chưa đăng nhập thì ẩn giỏ hàng, 
             $cart = '
-            <a href="#" class="user-info_cart circle-bg-icon">
+            <a href="index.php?page=giohang" class="user-info_cart circle-bg-icon">
             <i class="fa-solid fa-cart-shopping" id="viewCartButton"></i>
             <div class="quantity-product">' .
             $numberProductIncart
@@ -32,6 +32,7 @@
         <form id="viewHistoryForm" action="/web2/VIEWS/History/OrderHistory.php" method="post">
             <input type="hidden" name="customerId" value="' . $id . '">
             <button id="viewHistory" style="background-color: #212529; color:rgba(255, 255, 255, .55);border:none" type="submit">Lịch sử đơn hàng</button>
+
         </form>
     </a>
     </li>';
@@ -146,15 +147,6 @@
                     <?php echo $XemLichSuDonHang ?>
                     
 
-                    <!-- case user dose not login  -->
-                    <!-- <li class="nav-item d-lg-none d-flex align-items-center">
-                        <i class="fa-solid fa-user" style="color: aliceblue; margin-right: 10px;"></i>
-                        <a class="nav-link" href="#">Log in</a>
-                    </li>
-                    <li class="nav-item d-lg-none d-flex align-items-center">
-                        <i class="fa-solid fa-unlock" style="color: aliceblue; margin-right: 10px;"></i>
-                        <a class="nav-link" href="#">sign in</a>
-                    </li> -->
 
 
                     <!-- case user has been login  -->
@@ -172,12 +164,6 @@
     </nav>
 
 
-<script>
-    document.getElementById("viewCartButton").addEventListener("click", function() {
-    // Điều hướng người dùng đến trang giỏ hàng (cart.php)
-    window.location.href = "/web2/VIEWS/cart/cart.php";
 
-    });
-</script>
 </body>
 </html>
