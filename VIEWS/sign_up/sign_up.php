@@ -1,7 +1,7 @@
 <?php
     session_start();
     session_regenerate_id(true);
-    require 'C:\xampp\htdocs\web2\MODEL\Database.php';
+    require 'G:\xampp\htdocs\web2\MODEL\Database.php';
     require_once 'google-api/vendor/autoload.php';
     $client= new Google_Client();
     $client->setClientId('738185340571-n1nhvd916p7boq245k5bubcol4tbksg9.apps.googleusercontent.com');

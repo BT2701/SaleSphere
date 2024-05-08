@@ -19,18 +19,30 @@
 
 </head>
 
-<body>
+<body style="background: #d0f0fa">
 
   <?php
+<<<<<<< Updated upstream
     $userid = 1;
     require_once 'G:\XAMPP\htdocs\web2\CONTROLLER\CartController.php';
     $cartController=new CartController();
     $cartList= $cartController->getCartList($userid);
+=======
+  session_start();
+  if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+    $userid = $_SESSION['id'];
+  } else {
+    $userid = 0;
+  }
+  require_once __DIR__ . '\..\..\CONTROLLER\CartController.php';
+  $cartController = new CartController();
+  $cartList = $cartController->getCartList($userid);
+>>>>>>> Stashed changes
   ?>
   <div class="container-md ">
     <table id="chooseProduct" class="table table-hover table-borderless custom-table " style="margin-top: 20px; ">
       <thead>
-        <tr class="thead table-primary "> 
+        <tr class="thead table-primary ">
           <th class="text-center col-1"></th>
 
           <th class="col-6">Sản Phẩm</th>
@@ -41,28 +53,27 @@
       </thead>
       <tbody>
         <!------------------- list_item ----------------->
-        
-          <?php if(isset($cartList) && !empty($cartList)) {?>
-            <?php foreach ($cartList as $row): ?>
-        
-        <div id="item-cart" class="item-cart" data-user-id=  "<?php echo $userid  ?>">
-          <tr data-product-id= "<?php echo $row['id']  ?>"  data-user-id=  "<?php echo $userid  ?>" >
+
+        <?php if (isset($cartList) && !empty($cartList)) { ?>
+        <?php foreach ($cartList as $row): ?>
+
+        <div id="item-cart" class="item-cart" data-user-id="<?php echo $userid ?>">
+          <tr data-product-id="<?php echo $row['id'] ?>" data-user-id="<?php echo $userid ?>">
             <td class="text-center align-middle ">
-              <input title="Chọn sản phẩm"  class="check-box chooseProduct" style="cursor: pointer;"
-               type="checkbox" > 
+              <input title="Chọn sản phẩm" class="check-box chooseProduct" style="cursor: pointer;" type="checkbox">
             </td>
 
             <td>
-              <a class="link " title="<?php echo $row['tenSanPham']; ?>" href="<?php echo $row['moTa']; ?>">
+                <div class="d-inline">
                 <!--//Chỗ này cần lưu link tới trang sản phẩm -->
                     <img class="rounded-2" style="margin-left: 30px;" width="80px" height="80px"
-                      src="<?php echo $row['src']; ?>">
-                  </a>
-                  <a class="link text-dark" style="margin-left: 8px;" href="<?php echo $row['moTa']; ?>">
+                      src="<?php echo $row['src']; ?>"  title="<?php echo $row['tenSanPham']; ?>">
+                  
+                  <p class="text-dark" style="margin-left: 8px;">
                     <!--//Chỗ này cần lưu link tới trang sản phẩm -->
                     <?php echo $row['tenSanPham']; ?>
-                  </a>
-
+                  </p>
+                  </div>
                 </td>
 
                 <td class="text-center align-middle">
@@ -78,30 +89,30 @@
                 </td>
 
                 <td id='price' class="text-center  align-middle">
-                  <?php 
-                  $idSanPham= $row['id'];
-                  $giaSanPham= $row['giaBan'];
-                  
-                  $khuyenmai= $cartController->getPromotionValue($idSanPham);
-                  if(isset($khuyenmai) && !empty($khuyenmai)) {
-                    foreach ($khuyenmai as $row1): 
-                    if(isset($row1['giaTri']))
-                      echo  "<p style='text-decoration: line-through;color:red'>". " -$giaSanPham- "."</p> " ."<p class='price'>". $giaSanPham - $giaSanPham*$row1['giaTri']/100 ."</p>";
-                    endforeach;}
-                    else
-                    echo "<p class='price'>". $giaSanPham ."</p>";
+                  <?php
+                  $idSanPham = $row['id'];
+                  $giaSanPham = $row['giaBan'];
+
+                  $khuyenmai = $cartController->getPromotionValue($idSanPham);
+                  if (isset($khuyenmai) && !empty($khuyenmai)) {
+                    foreach ($khuyenmai as $row1):
+                      if (isset($row1['giaTri']))
+                        echo "<p style='text-decoration: line-through;color:red'>" . " -$giaSanPham- " . "</p> " . "<p class='price'>" . $giaSanPham - $giaSanPham * $row1['giaTri'] / 100 . "</p>";
+                    endforeach;
+                  } else
+                    echo "<p class='price'>" . $giaSanPham . "</p>";
                   ?>
                 </td>
 
                 <td class="text-center align-middle   ">
-                  <a class="trash" title="Xóa sản phẩm" onclick= deleteRow(this)><i class="fas fa-trash"
+                  <a class="trash" title="Xóa sản phẩm" onclick=deleteRow(this)><i class="fas fa-trash"
                       style="font-size: 20px; cursor: pointer;"></i></a>
                 </td>
               </tr>
             </div>
-            <?php endforeach; ?>
-            <?php } ?>
-          
+          <?php endforeach; ?>
+        <?php } ?>
+
 
 
         <!-------------------- total-price --------------->
@@ -129,7 +140,7 @@
 
           </th>
           <td class="text-center align-middle">
-            <a id=btnThanhToan class="btn btn-sm rounded-1 m-1" type="submit" 
+            <a id=btnThanhToan class="btn btn-sm rounded-1 m-1" type="submit"
               style="border-color: darkgray; border-radius: 10px !important; width: 130px; height: 50px; display: flex; justify-content: center; align-items: center;">
               <strong>Thanh toán</strong>
             </a>
