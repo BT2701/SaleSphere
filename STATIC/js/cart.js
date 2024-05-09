@@ -45,14 +45,12 @@ function decreaseQuantity(btn) {
   var price = parseInt(parentRow.querySelector(".price").textContent.trim());
   var total = parseInt(document.getElementById('total').value);
   var x=1; // Kiểm tra nếu currentValue có từng =0 và gán lại 1 chưa. 
-  if (currentValue > 0) {
+  if (currentValue > 1) {
     currentValue--;
 
-    if (currentValue === 0) {
-      x=0
-      currentValue=1
-    }
+    
     soLuongInput.value = currentValue;
+    
     updateQuantity(userID, productID, currentValue)
     
     if (checkboxElement.checked) {
@@ -76,54 +74,30 @@ function decreaseQuantity(btn) {
 // -------------------------------- Nhấn nút tăng số lượng ----------------------
 function increaseQuantity(btn) {
   var parentRow = btn.closest("tr");
-  var checkboxElement = parentRow.querySelector(".check-box")
-  var productID= parentRow.getAttribute("data-product-id")
+  var checkboxElement = parentRow.querySelector(".check-box");
+  var productID = parentRow.getAttribute("data-product-id");
   var userID = document.getElementById("item-cart").getAttribute("data-user-id");
   var soLuongInput = btn.parentNode.querySelector("input");
   var currentValue = parseInt(soLuongInput.value);
   var price = parseInt(parentRow.querySelector(".price").textContent.trim());
   var total = parseInt(document.getElementById('total').value);
+  
   if (currentValue < 999) {
     currentValue++;
+    updateQuantity(userID, productID, currentValue);
   }
   soLuongInput.value = currentValue;
-  updateQuantity(userID, productID, currentValue)
+  
   if (checkboxElement.checked) {
     if (currentValue >= 999) {
-      total = price * 999
+      total = price * 999;
+    } else {
+      total += price;
     }
-    else
-      total += price
-    document.getElementById('total').value = total
+    document.getElementById('total').value = total;
   }
 }
 
-function hasLeadingZero(value) {
-  var leadingZeroRegex = /^0[0-9]+$/;
-  return leadingZeroRegex.test(value);
-}
-
-
-function validateQuantity(input) {
-  var value = input.value;
-
-  // Loại bỏ các ký tự không phải số
-  value = value.replace(/[^0-9]/g, '');
-
-  // Kiểm tra số âm
-  if (value <= 0) {
-    value = 1;
-  }
-  if (hasLeadingZero(value)) {
-    value = value.replace(/^0+/, '');
-  }
-
-  if (value > 999) {
-    value = 999;
-  }
-
-  input.value = value;
-}
 // --------------------Update Số lượng trong database---------------------
 function updateQuantity(userID, idsanpham, soLuongMoi){
     $.ajax({
@@ -167,8 +141,9 @@ function updateQuantity(userID, idsanpham, soLuongMoi){
 
         var productID= parentRow.getAttribute("data-product-id")
         var userID = document.getElementById("item-cart").getAttribute("data-user-id");
-        updateQuantity(userID, productID, newInputValue)
-
+        if(oldInputValue!=newInputValue){
+          updateQuantity(userID, productID, newInputValue)
+        }
         if(checkboxElement.checked){
           total-= oldInputValue*price
           total+= newInputValue*price
@@ -189,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const totalPriceElement = document.getElementById('total');
   const totalProductElement = document.getElementById('totalProduct')
  
+  
   function calculateTotal() {
     let totalValue = 0;
     let totalProduct = 0;
@@ -241,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var parentRow = checkbox.closest("tr");
         var productID = parentRow.getAttribute("data-product-id");
         selectedProductIDs.push(productID);
-        
+        console.log(selectedProductIDs);
       });
     } 
     
@@ -265,7 +241,15 @@ document.addEventListener("DOMContentLoaded", function () {
           var total = parseInt(document.getElementById("total").value);
           var userID = document.getElementById("item-cart").getAttribute("data-user-id");
           var listSelectedProductID = selectedProductIDs;
+          let message="";
+          var listDeleteMultipleProduct=[];
           console.log("userID: " + userID + " selected: " + selectedProductIDs + " tongTien: " + total);
+
+          if (listSelectedProductID.length === 0) {
+            alert("Bạn chưa xác nhận chọn sản phẩm nào để thanh toán!");
+            return; // Dừng xử lý tiếp theo
+          }
+
           $.ajax({
               url: "/web2/CONTROLLER/CartController.php",
               method: 'POST',
@@ -276,14 +260,52 @@ document.addEventListener("DOMContentLoaded", function () {
                   selectedProductIDs: listSelectedProductID,
                   tongTien: total
               },
+              
               success: function(response) {
-                  if(response == true){
+                if(Array.isArray(response)) {
+                  for (var i = 0; i < response.length; i++) {
+                      message+="Sản phẩm "+ response[i].tenSanPham + " đã hết hàng!\n "
+                      listDeleteMultipleProduct.push(response[i].idSanPham);
+                  }
+                  message+="Vui lòng chọn sản phẩm khác!"
+                  alert(message);
+                  var confirmed = confirm("Bạn có muốn xóa những sản phẩm hết hàng không?");
+
+                  if(confirmed){
+                  $.ajax({
+                    url: "/web2/CONTROLLER/CartController.php",
+                    method: 'POST',
+                    dataType: 'json',
+                    data: { action:'deleteMultipleProduct',
+                            userid: userID,
+                            listDeleteMultipleProduct:  listDeleteMultipleProduct
+                          },
+                    success: function(response) {
+                        if(response==true){
+                          alert("Xóa sản phẩm thành công!");
+                          location.reload();
+                        } else {
+                          alert(response);
+                        }    
+                    },
+                    error: function(xhr, status, error) {
+                      alert("Lỗi khi gửi yêu cầu: "+xhr.status);
+                    }
+                });
+              }
+                } 
+                  else if(response ==true){
+                    console.log(response)
                       alert("Đặt hàng thành công!");
+                      
                       location.reload(); // Reload the page after successful order
-                  } else {
+                  } 
+                 
+                  else {
                       alert(response);
                   }    
               },
+
               error: function(xhr, status, error) {
                   alert("Lỗi khi gửi yêu cầu: " + xhr.status + status + error);
               }

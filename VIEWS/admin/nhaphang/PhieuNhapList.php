@@ -10,11 +10,20 @@
 </head>
 
 <body>
-    <?php
-    require_once __DIR__ . '\..\..\..\CONTROLLER\NhapHangController.php';
-    require_once __DIR__ . '\..\..\..\CONTROLLER\UserConTroller.php';
-    $list = $nhapHangController->layDsPhieuNhap();
-    include 'phieunhap_detail.php';
+
+<?php 
+        require_once __DIR__.'\..\..\..\CONTROLLER\NhapHangController.php'; 
+        require_once __DIR__.'\..\..\..\CONTROLLER\UserConTroller.php'; 
+        require_once __DIR__.'\..\..\..\MODEL\PhanQuyenModel.php'; 
+
+        if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+        {
+            $id=$_SESSION['id'];
+        }
+        $phanquyenmodel= new PhanQuyenModel();
+        $list=$nhapHangController->layDsPhieuNhap();
+        include 'phieunhap_detail.php';
+                      
     ?>
 
     <div class="container mt-5">
@@ -24,13 +33,13 @@
         </div>
         <div class="search">
             <div class="search-by-nhanvien">
-                <input type="text" class="form-control" placeholder="Tên nhân viên ...">
+                <input type="text" class="form-control" placeholder="Tên nhân viên ..." id="searchInput" onkeyup="timKiemTheoTen()">
             </div>
             <div class="search-by-thoigian">
                 <label for="startDate">Từ</label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" id="startDate">
                 <label for="toDate">Đến</label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" id="toDate">
             </div>
             <div class="type-selection">
                 <select name="selection" class="form-select" id="selection">Chọn bộ lọc
@@ -43,35 +52,37 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="table-wrapper">
-                    <table class="table">
-                        <thead class="thead-dark">
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Ngày nhập</th>
+                            <th scope="col">Tên nhân viên</th>
+                            <th scope="col">Tổng tiền</th>
+                            <th scope="col">Xem chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableData">
+                        <?php foreach($list as $item){?>
+<!--                         <form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm"> -->
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Ngày nhập</th>
-                                <th scope="col">Tên nhân viên</th>
-                                <th scope="col">Tổng tiền</th>
-                                <th scope="col">Xem chi tiết</th>
+                                <td>
+                                    <?php echo $item['id']; ?>
+                                </td>
+                                <td><?php echo $item['ngayNhap']; ?></td>
+                                <td id="employeeName<?php echo $userController->getByID($item['idUser'])['ten']; ?>"><?php echo $userController->getByID($item['idUser'])['ten']; ?></td>
+                                <td><?php echo $item['tongtien']; ?></td>
+                                <?php if($phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
+                                    <td><button type="button" name="view-detail" class="btn btn-success btn-sm view-detail"  onclick="loadChiTietNhapHang(<?php echo $item['id']; ?>)" data-id="<?php echo $item['id']; ?>"><i class="fa-solid fa-list" style="font-size:20px;"></i></button></td>
+                                <?php } else {} ?>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($list as $item) { ?>
-                                <!-- <form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm"> -->
-                                <tr>
-                                    <td>
+<!--                         </form> -->
+                        <?php } ?>
+                    </tbody>
 
-                                        <?php echo $item['id']; ?>
-                                    </td>
-                                    <td><?php echo $item['ngayNhap']; ?></td>
+                </table>
 
-
-                                    <td><?php echo $userController->getByID($item['idUser'])['ten']; ?></td>
-                                    <td><?php echo $item['tongtien']; ?></td>
-                                    <td><button type="button" name="view-detail" class="btn btn-success btn-sm view-detail" onclick="loadChiTietNhapHang(<?php echo $item['id']; ?>)" ><i class="fa-solid fa-list" style="font-size:20px;"></i></button></td>
-                                </tr>
-                                <!-- </form> -->
-                            <?php } ?>
-                        </tbody>
-                    </table>
                 </div>
             </div>
 
@@ -83,7 +94,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../../STATIC/js/nhaphang.js"></script>
+
+   <script src="/web2/STATIC/js/nhaphang.js"></script>
     <script>
         $(document).ready(function() {
             // Xử lý sự kiện khi thay đổi select
@@ -103,6 +115,7 @@
         });
        
     </script>
+
 </body>
 
 </html>

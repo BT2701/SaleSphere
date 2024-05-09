@@ -10,6 +10,13 @@
 </head>
 <body>
     <?php require_once __DIR__.'\..\..\..\CONTROLLER\SanPhamController.php'; 
+    require_once __DIR__.'\..\..\..\MODEL\PhanQuyenModel.php'; 
+
+    if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+    {
+        $id=$_SESSION['id'];
+    }
+    $phanquyenmodel= new PhanQuyenModel();
     $sanphamList = $controller->getList(PHP_INT_MAX);?>
     <style>
         /* CSS cho đánh giá sao */
@@ -129,10 +136,15 @@
                                     <td><?php echo $product['giaNhap']; ?></td>
                                     <td><?php echo $product['giaBan']; ?></td>
                                     <td>
+                                        
                                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                        <?php if($phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý sản phẩm"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
                                         <a href="" ><button type="submit" name="delete" class="btn btn-danger btn-sm" style="margin-right: 10px;"><i class="fa-solid fa-trash fs-5"></i></button></a>
+                                        <?php } else {} ?>
                                         <!-- Đổi type của button 'Sửa' từ 'submit' thành 'button' -->
+                                        <?php if($phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý sản phẩm"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
                                         <a href="/web2/VIEWS/admin/admin_home.php?page=quanLySanPham&&luachon=sua&&product_id=<?php echo $product['id']?>" class="link-dark btn btn-success" style="text-align: center; height: 32.5px;" ><i class="fa-solid fa-pen-to-square fs-5"></i></a>
+                                        <?php } else {} ?>
                                     </td>
                                 </tr>
                             </form>
@@ -146,9 +158,10 @@
             </tbody>
         </table>
         </div>
+        <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý sản phẩm"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
         <!-- Nút thêm sản phẩm -->
         <button type="button" style="margin-top: 30px;"  class="btn btn-primary mb-3" data-toggle="modal" data-target="#addProductModal">Thêm sản phẩm</button>
-        
+        <?php } else {} ?>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -227,8 +240,9 @@
             });
         });
     </script>
-    <script src="/web2/STATIC/js/category.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/web2/STATIC/js/category.js"></script>
+
 
 
 </body>

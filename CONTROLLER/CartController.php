@@ -15,6 +15,21 @@
                     echo "Không có dữ liệu được gửi.";
                 }
                 break;
+            case 'deleteMultipleProduct':
+                if(isset($_POST['userid'])){
+                    $userid= $_POST['userid'];
+                    $listDeleteMultipleProduct= $_POST['listDeleteMultipleProduct'];
+
+                    $cartController= new CartController();
+                    $result= $cartController->deleteMultipleProduct($userid, $listDeleteMultipleProduct);
+                    echo json_encode($result);
+                } else {
+                    // Trường hợp không có dữ liệu được gửi từ client
+                    echo "Không có dữ liệu được gửi.";
+                }
+                break;  
+
+                
             case 'updateQuantity':
                 if(isset($_POST['userid']) &&isset($_POST['idSanPham']) && isset($_POST['soLuongMoi'] )){
                     $userid = $_POST['userid'];
@@ -35,18 +50,16 @@
                     $selectedProductIDs= $_POST['selectedProductIDs'];
                     $cartController= new CartController();
                     $result=  $cartController->createInvoiceAndInvoiceDetails($userid, $tongTien, $selectedProductIDs);
+                    
                     echo json_encode($result);
+
                 }   
-                
+
         }
-    
      }
-
-
-
-
     class CartController{
         public function getInstance(){
+
              require_once __DIR__.'\..\MODEL\CartModel.php';
         }
         public function getCartList($userid) {
@@ -64,6 +77,11 @@
             $this->getInstance();
             $CartModel = new CartModel();
             return $CartModel->deleteProduct($iduser, $idSanPham);
+        }
+        public function  deleteMultipleProduct($iduser, $listDeleteMultipleProduct){
+            $this->getInstance();
+            $CartModel = new CartModel();
+            return $CartModel->deleteMultipleProduct($iduser,$listDeleteMultipleProduct);
         }
 
         public function updateQuantity($userid, $idSanPham, $soLuongMoi){

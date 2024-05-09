@@ -35,6 +35,7 @@
                     $phanquyenModel->deleteChiTietQuyen($phanquyenModel->getIdByHanhdong('T',$user1['id'],$id),$id,$user1['id']);
                     $phanquyenModel->deleteChiTietQuyen($phanquyenModel->getIdByHanhdong('S',$user1['id'],$id),$id,$user1['id']);
                     $phanquyenModel->deleteChiTietQuyen($phanquyenModel->getIdByHanhdong('X',$user1['id'],$id),$id,$user1['id']);
+                    $phanquyenModel->deleteChiTietQuyen($phanquyenModel->getIdByHanhdong('L',$user1['id'],$id),$id,$user1['id']);
                 }
             $result=$phanquyenModel->deleteQuyen($id);
             if($result)
@@ -46,7 +47,7 @@
     //$phanquyenController = new PhanQuyenController();
     if(isset($_GET['controller'])&&$_GET['controller']=='sua'){
     $id=$_POST['phanloai'];
-    require_once __DIR__.'\..\MODEL\PhanQuyenModel.php';
+    require_once 'C:\xampp\htdocs\web2\MODEL\PhanQuyenModel.php';
     $phanquyenModel = new PhanQuyenModel();
     $phanquyenController= new PhanQuyenController();
     $phanquyenList=$phanquyenController->getListChucNang();
@@ -59,6 +60,8 @@
                 $phanquyenModel->insertPhanQuyenvoiTinhTrang($id1,$id,$user1['id'],'S',0);
                 $id1=$phanquyenModel->GetIdmoinhat();
                 $phanquyenModel->insertPhanQuyenvoiTinhTrang($id1,$id,$user1['id'],'X',0);
+                $id1=$phanquyenModel->GetIdmoinhat();
+                $phanquyenModel->insertPhanQuyenvoiTinhTrang($id1,$id,$user1['id'],'L',0);
             }
         header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&chon=sua&&id=$id");
     }else
@@ -68,7 +71,7 @@
     }
     if(isset($_GET['controller'])&&$_GET['controller']=='them'){
         $username=$_POST['username'];
-        require_once __DIR__.'\..\MODEL\PhanQuyenModel.php';
+        require_once 'C:\xampp\htdocs\web2\MODEL\PhanQuyenModel.php';
         $phanquyenModel = new PhanQuyenModel();
         $result= $phanquyenModel->insesrtQuyen($username);
         if($result){
@@ -80,7 +83,7 @@
         $phanquyenController= new PhanQuyenController();
         $phanquyenList=$phanquyenController->getListChucNang();
         
-        require_once __DIR__.'\..\MODEL\PhanQuyenModel.php';
+        require_once 'C:\xampp\htdocs\web2\MODEL\PhanQuyenModel.php';
         $phanquyenModel= new  PhanQuyenModel();
         $phanquyenModel->updateTenQuyenById($_GET['id'],$username);
         if(isset($phanquyenList)&&!empty($phanquyenList))
@@ -92,7 +95,8 @@
                     $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
-                    if($result&&$result1&&$result2)
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    if($result&&$result1&&$result2&&$result3)
                     {
                         header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
@@ -102,27 +106,63 @@
                     $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
-                    if($result&&$result1&&$result2)
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    if($result&&$result1&&$result2&&$result3)
                     {
                         header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
-                if($mang==['S','X'])
+                if($mang==['T','S'])
+                {
+                    $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    if($result&&$result1&&$result2&&$result3)
+                    {
+                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                    }
+                }  
+                if($mang==['T','L'])
+                {
+                    $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    if($result&&$result1&&$result2&&$result3)
+                    {
+                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                    }
+                }  
+                if($mang==['S','L'])
                 {
                     $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
-                    $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
-                    if($result&&$result1&&$result2)
+                    $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    if($result&&$result1&&$result2&&$result3)
                     {
                         header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
-                if($mang==['T','S','X'])
+                if($mang==['X','L'])
+                {
+                    $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    if($result&&$result1&&$result2&&$result3)
+                    {
+                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                    }
+                }  
+                if($mang==['T','S','X','L'])
                 {
                     $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
-                    if($result&&$result1&&$result2)
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    if($result&&$result1&&$result2&&$result3)
                     {
                         header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
@@ -132,7 +172,8 @@
                     $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
-                    if($result&&$result1&&$result2)
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    if($result&&$result1&&$result2&&$result3)
                     {
                         header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
@@ -142,7 +183,8 @@
                     $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
-                    if($result&&$result1&&$result2)
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    if($result&&$result1&&$result2&&$result3)
                     {
                         header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
@@ -152,7 +194,63 @@
                     $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
-                    if($result&&$result1&&$result2)
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    if($result&&$result1&&$result2&&$result3)
+                    {
+                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                    }
+                }  
+                if($mang==['L'])
+                {
+                    $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    if($result&&$result1&&$result2&&$result3)
+                    {
+                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                    }
+                }  
+                if($mang==['T','S','X'])
+                {
+                    $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    if($result&&$result1&&$result2&&$result3)
+                    {
+                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                    }
+                }  
+                if($mang==['T','S','L'])
+                {
+                    $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    if($result&&$result1&&$result2&&$result3)
+                    {
+                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                    }
+                }  
+                if($mang==['T','X','L'])
+                {
+                    $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    if($result&&$result1&&$result2&&$result3)
+                    {
+                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                    }
+                }  
+                if($mang==['S','X','L'])
+                {
+                    $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+                    $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
+                    if($result&&$result1&&$result2&&$result3)
                     {
                         header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
@@ -160,11 +258,12 @@
         }
         else
         {
-            $mang=[0,0,0];
+            $mang=[0,0,0,0];
             $result=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('T',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
             $result1=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('S',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
             $result2=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('X',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
-            if($result&&$result1&&$result2)
+            $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
+            if($result&&$result1&&$result2&&$result3)
             {
                 header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
             }

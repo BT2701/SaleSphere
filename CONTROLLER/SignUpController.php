@@ -8,5 +8,5 @@
     }
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $signupModel->registerTaikhoan($username,$hashedPassword);
-    header('Location: /web2/index.php');
+    header('Location: /web2/VIEWS/login/login.php');
           
