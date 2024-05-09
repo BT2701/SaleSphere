@@ -228,6 +228,25 @@ class NhapHangModel{
         return $result;
     }
 
+    public function layDsChiTietPhieuNhap1($idPhieuNhap){
+        $this->getInstance();
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql ="SELECT * FROM chitietphieunhap 
+        JOIN sanpham ON sanpham.id = chitietphieunhap.idSanPham
+        WHERE idPhieuNhap ='$idPhieuNhap'";
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $list = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $list[] = $row;
+            }
+        }
+        $conn->close();
+        return $list;
+    }
     
     //2. KẾT THÚC NHẬP HÀNG
 

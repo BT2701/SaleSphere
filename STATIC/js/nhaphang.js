@@ -1,96 +1,133 @@
-$(document).ready(function(){
-    // Xử lý sự kiện khi thay đổi select
-    $("#selection").change(function(){
+
+function loadChiTietNhapHang(id) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/web2/ROUTES/ChiTietSanPhamRoutes.php", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      dataResponse = JSON.parse(this.responseText);
+      let html = ``;
+      dataResponse.forEach((chiTietPhieuNhap) => {
+        html += `<tr>
+                                 <td>
+                                     <img style="width:50px;height:50px;" src="${chiTietPhieuNhap["src"]}" id="product-image" alt="">
+                                     </td>
+                                     <td>
+                                    ${chiTietPhieuNhap["tenSanPham"]}
+                                     </td>
+                                     <td>
+                                        ${chiTietPhieuNhap["soLuong"]}
+                                     </td>
+                                 </tr>`;
+      });
+      //   alert(html);
+      document.getElementById("containdetailphieunhap").innerHTML = html;
+      $("#detail-modal").modal("show");
+    }
+  };
+  xhr.send(`action=XemChiTietPhieuNhap&idPhieuNhap=${id}`);
+}
+
+$(document).ready(function () {
+  // Xử lý sự kiện khi thay đổi select
+  $("#selection").change(function () {
     // Lấy giá trị của select
     var selectedOption = $(this).val();
 
     // Hiển thị hoặc giấu đi các div tương ứng bằng CSS display
-    if(selectedOption == "nhanvien") {
-        $(".search-by-nhanvien").css("display", "block");
-        $(".search-by-thoigian").css("display", "none");
-    } else if(selectedOption == "thoigian") {
-        $(".search-by-nhanvien").css("display", "none");
-        $(".search-by-thoigian").css("display", "flex");
+    if (selectedOption == "nhanvien") {
+      $(".search-by-nhanvien").css("display", "block");
+      $(".search-by-thoigian").css("display", "none");
+
+      document.getElementById("searchInput").value = "";
+
+      var tableRows = document.querySelectorAll("#tableData tr");
+      tableRows.forEach(function (row) {
+        row.style.display = ""; // Hiển thị dòng dữ liệu
+      });
+    } else if (selectedOption == "thoigian") {
+      $(".search-by-nhanvien").css("display", "none");
+      $(".search-by-thoigian").css("display", "flex");
+      document.getElementById("searchInput").value = "";
+
+      var tableRows = document.querySelectorAll("#tableData tr");
+      tableRows.forEach(function (row) {
+        row.style.display = ""; // Hiển thị dòng dữ liệu
+      });
     }
-    });
+  });
 });
-$(document).ready(function(){
-    // Sử dụng sự kiện click để hiển thị modal khi nút được nhấn
-    $(".view-detail").click(function(){
-        var id = $(this).data("id");
-        $.ajax({
-            type: "POST",
-            url: "/web2/CONTROLLER/NhapHangController.php",
-            data: { idPhieuNhap: id },
-            success: function(response) {
-                // Hiển thị kết quả từ server trong modal
-                $("#detail-content").html(response);
-                // Hiển thị modal
-                $("#detail-modal").modal('show');
-            }
-        });
+$(document).ready(function () {
+  // Sử dụng sự kiện click để hiển thị modal khi nút được nhấn
+  $(".view-detail").click(function () {
+    var id = $(this).data("id");
+    $.ajax({
+      type: "POST",
+      url: "/web2/CONTROLLER/NhapHangController.php",
+      data: { idPhieuNhap: id },
+      success: function (response) {
+        // Hiển thị kết quả từ server trong modal
+        $("#detail-content").html(response);
+        // Hiển thị modal
+        $("#detail-modal").modal("show");
+      },
     });
-    $("#close").click(function(){
-        $("#detail-modal").modal('hide');
-    })
+  });
+  $("#close").click(function () {
+    $("#detail-modal").modal("hide");
+  });
 });
 function timKiemTheoTen() {
-// Get the search input value
-var searchText = document.getElementById("searchInput").value.toLowerCase();
+  // Get the search input value
+  var searchText = document.getElementById("searchInput").value.toLowerCase();
 
-// Get the table body element
-var tableBody = document.getElementById("tableData");
+  // Get the table body element
+  var tableBody = document.getElementById("tableData");
 
-// Loop through each row in the table body
-var rows = tableBody.getElementsByTagName("tr");
-var listHTML='';
-listHTML+='<?php foreach($list as $item){?>';
-
-for (var i = 0; i < rows.length; i++) {
+  // Loop through each row in the table body
+  var rows = tableBody.getElementsByTagName("tr");
+  for (var i = 0; i < rows.length; i++) {
     var row = rows[i];
 
     // Get the employee name cell
-    var employeeNameCell = document.getElementById("employeeName" + row.cells[2].textContent);
+    var employeeNameCell = document.getElementById(
+      "employeeName" + row.cells[2].textContent
+    );
 
     // Check if the employee name contains the search text
-    if (employeeNameCell && employeeNameCell.textContent.toLowerCase().includes(searchText)) {
-    listHTML+= '<form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm">';
-    listHTML+= '<tr>';
-    listHTML+='<td>'+row.cells[0].textContent+'</td>'
-    listHTML+='<td>'+row.cells[1].textContent+'</td>'
-    listHTML+='<td id="employeeName'+row.cells[2].textContent+'">'+row.cells[2].textContent+'</td>';
-    listHTML+='<td>'+row.cells[3].textContent+'</td>';
-    listHTML+='<?php if($phanquyenmodel->getTinhTrang("L",$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>';
-    listHTML+='         <td><button type="button" name="view-detail" class="btn btn-success btn-sm view-detail"  data-id="'+row.cells[0].textContent+'"><i class="fa-solid fa-list" style="font-size:20px;"></i></button></td>';
-    listHTML+='                     <?php } else {} ?>';
-    listHTML+='              </tr>';
-    listHTML+='</form>';
-    } 
+    if (
+      employeeNameCell &&
+      employeeNameCell.textContent.toLowerCase().includes(searchText)
+    ) {
+      row.style.display = ""; // Show the row if it matches the search
+    } else {
+      row.style.display = "none"; // Hide the row if it doesn't match the search
+    }
+  }
 }
-listHTML+='<?php } ?>';
-$('#tableData').html(listHTML);
+function timKiemTheoKhoangThoiGian() {
+  var startDate = document.getElementById("startDate").value;
+  var toDate = document.getElementById("toDate").value;
+  var tableRows = document
+    .getElementById("tableData")
+    .getElementsByTagName("tr");
+
+  for (var i = 0; i < tableRows.length; i++) {
+    var row = tableRows[i];
+    var ngayNhap = row.getElementsByTagName("td")[1].textContent;
+
+    if (ngayNhap >= startDate && ngayNhap <= toDate) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  }
 }
-function timKiemTheoThoiGian() {
-// Get the start date
-var startDate = new Date(document.getElementById("startDate").value);
 
-// Get the end date
-var endDate = new Date(document.getElementById("toDate").value);
+document
+  .getElementById("startDate")
+  .addEventListener("change", timKiemTheoKhoangThoiGian);
+document
+  .getElementById("toDate")
+  .addEventListener("change", timKiemTheoKhoangThoiGian);
 
-// Add a day to the end date to include the entire day
-endDate.setDate(endDate.getDate() + 1);
-
-// Get the table body element
-var tableBody = document.getElementById("tableData");
-
-// Loop through each row in the table body
-var rows = tableBody.getElementsByTagName("tr");
-for (var i = 0; i < rows.length; i++) {
-    var row = rows[i];
-
-    // Get the date cell
-    var dateCell = row.cells[1];
-
-// Get the date as a Date object
-}
-}
