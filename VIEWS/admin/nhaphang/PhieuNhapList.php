@@ -33,9 +33,9 @@
             </div>
             <div class="search-by-thoigian">
                 <label for="startDate">Từ</label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" id="startDate">
                 <label for="toDate">Đến</label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" id="toDate">
             </div>
             <div class="type-selection">
                 <select name="selection" class="form-select" id="selection">Chọn bộ lọc
@@ -61,23 +61,21 @@
                     <tbody id="tableData">
                         <?php foreach($list as $item){?>
                         <form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm">
-                        <tr>
-                            <td>
-                                
-                                <?php echo $item['id']; ?>
-                            </td>
-                            <td><?php echo $item['ngayNhap']; ?></td>
-                            
-                            
-                            <td id="employeeName<?php echo $userController->getByID($item['idUser'])['ten']; ?>"><?php echo $userController->getByID($item['idUser'])['ten']; ?></td>
-                            <td><?php echo $item['tongtien']; ?></td>
-                            <?php if($phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
-                            <td><button type="button" name="view-detail" class="btn btn-success btn-sm view-detail"  data-id="<?php echo $item['id']; ?>"><i class="fa-solid fa-list" style="font-size:20px;"></i></button></td>
-                            <?php } else {} ?>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <?php echo $item['id']; ?>
+                                </td>
+                                <td><?php echo $item['ngayNhap']; ?></td>
+                                <td id="employeeName<?php echo $userController->getByID($item['idUser'])['ten']; ?>"><?php echo $userController->getByID($item['idUser'])['ten']; ?></td>
+                                <td><?php echo $item['tongtien']; ?></td>
+                                <?php if($phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
+                                    <td><button type="button" name="view-detail" class="btn btn-success btn-sm view-detail"  data-id="<?php echo $item['id']; ?>"><i class="fa-solid fa-list" style="font-size:20px;"></i></button></td>
+                                <?php } else {} ?>
+                            </tr>
                         </form>
                         <?php } ?>
                     </tbody>
+
                 </table>
                 </div>
             </div>
