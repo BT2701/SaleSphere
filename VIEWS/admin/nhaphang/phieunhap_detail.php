@@ -1,7 +1,8 @@
 <?php require_once __DIR__.'\..\..\..\CONTROLLER\SanPhamController.php';
     require_once __DIR__.'\..\..\..\CONTROLLER\NhapHangController.php';
     
-    $listDetail=$nhapHangController->layDsChiTietPhieuNhap();
+    // $listDetail=$nhapHangController->layDsChiTietPhieuNhap();
+    $controller = new NhapHangController();
     
 ?>
 <div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel"
@@ -10,7 +11,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addProductModalLabel">Chi tiết phiếu nhập</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -28,26 +29,8 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php foreach($listDetail as $item){?>
-                                <form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm">
-                                    <tr>
-                                        <td>
-                                            <img src="<?php echo $controller->getById($item['idSanPham'])['src']; ?>" id="product-image" alt="">
-                                        </td>
-                                        <td>
-
-                                        <?php echo $controller->getById($item['idSanPham'])['tenSanPham']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $item['soLuong']; ?>
-                                        </td>
-
-
-
-                                    </tr>
-                                </form>
-                                <?php } ?>
+                            <tbody id="containdetailphieunhap"">
+                               
                             </tbody>
                         </table>
 
@@ -57,9 +40,10 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
 
             </div>
         </div>
     </div>
 </div>
+<script src="../../STATIC/js/nhaphang.js"></script>

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách phiếu nhập</title>
     <link rel="stylesheet" href="/web2/STATIC/css/phieunhaplist.css">
-    
+
 </head>
+
 <body>
+
 <?php 
         require_once __DIR__.'\..\..\..\CONTROLLER\NhapHangController.php'; 
         require_once __DIR__.'\..\..\..\CONTROLLER\UserConTroller.php'; 
@@ -20,6 +23,7 @@
         $phanquyenmodel= new PhanQuyenModel();
         $list=$nhapHangController->layDsPhieuNhap();
         include 'phieunhap_detail.php';
+                      
     ?>
 
     <div class="container mt-5">
@@ -42,12 +46,13 @@
                     <option value="nhanvien">Nhân viên</option>
                     <option value="thoigian">Khoảng thời gian</option>
                 </select>
-                
+
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <div class="table-wrapper">
+
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -60,7 +65,7 @@
                     </thead>
                     <tbody id="tableData">
                         <?php foreach($list as $item){?>
-                        <form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm">
+<!--                         <form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm"> -->
                             <tr>
                                 <td>
                                     <?php echo $item['id']; ?>
@@ -69,25 +74,48 @@
                                 <td id="employeeName<?php echo $userController->getByID($item['idUser'])['ten']; ?>"><?php echo $userController->getByID($item['idUser'])['ten']; ?></td>
                                 <td><?php echo $item['tongtien']; ?></td>
                                 <?php if($phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
-                                    <td><button type="button" name="view-detail" class="btn btn-success btn-sm view-detail"  data-id="<?php echo $item['id']; ?>"><i class="fa-solid fa-list" style="font-size:20px;"></i></button></td>
+                                    <td><button type="button" name="view-detail" class="btn btn-success btn-sm view-detail"  onclick="loadChiTietNhapHang(<?php echo $item['id']; ?>)" data-id="<?php echo $item['id']; ?>"><i class="fa-solid fa-list" style="font-size:20px;"></i></button></td>
                                 <?php } else {} ?>
                             </tr>
-                        </form>
+<!--                         </form> -->
                         <?php } ?>
                     </tbody>
 
                 </table>
+
                 </div>
             </div>
-            
+
         </div>
-        
-            
+
+
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="/web2/STATIC/js/nhaphang.js"></script>
+
+   <script src="/web2/STATIC/js/nhaphang.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Xử lý sự kiện khi thay đổi select
+            $("#selection").change(function() {
+                // Lấy giá trị của select
+                var selectedOption = $(this).val();
+
+                // Hiển thị hoặc giấu đi các div tương ứng bằng CSS display
+                if (selectedOption == "nhanvien") {
+                    $(".search-by-nhanvien").css("display", "block");
+                    $(".search-by-thoigian").css("display", "none");
+                } else if (selectedOption == "thoigian") {
+                    $(".search-by-nhanvien").css("display", "none");
+                    $(".search-by-thoigian").css("display", "flex");
+                }
+            });
+        });
+       
+    </script>
+
 </body>
+
 </html>
