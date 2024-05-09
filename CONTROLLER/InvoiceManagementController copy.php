@@ -1,13 +1,8 @@
 <?php
 if (isset($_POST['action'])) {
-    session_start();
-    if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
-        $maNV = $_SESSION['id'];
-    }
-    else{
-        $maNV = 0;
-    }
-
+    //Nhớ cập nhật lại maNV
+    // $maNV= $_SESSION['userid'];
+    $maNV = 1;
     $action = $_POST['action'];
     switch ($action) {
         case 'checkAll':
@@ -79,7 +74,7 @@ class InvoiceManagementController
 {
     public function getInstance()
     {
-        require_once __DIR__.'\..\MODEL\InvoiceManagementModel.php';
+        require_once 'G:\XAMPP\htdocs\web2\MODEL\InvoiceManagementModel.php';
     }
     public function checkAll()
     {

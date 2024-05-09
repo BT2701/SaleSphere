@@ -57,6 +57,17 @@
 .product-gallery-content-product-item img{
     width: 100%;
 }
+.split-img{
+    margin-left: 25px;
+    max-width: 220px;
+    max-height: 220px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
 
 
 /* chuyển trang */

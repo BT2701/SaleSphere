@@ -12,7 +12,43 @@ class SanPhamController {
         $this->soLuongSanPham =$soLuong;
     }
     public function getSoLuongSP(){
-        return $this->soLuongSanPham;
+        return $this->sanphamModel->laySoLuongSanPham();
+    }
+    public function getSoLuongSPTheoTen(){
+        if(isset($_GET['action'])&& $_GET['action']=='slten'){
+            $name=$_GET['value'];
+            $sl=$this->getSoLuongSP();
+            if($name!=""){
+                $sl=$this->sanphamModel->laySoLuongSanPhamTheoTen($name);
+            }
+            echo json_encode($sl);
+        }
+    }
+    public function getSoLuongSPTheoLoai(){
+        if(isset($_GET['action'])&& $_GET['action']=='slloai'){
+            $type=$_GET['value'];
+            $sl=$this->getSoLuongSP();
+            if($type!="Tất cả sản phẩm"){
+                $sl=$this->sanphamModel->laySoLuongSanPhamTheoLoai($type);
+            }
+            echo json_encode($sl);
+        }
+    }
+    public function getSoLuongSPTheoKhoangGia(){
+        if(isset($_GET['action'])&& $_GET['action']=='slgia'){
+            $cost=$_GET['value'];
+            $sl=$this->getSoLuongSP();
+            if($cost!="Tất cả mệnh giá"){
+                preg_match_all('/\d+/', $cost, $matches);
+
+                // Lấy mảng chứa các số nguyên từ kết quả
+                $numbers = $matches[0];
+                $from = $numbers[0]; // Số đầu tiên
+                $to = $numbers[1]; // Số thứ hai
+                $sl=$this->sanphamModel->laySoLuongSanPhamTheoKhoangGia($from,$to);
+            }
+            echo json_encode($sl);
+        }
     }
 
     public function getDataForView() {
@@ -224,7 +260,7 @@ class SanPhamController {
             echo json_encode($list);
         }
     }
-
+    
     public function getDsSPtheoKhoangGia() {
         $start = $_GET['start'] ?? 0; // Vị trí bắt đầu của trang
         $limit = $_GET['limit'] ?? 10; // Số lượng sản phẩm trên mỗi trang
@@ -315,5 +351,8 @@ $controller->phanTrangMainList();
 $controller->insertProduct();
 $controller->deleteProduct();
 $controller->updateProduct();
+$controller->getSoLuongSPTheoKhoangGia();
+$controller->getSoLuongSPTheoLoai();
+$controller->getSoLuongSPTheoTen();
 // $controller->loadInformationById();
 ?>

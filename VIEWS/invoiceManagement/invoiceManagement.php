@@ -1,16 +1,5 @@
 
-<?php
-   require_once __DIR__.'\..\..\..\MODEL\PhanQuyenModel.php'; 
 
-   if(isset($_SESSION['id'])&&$_SESSION['id']!="")
-   {
-       $id=$_SESSION['id'];
-   }
-   $phanquyenmodel= new PhanQuyenModel();
-
-   
-
-?>
 <!-- Lưu ý -->
 <!-- Nhớ cập nhật lại mã nhân viên trong InvoiceManagementModel ( cancelOrder và confirmOrder) vì đang lấy tạm thời maNV=5 -->
 
@@ -27,9 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-
-    <script src="/web2/STATIC/js/invoiceManagement.js"></script>
-
+    <script src="../../STATIC/js/invoiceManagement.js"></script>
     <title>Invoice Management</title>
     <style>
         th{
@@ -92,11 +79,9 @@
                 <th scope="col">Chức năng</th>
             </tr>
         </thead>
-        <?php if($phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý hóa đơn"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
         <tbody>
-        
+
         </tbody>
-        <?php } else {} ?>
     </table>
 
         <!-- Modal -->
@@ -121,6 +106,7 @@
     </div>
   </div>
 </div>
+
 
 
 

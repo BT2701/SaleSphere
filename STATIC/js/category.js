@@ -1,12 +1,14 @@
 
 timTen();
 laySoTrangALL(soLuongSpDB);
+
 phanTrang('',"");
 var newValue='';
 // đẩy dữ liệu theo loại
 function loadProducts(category) {
     newValue=category;
-    phanTrang('getDsSPtheoLoai',newValue);
+    loadNumOfPage('slloai',newValue);
+    // phanTrang('getDsSPtheoLoai',newValue);
     
     // 
 }
@@ -14,13 +16,17 @@ function loadProducts(category) {
 // đẩy dữ liệu theo tên
 function loadProductsTheoTen(name) {
     newValue=name;
-    phanTrang('getDsSPtheoTen',newValue);
+    loadNumOfPage('slten',newValue);
+    // phanTrang('getDsSPtheoTen',newValue);
+    
 }
 
 // đẩy dữ liệu theo khoảng giá
 function loadProductsTheoKhoangGia(khoangGia) {
     newValue=khoangGia;
-    phanTrang('getDsSPtheoKhoangGia',newValue);
+    loadNumOfPage('slgia',newValue);
+    // phanTrang('getDsSPtheoKhoangGia',newValue);
+    
 }
 
 
@@ -69,7 +75,40 @@ function phanTrang(action, value){
     // Gọi loadData với pageNumber = 1 ở đây
     loadData(1, action, value);
 }
-
+function loadNumOfPage(action, value){
+    $.ajax({
+        url: '/web2/CONTROLLER/SanPhamController.php',
+        method: 'GET',
+        data: {action: action, value:value},
+        success: function(data) {
+            var numOfProduct = JSON.parse(data);
+            var listHTML = '';
+            var count = Math.ceil(numOfProduct / 10);
+            for (let i = 1; i <= count; i++) {
+                listHTML+='<li class="page-item">';
+                listHTML+='<a class="page-link" href="#" data-page="'+i+'">';
+                listHTML+='  '+i+'';
+                listHTML+='</a>';
+                listHTML+='</li>';
+            }
+            
+            $('#pagination').html(listHTML);
+            if(action=='slten'){
+                phanTrang('getDsSPtheoTen',newValue);
+            }
+            else if(action=='slloai'){
+                phanTrang('getDsSPtheoLoai',newValue);
+            }
+            else if(action=='slgia'){
+                phanTrang('getDsSPtheoKhoangGia',newValue);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Lỗi khi gửi yêu cầu AJAX: " + errorThrown);
+            // Xử lý lỗi nếu có
+        }
+    });
+}
 function loadData(pageNumber, action, value) {
     
     var itemsPerPage = 10; // Số lượng sản phẩm trên mỗi trang
@@ -85,7 +124,9 @@ function loadData(pageNumber, action, value) {
             if (productList.length > 0) {
                 productList.forEach(function(product) {
                     productListHTML += '<div class="product-gallery-content-product-item" onclick="test(' + product.id + ')">';
-                    productListHTML += '<img src="' + product.src + '" alt="">';
+                    productListHTML+='<div class = "split-img">';
+                    productListHTML += '<img src="' + product.src + '" alt="" class="image-product-vip">';
+                    productListHTML+='</div>'
                     productListHTML += '<div class="product-gallery-content-product-text">';
                     if (product.tenKhuyenMai != null && (Date.parse(product.hansudung) > Date.now() || product.hansudung == null)) {
                         productListHTML += '<li style="background-color:' + (product.background != null ? product.background : '#fcfcfc') + ';">';
