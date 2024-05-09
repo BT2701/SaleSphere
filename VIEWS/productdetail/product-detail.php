@@ -102,7 +102,7 @@
                                 Thêm vào giỏ hàng
                             </button>
 
-                            <button class="btn-add-product">
+                            <button class="btn-buy-product" onclick="BuyNow(<?php echo $idUser ?>,<?php echo $idSanPham ?>,<?php echo $detailProduct['discountPrice']?>,<?php echo $detailProduct['quantityProductInStore']?>)">
                                 Mua ngay
                             </button>
                         </div>
@@ -216,7 +216,7 @@
         crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", xuLyPhanTrang(<?php echo $idSanPham ?>, "_", <?php echo $detailProduct['quantityEvaluateAll'] ?>, 5), checkQuantity(<?php echo $detailProduct['quantityProductInStore']  ?>));
         hienthisaotrungbinh(<?php echo roundToNearestTenth($detailProduct['avgEvaluate']) ?>);

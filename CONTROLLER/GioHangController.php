@@ -33,3 +33,16 @@ function NumberProductInCart($idUser){
     $numberProductInCart = $gioHangModel->getNumberProductInCart($idUser);
     return $numberProductInCart;
 }
+
+
+function BuyNow($infoRequest){
+    $idProduct = $infoRequest['idsanpham'];
+    $idUser = $infoRequest['userid'];
+    $soLuong = $infoRequest['soluong'];
+    $tongTien = $infoRequest['tongTien'];
+    $soLuongConLaiTrongKho = $infoRequest['soLuongTrongKho'];
+    $gioHangModel = new GioHangModel();
+    $buySuccess = $gioHangModel->BuyNow($idProduct,$idUser,$tongTien,$soLuong,$soLuongConLaiTrongKho);
+    // echo "hello";
+    echo $buySuccess;
+}

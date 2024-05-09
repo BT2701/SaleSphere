@@ -81,83 +81,146 @@ function displayInvoiceList(invoiceList) {
   $("#invoiceTable tbody").empty();
 
   // Duyệt qua danh sách hóa đơn và thêm chúng vào bảng
-  let count = 0;
-  $.each(invoiceList, function (index, invoice) {
-    count++;
-    if (invoice.trangThai == 1) {
-      var row =
-        "<tr>" +
-        "<td>" +
-        count +
-        "</td>" +
-        "<td>" +
-        invoice.id +
-        "</td>" +
-        "<td>" +
-        invoice.idKhachHang +
-        "</td>" +
-        "<td>" +
-        formatDate(invoice.ngayLap) +
-        "</td>" +
-        "<td>" +
-        invoice.maNV +
-        "</td>" +
-        "<td>" +
-        invoice.trangThai +
-        "</td>" +
-        "<td>" +
-        invoice.tongTien +
-        "</td>" +
-        "<td class='chucnang'>" +
-        "<button id='chitiet' type='button' class='btn btn-info btn-sm' style='margin: 0px 10px 0px 15px' onclick='showInvoiceDetails(" +
-        invoice.id +
-        ")'>Chi tiết</button>" +
-        "<button type='button' id='huy' class='btn btn-danger btn-sm' style='margin: 0px 10px 0px 0px' onclick='cancelOrder(this, " +
-        invoice.id +
-        ")'>Hủy</button>" +
-        "<button type='button' id='xacnhan' class='btn btn-success btn-sm' style='margin: 0px 10px 0px 0px' onclick='confirmOrder(this," +
-        invoice.id +
-        ")'>Xác nhận</button>" +
-        "</td>" +
-        "</tr>";
+
+//   let count = 0;
+//   $.each(invoiceList, function (index, invoice) {
+//     count++;
+//     if (invoice.trangThai == 1) {
+//       var row =
+//         "<tr>" +
+//         "<td>" +
+//         count +
+//         "</td>" +
+//         "<td>" +
+//         invoice.id +
+//         "</td>" +
+//         "<td>" +
+//         invoice.idKhachHang +
+//         "</td>" +
+//         "<td>" +
+//         formatDate(invoice.ngayLap) +
+//         "</td>" +
+//         "<td>" +
+//         invoice.maNV +
+//         "</td>" +
+//         "<td>" +
+//         invoice.trangThai +
+//         "</td>" +
+//         "<td>" +
+//         invoice.tongTien +
+//         "</td>" +
+//         "<td class='chucnang'>" +
+//         "<button id='chitiet' type='button' class='btn btn-info btn-sm' style='margin: 0px 10px 0px 15px' onclick='showInvoiceDetails(" +
+//         invoice.id +
+//         ")'>Chi tiết</button>" +
+//         "<button type='button' id='huy' class='btn btn-danger btn-sm' style='margin: 0px 10px 0px 0px' onclick='cancelOrder(this, " +
+//         invoice.id +
+//         ")'>Hủy</button>" +
+//         "<button type='button' id='xacnhan' class='btn btn-success btn-sm' style='margin: 0px 10px 0px 0px' onclick='confirmOrder(this," +
+//         invoice.id +
+//         ")'>Xác nhận</button>" +
+//         "</td>" +
+//         "</tr>";
+//       $("#invoiceTable tbody").append(row);
+//     } else if (invoice.trangThai == 2 || invoice.trangThai == 3) {
+//       var row =
+//         "<tr>" +
+//         "<td>" +
+//         count +
+//         "</td>" +
+//         "<td>" +
+//         invoice.id +
+//         "</td>" +
+//         "<td>" +
+//         invoice.idKhachHang +
+//         "</td>" +
+//         "<td>" +
+//         formatDate(invoice.ngayLap) +
+//         "</td>" +
+//         "<td>" +
+//         invoice.maNV +
+//         "</td>" +
+//         "<td>" +
+//         invoice.trangThai +
+//         "</td>" +
+//         "<td>" +
+//         invoice.tongTien +
+//         "</td>" +
+//         "<td class='chucnang'>" +
+//         "<button type='button' id='chitiet' class='btn btn-info btn-sm' style='margin: 0px 10px 0px 15px' onclick='showInvoiceDetails(" +
+//         invoice.id +
+//         ")'>Chi tiết</button>" +
+//         "<button type='button' id='huy' class='btn btn-danger btn-sm' style='margin: 0px 10px 0px 0px' onclick='cancelOrder(this, " +
+//         invoice.id +
+//         ")'>Hủy</button>" +
+//         "</td>" +
+//         "</tr>";
+//       $("#invoiceTable tbody").append(row);
+//     } else {
+//       count--;
+//     }
+
+  let count=0;
+  $.each(invoiceList, function(index, invoice) {
+      count++;
+      if(invoice.trangThai==1 ){
+      var row = "<tr>" +
+          "<td>" + count + "</td>" +
+          "<td>" + invoice.id + "</td>" +
+          "<td>" + invoice.idKhachHang + "</td>" +
+          "<td>" + formatDate(invoice.ngayLap) + "</td>" +
+
+          "<td>" + invoice.idNV + "</td>" +
+
+          "<td>" + invoice.trangThai + "</td>" +
+          "<td>" + invoice.tongTien + "</td>" +
+          "<td class='chucnang'>" +
+          "<button type='button' class='btn btn-info btn-sm' style='margin: 0px 10px 0px 15px' onclick='showInvoiceDetails(" + invoice.id + ")'>Chi tiết</button>" +
+          "<button type='button' class='btn btn-danger btn-sm' style='margin: 0px 10px 0px 0px' onclick='cancelOrder(this, " + invoice.id + ")'>Hủy</button>" +
+          "<button type='button' class='btn btn-success btn-sm' style='margin: 0px 10px 0px 0px' onclick='confirmOrder(this," + invoice.id + ")'>Xác nhận</button>" +
+          "</td>" +
+          "</tr>";
       $("#invoiceTable tbody").append(row);
-    } else if (invoice.trangThai == 2 || invoice.trangThai == 3) {
-      var row =
-        "<tr>" +
-        "<td>" +
-        count +
-        "</td>" +
-        "<td>" +
-        invoice.id +
-        "</td>" +
-        "<td>" +
-        invoice.idKhachHang +
-        "</td>" +
-        "<td>" +
-        formatDate(invoice.ngayLap) +
-        "</td>" +
-        "<td>" +
-        invoice.maNV +
-        "</td>" +
-        "<td>" +
-        invoice.trangThai +
-        "</td>" +
-        "<td>" +
-        invoice.tongTien +
-        "</td>" +
-        "<td class='chucnang'>" +
-        "<button type='button' id='chitiet' class='btn btn-info btn-sm' style='margin: 0px 10px 0px 15px' onclick='showInvoiceDetails(" +
-        invoice.id +
-        ")'>Chi tiết</button>" +
-        "<button type='button' id='huy' class='btn btn-danger btn-sm' style='margin: 0px 10px 0px 0px' onclick='cancelOrder(this, " +
-        invoice.id +
-        ")'>Hủy</button>" +
-        "</td>" +
-        "</tr>";
+      }
+
+      else if(invoice.trangThai==2 ){
+
+        var row = "<tr>" +
+          "<td>" + count + "</td>" +
+          "<td>" + invoice.id + "</td>" +
+          "<td>" + invoice.idKhachHang + "</td>" +
+          "<td>" + formatDate(invoice.ngayLap) + "</td>" +
+
+          "<td>" + invoice.idNV + "</td>" +
+
+          "<td>" + invoice.trangThai + "</td>" +
+          "<td>" + invoice.tongTien + "</td>" +
+          "<td class='chucnang'>" +
+          "<button type='button' class='btn btn-info btn-sm' style='margin: 0px 10px 0px 15px' onclick='showInvoiceDetails(" + invoice.id + ")'>Chi tiết</button>" +
+          "<button type='button' class='btn btn-danger btn-sm' style='margin: 0px 10px 0px 0px' onclick='cancelOrder(this, " + invoice.id + ")'>Hủy</button>" +
+          "</td>" +
+          "</tr>";
       $("#invoiceTable tbody").append(row);
-    } else {
-      count--;
-    }
+      }
+
+      else if( invoice.trangThai==3 ){
+        var row = "<tr>" +
+          "<td>" + count + "</td>" +
+          "<td>" + invoice.id + "</td>" +
+          "<td>" + invoice.idKhachHang + "</td>" +
+          "<td>" + formatDate(invoice.ngayLap) + "</td>" +
+          "<td>" + invoice.idNV + "</td>" +
+          "<td>" + invoice.trangThai + "</td>" +
+          "<td>" + invoice.tongTien + "</td>" +
+          "<td class='chucnang'>" +
+          "<button type='button' class='btn btn-info btn-sm' style='margin: 0px 10px 0px 15px' onclick='showInvoiceDetails(" + invoice.id + ")'>Chi tiết</button>" +
+          "</td>" +
+          "</tr>";
+      $("#invoiceTable tbody").append(row);
+      }
+
+      else{count--}
+
   });
 }
 function formatDate(dateString) {
@@ -202,54 +265,81 @@ function displayInvoiceDetails(details, invoiceId) {
     "<table class='table '>" +
     "<thead  style='text-align: center' class='thead table-primary'>" +
     "<tr> " +
-    "<th>#</th>" +
-    "<th>Sản phẩm</th>" +
-    "<th>Số lượng</th>" +
+
+      "<th>#</th>" +
+      "<th>Sản phẩm</th>" +
+      "<th>Số lượng</th>" +
+
     // "<th>Giá</th>" +
+
     "</tr>" +
     "</thead>" +
     "<tbody >";
 
   // Duyệt qua chi tiết hóa đơn và thêm vào bảng
-  details.forEach(function (detail, index) {
-    if (parseInt(detail.giaTriKhuyenMai) != 0) {
-      html +=
-        "<tr>" +
-        "<td>" +
-        (index + 1) +
-        "</td>" +
-        "<td><img style='width: 70px; height: 70px' src='" +
-        detail.src +
-        "' alt='" +
-        detail.tenSanPham +
-        "'>" +
-        detail.tenSanPham +
-        "</td>" +
-        "<td>" +
-        detail.soLuong +
-        "</td>" +
-        // "<td><p style='text-decoration: line-through; color: red;'>" + detail.giaBan + "</p>" +
-        // "<p>" + (parseFloat(detail.giaBan) - (parseFloat(detail.giaBan) * parseFloat(detail.giaTriKhuyenMai) / 100)) + "</p></td>" +
-        "</tr>";
-    } else {
-      html +=
-        "<tr>" +
-        "<td>" +
-        (index + 1) +
-        "</td>" +
-        "<td><img style='width: 70px; height: 70px' src='" +
-        detail.src +
-        "' alt='" +
-        detail.tenSanPham +
-        "'>" +
-        detail.tenSanPham +
-        "</td>" +
-        "<td>" +
-        detail.soLuong +
-        "</td>" +
-        // "<td>" + detail.giaBan + "</td>" +
-        "</tr>";
-    }
+
+//   details.forEach(function (detail, index) {
+//     if (parseInt(detail.giaTriKhuyenMai) != 0) {
+//       html +=
+//         "<tr>" +
+//         "<td>" +
+//         (index + 1) +
+//         "</td>" +
+//         "<td><img style='width: 70px; height: 70px' src='" +
+//         detail.src +
+//         "' alt='" +
+//         detail.tenSanPham +
+//         "'>" +
+//         detail.tenSanPham +
+//         "</td>" +
+//         "<td>" +
+//         detail.soLuong +
+//         "</td>" +
+//         // "<td><p style='text-decoration: line-through; color: red;'>" + detail.giaBan + "</p>" +
+//         // "<p>" + (parseFloat(detail.giaBan) - (parseFloat(detail.giaBan) * parseFloat(detail.giaTriKhuyenMai) / 100)) + "</p></td>" +
+//         "</tr>";
+//     } else {
+//       html +=
+//         "<tr>" +
+//         "<td>" +
+//         (index + 1) +
+//         "</td>" +
+//         "<td><img style='width: 70px; height: 70px' src='" +
+//         detail.src +
+//         "' alt='" +
+//         detail.tenSanPham +
+//         "'>" +
+//         detail.tenSanPham +
+//         "</td>" +
+//         "<td>" +
+//         detail.soLuong +
+//         "</td>" +
+//         // "<td>" + detail.giaBan + "</td>" +
+//         "</tr>";
+//     }
+
+  details.forEach(function(detail, index) {
+     if(parseInt(detail.giaTriKhuyenMai) !=0){
+      html += "<tr>" +
+      "<td>" + (index + 1) + "</td>" +
+      "<td><img style='width: 70px; height: 70px' src='" + detail.src + "' alt='" + detail.tenSanPham + "'>" + detail.tenSanPham + "</td>" +
+      "<td>" + detail.soLuong + "</td>" +
+      // "<td><p style='text-decoration: line-through; color: red;'>" + detail.giaBan + "</p>" +
+      // "<p>" + (parseFloat(detail.giaBan) - (parseFloat(detail.giaBan) * parseFloat(detail.giaTriKhuyenMai) / 100)) + "</p></td>" +
+      "</tr>";
+     }
+     else{
+      html += "<tr>" +
+      "<td>" + (index + 1) + "</td>" +
+
+      "<td><img style='width: 70px; height: 70px; ' src='" + detail.src + "' alt='" + detail.tenSanPham + "'>  " + detail.tenSanPham + "</td>" +
+
+      "<td>" + detail.soLuong + "</td>" +
+      // "<td>" + detail.giaBan + "</td>" +
+      "</tr>";
+     }
+    
+
   });
 
   html += "</tbody></table>";

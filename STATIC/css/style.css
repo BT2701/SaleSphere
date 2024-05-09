@@ -299,8 +299,11 @@
 }
 
 
-
 .navbar-item .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+#viewHistory:hover{
     color: var(--primary-color) !important;
 }
 
@@ -356,6 +359,11 @@
 .footer_explore-list-item a {
     text-decoration: none;
     color: #212529;
+}
+
+
+.footer_contact-list-item{
+    cursor: pointer;
 }
 
 
