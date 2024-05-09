@@ -11,6 +11,13 @@
 <?php 
         require_once __DIR__.'\..\..\..\CONTROLLER\NhapHangController.php'; 
         require_once __DIR__.'\..\..\..\CONTROLLER\UserConTroller.php'; 
+        require_once __DIR__.'\..\..\..\MODEL\PhanQuyenModel.php'; 
+
+        if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+        {
+            $id=$_SESSION['id'];
+        }
+        $phanquyenmodel= new PhanQuyenModel();
         $list=$nhapHangController->layDsPhieuNhap();
         include 'phieunhap_detail.php';
     ?>
@@ -22,7 +29,7 @@
         </div>
         <div class="search">
             <div class="search-by-nhanvien">
-                <input type="text" class="form-control" placeholder="Tên nhân viên ...">
+                <input type="text" class="form-control" placeholder="Tên nhân viên ..." id="searchInput" onkeyup="timKiemTheoTen()">
             </div>
             <div class="search-by-thoigian">
                 <label for="startDate">Từ</label>
@@ -51,7 +58,7 @@
                             <th scope="col">Xem chi tiết</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tableData">
                         <?php foreach($list as $item){?>
                         <form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm">
                         <tr>
@@ -62,9 +69,11 @@
                             <td><?php echo $item['ngayNhap']; ?></td>
                             
                             
-                            <td><?php echo $userController->getByID($item['idUser'])['ten']; ?></td>
+                            <td id="employeeName<?php echo $userController->getByID($item['idUser'])['ten']; ?>"><?php echo $userController->getByID($item['idUser'])['ten']; ?></td>
                             <td><?php echo $item['tongtien']; ?></td>
+                            <?php if($phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
                             <td><button type="button" name="view-detail" class="btn btn-success btn-sm view-detail"  data-id="<?php echo $item['id']; ?>"><i class="fa-solid fa-list" style="font-size:20px;"></i></button></td>
+                            <?php } else {} ?>
                         </tr>
                         </form>
                         <?php } ?>
@@ -81,43 +90,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            // Xử lý sự kiện khi thay đổi select
-            $("#selection").change(function(){
-            // Lấy giá trị của select
-            var selectedOption = $(this).val();
-
-            // Hiển thị hoặc giấu đi các div tương ứng bằng CSS display
-            if(selectedOption == "nhanvien") {
-                $(".search-by-nhanvien").css("display", "block");
-                $(".search-by-thoigian").css("display", "none");
-            } else if(selectedOption == "thoigian") {
-                $(".search-by-nhanvien").css("display", "none");
-                $(".search-by-thoigian").css("display", "flex");
-            }
-            });
-        });
-        $(document).ready(function(){
-            // Sử dụng sự kiện click để hiển thị modal khi nút được nhấn
-            $(".view-detail").click(function(){
-                var id = $(this).data("id");
-                $.ajax({
-                    type: "POST",
-                    url: "/web2/CONTROLLER/NhapHangController.php",
-                    data: { idPhieuNhap: id },
-                    success: function(response) {
-                        // Hiển thị kết quả từ server trong modal
-                        $("#detail-content").html(response);
-                        // Hiển thị modal
-                        $("#detail-modal").modal('show');
-                    }
-                });
-            });
-            $("#close").click(function(){
-                $("#detail-modal").modal('hide');
-            })
-        });
-    </script>
+    <script src="/web2/STATIC/js/nhaphang.js"></script>
 </body>
 </html>

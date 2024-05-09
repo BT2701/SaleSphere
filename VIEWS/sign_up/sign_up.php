@@ -1,7 +1,7 @@
 <?php
     session_start();
     session_regenerate_id(true);
-    require 'C:\xampp\htdocs\web2\MODEL\Database.php';
+    require __DIR__.'\..\..\MODEL\Database.php';
     require_once 'google-api/vendor/autoload.php';
     require_once __DIR__.'\..\..\CONTROLLER\ProfileController.php';
     $profileController= new ProfileController();
@@ -148,7 +148,7 @@
                     <button class="btn btn-light" type="submit"><img src="/web2/STATIC/assets/google_icon.png" style="width: 25px;" alt="Ảnh"><a style="text-decoration: none; color: #000;" href="<?php echo $client->createAuthUrl(); ?>">&nbsp; Google</a></button>
                 </div>
                 <div class="row">
-                    <small style="text-align: center;">Bạn đã có tài khoản? &nbsp;<a href="#">Đăng nhập</a></small>
+                    <small style="text-align: center;">Bạn đã có tài khoản? &nbsp;<a href="/web2/VIEWS/login/login.php">Đăng nhập</a></small>
                 </div>
           </div>
        </div> 

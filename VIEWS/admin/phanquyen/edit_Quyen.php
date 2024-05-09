@@ -33,6 +33,7 @@
                                     <th>Thêm</th>
                                     <th>Sửa</th>
                                     <th>Xóa</th>
+                                    <th>Xem</th>
                                 </tr>
                             </thead>
                             <tbody> 
@@ -56,6 +57,11 @@
                                     <td><input type="checkbox" name="hanhdong<?php echo $user['id']?>[]" value="X" checked></td>
                                     <?php }if($user1['hanhdong']=="X"&&$user1['id']==$user['id']&&$user1['TinhTrang']==0){?>
                                     <td><input type="checkbox" name="hanhdong<?php echo $user['id']?>[]" value="X" ></td>
+                                    <?php } ?>
+                                    <?php if($user1['hanhdong']=="L"&&$user1['id']==$user['id']&&$user1['TinhTrang']==1){?>
+                                    <td><input type="checkbox" name="hanhdong<?php echo $user['id']?>[]" value="L" checked></td>
+                                    <?php }if($user1['hanhdong']=="L"&&$user1['id']==$user['id']&&$user1['TinhTrang']==0){?>
+                                    <td><input type="checkbox" name="hanhdong<?php echo $user['id']?>[]" value="L" ></td>
                                     <?php } ?>
                                     <?php endforeach;?>  
                                 </tr> 

@@ -20,6 +20,7 @@
 </head>
 <body>
     <?php
+    session_start();
     include 'admin_header.php';
     if(isset($_GET['page'])) {
         $page = $_GET['page'];
@@ -60,7 +61,7 @@
 
 
 
-    include 'admin_footer.php';
+    //include 'admin_footer.php';
 
 
     ?>

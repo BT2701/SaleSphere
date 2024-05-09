@@ -25,6 +25,13 @@
 
     <?php require_once __DIR__.'\..\..\..\CONTROLLER\SanPhamController.php';
         require_once __DIR__.'\..\..\..\CONTROLLER\NhapHangController.php'; 
+        require_once __DIR__.'\..\..\..\MODEL\PhanQuyenModel.php'; 
+
+        if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+        {
+            $id=$_SESSION['id'];
+        }
+        $phanquyenmodel= new PhanQuyenModel();
         $products = $controller->getList(PHP_INT_MAX);
         $idUser=2;  //ĐẶT TẠM GIÁ TRỊ USER
         $count=$nhapHangController->countGioHangNhap($idUser);
@@ -105,7 +112,9 @@
                         <td><?php echo $product['giaBan']; ?></td>
                         <td><?php echo $controller->quantityProduct($product['id']); ?></td>
                         <td>
+                        <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
                             <button type="submit" name="themgiohangnhap" class="btn btn-success add-to-cart-btn">+</button>
+                        <?php } else {} ?>
                         </td>
                     </tr>
                     </form>
