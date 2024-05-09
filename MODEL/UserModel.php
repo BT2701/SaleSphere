@@ -9,7 +9,7 @@
             $conn=$db->getConnection();
             $sql="SELECT users.id,users.email,users.sdt,taikhoan.tenTaiKhoan,taikhoan.matKhau,taikhoan.TinhTrang,quyen.tenQuyen
             FROM users,taikhoan,quyen
-            where taikhoan.TinhTrang = 1 AND taikhoan.maQuyen=quyen.id AND users.id=taikhoan.id AND taikhoan.maQuyen NOT IN (1) ORDER BY users.id ASC";
+            where taikhoan.TinhTrang = 1 AND taikhoan.maQuyen=quyen.id AND users.id=taikhoan.id AND taikhoan.maQuyen NOT IN (1,7) ORDER BY users.id ASC";
             $userList=array();
             $stmt=$conn->prepare($sql);
             $stmt->execute();
@@ -74,7 +74,7 @@
             $this->getInstance();
             $db=new Database();
             $conn=$db->getConnection();
-            $sql="SELECT quyen.tenQuyen,quyen.id FROM `quyen` WHERE maQuyen NOT IN (1)";
+            $sql="SELECT quyen.tenQuyen,quyen.id FROM `quyen` WHERE maQuyen NOT IN (1,7)";
             $quyenList=array();
             $stmt=$conn->prepare($sql);
             $stmt->execute();

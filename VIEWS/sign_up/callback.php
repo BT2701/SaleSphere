@@ -1,7 +1,7 @@
 <?php
     session_start();
     session_regenerate_id(true);
-     require_once __DIR__.'\..\MODEL\Database.php';
+     require_once __DIR__.'\..\..\MODEL\Database.php';
      require_once 'Facebook/autoload.php';
      require_once __DIR__.'\..\..\CONTROLLER\ProfileController.php';
     $profileController= new ProfileController();

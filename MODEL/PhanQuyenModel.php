@@ -24,7 +24,7 @@
             $this->getInstance();
             $db=new Database();
             $conn=$db->getConnection();
-            $sql="SELECT quyen.tenQuyen,quyen.id FROM `quyen` WHERE id NOT IN (1,2)";
+            $sql="SELECT quyen.tenQuyen,quyen.id FROM `quyen` WHERE tenQuyen NOT IN ('admin','quanly','client')";
             $quyenList=array();
             $stmt=$conn->prepare($sql);
             $stmt->execute();
