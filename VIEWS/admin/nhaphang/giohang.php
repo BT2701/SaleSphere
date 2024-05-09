@@ -14,6 +14,13 @@
 <body>
     <?php require_once __DIR__.'\..\..\..\CONTROLLER\SanPhamController.php';
         require_once __DIR__.'\..\..\..\CONTROLLER\NhapHangController.php'; 
+        require_once __DIR__.'\..\..\..\MODEL\PhanQuyenModel.php'; 
+
+        if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+        {
+            $id=$_SESSION['id'];
+        }
+        $phanquyenmodel= new PhanQuyenModel();
         $detailCartList=$nhapHangController->layDsGioHangNhap();
         $tongThanhToan=0;
         $idUser=2; /* ĐẶT TẠM GIÁ TRỊ USER */
@@ -64,7 +71,9 @@
                                 $tongThanhToan=$tongThanhToan+$tongtien;
                             ?>
                             <td><?php echo $tongtien; ?></td>
+                            <?php if($phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
                             <td><button type="submit" name="remove" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash fs-5"></i></button></td>
+                            <?php } else {} ?>
                         </tr>
                         </form>
                         <?php }} ?>
@@ -80,7 +89,9 @@
                 <form action="/web2/CONTROLLER/NhapHangController.php" method="post">
                     <input type="hidden" name="user_id" value="<?php echo $idUser; ?>">
                     <input type="hidden" name="tongThanhToan" value="<?php echo $tongThanhToan; ?>">
+                    <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))&&$phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))&&$phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))&&$phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
                     <button type="submit" name="thanhToan" class="btn btn-success">Thanh Toán</button>
+                    <?php } else {} ?>
                 </form>
                 
             </div>

@@ -36,6 +36,10 @@
         </form>
     </a>
     </li>';
+        $logout='<li class="nav-item d-lg-none d-flex align-items-center">
+        <i class="fa-solid fa-right-to-bracket" style="color: aliceblue; margin-right: 10px;"></i>
+        <a class="nav-link" href="/web2/VIEWS/sign_up/logout.php">Log out</a>
+    </li>';
     }
     else {
         $cart = `hehe`;
@@ -44,6 +48,10 @@
         $login='<li class="user-action_list-item"><a href="/web2/VIEWS/login/login.php">Đăng nhập</a></li>';
         $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a></li>';
         $logined_mini='<a class="nav-link" href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a>';
+        $logout='<li class="nav-item d-lg-none d-flex align-items-center">
+        <i class="fa-solid fa-user" style="color: aliceblue; margin-right: 10px;"></i>
+        <a class="nav-link" href="/web2/VIEWS/Login/login.php">Đăng nhập</a>
+    </li>';
     }   
 ?>
 
@@ -152,12 +160,9 @@
                     <!-- case user has been login  -->
                     <li class="nav-item d-lg-none d-flex align-items-center">
                         <i class="fa-solid fa-user" style="color: aliceblue; margin-right: 10px;"></i>
-                        <a class="nav-link" href="#">Acount name</a>
+                        <a class="nav-link" href="/web2/VIEWS/profile/profile.php"> <?=$logined_mini?></a>
                     </li>
-                    <li class="nav-item d-lg-none d-flex align-items-center">
-                        <i class="fa-solid fa-right-to-bracket" style="color: aliceblue; margin-right: 10px;"></i>
-                        <a class="nav-link" href="#">Log out</a>
-                    </li>
+                    <?=$logout ?>
                 </ul>
             </div>
         </div>
