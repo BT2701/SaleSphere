@@ -1,3 +1,12 @@
+<?php
+    require_once __DIR__.'\..\..\..\MODEL\PhanQuyenModel.php'; 
+
+    if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+    {
+        $id=$_SESSION['id'];
+    }
+    $phanquyenmodel= new PhanQuyenModel();
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,9 +121,11 @@
                         <th scope="col">Chi tiết</th>
                     </tr>
                 </thead>
+                <?php if($phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý thống kê"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
                 <tbody>
                     <!-- Dữ liệu sẽ được thêm vào đây từ mã JavaScript -->
                 </tbody>
+                <?php } else {} ?>
             </table>
         </div>
     </div>

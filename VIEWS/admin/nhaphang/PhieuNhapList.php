@@ -11,6 +11,13 @@
 <?php 
         require_once __DIR__.'\..\..\..\CONTROLLER\NhapHangController.php'; 
         require_once __DIR__.'\..\..\..\CONTROLLER\UserConTroller.php'; 
+        require_once __DIR__.'\..\..\..\MODEL\PhanQuyenModel.php'; 
+
+        if(isset($_SESSION['id'])&&$_SESSION['id']!="")
+        {
+            $id=$_SESSION['id'];
+        }
+        $phanquyenmodel= new PhanQuyenModel();
         $list=$nhapHangController->layDsPhieuNhap();
         include 'phieunhap_detail.php';
     ?>
@@ -64,7 +71,9 @@
                             
                             <td><?php echo $userController->getByID($item['idUser'])['ten']; ?></td>
                             <td><?php echo $item['tongtien']; ?></td>
+                            <?php if($phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
                             <td><button type="button" name="view-detail" class="btn btn-success btn-sm view-detail"  data-id="<?php echo $item['id']; ?>"><i class="fa-solid fa-list" style="font-size:20px;"></i></button></td>
+                            <?php } else {} ?>
                         </tr>
                         </form>
                         <?php } ?>

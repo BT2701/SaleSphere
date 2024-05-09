@@ -49,7 +49,7 @@
   <div class="container-md ">
     <table id="chooseProduct" class="table table-hover table-borderless custom-table " style="margin-top: 20px; ">
       <thead>
-        <tr class="thead table-primary ">
+        <tr class="thead table-primary text-center ">
           <th class="text-center col-1"></th>
 
           <th class="col-6">Sản Phẩm</th>
@@ -71,17 +71,17 @@
             </td>
 
             <td>
-                <div class="d-inline">
-                <!--//Chỗ này cần lưu link tới trang sản phẩm -->
+                <div class="text-center">
+                    <!-- Hình ảnh sản phẩm -->
                     <img class="rounded-2" style="margin-left: 30px;" width="80px" height="80px"
-                      src="<?php echo $row['src']; ?>"  title="<?php echo $row['tenSanPham']; ?>">
-                  
-                  <p class="text-dark" style="margin-left: 8px;">
-                    <!--//Chỗ này cần lưu link tới trang sản phẩm -->
-                    <?php echo $row['tenSanPham']; ?>
-                  </p>
-                  </div>
-                </td>
+                        src="<?php echo $row['src']; ?>" title="<?php echo $row['tenSanPham']; ?>">
+                    <!-- Tên sản phẩm -->
+                    <p class="text-dark" style="margin-left: 8px;">
+                        <?php echo $row['tenSanPham']; ?>
+                    </p>
+                </div>
+            </td>
+
 
                 <td class="text-center align-middle">
                   <div style="display: flex; justify-content: center;">
@@ -148,8 +148,8 @@
           </th>
           <td class="text-center align-middle">
             <a id=btnThanhToan class="btn btn-sm rounded-1 m-1" type="submit"
-              style="border-color: darkgray; border-radius: 10px !important; width: 130px; height: 50px; display: flex; justify-content: center; align-items: center;">
-              <strong>Thanh toán</strong>
+              style="background: #4fa5ec;border-color: darkgray; border-radius: 10px !important; width: 130px; height: 50px; display: flex; justify-content: center; align-items: center;">
+              <strong >Thanh toán</strong>
             </a>
           </td>
 
