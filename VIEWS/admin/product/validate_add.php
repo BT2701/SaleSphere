@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['root1'] = 'Giá nhập không được để trống';
     }
     else{
-        if(is_numeric($root) && intval($root) == $root){
+        if(!is_numeric($root) && intval($root) == $root){
             $errors['root1']='Giá nhập phải là số nguyên';
         }
     }
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['price1'] = 'Giá bán không được để trống';
     }
     else{
-        if(is_numeric($price) && intval($price) == $price){
+        if(!is_numeric($price) && intval($price) == $price){
             $errors['price1']='Giá bán phải là số nguyên';
         }
     }
