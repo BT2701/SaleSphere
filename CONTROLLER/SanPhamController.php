@@ -56,7 +56,7 @@ class SanPhamController {
         return $this->sanphamModel->getSanPhamList(0,10);
     }
     public function insertProduct(){
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" ) {
             // Kiểm tra xem có dữ liệu không
             if(isset($_POST['productName']) && isset($_POST['productPrice']) && isset($_POST['productType']) && isset($_POST['productUnit']) && isset($_POST['productDescription'])) {
                 $productName = $_POST['productName'];
