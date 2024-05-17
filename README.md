@@ -26,43 +26,40 @@ This project is an e-commerce website with a management system comprising three 
 - Provide customer support.
 
 ## Technologies Used
-- **Frontend:** HTML, CSS, JavaScript, Bootstrap, JQuery
-- **Backend:** PHP
-- **Database:** MySql
+- **Frontend:** HTML5, CSS3, JavaScript, Bootstrap5, JQuery.
+- **Backend:** PHP.
+- **Database:** MySql.
 - **Others:** Visual Studio Code, GitHub, Google/Facebook API, Xampp.
 
 ## Installation
 ### Prerequisites
 - Xampp Control Panel
 - MySql
-- MongoDB (or other database)
+- Visual Studio Code (or other IDE)
 
-### Steps
-1. Clone the repository:
+### Steps 
+1. Move to ../xampp/htdocs (or different way)
+2. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/ecommerce-website.git
+    git clone https://github.com/BT2701/SaleSphere.git
     ```
-2. Navigate to the project directory:
+3. Navigate to the project directory:
     ```sh
-    cd ecommerce-website
+    cd SaleSphere
     ```
-3. Install dependencies:
+4. Open project with localhost:
     ```sh
-    npm install
+    http://localhost/SaleSphere/index.php
     ```
-4. Configure environment variables:
-    - Create a `.env` file in the root directory.
-    - Add your database connection string and other environment variables.
-5. Start the development server:
-    ```sh
-    npm start
-    ```
+
 
 ## Usage
-- **Customer Interface:** Accessed via the homepage.
-- **Admin Interface:** Accessed via `/admin`.
-- **System Staff Interface:** Accessed via `/system-staff`.
-
+- **Customer Interface:** 
+  In order to access the customer page, you must create a new account or try logging in with an existing account (`username: Truong2003; password: Truong@123456`).
+- **Admin Interface:** 
+  To access the admin page, try logging in with an existing account (`username: Truong2727; password: Truong@123456`).
+- **System Staff Interface:** 
+  To access the staff page, try logging in with an existing account (`username: Truong1234; password: Truong@123456`).
 ## Contributing
 We welcome contributions! Please follow these steps to contribute:
 1. Fork the repository.
@@ -81,7 +78,7 @@ We welcome contributions! Please follow these steps to contribute:
 5. Open a pull request.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## Contact
-If you have any questions or suggestions, feel free to contact us at [email@example.com](mailto:email@example.com).
+If you have any questions or suggestions, feel free to contact us at [Truong's mail](mailto:dttruonga8tqtpy@gmail.com).
