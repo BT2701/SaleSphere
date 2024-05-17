@@ -7,6 +7,10 @@ This project is an e-commerce website with a management system comprising three 
 - **System Staff:** Manages product catalog, pricing, promotions, business performance, and order processing.
 
 ## Features
+  ![image](README_IMG/user1_1.gif){width=200}
+  ![image](README_IMG/user2_1.gif){width=200}
+  ![image](README_IMG/user3_1.gif){width=200}
+  ![image](README_IMG/user4_1.gif){width=200}
 ### Customer
 - Browse and search for products.
 - Add products to cart and checkout.
