@@ -7,10 +7,13 @@ This project is an e-commerce website with a management system comprising three 
 - **System Staff:** Manages product catalog, pricing, promotions, business performance, and order processing.
 
 ## Features
-  ![image](README_IMG/user1_1.gif){width=200}
-  ![image](README_IMG/user2_1.gif){width=200}
-  ![image](README_IMG/user3_1.gif){width=200}
-  ![image](README_IMG/user4_1.gif){width=200}
+  <div align="center">
+      <a href="#"><img src="README_IMG/user1_1.gif" alt="alt text" style="width:20%;"></a>
+      <a href="#"><img src="README_IMG/user2_1.gif" alt="alt text" style="width:20%; "></a>
+      <a href="#"><img src="README_IMG/user3_1.gif" alt="alt text" style="width:20%; "></a>
+      <a href="#"><img src="README_IMG/user4_1.gif" alt="alt text" style="width:20%; "></a>
+   </div>
+
 ### Customer
 - Browse and search for products.
 - Add products to cart and checkout.
@@ -47,11 +50,13 @@ This project is an e-commerce website with a management system comprising three 
     ```sh
     git clone https://github.com/BT2701/SaleSphere.git
     ```
-3. Navigate to the project directory:
+3. Import Database
+   `Open file SaleSphere/DATABASE/quan_ly_ban_hang.sql in PhpMyAdmin (or other tool) and run file`
+4. Navigate to the project directory:
     ```sh
     cd SaleSphere
     ```
-4. Open project with localhost:
+5. Open project with localhost:
     ```sh
     http://localhost/SaleSphere/index.php
     ```
