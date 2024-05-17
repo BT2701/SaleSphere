@@ -9,7 +9,7 @@ This project is an e-commerce website with a management system comprising three 
 ## Features
   <div align="center" style="display:flex;">
       <a href="#"><img src="README_IMG/user1_1.gif" alt="alt text" style="width:70%;"></a>
-      <a href="#"><img src="README_IMG/user2_1.gif" alt="alt text" style="width:70%;"></a>
+      <a href="#"><img src="README_IMG/user2.gif" alt="alt text" style="width:70%;"></a>
       <a href="#"><img src="README_IMG/user3_1.gif" alt="alt text" style="width:70%;"></a>
       <a href="#"><img src="README_IMG/user4_1.gif" alt="alt text" style="width:70%;"></a>
    </div>
