@@ -8,7 +8,7 @@
     $client= new Google_Client();
     $client->setClientId('738185340571-n1nhvd916p7boq245k5bubcol4tbksg9.apps.googleusercontent.com');
     $client->setClientSecret('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');
-    $client->setRedirectUri('http://localhost/web2/VIEWS/sign_up/sign_up.php');
+    $client->setRedirectUri('http://localhost/SaleSphere/VIEWS/sign_up/sign_up.php');
     $client->addScope("email");
     $client->addScope("profile");
     if(isset($_GET['code'])){
@@ -30,12 +30,12 @@
             if(mysqli_num_rows($get_user) > 0){
                 $get_tinhtrang=$profileController->getTinhTrang_google($id);
                 if($get_tinhtrang==0){
-                    header('Location: /web2/VIEWS/sign_up/404.php');
+                    header('Location: /SaleSphere/VIEWS/sign_up/404.php');
                 }else{
                 $get_id= $profileController->getID_google($id);
                 $_SESSION['id'] = $get_id; 
                 $_SESSION['login_name'] = $full_name; 
-                header('Location: /web2/index.php');
+                header('Location: /SaleSphere/index.php');
                 exit;
                 }
             }
@@ -48,7 +48,7 @@
                     $get_new_id= $profileController->getID_google($id);
                     $_SESSION['id'] = $get_new_id; 
                     $_SESSION['login_name'] = $full_name; 
-                    header('Location: /web2/index.php');
+                    header('Location: /SaleSphere/index.php');
                     exit;
                 }
                 else
@@ -74,7 +74,7 @@
     $handler = $FBOject -> getRedirectLoginHelper();
     
 
-    $redirectTo = "http://localhost/web2/VIEWS/sign_up/callback.php";
+    $redirectTo = "http://localhost/SaleSphere/VIEWS/sign_up/callback.php";
     $data= ['email'];
     $fullUrl= $handler->getLoginUrl($redirectTo,$data);
 ?>
@@ -88,7 +88,7 @@
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="/web2/STATIC/css/sign_up.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/sign_up.css">
     
     
     <title>Đăng ký</title>
@@ -96,8 +96,8 @@
 <body>
       <div class="header">
         <div class="MyLogo">
-          <a class="LinkTrangChu" href="/web2/index.php">
-          <img src="/web2/STATIC/assets/banner.jpg" class="img-fluid" style="width: 150px;">
+          <a class="LinkTrangChu" href="/SaleSphere/index.php">
+          <img src="/SaleSphere/STATIC/assets/banner.jpg" class="img-fluid" style="width: 150px;">
           </a>
           <div class="namepage" style="font-size: 1.5rem; padding: 15px; font-family: 'Roboto'; font-size: 30px;">Đăng ký</div>
         </div>
@@ -109,7 +109,7 @@
 
        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #80d8ff;">
            <div class="featured-image mb-3">
-            <img src="/web2/STATIC/assets/banner.jpg" class="img-fluid" style="width: 250px;">
+            <img src="/SaleSphere/STATIC/assets/banner.jpg" class="img-fluid" style="width: 250px;">
            </div>
            <p class="text-black fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">SHOPPEE</p>
            <small class="text-black text-wrap text-center" style="width: 17rem;font-family: 'Roboto'">Bạn của mọi nhà</small>
@@ -120,7 +120,7 @@
                 <div class="header-text mb-4">
                      <h2 style="text-align: center; font-size: 40px;">Đăng ký</h2>
                 </div>
-                <form action="/web2/CONTROLLER/SignUpController.php"method="post" name="MyForm" id="MyForm">
+                <form action="/SaleSphere/CONTROLLER/SignUpController.php"method="post" name="MyForm" id="MyForm">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control form-control-lg bg-light fs-6" name="Username" placeholder="Tên đăng nhập" id="username">
                 </div>
@@ -143,12 +143,12 @@
                     <div class="line" style="height: 2px; width: 100%; background-color: #dbdbdb;"></div>
                 </div>      
                 <div class="d-grid gap-2">
-                    <button class="btn btn-light" onclick="window.location='<?php echo $fullUrl ?>'"><img src="/web2/STATIC/assets/facebook_icon.webp" style="width: 25px;" alt="Ảnh"><a style="text-decoration: none; color: #000;">&nbsp; Facebook</a></button>
+                    <button class="btn btn-light" onclick="window.location='<?php echo $fullUrl ?>'"><img src="/SaleSphere/STATIC/assets/facebook_icon.webp" style="width: 25px;" alt="Ảnh"><a style="text-decoration: none; color: #000;">&nbsp; Facebook</a></button>
 
-                    <button class="btn btn-light" type="submit"><img src="/web2/STATIC/assets/google_icon.png" style="width: 25px;" alt="Ảnh"><a style="text-decoration: none; color: #000;" href="<?php echo $client->createAuthUrl(); ?>">&nbsp; Google</a></button>
+                    <button class="btn btn-light" type="submit"><img src="/SaleSphere/STATIC/assets/google_icon.png" style="width: 25px;" alt="Ảnh"><a style="text-decoration: none; color: #000;" href="<?php echo $client->createAuthUrl(); ?>">&nbsp; Google</a></button>
                 </div>
                 <div class="row">
-                    <small style="text-align: center;">Bạn đã có tài khoản? &nbsp;<a href="/web2/VIEWS/login/login.php">Đăng nhập</a></small>
+                    <small style="text-align: center;">Bạn đã có tài khoản? &nbsp;<a href="/SaleSphere/VIEWS/login/login.php">Đăng nhập</a></small>
                 </div>
           </div>
        </div> 
@@ -212,6 +212,6 @@
     </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/web2/STATIC/js/validation.js"></script>
+    <script src="/SaleSphere/STATIC/js/validation.js"></script>
 </body>
 </html>

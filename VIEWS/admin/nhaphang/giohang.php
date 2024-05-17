@@ -7,7 +7,7 @@
     <title>Trang Giỏ Hàng</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="/web2/STATIC/css/phieunhaplist.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/phieunhaplist.css">
     <!-- Thêm icon của Font Awesome -->
 </head>
 
@@ -28,7 +28,7 @@
     <div class="container mt-5">
         <div class="title-content" >
             <h2>Giỏ Hàng</h2>
-            <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang"><i class="fa-solid fa-xmark"></i></a>
+            <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyNhapHang"><i class="fa-solid fa-xmark"></i></a>
         </div>
         <div class="row" style="padding-top: 10px;padding-bottom: 10px; ">
             <div class="col-md-8">
@@ -48,7 +48,7 @@
                     <tbody>
                         <?php foreach($detailCartList as $item){
                                 if($item['idUser']==$idUser) {?>
-                        <form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm">
+                        <form action="/SaleSphere/CONTROLLER/NhapHangController.php" method="post" id="myForm">
                         <tr>
                             <td>
                                 <input type="hidden" name="product_id" value="<?php echo $item['idSanPham']; ?>">
@@ -86,7 +86,7 @@
         <div class="col-md-4" style="border-top:1px solid gray; padding-top:5px;">
                 <h3>Tổng thanh toán: <?php echo $tongThanhToan; ?></h3>
 
-                <form action="/web2/CONTROLLER/NhapHangController.php" method="post">
+                <form action="/SaleSphere/CONTROLLER/NhapHangController.php" method="post">
                     <input type="hidden" name="user_id" value="<?php echo $idUser; ?>">
                     <input type="hidden" name="tongThanhToan" value="<?php echo $tongThanhToan; ?>">
                     <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))&&$phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))&&$phanquyenmodel->getTinhTrang('X',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))&&$phanquyenmodel->getTinhTrang('L',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý nhập hàng"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>

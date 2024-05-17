@@ -7,7 +7,7 @@ function confirmDeleteCoupond(idKhuyenMai, tenKhuyenMai) {
 
 function deleteCoupond(idKhuyeMai) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/SaleSphere/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -40,7 +40,7 @@ function PrepareDataApplyModal(idKhuyenMai, tenKhuyenMai) {
 
   // Make request to fetch products
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/SaleSphere/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -79,7 +79,7 @@ function SaveDetailApplyCoupond(idKhuyenMai) {
   let typeApply = document.getElementById("applyFor").value;
   let listproductidwannaapply = GetListProductIDWannaApply();
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/SaleSphere/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -111,7 +111,7 @@ function GetListProductIDWannaApply() {
 
 function ViewDetailCoupond(idKhuyenMai) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/SaleSphere/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -145,7 +145,7 @@ function ViewDetailCoupond(idKhuyenMai) {
 
 function PrepareInfoCoupondEditModal(idKhuyenMai) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/SaleSphere/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -171,7 +171,7 @@ function UpdateCoupondInfo(idKhuyenMai) {
   let UserInputInfoCoupond = GetUserInputForm();
   if (!validInfoCoupond(UserInputInfoCoupond)) return;
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/SaleSphere/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -262,7 +262,7 @@ function CreateCoupond() {
   // alert();
   if (!validInfoCoupond(UserInputInfoCoupond)) return;
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/SaleSphere/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -421,7 +421,7 @@ function clearAllErrorMessage() {
 //Make request to server to auto unapplied coupond for poduct is it was get time
 function autoUnppliedCoupond() {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
+  xhr.open("POST", "http://localhost/SaleSphere/ROUTES/KhuyenMaiRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     // if (xhr.readyState == 4 && xhr.status == 200) {
@@ -456,7 +456,7 @@ function SearchCoupondByName(event) {
   // Set a new timer with a delay of 500 milliseconds
   delayTimer = setTimeout(function () {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/web2/ROUTES/KhuyenMaiRoutes.php", true);
+    xhr.open("POST", "http://localhost/SaleSphere/ROUTES/KhuyenMaiRoutes.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {

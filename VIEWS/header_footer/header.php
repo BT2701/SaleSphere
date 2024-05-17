@@ -24,12 +24,12 @@
         ';
         $logined="&nbsp".$profileController->GetTenById($id);
         $logined_mini="&nbsp" .$profileController->GetTenById($id);
-        $login='<li class="user-action_list-item"><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
-        $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+        $login='<li class="user-action_list-item"><a href="/SaleSphere/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $signup='<li class="user-action_list-item"><a href="/SaleSphere/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
         $XemLichSuDonHang =
         '<li class="nav-item dropdown navbar-item">
     <a class="nav-link " href="#" id="promote" role="button" aria-expanded="false">
-        <form id="viewHistoryForm" action="/web2/VIEWS/History/OrderHistory.php" method="post">
+        <form id="viewHistoryForm" action="/SaleSphere/VIEWS/History/OrderHistory.php" method="post">
             <input type="hidden" name="customerId" value="' . $id . '">
             <button id="viewHistory" style="background-color: #212529; color:rgba(255, 255, 255, .55);border:none" type="submit">Lịch sử đơn hàng</button>
 
@@ -38,19 +38,19 @@
     </li>';
         $logout='<li class="nav-item d-lg-none d-flex align-items-center">
         <i class="fa-solid fa-right-to-bracket" style="color: aliceblue; margin-right: 10px;"></i>
-        <a class="nav-link" href="/web2/VIEWS/sign_up/logout.php">Log out</a>
+        <a class="nav-link" href="/SaleSphere/VIEWS/sign_up/logout.php">Log out</a>
     </li>';
     }
     else {
         $cart = `hehe`;
         $XemLichSuDonHang = '';
         $logined= '<span class="user-name">Đăng nhập/Đăng ký</span>';
-        $login='<li class="user-action_list-item"><a href="/web2/VIEWS/login/login.php">Đăng nhập</a></li>';
-        $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a></li>';
-        $logined_mini='<a class="nav-link" href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a>';
+        $login='<li class="user-action_list-item"><a href="/SaleSphere/VIEWS/login/login.php">Đăng nhập</a></li>';
+        $signup='<li class="user-action_list-item"><a href="/SaleSphere/VIEWS/sign_up/sign_up.php">Đăng ký</a></li>';
+        $logined_mini='<a class="nav-link" href="/SaleSphere/VIEWS/sign_up/sign_up.php">Đăng ký</a>';
         $logout='<li class="nav-item d-lg-none d-flex align-items-center">
         <i class="fa-solid fa-user" style="color: aliceblue; margin-right: 10px;"></i>
-        <a class="nav-link" href="/web2/VIEWS/Login/login.php">Đăng nhập</a>
+        <a class="nav-link" href="/SaleSphere/VIEWS/Login/login.php">Đăng nhập</a>
     </li>';
     }   
 ?>
@@ -60,8 +60,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/web2/STATIC/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/web2/STATIC/css/base-style.css">
+    <link rel="stylesheet" type="text/css" href="/SaleSphere/STATIC/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/SaleSphere/STATIC/css/base-style.css">
     <title>Document</title>
 </head>
 <body>
@@ -160,7 +160,7 @@
                     <!-- case user has been login  -->
                     <li class="nav-item d-lg-none d-flex align-items-center">
                         <i class="fa-solid fa-user" style="color: aliceblue; margin-right: 10px;"></i>
-                        <a class="nav-link" href="/web2/VIEWS/profile/profile.php"> <?=$logined_mini?></a>
+                        <a class="nav-link" href="/SaleSphere/VIEWS/profile/profile.php"> <?=$logined_mini?></a>
                     </li>
                     <?=$logout ?>
                 </ul>

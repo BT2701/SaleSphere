@@ -115,7 +115,7 @@ class SanPhamModel {
         $stmt->bind_param("siiiisss", $productName, $productRoot, $productPrice,$productType,$productUnit,$productDescription,$src,$trangthai);
         if ($stmt->execute()) {
             // Nếu thêm sản phẩm thành công, chuyển hướng tới trang quản lý sản phẩm
-            header('Location: /web2/VIEWS/ADMIN/admin_home.php?page=quanLySanPham');
+            header('Location: /SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLySanPham');
             exit; // Đảm bảo dừng kịch bản sau khi chuyển hướng
         } else {
             echo "Đã xảy ra lỗi: " . $stmt->error;
@@ -134,7 +134,7 @@ class SanPhamModel {
 
         // Thực thi câu lệnh xóa
         if ($stmt->execute()) {
-            header('Location: /web2/VIEWS/ADMIN/admin_home.php?page=quanLySanPham');
+            header('Location: /SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLySanPham');
             exit; // Đảm bảo dừng kịch bản sau khi chuyển hướng
         } else {
             echo "Lỗi: " . $conn->error;

@@ -14,12 +14,12 @@
 </head>
 <body>
             <div style="text-align: center;">
-            <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&chon=xoa&&id=<?php echo $_GET['id'] ?>" class="btn btn-danger mb-3">Xóa quyền</a>
+            <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&chon=xoa&&id=<?php echo $_GET['id'] ?>" class="btn btn-danger mb-3">Xóa quyền</a>
             </div>
             <div class="formxuly" style="text-align: center;">
                     <h2>Sửa quyền</h2>
                     <br>
-                    <form action="/web2/CONTROLLER/PhanQuyenController.php?controller=suaDetail&&id=<?php echo $_GET['id'] ?>" method="post" id="Form1">
+                    <form action="/SaleSphere/CONTROLLER/PhanQuyenController.php?controller=suaDetail&&id=<?php echo $_GET['id'] ?>" method="post" id="Form1">
                         <div style="font-size: 20px;">
                         <label style="padding-right: 5px;">Tên quyền</label>
                         <input type="text" name="username" id="Username" style="padding-left: 5px;" value="<?php echo $phanquyenController->getTenQuyenByid() ?>">
@@ -73,6 +73,6 @@
                     
                 </div>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-                <script src="/web2/STATIC/js/validation_editQuyen.js"></script>
+                <script src="/SaleSphere/STATIC/js/validation_editQuyen.js"></script>
 </body>
 </html>

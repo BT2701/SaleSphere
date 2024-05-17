@@ -17,7 +17,7 @@ class NhapHangController
             $soLuong = 1; // mỗi lần nhất nút dấu cộng chỉ cộng 1 đơn vị
             $result = $this->nhapHangModel->themGioHangNhap($idSanPham, $idUser, $soLuong);
             if ($result) {
-                echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang";</script>';
+                echo '<script>window.location.href = "/SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang";</script>';
             }
         }
     }
@@ -35,12 +35,12 @@ class NhapHangController
             if ($sl < 1) {
                 $result = $this->nhapHangModel->xoaDong($idSanPham, $idUser);
                 if ($result) {
-                    echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
+                    echo '<script>window.location.href = "/SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
                 }
             } else {
                 $result = $this->nhapHangModel->capNhatSoLuong($idSanPham, $idUser, $sl);
                 if ($result) {
-                    echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
+                    echo '<script>window.location.href = "/SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
                 }
             }
         } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['plus'])) {
@@ -51,12 +51,12 @@ class NhapHangController
             if ($sl < 1) {
                 $result = $this->nhapHangModel->xoaDong($idSanPham, $idUser);
                 if ($result) {
-                    echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
+                    echo '<script>window.location.href = "/SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
                 }
             } else {
                 $result = $this->nhapHangModel->capNhatSoLuong($idSanPham, $idUser, $sl);
                 if ($result) {
-                    echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
+                    echo '<script>window.location.href = "/SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
                 }
             }
         } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['minus'])) {
@@ -67,12 +67,12 @@ class NhapHangController
             if ($sl < 1) {
                 $result = $this->nhapHangModel->xoaDong($idSanPham, $idUser);
                 if ($result) {
-                    echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
+                    echo '<script>window.location.href = "/SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
                 }
             } else {
                 $result = $this->nhapHangModel->capNhatSoLuong($idSanPham, $idUser, $sl);
                 if ($result) {
-                    echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
+                    echo '<script>window.location.href = "/SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
                 }
             }
         }
@@ -85,7 +85,7 @@ class NhapHangController
             $idUser = $_POST['user_id'];
             $result = $this->nhapHangModel->xoaDong($idSanPham, $idUser);
             if ($result) {
-                echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
+                echo '<script>window.location.href = "/SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang&&luachon=giohang";</script>';
             }
         }
     }
@@ -133,7 +133,7 @@ class NhapHangController
             }
             $resultClear = $this->nhapHangModel->clearGioHangNhap();
             if ($resultPhieuNhap && $resultClear) {
-                echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang";</script>';
+                echo '<script>window.location.href = "/SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLyNhapHang";</script>';
             }
         }
     }

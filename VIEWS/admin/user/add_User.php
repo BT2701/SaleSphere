@@ -14,7 +14,7 @@
 <div class="formxuly">
                     <h2>Thêm tài khoản</h2>
                     <br>
-                    <form action="/web2/CONTROLLER/UserController.php?controller=them" method="post" id="Form1">
+                    <form action="/SaleSphere/CONTROLLER/UserController.php?controller=them" method="post" id="Form1">
                         <label>Tên</label>
                         <input type="text" name="username" id="Username">
                         <p id="errorusername"></p>
@@ -45,6 +45,6 @@
                     </form>
                 </div>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-                <script src="/web2/STATIC/js/validation_add.js"></script>
+                <script src="/SaleSphere/STATIC/js/validation_add.js"></script>
 </body>
 </html>

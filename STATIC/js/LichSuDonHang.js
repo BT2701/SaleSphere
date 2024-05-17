@@ -27,7 +27,7 @@ function loadOrderHistory(CustomerID) {
     if (!isLoading && endPage==false) {
         isLoading = true;
         $.ajax({
-            url: "/web2/CONTROLLER/OderController.php",
+            url: "/SaleSphere/CONTROLLER/OderController.php",
             method: 'POST',
             dataType: 'json',
             data: { action:'getOrderHistory',page:page, limit:limit,CustomerID:CustomerID},
@@ -145,7 +145,7 @@ function displayOrders(orders) {
 }
 function daNhanDuocHang(CustomerID,idHoaDon) {
     $.ajax({
-        url: "/web2/CONTROLLER/OderController.php",
+        url: "/SaleSphere/CONTROLLER/OderController.php",
         method: 'POST',
         dataType: 'json',
         data: { action:'daNhanDuocHang',idhoadon:idHoaDon},

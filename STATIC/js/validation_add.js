@@ -10,7 +10,7 @@ $(document).ready(function () {
     };
     $.ajax({
       type: "POST",
-      url: "/web2/VIEWS/admin/user/validation_add.php",
+      url: "/SaleSphere/VIEWS/admin/user/validation_add.php",
       data: formData,
       dataType: "json",
       encode: true,

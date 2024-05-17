@@ -14,21 +14,21 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
      <!-- Bootstrap CSS -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/web2/STATIC/css/ThongKe.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/ThongKe.css">
 </head>
 <body>
     <div>
         <div class="headerThongKe" id="headerThongKe">
             <div class="twoheaderBox">
                 <div class="headderBox">
-                    <img src="/web2/STATIC/assets/DoneOrder.png" class="leftheaderBox" alt="Product Image ">
+                    <img src="/SaleSphere/STATIC/assets/DoneOrder.png" class="leftheaderBox" alt="Product Image ">
                     <div class="rightheaderBox">
                         <div >  Đơn Hàng Đã Hoàn Thành</div>
                         <div style="font-weight: bold; padding-top :2%;" id="TongSoDonHang"> 1000</div>
                     </div>
                 </div>
                 <div class="headderBox">
-                    <img src="/web2/STATIC/assets/GioHangIMG.jpg" class="leftheaderBox" alt="Product Image ">
+                    <img src="/SaleSphere/STATIC/assets/GioHangIMG.jpg" class="leftheaderBox" alt="Product Image ">
                     <div class="rightheaderBox">
                         <div> Tổng số sản phẩm</div>
                         <div style="font-weight: bold; padding-top :2%;" id="TongSoSanPham"> 1000</div>
@@ -37,7 +37,7 @@
             </div>
             <div class="twoheaderBox">
                 <div class="headderBox">
-                    <img src="/web2/STATIC/assets/money.jpg" class="leftheaderBox" alt="Product Image ">
+                    <img src="/SaleSphere/STATIC/assets/money.jpg" class="leftheaderBox" alt="Product Image ">
                     <div class="rightheaderBox">
                         <div> Doanh thu</div>
                         <div style="font-weight: bold; padding-top :2%;"id="TongSoDoanhThu">  </div>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="headderBox">
-                    <img src="/web2/STATIC/assets/rating.jpg" class="leftheaderBox" alt="Product Image ">
+                    <img src="/SaleSphere/STATIC/assets/rating.jpg" class="leftheaderBox" alt="Product Image ">
                     <div class="rightheaderBox">
                         <div > Đánh giá tích cực</div>
                         <div style="font-weight: bold; padding-top :2%;"id="DanhGiaTichCuc"> </div>
@@ -134,7 +134,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/web2/STATIC/js/ThongKe.js"></script>
+    <script src="/SaleSphere/STATIC/js/ThongKe.js"></script>
 
 </body>
 </html>

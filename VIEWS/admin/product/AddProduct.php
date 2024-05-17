@@ -18,7 +18,7 @@ $dvtlist = $dvt->getList();
                         </button>
                     </div>
                     <div class="modal-body">
-                    <form action="/web2/CONTROLLER/SanPhamController.php" method="post" enctype="multipart/form-data" id="add-form">
+                    <form action="/SaleSphere/CONTROLLER/SanPhamController.php" method="post" enctype="multipart/form-data" id="add-form">
                             <div class="form-group">
                                 <label for="productName">Tên sản phẩm</label>
                                 <input type="text" class="form-control" id="productName" name="productName" placeholder="Nhập tên sản phẩm">
@@ -92,7 +92,7 @@ $dvtlist = $dvt->getList();
     };
     $.ajax({
       type: "POST",
-      url: "/web2/VIEWS/admin/product/validate_add.php",
+      url: "/SaleSphere/VIEWS/admin/product/validate_add.php",
       data: formData,
       dataType: "json",
       encode: true,

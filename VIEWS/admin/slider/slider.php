@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/web2/STATIC/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/SaleSphere/STATIC/css/index.css">
 </head>
 <body>
 <section id="slider">
         <div class="aspect-ratio-169">
-            <img src="/web2/STATIC/assets/poster.png">
-            <img src="/web2/STATIC/assets/poster2.png">
-            <img src="/web2/STATIC/assets/poster3.png">
-            <img src="/web2/STATIC/assets/poster4.png">
+            <img src="/SaleSphere/STATIC/assets/poster.png">
+            <img src="/SaleSphere/STATIC/assets/poster2.png">
+            <img src="/SaleSphere/STATIC/assets/poster3.png">
+            <img src="/SaleSphere/STATIC/assets/poster4.png">
         </div>
         <div class="dot-container">
             <div class="dot active"></div>

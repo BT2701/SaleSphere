@@ -8,7 +8,7 @@ $(document).ready(function(){
     };
     $.ajax({
         type: 'POST',
-        url: '/web2/VIEWS/profile/validate_fixprofile.php',
+        url: '/SaleSphere/VIEWS/profile/validate_fixprofile.php',
         data: formData,
         dataType: 'json',
         encode: true

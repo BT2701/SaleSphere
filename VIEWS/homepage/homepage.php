@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/web2/STATIC/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/SaleSphere/STATIC/css/index.css">
     <title>G1's Shop</title>
 </head>
 
@@ -18,10 +18,10 @@
     ?>
     <section id="slider">
         <div class="aspect-ratio-169">
-            <img src="/web2/STATIC/assets/poster.png">
-            <img src="/web2/STATIC/assets/poster2.png">
-            <img src="/web2/STATIC/assets/poster3.png">
-            <img src="/web2/STATIC/assets/poster4.png">
+            <img src="/SaleSphere/STATIC/assets/poster.png">
+            <img src="/SaleSphere/STATIC/assets/poster2.png">
+            <img src="/SaleSphere/STATIC/assets/poster3.png">
+            <img src="/SaleSphere/STATIC/assets/poster4.png">
         </div>
         <div class="dot-container">
             <div class="dot active"></div>
@@ -68,7 +68,7 @@ for ($i = 0; $i < $numOfSlides; $i++) {
         echo '<img src="' . $sanpham['src'] . '" alt="">';
         echo '<div class="slider-product-text">';
         if ($sanpham['tenKhuyenMai'] != null) {
-            echo '<li style="background-color:' . ($sanpham['background'] ?? '#fcfcfc') . ';"><img src="/web2/STATIC/assets/icon-percent.webp" alt=""><p>' . $sanpham['tenKhuyenMai'] . '</p></li>';
+            echo '<li style="background-color:' . ($sanpham['background'] ?? '#fcfcfc') . ';"><img src="/SaleSphere/STATIC/assets/icon-percent.webp" alt=""><p>' . $sanpham['tenKhuyenMai'] . '</p></li>';
         } else {
             echo '<li style="background-color: #fcfcfc;"></li>';
         }
@@ -139,7 +139,7 @@ for ($i = 0; $i < $numOfSlides; $i++) {
                 <div class="product-gallery-content-product-text" >
                 <?php if ($sanpham['tenKhuyenMai']!=null && (strtotime($sanpham['hansudung'])>time() || strtotime($sanpham['hansudung'])==null)){ ?>
                     <?php if ($sanpham['background']!=null){ ?>
-                    <li style="background-color:<?php echo  $sanpham['background'];  }?>;"><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
+                    <li style="background-color:<?php echo  $sanpham['background'];  }?>;"><img src="/SaleSphere/STATIC/assets/icon-percent.webp" alt="">
                         <p><?php 
                             echo $sanpham['tenKhuyenMai'];
                             ?></p>
@@ -227,13 +227,13 @@ for ($i = 0; $i < $numOfSlides; $i++) {
 
 
     function detailproduct(idProduct){
-            // location.assign("http://localhost/web2/index.php?page=productdetail");
-            window.location.replace(`http://localhost/web2/index.php?page=productdetail&id=${idProduct}`);
+            // location.assign("http://localhost/SaleSphere/index.php?page=productdetail");
+            window.location.replace(`http://localhost/SaleSphere/index.php?page=productdetail&id=${idProduct}`);
         }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-<script src="/web2/STATIC/js/index.js"></script>
+<script src="/SaleSphere/STATIC/js/index.js"></script>
 
 </html>

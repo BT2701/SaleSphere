@@ -290,7 +290,7 @@ function xuLyPhanTrang(
 
 function AddProductToCart(idSanPham, idUser, soLuongCoTheThem) {
   if (idUser == 0) {
-    window.location.href = "http://localhost/web2/VIEWS/Login/login.php";
+    window.location.href = "http://localhost/SaleSphere/VIEWS/Login/login.php";
     return;
   }
   let soLuongThem = document.getElementById("quantityInput").value;

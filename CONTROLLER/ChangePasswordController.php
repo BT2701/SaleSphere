@@ -9,5 +9,5 @@
     }
     $hashedPassword = password_hash($passmoi, PASSWORD_DEFAULT);
     $profileModel->change_password($id1,$hashedPassword);
-    header('Location: /web2/VIEWS/profile/change_password.php');
+    header('Location: /SaleSphere/VIEWS/profile/change_password.php');
 ?>

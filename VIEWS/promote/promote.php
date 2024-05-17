@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/web2/STATIC/css/promotionBanner.css" >
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/promotionBanner.css" >
     <title>SlideShow</title>
 </head>
 
 <body>
     <div class="slide-show">
         <div class="list-images">
-            <img src="/web2/STATIC/assets/1.png" width="100%" alt="">
-            <img src="/web2/STATIC/assets/2.png" width="100%" alt="">
-            <img src="/web2/STATIC/assets/3.png" width="100%" alt="">
-            <img src="/web2/STATIC/assets/4.png" width="100%" alt="">
+            <img src="/SaleSphere/STATIC/assets/1.png" width="100%" alt="">
+            <img src="/SaleSphere/STATIC/assets/2.png" width="100%" alt="">
+            <img src="/SaleSphere/STATIC/assets/3.png" width="100%" alt="">
+            <img src="/SaleSphere/STATIC/assets/4.png" width="100%" alt="">
         </div>
         <div class="btns">
             <div class="btn-left btn"><i class='bx bx-chevron-left'></i></div>
@@ -29,6 +29,6 @@
         </div>
     </div>
 
-    <script src="/web2/STATIC/js/promotionBanner.js"></script>
+    <script src="/SaleSphere/STATIC/js/promotionBanner.js"></script>
 </body>
 </html>

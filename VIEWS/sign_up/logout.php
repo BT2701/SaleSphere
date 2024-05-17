@@ -7,5 +7,5 @@
     if(isset($_SESSION['id'])&&$_SESSION['id']!=''){
         unset($_SESSION['id']);
     }
-    header('Location: /web2/index.php');
+    header('Location: /SaleSphere/index.php');
 ?>

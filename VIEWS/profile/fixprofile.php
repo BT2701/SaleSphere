@@ -13,14 +13,14 @@
         $id=$_SESSION['id'];
     }
     if($user!=""){
-        $taikhoan='<li><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $taikhoan='<li><a href="/SaleSphere/VIEWS/profile/profile.php">Tài khoản</a></li>';
         $changepass='';
-        $logout=' <li><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+        $logout=' <li><a href="/SaleSphere/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
     }
     else{
-        $taikhoan='<li><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
-        $changepass='<li><a href="/web2/VIEWS/profile/change_password.php">Đổi mật khẩu</a></li>';
-        $logout=' <li><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+        $taikhoan='<li><a href="/SaleSphere/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $changepass='<li><a href="/SaleSphere/VIEWS/profile/change_password.php">Đổi mật khẩu</a></li>';
+        $logout=' <li><a href="/SaleSphere/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
     }
 
 ?>
@@ -32,7 +32,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="/web2/STATIC/css/fixprofile.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/fixprofile.css">
     <title>Document</title>
 </head>
 
@@ -40,8 +40,8 @@
     <div class="main">
         <div class="header">
             <div class="MyLogo">
-                <a class="LinkTrangChu" href="/web2/index.php">
-                    <img src="/web2/STATIC/assets/banner.jpg" class="img-fluid" style="width: 150px;">
+                <a class="LinkTrangChu" href="/SaleSphere/index.php">
+                    <img src="/SaleSphere/STATIC/assets/banner.jpg" class="img-fluid" style="width: 150px;">
                 </a>
                 <div class="namepage" style="font-size: 1.5rem; padding: 15px; font-family: 'Roboto'; font-size: 30px;">SHOPPEE</div>
             </div>
@@ -76,10 +76,10 @@
             <div class="content">
                 <?php if (isset($profileList) && !empty($profileList)) ?>
                 <?php foreach ($profileList as $profile) : ?>
-                    <form action="/web2/CONTROLLER/FixProfileController.php" method="post" name="MyForm" id="MyForm" enctype="multipart/form-data">
+                    <form action="/SaleSphere/CONTROLLER/FixProfileController.php" method="post" name="MyForm" id="MyForm" enctype="multipart/form-data">
                     <div class="left_box">
                         <div class="content_img" style="display: block;" >
-                            <img  style="border-radius: 100%; width: 150px;" src="<?php if($profile['src']=='0'||$profile['src']==''){echo '/web2/STATIC/assets/default_avatar_1.png';} else {echo $profile['src'];} ?>" alt="">
+                            <img  style="border-radius: 100%; width: 150px;" src="<?php if($profile['src']=='0'||$profile['src']==''){echo '/SaleSphere/STATIC/assets/default_avatar_1.png';} else {echo $profile['src'];} ?>" alt="">
                             <input style="margin-top: 20px; width: 200% !important;" type="file" name="anh" id="anh">
                             <div class="warning" style="width: 200px; margin-left: -20px; padding-top: 20px;">
                             <p>Dung lượng file tối đa 1MB</p>
@@ -231,7 +231,7 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/web2/STATIC/js/validation_fixprofile.js"></script>
+    <script src="/SaleSphere/STATIC/js/validation_fixprofile.js"></script>
 </body>
 
 </html>

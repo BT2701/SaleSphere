@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý sản phẩm</title>
-    <link rel="stylesheet" href="/web2/STATIC/css/category.css">
-    <link rel="stylesheet" href="/web2/STATIC/css/index.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/category.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -109,7 +109,10 @@
         
 
         
-
+        <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý sản phẩm"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
+        <!-- Nút thêm sản phẩm -->
+        <button type="button" style="margin-top: 30px;"  class="btn btn-primary mb-3" data-toggle="modal" data-target="#addProductModal">Thêm sản phẩm</button>
+        <?php } else {} ?>
         <!-- Bảng hiển thị danh sách sản phẩm -->
         <div class="table-wrapper">
         <table class="table">
@@ -128,7 +131,7 @@
                     // Hiển thị sản phẩm trong bảng
                     if(isset($sanphamList) && !empty($sanphamList)) {?>
                         <?php foreach ($sanphamList as $product): ?>
-                            <form method="POST" action="/web2/CONTROLLER/SanPhamController.php">
+                            <form method="POST" action="/SaleSphere/CONTROLLER/SanPhamController.php">
                                 <tr>
                                     <td><?php echo $product['id']; ?></td>
                                     <td><img class="imageproduct" src="<?php echo $product['src']; ?>" alt="Product Image"></td>
@@ -143,7 +146,7 @@
                                         <?php } else {} ?>
                                         <!-- Đổi type của button 'Sửa' từ 'submit' thành 'button' -->
                                         <?php if($phanquyenmodel->getTinhTrang('S',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý sản phẩm"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
-                                        <a href="/web2/VIEWS/admin/admin_home.php?page=quanLySanPham&&luachon=sua&&product_id=<?php echo $product['id']?>" class="link-dark btn btn-success" style="text-align: center; height: 32.5px;" ><i class="fa-solid fa-pen-to-square fs-5"></i></a>
+                                        <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLySanPham&&luachon=sua&&product_id=<?php echo $product['id']?>" class="link-dark btn btn-success" style="text-align: center; height: 32.5px;" ><i class="fa-solid fa-pen-to-square fs-5"></i></a>
                                         <?php } else {} ?>
                                     </td>
                                 </tr>
@@ -158,10 +161,7 @@
             </tbody>
         </table>
         </div>
-        <?php if($phanquyenmodel->getTinhTrang('T',$phanquyenmodel->getIdChucnangbyTenChucnang("Quản lý sản phẩm"),$phanquyenmodel->getmaQuyenbyId($id))){ ?>
-        <!-- Nút thêm sản phẩm -->
-        <button type="button" style="margin-top: 30px;"  class="btn btn-primary mb-3" data-toggle="modal" data-target="#addProductModal">Thêm sản phẩm</button>
-        <?php } else {} ?>
+        
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -241,7 +241,7 @@
         });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/web2/STATIC/js/category.js"></script>
+    <script src="/SaleSphere/STATIC/js/category.js"></script>
 
 
 

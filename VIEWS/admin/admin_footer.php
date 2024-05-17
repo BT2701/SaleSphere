@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/web2/STATIC/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/web2/STATIC/css/base-style.css">
+    <link rel="stylesheet" type="text/css" href="/SaleSphere/STATIC/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/SaleSphere/STATIC/css/base-style.css">
     <title>Document</title>
 </head>
 <body>
@@ -60,9 +60,9 @@
          <div class="col-md text-center mt-md-3 mt-3 mb-4 footer_explore">
              <h5 class="footer_explore-title">Về G1'Shop</h5>
              <ul class="list-unstyled mb-0 footer_explore-list">
-                 <li class="footer_explore-list-item"><a href="http://localhost/web2/index.php?page=homepage">Trang chủ</a></li>
-                 <li class="footer_explore-list-item"><a href="http://localhost/web2/index.php?page=productlist">Danh sách sản phẩm</a></li>
-                 <li class="footer_explore-list-item"><a href="http://localhost/web2/index.php?page=promote">Chương trình khuyến mãi</a></li>
+                 <li class="footer_explore-list-item"><a href="http://localhost/SaleSphere/index.php?page=homepage">Trang chủ</a></li>
+                 <li class="footer_explore-list-item"><a href="http://localhost/SaleSphere/index.php?page=productlist">Danh sách sản phẩm</a></li>
+                 <li class="footer_explore-list-item"><a href="http://localhost/SaleSphere/index.php?page=promote">Chương trình khuyến mãi</a></li>
              </ul>
          </div>
      </div>

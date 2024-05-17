@@ -42,7 +42,7 @@ function SendingEmail(email){
     $('#txtMaXacNhan').prop('disabled', false);
     startCountdown();
     $.ajax({
-        url: "/web2/VIEWS/ForgotPassword/ForgotPasswordRoute.php",
+        url: "/SaleSphere/VIEWS/ForgotPassword/ForgotPasswordRoute.php",
         method: 'POST',
         dataType: 'json',
         data: { action: 'sendConfirmationEmail',email: email},
@@ -93,7 +93,7 @@ function checkEmail(email) {
     }
     else{
         $.ajax({
-            url: "/web2/VIEWS/ForgotPassword/ForgotPasswordRoute.php",
+            url: "/SaleSphere/VIEWS/ForgotPassword/ForgotPasswordRoute.php",
             method: 'POST',
             dataType: 'json',
             data: { action: 'CheckEmail', email: email }, // Gửi dữ liệu email lên server
@@ -191,7 +191,7 @@ function XacNhanDoiMatKhau(){
     var email = document.getElementById('emailInput').value;
     var confirmationCode = document.getElementById('txtMaXacNhan').value;
     $.ajax({
-        url: '/web2/VIEWS/ForgotPassword/XulySession.php',
+        url: '/SaleSphere/VIEWS/ForgotPassword/XulySession.php',
         method: 'POST',
         data: { action: 'validateSession', email: email, confirmation_code: confirmationCode }, // Thêm action: 'validateSession' vào dữ liệu gửi đi
         success: function(response) {
@@ -214,14 +214,14 @@ function changePassword() {
     var email = document.getElementById('emailInput').value;
     var newPassword = document.getElementById('Password').value;
     $.ajax({
-        url: '/web2/VIEWS/ForgotPassword/ForgotPasswordRoute.php',
+        url: '/SaleSphere/VIEWS/ForgotPassword/ForgotPasswordRoute.php',
         method: 'POST',
         data: { action: 'ChangePassword', email: email, new_password: newPassword },
         success: function(response) {
             console.log("kết quả thay đổi mật khẩu"+response);
             if (response.trim() === 'true'  ) {
                 alert("Thay đổi mật khẩu thành công");
-                window.location.href = "/web2/index.php";
+                window.location.href = "/SaleSphere/index.php";
                 // Thực hiện các hành động tương ứng
             } else {
                 alert("Lỗi: Thay đổi mật khẩu không thành công");
@@ -238,7 +238,7 @@ function changePassword() {
 function deleteSession() {
     // Gửi yêu cầu Ajax để xóa session
     $.ajax({
-        url: '/web2/VIEWS/ForgotPassword/XulySession.php', // Đường dẫn đến file PHP xử lý yêu cầu
+        url: '/SaleSphere/VIEWS/ForgotPassword/XulySession.php', // Đường dẫn đến file PHP xử lý yêu cầu
         method: 'POST',
         data: { action: 'deleteSession' }, // Thêm action: 'deleteSession' vào dữ liệu gửi đi
         success: function(response) {

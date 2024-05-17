@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/web2/STATIC/css/index.css">
-    <link rel="stylesheet" href="/web2/STATIC/css/category.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/index.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/category.css">
     <title>G1's Shop</title>
 </head>
 
@@ -68,7 +68,7 @@
                 <div class="product-gallery-content-product-text" >
                 <?php if ($sanpham['tenKhuyenMai']!=null && (strtotime($sanpham['hansudung'])>time() || strtotime($sanpham['hansudung'])==null)){ ?>
                     <?php if ($sanpham['background']!=null){ ?>
-                    <li style="background-color:<?php echo  $sanpham['background'];  }?>;"><img src="/web2/STATIC/assets/icon-percent.webp" alt="">
+                    <li style="background-color:<?php echo  $sanpham['background'];  }?>;"><img src="/SaleSphere/STATIC/assets/icon-percent.webp" alt="">
                         <p><?php 
                             echo $sanpham['tenKhuyenMai'];
                             ?></p>
@@ -120,14 +120,14 @@
     <script>
         var soLuongSpDB=<?php echo $controller->getSoLuongSP(); ?>;
     </script>
-    <script src="/web2/STATIC/js/category.js"></script>
-    <script src="/web2/STATIC/js/index.js"></script>
+    <script src="/SaleSphere/STATIC/js/category.js"></script>
+    <script src="/SaleSphere/STATIC/js/index.js"></script>
     <script>
 
         //FUNCTION REPLACE URL VÀ RELOAD
         function test(idProduct){
-            // location.assign("http://localhost/web2/index.php?page=productdetail");
-            window.location.replace(`http://localhost/web2/index.php?page=productdetail&id=${idProduct}`);
+            // location.assign("http://localhost/SaleSphere/index.php?page=productdetail");
+            window.location.replace(`http://localhost/SaleSphere/index.php?page=productdetail&id=${idProduct}`);
         }
     </script>
 </body>

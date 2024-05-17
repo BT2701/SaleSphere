@@ -15,7 +15,7 @@
 <div class="formxuly">
                     <?php if(isset($userListDetail)&&!empty($userListDetail)) ?>
                     <?php foreach($userListDetail as $user1): ?>
-                    <form action="/web2/CONTROLLER/UserController.php?controller=sua&&id=<?php echo $user1['id']?>" method="post" id="Form1">
+                    <form action="/SaleSphere/CONTROLLER/UserController.php?controller=sua&&id=<?php echo $user1['id']?>" method="post" id="Form1">
                         <label>ID</label>
                         <input type="text" name="id" id="Id" value="<?php echo $user1['id']; ?>" readonly>
                         <br><br>
@@ -66,6 +66,6 @@
                     <?php endforeach;?>
                 </div>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-                <script src="/web2/STATIC/js/validation_edit.js"></script>
+                <script src="/SaleSphere/STATIC/js/validation_edit.js"></script>
 </body>
 </html>

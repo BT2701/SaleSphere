@@ -17,9 +17,9 @@ $connection = mysqli_connect("localhost", "root", "", "quan_ly_ban_hang");
 //     if ($result) {
 //         $affectedRow = mysqli_affected_rows($connection);
 //         if ($affectedRow > 0) {
-//             header("Location: http://localhost/web2/VIEWS/cart/cart.php?deleteSuccessfully=true");
+//             header("Location: http://localhost/SaleSphere/VIEWS/cart/cart.php?deleteSuccessfully=true");
 //         } else {
-//             header("Location:http://localhost/web2/VIEWS/cart/cart.php?deleteSuccessfully=false ");
+//             header("Location:http://localhost/SaleSphere/VIEWS/cart/cart.php?deleteSuccessfully=false ");
 //         }
 //     }
 // }
@@ -151,7 +151,7 @@ $connection = mysqli_connect("localhost", "root", "", "quan_ly_ban_hang");
 //                                 $result4 = mysqli_query($connection, $strSQL4);
 //                                 if ($result4) {
 //                                     echo "Xóa chi tiết đặt hàng thành công!";
-//                                     header("Location: http://localhost/web2/VIEWS/cart/cart.php");
+//                                     header("Location: http://localhost/SaleSphere/VIEWS/cart/cart.php");
 //                                 }
 //                             }
 //                         } else {

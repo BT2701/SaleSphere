@@ -26,8 +26,8 @@
                             <td><?php echo $row['matKhau'] ?></td>
                             <td><?php echo $row['tenQuyen'] ?></td>
                             <td><?php if($row['TinhTrang']==1) {echo "Đang hoạt động";} else {echo "Bị khóa";} ?></td>
-                            <td ><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
-                            <td><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
+                            <td ><a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
+                            <td><a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
                         </tr>  
                 <?php
             }
@@ -56,8 +56,8 @@
                             <td><?php echo $row['matKhau'] ?></td>
                             <td><?php echo $row['tenQuyen'] ?></td>
                             <td><?php if($row['TinhTrang']==1) {echo "Đang hoạt động";} else {echo "Bị khóa";} ?></td>
-                            <td ><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
-                            <td><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
+                            <td ><a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
+                            <td><a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
                         </tr>  
                 <?php
             }
@@ -86,8 +86,8 @@
                             <td><?php echo $row['matKhau'] ?></td>
                             <td><?php echo $row['tenQuyen'] ?></td>
                             <td><?php if($row['TinhTrang']==1) {echo "Đang hoạt động";} else {echo "Bị khóa";} ?></td>
-                            <td ><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
-                            <td><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
+                            <td ><a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $row['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
+                            <td><a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $row['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
                         </tr>  
                 <?php
             }

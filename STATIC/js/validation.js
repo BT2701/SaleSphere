@@ -12,7 +12,7 @@ $(document).ready(function() {
     // Sử dụng Ajax để gửi dữ liệu đến file validate.php
     $.ajax({
         type: 'POST',
-        url: '/web2/VIEWS/sign_up/validate.php',
+        url: '/SaleSphere/VIEWS/sign_up/validate.php',
         data: formData,
         dataType: 'json',
         encode: true

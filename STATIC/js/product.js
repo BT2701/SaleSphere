@@ -10,7 +10,7 @@
 
 //         // Gửi dữ liệu thông qua Ajax
 //         $.ajax({
-//             url: "/web2/CONTROLLER/SanPhamController.php",
+//             url: "/SaleSphere/CONTROLLER/SanPhamController.php",
 //             type: "POST",
 //             data: {
 //                 productName: productName,

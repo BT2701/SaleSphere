@@ -6,7 +6,7 @@ class InvoiceManagementModel
 
     public function getCartController()
     {
-        require_once __DIR__ . '\..\..\web2\CONTROLLER\CartController.php';
+        require_once __DIR__ . '\..\..\SaleSphere\CONTROLLER\CartController.php';
         $cartController = new CartController();
         return $cartController;
     }

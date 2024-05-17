@@ -67,9 +67,6 @@ class SanPhamController {
                 $productUnit = $_POST['productUnit'];
                 $unit=trim(explode("-", $productUnit)[0]);
                 $productDescription = $_POST['productDescription'];
-                // $src="/web2/STATIC/assets/product3.png";
-                // Xử lý upload ảnh nếu cần
-                // Đường dẫn đến thư mục lưu ảnh
                 $targetDir = "../STATIC/assets/";
                 $targetFile = $targetDir . basename($_FILES["productImage"]["name"]);
                 $uploadOk = 1;
@@ -115,7 +112,7 @@ class SanPhamController {
                         echo "Đã xảy ra lỗi khi tải tệp lên.";
                     }
                 }
-                $src=str_replace("../", "/web2/", $targetFile);
+                $src=str_replace("../", "/SaleSphere/", $targetFile);
                 $this->sanphamModel->insertProduct($productName,$productRoot,$productPrice,$productType, $productUnit, $productDescription, $src);
             }else {
                 echo "Dữ liệu không hợp lệ.";
@@ -141,7 +138,7 @@ class SanPhamController {
                 $productUnit = $_POST['productUnit'];
                 $unit=trim(explode("-", $productUnit)[0]);
                 $productDescription = $_POST['productDescription'];
-                // $src="/web2/STATIC/assets/product3.png";
+                // $src="/SaleSphere/STATIC/assets/product3.png";
                 // Xử lý upload ảnh nếu cần
                 // Đường dẫn đến thư mục lưu ảnh
                 $targetDir = "../../STATIC/assets/";
@@ -189,11 +186,11 @@ class SanPhamController {
                         echo "Đã xảy ra lỗi khi tải tệp lên.";
                     }
                 }
-                $src=str_replace("../../", "/web2/", $targetFile);
+                $src=str_replace("../../", "/SaleSphere/", $targetFile);
 
                 $result=$this->sanphamModel->updateProduct($id,$productName,$productRoot,$productPrice,$productType, $productUnit, $productDescription, $src);
                 if ($result) {
-                    echo '<script>window.location.href = "/web2/VIEWS/ADMIN/admin_home.php?page=quanLySanPham";</script>';
+                    echo '<script>window.location.href = "/SaleSphere/VIEWS/ADMIN/admin_home.php?page=quanLySanPham";</script>';
                     exit; // Đảm bảo dừng kịch bản sau khi chuyển hướng
                 }
             }else {

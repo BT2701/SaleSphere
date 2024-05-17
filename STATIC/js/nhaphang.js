@@ -1,7 +1,7 @@
 
 function loadChiTietNhapHang(id) {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/web2/ROUTES/ChiTietSanPhamRoutes.php", true);
+  xhr.open("POST", "/SaleSphere/ROUTES/ChiTietSanPhamRoutes.php", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -63,7 +63,7 @@ $(document).ready(function () {
     var id = $(this).data("id");
     $.ajax({
       type: "POST",
-      url: "/web2/CONTROLLER/NhapHangController.php",
+      url: "/SaleSphere/CONTROLLER/NhapHangController.php",
       data: { idPhieuNhap: id },
       success: function (response) {
         // Hiển thị kết quả từ server trong modal

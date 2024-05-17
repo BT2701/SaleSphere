@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/web2/STATIC/css/sign_up.css">
-    <link rel="stylesheet" href="/web2/STATIC/css/evaluate.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/sign_up.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/evaluate.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <title>Đánh Giá Sản Phẩm</title>
@@ -79,6 +79,6 @@
     </form>
 </div>
 </body>
-<script src="/web2/STATIC/js/evaluate.js"></script>
+<script src="/SaleSphere/STATIC/js/evaluate.js"></script>
 
 </html>

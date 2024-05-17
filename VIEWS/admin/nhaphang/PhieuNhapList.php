@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách phiếu nhập</title>
-    <link rel="stylesheet" href="/web2/STATIC/css/phieunhaplist.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/phieunhaplist.css">
 
 </head>
 
@@ -29,7 +29,7 @@
     <div class="container mt-5">
         <div class="title-content">
             <h2>Danh Sách Phiếu Nhập</h2>
-            <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang"><i class="fa-solid fa-xmark"></i></a>
+            <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyNhapHang"><i class="fa-solid fa-xmark"></i></a>
         </div>
         <div class="search">
             <div class="search-by-nhanvien">
@@ -65,7 +65,7 @@
                     </thead>
                     <tbody id="tableData">
                         <?php foreach($list as $item){?>
-<!--                         <form action="/web2/CONTROLLER/NhapHangController.php" method="post" id="myForm"> -->
+<!--                         <form action="/SaleSphere/CONTROLLER/NhapHangController.php" method="post" id="myForm"> -->
                             <tr>
                                 <td>
                                     <?php echo $item['id']; ?>
@@ -95,7 +95,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-   <script src="/web2/STATIC/js/nhaphang.js"></script>
+   <script src="/SaleSphere/STATIC/js/nhaphang.js"></script>
     <script>
         $(document).ready(function() {
             // Xử lý sự kiện khi thay đổi select

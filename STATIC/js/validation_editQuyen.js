@@ -8,7 +8,7 @@ $(document).ready(function () {
     };
     $.ajax({
       type: "POST",
-      url: "/web2/VIEWS/admin/phanquyen/validation_editQuyen.php",
+      url: "/SaleSphere/VIEWS/admin/phanquyen/validation_editQuyen.php",
       data: formData,
       dataType: "json",
       encode: true,

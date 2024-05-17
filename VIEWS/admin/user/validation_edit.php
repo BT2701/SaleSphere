@@ -1,6 +1,6 @@
 <?php
 // Đảm bảo rằng request là POST request
-require 'C:\xampp\htdocs\web2\MODEL\Database.php';
+require 'C:\xampp\htdocs\SaleSphere\MODEL\Database.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Lấy dữ liệu từ form
     $username = $_POST["username"];

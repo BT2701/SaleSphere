@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/web2/STATIC/css/category.css">
-    <link rel="stylesheet" href="/web2/STATIC/css/nhaphang.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/category.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/nhaphang.css">
     <title>Quản lý nhập hàng</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -44,12 +44,12 @@
             <h2 class="mt-5">Nhập hàng</h2>
             <div class="main-detail">
                 <div class="cart-icon">
-                    <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang&&luachon=giohang" id="cart"><i class="fa-solid fa-cart-shopping" style="font-size:30px;"></i></a>
+                    <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyNhapHang&&luachon=giohang" id="cart"><i class="fa-solid fa-cart-shopping" style="font-size:30px;"></i></a>
                     <span class="item-count"><?php echo $count; ?></span> <!-- Số lượng hiển thị -->
                     
                 </div>
                 <div class="details">
-                    <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyNhapHang&&luachon=nhaphang-list" id="history"><i class="fa-solid fa-list" style="font-size:30px;"></i></a>
+                    <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyNhapHang&&luachon=nhaphang-list" id="history"><i class="fa-solid fa-list" style="font-size:30px;"></i></a>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
             <tbody>
                 
                 <?php foreach ($products as $product): ?>
-                    <form action="\web2\CONTROLLER\NhapHangController.php" method="post" enctype="multipart/form-data">
+                    <form action="\SaleSphere\CONTROLLER\NhapHangController.php" method="post" enctype="multipart/form-data">
                     <tr>
                         <td>
                             <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
@@ -125,7 +125,7 @@
         </div>
     </div>
     <!-- Bootstrap JS and jQuery -->
-    <script src="/web2/STATIC/js/category.js"></script>
+    <script src="/SaleSphere/STATIC/js/category.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

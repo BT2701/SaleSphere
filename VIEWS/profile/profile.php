@@ -13,14 +13,14 @@
         $id=$_SESSION['id'];
     }
     if($user!=""){
-        $taikhoan='<li><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $taikhoan='<li><a href="/SaleSphere/VIEWS/profile/profile.php">Tài khoản</a></li>';
         $changepass='';
-        $logout=' <li><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+        $logout=' <li><a href="/SaleSphere/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
     }
     else{
-        $taikhoan='<li><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
-        $changepass='<li><a href="/web2/VIEWS/profile/change_password.php">Đổi mật khẩu</a></li>';
-        $logout=' <li><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+        $taikhoan='<li><a href="/SaleSphere/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $changepass='<li><a href="/SaleSphere/VIEWS/profile/change_password.php">Đổi mật khẩu</a></li>';
+        $logout=' <li><a href="/SaleSphere/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
     }
 ?>
 <!DOCTYPE html>
@@ -32,15 +32,15 @@
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="/web2/STATIC/css/profile.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/profile.css">
     <title>Document</title>
 </head>
 <body>
     <div class="main">
         <div class="header">
             <div class="MyLogo">
-              <a class="LinkTrangChu" href="/web2/index.php">
-              <img src="/web2/STATIC/assets/banner.jpg" class="img-fluid" style="width: 150px;">
+              <a class="LinkTrangChu" href="/SaleSphere/index.php">
+              <img src="/SaleSphere/STATIC/assets/banner.jpg" class="img-fluid" style="width: 150px;">
               </a>
               <div class="namepage" style="font-size: 1.5rem; padding: 15px; font-family: 'Roboto'; font-size: 30px;">SHOPPEE</div>
             </div>
@@ -77,11 +77,11 @@
              <?php foreach($profileList as $profile): ?>
                 <div class="left_box">
                         <div class="content_img" style="display: flex; flex-direction: column;">
-                            <img class="img_avatar" style="border-radius: 100%;" src="<?php if($profile['src']=='0'||$profile['src']==''){echo '/web2/STATIC/assets/default_avatar_1.jpg';} else {echo $profile['src'];} ?>" alt="">
+                            <img class="img_avatar" style="border-radius: 100%;" src="<?php if($profile['src']=='0'||$profile['src']==''){echo '/SaleSphere/STATIC/assets/default_avatar_1.jpg';} else {echo $profile['src'];} ?>" alt="">
                         </div>
                 </div>
                 <div class="right_box">
-                <form action="/web2/CONTROLLER/ProfileController1.php" method="post" name="MyForm" id="myform">
+                <form action="/SaleSphere/CONTROLLER/ProfileController1.php" method="post" name="MyForm" id="myform">
                         <table>
                             <tr>
                                 <td class="row_lbusername">

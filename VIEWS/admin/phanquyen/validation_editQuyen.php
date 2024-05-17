@@ -1,5 +1,5 @@
 <?php
-    require 'C:\xampp\htdocs\web2\MODEL\Database.php';
+    require 'C:\xampp\htdocs\SaleSphere\MODEL\Database.php';
     if($_SERVER['REQUEST_METHOD']=="POST"){
         $username= $_POST['username'];
         $usernametemp= $_POST['usernametemp'];

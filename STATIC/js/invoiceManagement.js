@@ -17,7 +17,7 @@ function onRadioChange(radio) {
     dateInput.style.display = "none";
     checkPeriodLabel.style.display = "inline-block";
     $.ajax({
-      url: "/web2/CONTROLLER/InvoiceManagementController.php",
+      url: "/SaleSphere/CONTROLLER/InvoiceManagementController.php",
       method: "POST",
       dataType: "json",
       data: {
@@ -55,7 +55,7 @@ function dateChange(check) {
       document.getElementById("endDate").value = "";
     } else {
       $.ajax({
-        url: "/web2/CONTROLLER/InvoiceManagementController.php",
+        url: "/SaleSphere/CONTROLLER/InvoiceManagementController.php",
         method: "POST",
         dataType: "json",
         data: {
@@ -241,7 +241,7 @@ function showInvoiceDetails(invoiceId) {
   // Xử lý hiển thị chi tiết hóa đơn
   // Tạo một request AJAX để lấy thông tin chi tiết của hóa đơn dựa trên invoiceId
   $.ajax({
-    url: "/web2/CONTROLLER/InvoiceManagementController.php",
+    url: "/SaleSphere/CONTROLLER/InvoiceManagementController.php",
     method: "POST",
     dataType: "json",
     data: {
@@ -363,7 +363,7 @@ function cancelOrder(btn, invoiceId) {
   var confirmDelete = confirm("Có chắc chắn hủy đơn đặt hàng này không?");
   if (confirmDelete) {
     $.ajax({
-      url: "/web2/CONTROLLER/InvoiceManagementController.php",
+      url: "/SaleSphere/CONTROLLER/InvoiceManagementController.php",
       method: "POST",
       dataType: "json",
       data: {
@@ -390,7 +390,7 @@ function confirmOrder(btn, invoiceId) {
   var row = btn.parentNode.parentNode;
 
   $.ajax({
-    url: "/web2/CONTROLLER/InvoiceManagementController.php",
+    url: "/SaleSphere/CONTROLLER/InvoiceManagementController.php",
     method: "POST",
     dataType: "json",
     data: {

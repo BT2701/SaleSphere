@@ -40,14 +40,14 @@
             $result=$phanquyenModel->deleteQuyen($id);
             if($result)
             {
-                echo "<script>window.location.href='/web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Xóa thành công!';</script>";
+                echo "<script>window.location.href='/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Xóa thành công!';</script>";
             }
         }
     }
     //$phanquyenController = new PhanQuyenController();
     if(isset($_GET['controller'])&&$_GET['controller']=='sua'){
     $id=$_POST['phanloai'];
-    require_once 'C:\xampp\htdocs\web2\MODEL\PhanQuyenModel.php';
+    require_once __DIR__.'\..\MODEL\PhanQuyenModel.php';
     $phanquyenModel = new PhanQuyenModel();
     $phanquyenController= new PhanQuyenController();
     $phanquyenList=$phanquyenController->getListChucNang();
@@ -63,19 +63,19 @@
                 $id1=$phanquyenModel->GetIdmoinhat();
                 $phanquyenModel->insertPhanQuyenvoiTinhTrang($id1,$id,$user1['id'],'L',0);
             }
-        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&chon=sua&&id=$id");
+        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&chon=sua&&id=$id");
     }else
     {
-        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&chon=sua&&id=$id");
+        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&chon=sua&&id=$id");
     }
     }
     if(isset($_GET['controller'])&&$_GET['controller']=='them'){
         $username=$_POST['username'];
-        require_once 'C:\xampp\htdocs\web2\MODEL\PhanQuyenModel.php';
+        require_once 'C:\xampp\htdocs\SaleSphere\MODEL\PhanQuyenModel.php';
         $phanquyenModel = new PhanQuyenModel();
         $result= $phanquyenModel->insesrtQuyen($username);
         if($result){
-            header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Thêm quyền thành công!");
+            header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Thêm quyền thành công!");
         }
     }
     if(isset($_GET['controller'])&&$_GET['controller']=='suaDetail'){
@@ -83,7 +83,7 @@
         $phanquyenController= new PhanQuyenController();
         $phanquyenList=$phanquyenController->getListChucNang();
         
-        require_once 'C:\xampp\htdocs\web2\MODEL\PhanQuyenModel.php';
+        require_once 'C:\xampp\htdocs\SaleSphere\MODEL\PhanQuyenModel.php';
         $phanquyenModel= new  PhanQuyenModel();
         $phanquyenModel->updateTenQuyenById($_GET['id'],$username);
         if(isset($phanquyenList)&&!empty($phanquyenList))
@@ -98,7 +98,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['T','X'])
@@ -109,7 +109,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['T','S'])
@@ -120,7 +120,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['T','L'])
@@ -131,7 +131,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['S','L'])
@@ -142,7 +142,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['X','L'])
@@ -153,7 +153,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['T','S','X','L'])
@@ -164,7 +164,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['T'])
@@ -175,7 +175,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['S'])
@@ -186,7 +186,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['X'])
@@ -197,7 +197,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['L'])
@@ -208,7 +208,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['T','S','X'])
@@ -219,7 +219,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['T','S','L'])
@@ -230,7 +230,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['T','X','L'])
@@ -241,7 +241,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
                 if($mang==['S','X','L'])
@@ -252,7 +252,7 @@
                     $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],1);
                     if($result&&$result1&&$result2&&$result3)
                     {
-                        header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                        header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
                     }
                 }  
         }
@@ -265,7 +265,7 @@
             $result3=$phanquyenModel->updatePhanQuyenvoiTinhtrangHanhdongThem($phanquyenModel->getIdByHanhdong('L',$user1['id'],$_GET['id']),$user1['id'],$_GET['id'],0);
             if($result&&$result1&&$result2&&$result3)
             {
-                header("Location: /web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
+                header("Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&msg=Sửa thành công!");
             }
         }
     }

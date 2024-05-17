@@ -68,7 +68,7 @@ $detail=$controller->loadEditInfor();
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="/web2/VIEWS/admin/admin_home.php?page=quanLySanPham"><button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button></a>
+                        <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLySanPham"><button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button></a>
                         <button type="submit" class="btn btn-primary" id="esaveProductBtn" name="update">Lưu</button>
                     </div>
                 </form>

@@ -41,12 +41,12 @@
             if(mysqli_num_rows($get_user) > 0){
                 $get_tinhTrang=$profileController->getTinhTrang_facebook($fbid);
                 if($get_tinhTrang==0){
-                    header('Location: /web2/VIEWS/sign_up/404.php');
+                    header('Location: /SaleSphere/VIEWS/sign_up/404.php');
                 }else{
                 $get_id= $profileController->getID_facebook($fbid);
                 $_SESSION['id'] = $get_id; 
                 $_SESSION['login_name']=$fbName;
-                header('Location: /web2/index.php');
+                header('Location: /SaleSphere/index.php');
                 exit;
                 }
             }
@@ -59,7 +59,7 @@
                     $get_new_id= $profileController->getID_facebook($fbid);
                     $_SESSION['id'] = $get_new_id; 
                     $_SESSION['login_name']=$fbName;
-                    header('Location: /web2/index.php');
+                    header('Location: /SaleSphere/index.php');
                     exit;
                 }
                 else

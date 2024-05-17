@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../STATIC/css/cart.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="/web2/STATIC/js/cart.js"></script>
+  <script src="/SaleSphere/STATIC/js/cart.js"></script>
   <title>Cart</title>
 
 </head>

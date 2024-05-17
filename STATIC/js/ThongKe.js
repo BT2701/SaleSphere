@@ -123,7 +123,7 @@ function onchangeYear() {
 }
 function LoadHeaderBox(currentMonth, currentYear) {
   $.ajax({
-    url: "/web2/CONTROLLER/ThongKeController.php",
+    url: "/SaleSphere/CONTROLLER/ThongKeController.php",
     method: "POST",
     dataType: "json",
     data: {
@@ -161,7 +161,7 @@ function displayHeaderBoxThongKe(response) {
 }
 function LoaddataChart(currentMonth, currentYear) {
   $.ajax({
-    url: "/web2/CONTROLLER/ThongKeController.php",
+    url: "/SaleSphere/CONTROLLER/ThongKeController.php",
     method: "POST",
     dataType: "json",
     data: {
@@ -279,7 +279,7 @@ function formatPrice(price) {
 }
 function GetAllLoaiSanPham(currentMonth, currentYear) {
   $.ajax({
-    url: "/web2/CONTROLLER/ThongKeController.php",
+    url: "/SaleSphere/CONTROLLER/ThongKeController.php",
     method: "POST",
     dataType: "json",
     data: {
@@ -304,7 +304,7 @@ function GetAllLoaiSanPham(currentMonth, currentYear) {
 
 function GetThongTinHeaderByDateRange(fromDate, toDate) {
   $.ajax({
-    url: "/web2/CONTROLLER/ThongKeController.php",
+    url: "/SaleSphere/CONTROLLER/ThongKeController.php",
     method: "POST",
     dataType: "json",
     data: {
@@ -323,7 +323,7 @@ function GetThongTinHeaderByDateRange(fromDate, toDate) {
 }
 function GetAllLoaiSanPhamByDateRange(fromDate, toDate) {
   $.ajax({
-    url: "/web2/CONTROLLER/ThongKeController.php",
+    url: "/SaleSphere/CONTROLLER/ThongKeController.php",
     method: "POST",
     dataType: "json",
     data: {
@@ -347,7 +347,7 @@ function GetAllLoaiSanPhamByDateRange(fromDate, toDate) {
 
 function GetTopSellingProductsByDateRange(fromDate, toDate, productType) {
   $.ajax({
-    url: "/web2/CONTROLLER/ThongKeController.php",
+    url: "/SaleSphere/CONTROLLER/ThongKeController.php",
     method: "POST",
     dataType: "json",
     data: {
@@ -392,7 +392,7 @@ function displayProductTypes(productTypes) {
 // Function to get top selling products
 function GetTopSellingProducts(currentMonth, currentYear, productType) {
   $.ajax({
-    url: "/web2/CONTROLLER/ThongKeController.php",
+    url: "/SaleSphere/CONTROLLER/ThongKeController.php",
     method: "POST",
     dataType: "json",
     data: {

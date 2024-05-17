@@ -14,7 +14,7 @@ function index()
 // {
 //     $isSuccessCreate = TaoMoiKhuyenMaiModel($coupondInfo);
 //     $rows = DanhSachKhuyenMaiModel();
-//     header("Location: http://localhost/web2/index.php?page=coupond");
+//     header("Location: http://localhost/SaleSphere/index.php?page=coupond");
 // }
 
 function TaoMoiKhuyenMaiController($coupondInfo)

@@ -14,13 +14,13 @@
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="/web2/STATIC/css/phanquyen.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/phanquyen.css">
 </head>
 <body>
     <div class="main">
         <div class="container">
         <hr>
-            <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen" style="text-decoration: none; color: black;"><h1>Danh sách phân quyền</h1></a>
+            <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen" style="text-decoration: none; color: black;"><h1>Danh sách phân quyền</h1></a>
         <hr>
         <?php
             if (isset($_GET["msg"])) {
@@ -32,9 +32,9 @@
                 }
                 
         ?>
-        <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&chon=them" class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Thêm quyền</a>
+        <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyPhanQuyen&chon=them" class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Thêm quyền</a>
         <h3>Quyền hiện tại</h3>
-        <form action="/web2/CONTROLLER/PhanQuyenController.php?controller=sua" method="post">
+        <form action="/SaleSphere/CONTROLLER/PhanQuyenController.php?controller=sua" method="post">
             <select class="phanloai form-select mb-3" name="phanloai">
             <?php if(isset($phanquyenList)&&!empty($phanquyenList)) ?>
             <?php foreach($phanquyenList as $user1): ?>
@@ -62,6 +62,6 @@
         ?>
         </div>
     </div>  
-    <script src="/web2/STATIC/js/User.js"></script>
+    <script src="/SaleSphere/STATIC/js/User.js"></script>
 </body>
 </html>

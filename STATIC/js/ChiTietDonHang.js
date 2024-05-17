@@ -17,7 +17,7 @@ function LoadThongTinDonHang(CustomerID,idDonHang,trangthai) {
     if (!isLoading && endPage==false) {
         isLoading = true;
         $.ajax({
-            url: "/web2/CONTROLLER/ChiTietDonHangController.php",
+            url: "/SaleSphere/CONTROLLER/ChiTietDonHangController.php",
             method: 'POST',
             dataType: 'json',
             data: { action:'laychitietdonhang',page:page, limit:limit,CustomerID:CustomerID,IdDonHang:IDDonHang},
@@ -80,7 +80,7 @@ function displayOrders(orders,trangthai) {
             var idDonHang = $(this).data('iddonhang');
             var idSanpham = $(this).data('idsanpham');
 
-            var form = $('<form action="/web2/VIEWS/evaluate/evaluate.php" method="post">' +
+            var form = $('<form action="/SaleSphere/VIEWS/evaluate/evaluate.php" method="post">' +
             '<input type="hidden" name="idkhachhang" value="' + idKhachHang + '">' +
             '<input type="hidden" name="iddonhang" value="' + idDonHang + '">' +
             '<input type="hidden" name="idsanpham" value="' + idSanpham + '">' +
@@ -94,7 +94,7 @@ function displayOrders(orders,trangthai) {
 }
 function checkIfEvaluated(CustomerID, idDonHang, idSanPham) {
     $.ajax({
-        url: "/web2/CONTROLLER/ChiTietDonHangController.php",
+        url: "/SaleSphere/CONTROLLER/ChiTietDonHangController.php",
         method: 'POST',
         data: { 
             action: 'checkEvaluate',

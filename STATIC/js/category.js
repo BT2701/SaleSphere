@@ -72,7 +72,7 @@ function phanTrang(action, value) {
 }
 function loadNumOfPage(action, value) {
   $.ajax({
-    url: "/web2/CONTROLLER/SanPhamController.php",
+    url: "/SaleSphere/CONTROLLER/SanPhamController.php",
     method: "GET",
     data: { action: action, value: value },
     success: function (data) {
@@ -107,7 +107,7 @@ function loadData(pageNumber, action, value) {
   var startIndex = (pageNumber - 1) * itemsPerPage; // Vị trí bắt đầu của trang hiện tại
 
   $.ajax({
-    url: "/web2/CONTROLLER/SanPhamController.php",
+    url: "/SaleSphere/CONTROLLER/SanPhamController.php",
     method: "GET",
     data: {
       action: action,
@@ -140,7 +140,7 @@ function loadData(pageNumber, action, value) {
               (product.background != null ? product.background : "#fcfcfc") +
               ';">';
             productListHTML +=
-              '<img src="/web2/STATIC/assets/icon-percent.webp" alt="">';
+              '<img src="/SaleSphere/STATIC/assets/icon-percent.webp" alt="">';
             productListHTML += "<p>" + product.tenKhuyenMai + "</p>";
             productListHTML += "</li>";
             productListHTML += "<li>" + product.tenSanPham + "</li>";

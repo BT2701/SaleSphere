@@ -8,7 +8,7 @@ function deleteRow(btn) {
   
   if (confirmDelete) {
       $.ajax({
-        url: "/web2/CONTROLLER/CartController.php",
+        url: "/SaleSphere/CONTROLLER/CartController.php",
         method: 'POST',
         dataType: 'json',
         data: { action:'deleteProduct',
@@ -101,7 +101,7 @@ function increaseQuantity(btn) {
 // --------------------Update Số lượng trong database---------------------
 function updateQuantity(userID, idsanpham, soLuongMoi){
     $.ajax({
-      url: "/web2/CONTROLLER/CartController.php",
+      url: "/SaleSphere/CONTROLLER/CartController.php",
       method: 'POST',
       dataType: 'json',
       data: { action:'updateQuantity',
@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
 
           $.ajax({
-              url: "/web2/CONTROLLER/CartController.php",
+              url: "/SaleSphere/CONTROLLER/CartController.php",
               method: 'POST',
               dataType: 'json',
               data: {
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                   if(confirmed){
                   $.ajax({
-                    url: "/web2/CONTROLLER/CartController.php",
+                    url: "/SaleSphere/CONTROLLER/CartController.php",
                     method: 'POST',
                     dataType: 'json',
                     data: { action:'deleteMultipleProduct',

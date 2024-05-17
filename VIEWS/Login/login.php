@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/web2/STATIC/css/login.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
                     <button class="btn btn-danger ButtonEmail "><i class="fab fa-google"></i> Google</button>
                     <div class="container-dangky">
                         <span class="container-dangky">Bạn mới biết đến Shopee?</span>
-                        <a href="/web2/VIEWS/sign_up/sign_up.php" class="hrefDangky">Đăng ký</a>
+                        <a href="/SaleSphere/VIEWS/sign_up/sign_up.php" class="hrefDangky">Đăng ký</a>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/web2/STATIC/js/Login.js"></script>
+    <script src="/SaleSphere/STATIC/js/Login.js"></script>
 
 </body>
 

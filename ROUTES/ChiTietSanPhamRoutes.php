@@ -1,9 +1,9 @@
 <?php
-// include 'C:\xampp\htdocs\web2\CONTROLLER\ChiTietSanPhamController.php';
+// include 'C:\xampp\htdocs\SaleSphere\CONTROLLER\ChiTietSanPhamController.php';
 require_once __DIR__.'\..\CONTROLLER\ChiTietSanPhamController.php';
 require_once __DIR__.'\..\CONTROLLER\GioHangController.php';
 require_once __DIR__.'\..\CONTROLLER\NhapHangController.php';
-// include("C:\xampp\htdocs\web2\CONTROLLER\SanPhamController.php");
+// include("C:\xampp\htdocs\SaleSphere\CONTROLLER\SanPhamController.php");
 if(isset($_POST['action']) && $_POST['action']=='LoadDanhGia'){
     loadDanhGia($_POST);
 }

@@ -67,7 +67,7 @@ function changePassword() {
 
 function checkLogin(username, password) {
   $.ajax({
-    url: "/web2/CONTROLLER/LoginController.php",
+    url: "/SaleSphere/CONTROLLER/LoginController.php",
     method: "POST",
     dataType: "json",
     data: { action: "Login", username: username, password: password },
@@ -76,12 +76,12 @@ function checkLogin(username, password) {
       if (response != false) {
         if ("maQuyen" in response && "TinhTrang" in response) {
           if (response.maQuyen == 2 && response.TinhTrang == 1) {
-            window.location.href = "/web2/index.php?page=homepage";
+            window.location.href = "/SaleSphere/index.php?page=homepage";
           } else {
             if (response.maQuyen != 2 && response.TinhTrang == 1) {
-              window.location.href = "/web2/VIEWS/admin/admin_home.php";
+              window.location.href = "/SaleSphere/VIEWS/admin/admin_home.php";
             } else {
-              window.location.href = "/web2/VIEWS/sign_up/404.php";
+              window.location.href = "/SaleSphere/VIEWS/sign_up/404.php";
             }
           }
         } else {

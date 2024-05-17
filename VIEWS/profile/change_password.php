@@ -12,14 +12,14 @@
         $id=$_SESSION['id'];
     }
     if($user!=""){
-        $taikhoan='<li><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $taikhoan='<li><a href="/SaleSphere/VIEWS/profile/profile.php">Tài khoản</a></li>';
         $changepass='';
-        $logout=' <li><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+        $logout=' <li><a href="/SaleSphere/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
     }
     else{
-        $taikhoan='<li><a href="/web2/VIEWS/profile/profile.php">Tài khoản</a></li>';
-        $changepass='<li><a href="/web2/VIEWS/profile/change_password.php">Đổi mật khẩu</a></li>';
-        $logout=' <li><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+        $taikhoan='<li><a href="/SaleSphere/VIEWS/profile/profile.php">Tài khoản</a></li>';
+        $changepass='<li><a href="/SaleSphere/VIEWS/profile/change_password.php">Đổi mật khẩu</a></li>';
+        $logout=' <li><a href="/SaleSphere/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
     }
 ?>
 <!DOCTYPE html>
@@ -32,15 +32,15 @@
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="/web2/STATIC/css/change_password.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/change_password.css">
    
     <title>Đổi mật khẩu</title>
 </head>
 <body>
       <div class="header">
             <div class="MyLogo">
-                <a class="LinkTrangChu" href="/web2/index.php">
-                    <img src="/web2/STATIC/assets/banner.jpg" class="img-fluid" style="width: 150px;">
+                <a class="LinkTrangChu" href="/SaleSphere/index.php">
+                    <img src="/SaleSphere/STATIC/assets/banner.jpg" class="img-fluid" style="width: 150px;">
                 </a>
                 <div class="namepage" style="font-size: 1.5rem; padding: 15px; font-family: 'Roboto'; font-size: 30px;">Đổi mật khẩu</div>
             </div>
@@ -76,7 +76,7 @@
                 </div>
                 <?php if (isset($profileList) && !empty($profileList)) ?>
                 <?php foreach ($profileList as $profile) : ?>
-                <form action="/web2/CONTROLLER/ChangePasswordController.php"method="post" name="MyForm1" id="MyForm">
+                <form action="/SaleSphere/CONTROLLER/ChangePasswordController.php"method="post" name="MyForm1" id="MyForm">
                 <input type="hidden" id="IdProfile1" name="IdProfile" value="<?php echo $profile['id']; ?>"/>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Mật khẩu hiện tại" id="oldpass" name="Oldpass">
@@ -156,6 +156,6 @@
     </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/web2/STATIC/js/validation_changepass.js"></script>
+    <script src="/SaleSphere/STATIC/js/validation_changepass.js"></script>
     </body>    
 </html>

@@ -14,14 +14,14 @@
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="/web2/STATIC/css/user.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/user.css">
 
 </head>
 <body >
     <div class="main">
         <div class="container">
             <hr>
-            <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan" style="text-decoration: none; color: black;"><h1>Danh sách tài khoản</h1></a>
+            <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan" style="text-decoration: none; color: black;"><h1>Danh sách tài khoản</h1></a>
             <hr>
             <?php
                 if (isset($_GET["msg"])) {
@@ -43,7 +43,7 @@
             ?>
             <br>
             <div class="chucnang">
-                <a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=them" class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Thêm mới</a>
+                <a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=them" class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i> Thêm mới</a>
                 <form class="row">
                     <div class="col-md-3">
                         <select class="phanloai form-select mb-3">
@@ -82,8 +82,8 @@
                         <td><?php echo $user1['matKhau'] ?></td>
                         <td><?php echo $user1['tenQuyen'] ?></td>
                         <td><?php if($user1['TinhTrang']==1) {echo "Đang hoạt động";} else {echo "Bị khóa";} ?></td>
-                        <td ><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $user1['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
-                        <td><a href="/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $user1['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
+                        <td ><a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=sua&&id=<?php echo $user1['id']?>" class="link-dark btn btn-success" style="text-align: center;"><i class="fa-solid fa-pen-to-square fs-5"></i></a></td>
+                        <td><a href="/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&&chon=xoa&&id=<?php echo $user1['id']?>" class="link-dark btn btn-danger"><i class="fa-solid fa-trash fs-5"></i></a></td>
                     </tr>     
                     <?php endforeach;?>    
                 </tbody>
@@ -92,7 +92,7 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/web2/STATIC/js/User.js"></script>
+    <script src="/SaleSphere/STATIC/js/User.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('.timkiem').keyup(function(){

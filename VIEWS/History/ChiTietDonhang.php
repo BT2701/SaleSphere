@@ -7,7 +7,7 @@
     <title>Chi Tiết Đơn Hàng</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/web2/STATIC/css/LichSuDonHang.css">
+    <link rel="stylesheet" href="/SaleSphere/STATIC/css/LichSuDonHang.css">
 </head>
 <body>
     <div class="container">
@@ -24,7 +24,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- JavaScript tải dữ liệu đơn hàng -->
-    <script src="/web2/STATIC/js/ChiTietDonHang.js"></script>
+    <script src="/SaleSphere/STATIC/js/ChiTietDonHang.js"></script>
     <script>
         $(document).ready(function() {
         var customerId=<?php echo $_POST['idkhachhang']?>;

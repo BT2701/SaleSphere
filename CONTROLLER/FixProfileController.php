@@ -37,12 +37,12 @@
     }
     $profileModel->EditProfile($id1,$username1,$email1,$sdt1,$gender1,$dob1,$diachi1);
     $src2=$profileModel->getAnhByID($id1);
-    $target_dir="/web2/STATIC/assets/";
+    $target_dir="/SaleSphere/STATIC/assets/";
     $target_file = $target_dir . $src1;
     if(empty($src1))
     $profileModel->EditImage($id1,$src2);
     else
     $profileModel->EditImage($id1,$target_file);
-    header('Location: /web2/VIEWS/profile/profile.php');
+    header('Location: /SaleSphere/VIEWS/profile/profile.php');
 
 ?>

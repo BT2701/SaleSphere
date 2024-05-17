@@ -1,3 +1,3 @@
 <?php
-    header('Location: /web2/VIEWS/profile/fixprofile.php');
+    header('Location: /SaleSphere/VIEWS/profile/fixprofile.php');
 ?>

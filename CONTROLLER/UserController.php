@@ -40,7 +40,7 @@
             $result= $usermodel->insertUser($ten,$hashedPassword,$mail,$phone,$state,$maquyen);
             if($result)
             {
-                header('Location: /web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Thêm thành công!');
+                header('Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Thêm thành công!');
             }
             else
             {
@@ -68,7 +68,7 @@
                 $result= $usermodel->updateUser($id,$ten,$mail,$pass,$phone,$state,$maquyen);
                 if($result)
                 {
-                    header('Location: /web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Sửa thành công!');
+                    header('Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Sửa thành công!');
                 }
                 else
                 {
@@ -80,7 +80,7 @@
                 $result= $usermodel->updateUser($id,$ten,$mail,$hashedPassword,$phone,$state,$maquyen);
                 if($result)
                 {
-                    header('Location: /web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Sửa thành công!');
+                    header('Location: /SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Sửa thành công!');
                 }
                 else
                 {
@@ -96,7 +96,7 @@
             $result= $usermodel->deleteUser($id);
             if($result)
             {
-                echo "<script>window.location.href='/web2/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Xóa thành công!';</script>";
+                echo "<script>window.location.href='/SaleSphere/VIEWS/admin/admin_home.php?page=quanLyTaiKhoan&msg=Xóa thành công!';</script>";
             }
             else
             {

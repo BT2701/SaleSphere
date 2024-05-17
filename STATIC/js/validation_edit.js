@@ -11,7 +11,7 @@ $(document).ready(function () {
     };
     $.ajax({
       type: "POST",
-      url: "/web2/VIEWS/admin/user/validation_edit.php",
+      url: "/SaleSphere/VIEWS/admin/user/validation_edit.php",
       data: formData,
       dataType: "json",
       encode: true,

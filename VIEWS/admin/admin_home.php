@@ -29,10 +29,10 @@
         } elseif($page == 'quanLySanPham') {
             include 'product/quan_ly_san_pham.php';
         } elseif($page == 'promote') {
-            include '/web2/VIEWS/promote/promote.php';
+            include '/SaleSphere/VIEWS/promote/promote.php';
         }
         else if ($page == 'productdetail') {
-            include '/web2/VIEWS/productdetail/product-detail.php';
+            include '/SaleSphere/VIEWS/productdetail/product-detail.php';
         }
         else if ($page == 'quanLyNhapHang') {
             include 'nhaphang/nhaphang.php';

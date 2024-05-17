@@ -17,13 +17,13 @@
         $logined="&nbsp".$profileController->GetTenById($id);
         $logined_mini="&nbsp" .$profileController->GetTenById($id);
         $login='';
-        $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
+        $signup='<li class="user-action_list-item"><a href="/SaleSphere/VIEWS/sign_up/logout.php">Đăng xuất</a></li>';
     }
     else {
         $logined= '<span class="user-name">Đăng nhập/Đăng ký</span>';
         $login='<li class="user-action_list-item"><a href="#">Đăng nhập</a></li>';
-        $signup='<li class="user-action_list-item"><a href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a></li>';
-        $logined_mini='<a class="nav-link" href="/web2/VIEWS/sign_up/sign_up.php">Đăng ký</a>';
+        $signup='<li class="user-action_list-item"><a href="/SaleSphere/VIEWS/sign_up/sign_up.php">Đăng ký</a></li>';
+        $logined_mini='<a class="nav-link" href="/SaleSphere/VIEWS/sign_up/sign_up.php">Đăng ký</a>';
     }   
     
 ?>
@@ -33,8 +33,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/web2/STATIC/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/web2/STATIC/css/base-style.css">
+    <link rel="stylesheet" type="text/css" href="/SaleSphere/STATIC/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/SaleSphere/STATIC/css/base-style.css">
     <title>Document</title>
 </head>
 <body>
@@ -198,7 +198,7 @@
 <script>
     document.getElementById("viewCartButton").addEventListener("click", function() {
     // Điều hướng người dùng đến trang giỏ hàng (cart.php)
-    window.location.href = "/web2/VIEWS/cart/cart.php";
+    window.location.href = "/SaleSphere/VIEWS/cart/cart.php";
 
     });
 </script>

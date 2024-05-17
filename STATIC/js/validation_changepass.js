@@ -10,7 +10,7 @@ $(document).ready(function(){
     };
     $.ajax({
         type: 'POST',
-        url: '/web2/VIEWS/profile/validate_changepass.php',
+        url: '/SaleSphere/VIEWS/profile/validate_changepass.php',
         data: formData,
         dataType: 'json',
         encode: true
