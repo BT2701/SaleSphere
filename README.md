@@ -8,10 +8,10 @@ This project is an e-commerce website with a management system comprising three 
 
 ## Features
   <div align="center">
-      <a href="#"><img src="README_IMG/user1_1.gif" alt="alt text" style="width:20%;"></a>
-      <a href="#"><img src="README_IMG/user2_1.gif" alt="alt text" style="width:20%; "></a>
-      <a href="#"><img src="README_IMG/user3_1.gif" alt="alt text" style="width:20%; "></a>
-      <a href="#"><img src="README_IMG/user4_1.gif" alt="alt text" style="width:20%; "></a>
+      <a href="#"><img src="README_IMG/user1_1.gif" alt="alt text" style="width:20%; float: left;"></a>
+      <a href="#"><img src="README_IMG/user2_1.gif" alt="alt text" style="width:20%; float: left;"></a>
+      <a href="#"><img src="README_IMG/user3_1.gif" alt="alt text" style="width:20%; float: left;"></a>
+      <a href="#"><img src="README_IMG/user4_1.gif" alt="alt text" style="width:20%; float: left;"></a>
    </div>
 
 ### Customer
