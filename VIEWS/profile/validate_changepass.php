@@ -1,5 +1,5 @@
 <?php
-    require 'C:\xampp\htdocs\SaleSphere\MODEL\Database.php';
+    require __DIR__.'\..\..\MODEL\Database.php';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id1=$_POST['IdProfile'];
         $passhientai=$_POST['Oldpass'];

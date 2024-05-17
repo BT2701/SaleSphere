@@ -71,7 +71,7 @@
     }
     if(isset($_GET['controller'])&&$_GET['controller']=='them'){
         $username=$_POST['username'];
-        require_once 'C:\xampp\htdocs\SaleSphere\MODEL\PhanQuyenModel.php';
+        require_once __DIR__.'\..\MODEL\PhanQuyenModel.php';
         $phanquyenModel = new PhanQuyenModel();
         $result= $phanquyenModel->insesrtQuyen($username);
         if($result){
@@ -83,7 +83,7 @@
         $phanquyenController= new PhanQuyenController();
         $phanquyenList=$phanquyenController->getListChucNang();
         
-        require_once 'C:\xampp\htdocs\SaleSphere\MODEL\PhanQuyenModel.php';
+        require_once __DIR__.'\..\MODEL\PhanQuyenModel.php';
         $phanquyenModel= new  PhanQuyenModel();
         $phanquyenModel->updateTenQuyenById($_GET['id'],$username);
         if(isset($phanquyenList)&&!empty($phanquyenList))

@@ -48,7 +48,7 @@
                 <button class="btn btn-danger ButtonEmail "><i class="fab fa-google"></i> Google</button> -->
                 <div class="container-dangky" style="margin-bottom: 20px;">
                     <span class="container-dangky">Bạn muốn đăng nhập?</span>
-                    <a href="#" class="hrefDangky">Đăng nhập</a>
+                    <a href="/SaleSphere/VIEWS/login/login.php" class="hrefDangky">Đăng nhập</a>
                 </div>
             </div>
         </div>
