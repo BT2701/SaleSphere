@@ -90,4 +90,4 @@ We welcome contributions! Please follow these steps to contribute:
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## Contact
-If you have any questions or suggestions, feel free to contact us at [Truong's mail](mailto:dttruonga8tqtpy@gmail.com).
+If you have any questions or suggestions, feel free to contact us at [Mail](mailto:dttruonga8tqtpy@gmail.com).
