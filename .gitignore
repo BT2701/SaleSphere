@@ -1,11 +1,9 @@
 *.7zip
 *.zip
-
 */composer.lock
 
 vendor/phpmailer/phpmailer/.*
 vendor/phpmailer/phpmailer/*.md
-
 
 vendor/phpmailer/phpmailer/docs/*
 vendor/phpmailer/phpmailer/!docs/README.md
